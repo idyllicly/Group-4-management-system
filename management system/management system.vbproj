@@ -81,6 +81,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InquiryPage.Designer.vb">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InquiryPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="homepage.Designer.vb">
       <DependentUpon>homepage.vb</DependentUpon>
     </Compile>
@@ -125,6 +131,9 @@
   <ItemGroup>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InquiryPage.resx">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
