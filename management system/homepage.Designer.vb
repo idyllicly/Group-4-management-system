@@ -31,16 +31,18 @@ Partial Class homepage
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.UserControl11.BackColor = System.Drawing.Color.White
         Me.UserControl11.Location = New System.Drawing.Point(-3, -2)
+        Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(1828, 108)
+        Me.UserControl11.Size = New System.Drawing.Size(1625, 86)
         Me.UserControl11.TabIndex = 0
         '
         'homepage
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1829, 855)
+        Me.ClientSize = New System.Drawing.Size(1626, 684)
         Me.Controls.Add(Me.UserControl11)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "homepage"
         Me.Text = "homepage"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
