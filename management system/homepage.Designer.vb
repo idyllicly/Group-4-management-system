@@ -22,37 +22,35 @@ Partial Class homepage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.UserControl11 = New management_system.UserControl1()
-        Me.UserControl12 = New management_system.UserControl1()
+        Me.menu = New management_system.SideMenuControl()
+        Me.NavigationControl2 = New management_system.NavigationControl()
         Me.SuspendLayout()
         '
-        'UserControl11
+        'menu
         '
-        Me.UserControl11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.UserControl11.BackColor = System.Drawing.Color.White
-        Me.UserControl11.Location = New System.Drawing.Point(-3, -2)
-        Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(1625, 86)
-        Me.UserControl11.TabIndex = 0
+        Me.menu.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.menu.Location = New System.Drawing.Point(563, -205)
+        Me.menu.Name = "menu"
+        Me.menu.Size = New System.Drawing.Size(264, 297)
+        Me.menu.TabIndex = 1
         '
-        'UserControl12
+        'NavigationControl2
         '
-        Me.UserControl12.BackColor = System.Drawing.Color.White
-        Me.UserControl12.Location = New System.Drawing.Point(52, 51)
-        Me.UserControl12.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.UserControl12.Name = "UserControl12"
-        Me.UserControl12.Size = New System.Drawing.Size(8, 17)
-        Me.UserControl12.TabIndex = 1
+        Me.NavigationControl2.BackColor = System.Drawing.Color.White
+        Me.NavigationControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.NavigationControl2.Location = New System.Drawing.Point(0, 0)
+        Me.NavigationControl2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.NavigationControl2.Name = "NavigationControl2"
+        Me.NavigationControl2.Size = New System.Drawing.Size(827, 92)
+        Me.NavigationControl2.TabIndex = 0
         '
         'homepage
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1626, 684)
-        Me.Controls.Add(Me.UserControl12)
-        Me.Controls.Add(Me.UserControl11)
+        Me.ClientSize = New System.Drawing.Size(827, 589)
+        Me.Controls.Add(Me.menu)
+        Me.Controls.Add(Me.NavigationControl2)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "homepage"
         Me.Text = "homepage"
@@ -61,6 +59,8 @@ Partial Class homepage
 
     End Sub
 
-    Friend WithEvents UserControl11 As UserControl1
-    Friend WithEvents UserControl12 As UserControl1
+    Friend WithEvents NavigationControl1 As NavigationControl
+    Friend WithEvents mySideMenu As SideMenuControl
+    Friend WithEvents NavigationControl2 As NavigationControl
+    Friend WithEvents menu As SideMenuControl
 End Class
