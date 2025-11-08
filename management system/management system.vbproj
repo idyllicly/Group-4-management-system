@@ -84,11 +84,22 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLogic.vb" />
-    <Compile Include="InquiryPage.Designer.vb">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
+    <Compile Include="AccAndSettings_SuperAdmin.Designer.vb">
+      <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
     </Compile>
-    <Compile Include="InquiryPage.vb">
+    <Compile Include="AccAndSettings_SuperAdmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calendar Page.Designer.vb">
+      <DependentUpon>Calendar Page.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Calendar Page.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateAcc_SupAdmin.Designer.vb">
+      <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAcc_SupAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="homepage.Designer.vb">
@@ -148,6 +159,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
+      <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar Page.resx">
+      <DependentUpon>Calendar Page.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
+      <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
     </EmbeddedResource>

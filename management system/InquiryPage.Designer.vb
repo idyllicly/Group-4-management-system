@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class InquiryPage
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,26 +20,25 @@ Partial Class InquiryPage
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.UserControl11 = New management_system.NavigationControl()
+        Me.UserControl11 = New management_system.UserControl1()
         Me.SuspendLayout()
         '
         'UserControl11
         '
         Me.UserControl11.BackColor = System.Drawing.Color.White
-        Me.UserControl11.Dock = System.Windows.Forms.DockStyle.Top
-        Me.UserControl11.Location = New System.Drawing.Point(0, 0)
+        Me.UserControl11.Location = New System.Drawing.Point(0, -2)
         Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(832, 92)
+        Me.UserControl11.Size = New System.Drawing.Size(1196, 74)
         Me.UserControl11.TabIndex = 0
         '
         'InquiryPage
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(832, 582)
+        Me.ClientSize = New System.Drawing.Size(1191, 651)
         Me.Controls.Add(Me.UserControl11)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "InquiryPage"
@@ -49,5 +48,5 @@ Partial Class InquiryPage
 
     End Sub
 
-    Friend WithEvents UserControl11 As NavigationControl
+    Friend WithEvents UserControl11 As UserControl1
 End Class
