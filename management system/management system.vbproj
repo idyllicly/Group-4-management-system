@@ -88,7 +88,33 @@
     <Compile Include="Dashboard.Designer.vb">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.vb" />
+    <Compile Include="Dashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomPopup.Designer.vb">
+      <DependentUpon>frmCustomPopup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJobDetails.Designer.vb">
+      <DependentUpon>frmJobDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmJobDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectTechnician.Designer.vb">
+      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectTechnician.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTechnicianDetails.Designer.vb">
+      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTechnicianDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InquiryPage.Designer.vb">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </Compile>
@@ -132,6 +158,12 @@
     <Compile Include="SideMenuControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="technicianCard.Designer.vb">
+      <DependentUpon>technicianCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="technicianCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="timeline page.Designer.vb">
       <DependentUpon>timeline page.vb</DependentUpon>
     </Compile>
@@ -155,6 +187,18 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomPopup.resx">
+      <DependentUpon>frmCustomPopup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmJobDetails.resx">
+      <DependentUpon>frmJobDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectTechnician.resx">
+      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTechnicianDetails.resx">
+      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SideMenuControl.resx">
       <DependentUpon>SideMenuControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="technicianCard.resx">
+      <DependentUpon>technicianCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="timeline page.resx">
       <DependentUpon>timeline page.vb</DependentUpon>
