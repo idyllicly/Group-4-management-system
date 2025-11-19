@@ -115,6 +115,10 @@
     <Compile Include="frmTechnicianDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InquiryCard.Designer.vb">
+      <DependentUpon>InquiryCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InquiryCard.vb" />
     <Compile Include="InquiryPage.Designer.vb">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </Compile>
@@ -201,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InquiryCard.resx">
+      <DependentUpon>InquiryCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>

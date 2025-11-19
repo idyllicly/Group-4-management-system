@@ -29,7 +29,7 @@ Partial Class homepage
         'menu
         '
         Me.menu.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.menu.Location = New System.Drawing.Point(563, -205)
+        Me.menu.Location = New System.Drawing.Point(573, -205)
         Me.menu.Name = "menu"
         Me.menu.Size = New System.Drawing.Size(264, 297)
         Me.menu.TabIndex = 1
