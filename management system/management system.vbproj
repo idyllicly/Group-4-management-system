@@ -99,28 +99,30 @@
     <Compile Include="CreateAcc_SupAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DashboardLayout.Designer.vb">
-      <DependentUpon>DashboardLayout.vb</DependentUpon>
+    <Compile Include="DateCard.Designer.vb">
+      <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="DashboardLayout.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="DateCard.vb" />
     <Compile Include="homepage.Designer.vb">
       <DependentUpon>homepage.vb</DependentUpon>
     </Compile>
     <Compile Include="homepage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JobCardControl.Designer.vb">
-      <DependentUpon>JobCardControl.vb</DependentUpon>
+    <Compile Include="Inquiry page.Designer.vb">
+      <DependentUpon>Inquiry page.vb</DependentUpon>
     </Compile>
-    <Compile Include="JobCardControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Inquiry page.vb" />
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
     </Compile>
     <Compile Include="log in.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAccounts.Designer.vb">
+      <DependentUpon>ManageAccounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAccounts.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -145,6 +147,24 @@
     <Compile Include="navigationControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SelectTechnicianCard.Designer.vb">
+      <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTechnicianCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectTechnicianPage.Designer.vb">
+      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTechnicianPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicianCard.Designer.vb">
+      <DependentUpon>TechnicianCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicianCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControl1.Designer.vb">
       <DependentUpon>UserControl1.vb</DependentUpon>
     </Compile>
@@ -162,17 +182,20 @@
     <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardLayout.resx">
-      <DependentUpon>DashboardLayout.vb</DependentUpon>
+    <EmbeddedResource Include="DateCard.resx">
+      <DependentUpon>DateCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JobCardControl.resx">
-      <DependentUpon>JobCardControl.vb</DependentUpon>
+    <EmbeddedResource Include="Inquiry page.resx">
+      <DependentUpon>Inquiry page.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAccounts.resx">
+      <DependentUpon>ManageAccounts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -182,6 +205,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="navigationControl.resx">
       <DependentUpon>navigationControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTechnicianCard.resx">
+      <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTechnicianPage.resx">
+      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicianCard.resx">
+      <DependentUpon>TechnicianCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.vb</DependentUpon>
@@ -203,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buton123456.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
