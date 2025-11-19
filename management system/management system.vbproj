@@ -90,6 +90,7 @@
     <Compile Include="AccAndSettings_SuperAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AppLogic.vb" />
     <Compile Include="Calendar Page.Designer.vb">
       <DependentUpon>Calendar Page.vb</DependentUpon>
     </Compile>
@@ -102,16 +103,52 @@
     <Compile Include="CreateAcc_SupAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="homepage.Designer.vb">
-      <DependentUpon>homepage.vb</DependentUpon>
+    <Compile Include="Dashboard.Designer.vb">
+      <DependentUpon>Dashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="homepage.vb">
+    <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inquiry page.Designer.vb">
-      <DependentUpon>Inquiry page.vb</DependentUpon>
+    <Compile Include="DateCard.Designer.vb">
+      <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
-    <Compile Include="Inquiry page.vb" />
+    <Compile Include="DateCard.vb" />
+    <Compile Include="frmCustomPopup.Designer.vb">
+      <DependentUpon>frmCustomPopup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJobDetails.Designer.vb">
+      <DependentUpon>frmJobDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmJobDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectTechnician.Designer.vb">
+      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectTechnician.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTechnicianDetails.Designer.vb">
+      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTechnicianDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InquiryCard.Designer.vb">
+      <DependentUpon>InquiryCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InquiryCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InquiryPage.Designer.vb">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InquiryPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
     </Compile>
@@ -140,8 +177,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="navigationControl.Designer.vb">
+      <DependentUpon>NavigationControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
     <Compile Include="RoundedPanel.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SelectTechnicianCard.Designer.vb">
+      <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTechnicianCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectTechnicianPage.Designer.vb">
+      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SelectTechnicianPage.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SideMenuControl.Designer.vb">
       <DependentUpon>SideMenuControl.vb</DependentUpon>
@@ -167,16 +221,40 @@
     <Compile Include="TimelineItemControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.vb">
-      <DependentUpon>UserControl1.vb</DependentUpon>
-    </Compile>
     <Compile Include="NavigationControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="homepage.resx">
-      <DependentUpon>homepage.vb</DependentUpon>
+    <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
+      <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calendar Page.resx">
+      <DependentUpon>Calendar Page.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
+      <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DateCard.resx">
+      <DependentUpon>DateCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomPopup.resx">
+      <DependentUpon>frmCustomPopup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmJobDetails.resx">
+      <DependentUpon>frmJobDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectTechnician.resx">
+      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTechnicianDetails.resx">
+      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InquiryCard.resx">
+      <DependentUpon>InquiryCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>
@@ -193,6 +271,15 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="NavigationControl.resx">
+      <DependentUpon>NavigationControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTechnicianCard.resx">
+      <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectTechnicianPage.resx">
+      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SideMenuControl.resx">
       <DependentUpon>SideMenuControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -204,9 +291,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TimelineItemControl.resx">
       <DependentUpon>TimelineItemControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +305,10 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\management system.vbproj.AssemblyReference.cache" />
+    <None Include="obj\Release\management system.vbproj.AssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +316,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\buton123456.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\management system.xml" />
+    <Content Include="obj\Debug\management system.vbproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\TempPE\My Project.Resources.Designer.vb.dll" />
+    <Content Include="UpgradeLog.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

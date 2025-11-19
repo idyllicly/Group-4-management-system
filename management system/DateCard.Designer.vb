@@ -22,7 +22,7 @@ Partial Class DateCard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl11 = New management_system.NavigationControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -152,7 +152,7 @@ Partial Class DateCard
 
     End Sub
 
-    Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl11 As NavigationControl
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label1 As Label

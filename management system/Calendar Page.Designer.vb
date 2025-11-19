@@ -38,7 +38,7 @@ Partial Class Calenndar
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl11 = New management_system.NavigationControl()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -299,7 +299,7 @@ Partial Class Calenndar
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl11 As NavigationControl
     Friend WithEvents Label1 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label

@@ -22,7 +22,7 @@ Partial Class InquiryPage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl11 = New management_system.NavigationControl()
         Me.SuspendLayout()
         '
         'UserControl11
@@ -48,5 +48,5 @@ Partial Class InquiryPage
 
     End Sub
 
-    Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl11 As NavigationControl
 End Class

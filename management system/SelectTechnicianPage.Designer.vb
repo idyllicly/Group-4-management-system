@@ -33,7 +33,7 @@ Partial Class SelectTechnicianPage
         Me.TechnicianCard1 = New management_system.TechnicianCard()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl11 = New management_system.NavigationControl()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -168,7 +168,7 @@ Partial Class SelectTechnicianPage
 
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl11 As NavigationControl
     Friend WithEvents TechnicianCard1 As TechnicianCard
     Friend WithEvents Label1 As Label
     Friend WithEvents TechnicianCard2 As TechnicianCard

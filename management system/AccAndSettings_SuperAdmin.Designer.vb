@@ -32,7 +32,7 @@ Partial Class AccAndSettings_SuperAdmin
         Me.Button4 = New System.Windows.Forms.Button()
         Me.MaterialDivider2 = New MaterialSkin.Controls.MaterialDivider()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl11 = New management_system.NavigationControl()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -202,7 +202,7 @@ Partial Class AccAndSettings_SuperAdmin
     Friend WithEvents Label1 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl11 As NavigationControl
     Friend WithEvents Label4 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
