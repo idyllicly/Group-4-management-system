@@ -28,27 +28,20 @@ Partial Class homepage
         '
         'menu
         '
-        Me.menu.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.menu.Location = New System.Drawing.Point(573, -205)
-        Me.menu.Name = "menu"
-        Me.menu.Size = New System.Drawing.Size(264, 297)
-        Me.menu.TabIndex = 1
-        '
-        'NavigationControl2
-        '
-        Me.NavigationControl2.BackColor = System.Drawing.Color.White
-        Me.NavigationControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.NavigationControl2.Location = New System.Drawing.Point(0, 0)
-        Me.NavigationControl2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.NavigationControl2.Name = "NavigationControl2"
-        Me.NavigationControl2.Size = New System.Drawing.Size(827, 92)
-        Me.NavigationControl2.TabIndex = 0
+        Me.UserControl11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UserControl11.BackColor = System.Drawing.Color.White
+        Me.UserControl11.Location = New System.Drawing.Point(-3, -2)
+        Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.UserControl11.Name = "UserControl11"
+        Me.UserControl11.Size = New System.Drawing.Size(1625, 86)
+        Me.UserControl11.TabIndex = 0
         '
         'homepage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1829, 855)
+        Me.ClientSize = New System.Drawing.Size(1626, 684)
         Me.Controls.Add(Me.UserControl11)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "homepage"

@@ -32,7 +32,19 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.management_system.SelectTechnicianPage
+            Me.MainForm = Global.management_system.AccAndSettings_SuperAdmin
+            Me.MainForm = Global.management_system.AccAndSettings_SuperAdmin
+=========
+            Me.MainForm = Global.management_system.homepage
+>>>>>>>>> Temporary merge branch 2
+            Me.MainForm = Global.management_system.AccAndSettings_SuperAdmin
+=========
+            Me.MainForm = Global.management_system.homepage
+>>>>>>>>> Temporary merge branch 2
+            Me.MainForm = Global.management_system.AccAndSettings_SuperAdmin
+=========
+            Me.MainForm = Global.management_system.homepage
+>>>>>>>>> Temporary merge branch 2
         End Sub
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
