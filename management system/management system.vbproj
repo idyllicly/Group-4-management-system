@@ -81,28 +81,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccAndSettings_SuperAdmin.Designer.vb">
-      <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="AccAndSettings_SuperAdmin.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Calendar Page.Designer.vb">
-      <DependentUpon>Calendar Page.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Calendar Page.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateAcc_SupAdmin.Designer.vb">
-      <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CreateAcc_SupAdmin.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DateCard.Designer.vb">
-      <DependentUpon>DateCard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="DateCard.vb" />
     <Compile Include="homepage.Designer.vb">
       <DependentUpon>homepage.vb</DependentUpon>
     </Compile>
@@ -187,9 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inquiry page.resx">
-      <DependentUpon>Inquiry page.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>

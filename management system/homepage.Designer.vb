@@ -23,6 +23,7 @@ Partial Class homepage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.UserControl11 = New management_system.UserControl1()
+        Me.UserControl12 = New management_system.UserControl1()
         Me.SuspendLayout()
         '
         'UserControl11
@@ -36,11 +37,20 @@ Partial Class homepage
         Me.UserControl11.Size = New System.Drawing.Size(1625, 86)
         Me.UserControl11.TabIndex = 0
         '
+        'UserControl12
+        '
+        Me.UserControl12.BackColor = System.Drawing.Color.White
+        Me.UserControl12.Location = New System.Drawing.Point(52, 51)
+        Me.UserControl12.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.UserControl12.Name = "UserControl12"
+        Me.UserControl12.Size = New System.Drawing.Size(8, 17)
+        Me.UserControl12.TabIndex = 1
+        '
         'homepage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1626, 684)
+        Me.ClientSize = New System.Drawing.Size(1829, 855)
         Me.Controls.Add(Me.UserControl11)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "homepage"
@@ -51,4 +61,5 @@ Partial Class homepage
     End Sub
 
     Friend WithEvents UserControl11 As UserControl1
+    Friend WithEvents UserControl12 As UserControl1
 End Class

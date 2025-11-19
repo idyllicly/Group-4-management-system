@@ -1,9 +1,7 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class InquiryPage
+﻿Partial Class InquiryPage
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +18,6 @@ Partial Class InquiryPage
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.UserControl11 = New management_system.UserControl1()
         Me.SuspendLayout()
@@ -28,10 +25,8 @@ Partial Class InquiryPage
         'UserControl11
         '
         Me.UserControl11.BackColor = System.Drawing.Color.White
-        Me.UserControl11.Location = New System.Drawing.Point(0, -2)
         Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(1196, 74)
         Me.UserControl11.TabIndex = 0
         '
         'InquiryPage
