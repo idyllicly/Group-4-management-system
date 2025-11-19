@@ -116,7 +116,7 @@ Partial Class Calenndar
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(6, 14)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(122, 20)
+        Me.Label3.Size = New System.Drawing.Size(121, 20)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Sunday"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -126,9 +126,9 @@ Partial Class Calenndar
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(137, 14)
+        Me.Label4.Location = New System.Drawing.Point(136, 14)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(122, 20)
+        Me.Label4.Size = New System.Drawing.Size(121, 20)
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Monday"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -138,9 +138,9 @@ Partial Class Calenndar
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(268, 14)
+        Me.Label5.Location = New System.Drawing.Point(266, 14)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(122, 20)
+        Me.Label5.Size = New System.Drawing.Size(121, 20)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "Tuesday"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -150,9 +150,9 @@ Partial Class Calenndar
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(399, 14)
+        Me.Label6.Location = New System.Drawing.Point(396, 14)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(122, 20)
+        Me.Label6.Size = New System.Drawing.Size(121, 20)
         Me.Label6.TabIndex = 3
         Me.Label6.Text = "Wednesday"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -162,9 +162,9 @@ Partial Class Calenndar
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(530, 14)
+        Me.Label7.Location = New System.Drawing.Point(526, 14)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(122, 20)
+        Me.Label7.Size = New System.Drawing.Size(121, 20)
         Me.Label7.TabIndex = 4
         Me.Label7.Text = "Thursday"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -174,9 +174,9 @@ Partial Class Calenndar
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(661, 14)
+        Me.Label8.Location = New System.Drawing.Point(656, 14)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(122, 20)
+        Me.Label8.Size = New System.Drawing.Size(121, 20)
         Me.Label8.TabIndex = 5
         Me.Label8.Text = "Friday"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -186,9 +186,9 @@ Partial Class Calenndar
         Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(792, 14)
+        Me.Label9.Location = New System.Drawing.Point(786, 14)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(122, 20)
+        Me.Label9.Size = New System.Drawing.Size(128, 20)
         Me.Label9.TabIndex = 6
         Me.Label9.Text = "Saturday"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -199,7 +199,7 @@ Partial Class Calenndar
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(6, 64)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(122, 16)
+        Me.Label1.Size = New System.Drawing.Size(121, 16)
         Me.Label1.TabIndex = 7
         Me.Label1.Text = "Label1"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -210,7 +210,7 @@ Partial Class Calenndar
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(6, 121)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(122, 16)
+        Me.Label10.Size = New System.Drawing.Size(121, 16)
         Me.Label10.TabIndex = 8
         Me.Label10.Text = "Label10"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -221,7 +221,7 @@ Partial Class Calenndar
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(6, 183)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(122, 16)
+        Me.Label11.Size = New System.Drawing.Size(121, 16)
         Me.Label11.TabIndex = 9
         Me.Label11.Text = "Label11"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -232,7 +232,7 @@ Partial Class Calenndar
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(6, 248)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(122, 16)
+        Me.Label12.Size = New System.Drawing.Size(121, 16)
         Me.Label12.TabIndex = 10
         Me.Label12.Text = "Label12"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -243,7 +243,7 @@ Partial Class Calenndar
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(6, 316)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(122, 16)
+        Me.Label13.Size = New System.Drawing.Size(121, 16)
         Me.Label13.TabIndex = 11
         Me.Label13.Text = "Label13"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

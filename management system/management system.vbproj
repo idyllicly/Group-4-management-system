@@ -99,11 +99,23 @@
     <Compile Include="CreateAcc_SupAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DashboardLayout.Designer.vb">
+      <DependentUpon>DashboardLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="homepage.Designer.vb">
       <DependentUpon>homepage.vb</DependentUpon>
     </Compile>
     <Compile Include="homepage.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobCardControl.Designer.vb">
+      <DependentUpon>JobCardControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="JobCardControl.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
@@ -150,8 +162,14 @@
     <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DashboardLayout.resx">
+      <DependentUpon>DashboardLayout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobCardControl.resx">
+      <DependentUpon>JobCardControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
