@@ -48,9 +48,8 @@ Partial Class homepage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(827, 589)
-        Me.Controls.Add(Me.menu)
-        Me.Controls.Add(Me.NavigationControl2)
+        Me.ClientSize = New System.Drawing.Size(1829, 855)
+        Me.Controls.Add(Me.UserControl11)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "homepage"
         Me.Text = "homepage"

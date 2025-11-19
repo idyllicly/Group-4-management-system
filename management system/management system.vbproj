@@ -84,57 +84,26 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLogic.vb" />
-    <Compile Include="Dashboard.Designer.vb">
-      <DependentUpon>Dashboard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCustomPopup.Designer.vb">
-      <DependentUpon>frmCustomPopup.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmCustomPopup.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmJobDetails.Designer.vb">
-      <DependentUpon>frmJobDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmJobDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSelectTechnician.Designer.vb">
-      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmSelectTechnician.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmTechnicianDetails.Designer.vb">
-      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmTechnicianDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InquiryCard.Designer.vb">
-      <DependentUpon>InquiryCard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InquiryCard.vb" />
-    <Compile Include="InquiryPage.Designer.vb">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InquiryPage.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="homepage.Designer.vb">
       <DependentUpon>homepage.vb</DependentUpon>
     </Compile>
     <Compile Include="homepage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inquiry page.Designer.vb">
+      <DependentUpon>Inquiry page.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inquiry page.vb" />
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
     </Compile>
     <Compile Include="log in.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageAccounts.Designer.vb">
+      <DependentUpon>ManageAccounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAccounts.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -180,40 +149,25 @@
     <Compile Include="TimelineItemControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NavigationControl.Designer.vb">
-      <DependentUpon>NavigationControl.vb</DependentUpon>
+    <Compile Include="UserControl1.Designer.vb">
+      <DependentUpon>UserControl1.vb</DependentUpon>
     </Compile>
     <Compile Include="NavigationControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dashboard.resx">
-      <DependentUpon>Dashboard.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomPopup.resx">
-      <DependentUpon>frmCustomPopup.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmJobDetails.resx">
-      <DependentUpon>frmJobDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSelectTechnician.resx">
-      <DependentUpon>frmSelectTechnician.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmTechnicianDetails.resx">
-      <DependentUpon>frmTechnicianDetails.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="homepage.resx">
       <DependentUpon>homepage.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InquiryCard.resx">
-      <DependentUpon>InquiryCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAccounts.resx">
+      <DependentUpon>ManageAccounts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -233,8 +187,8 @@
     <EmbeddedResource Include="TimelineItemControl.resx">
       <DependentUpon>TimelineItemControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NavigationControl.resx">
-      <DependentUpon>NavigationControl.vb</DependentUpon>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buton123456.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
