@@ -107,6 +107,13 @@
       <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
     <Compile Include="DateCard.vb" />
+    <Compile Include=".Designer.vb">
+      <DependentUpon>EditAccountPage.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAccountPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomPopup.Designer.vb">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
     </Compile>
@@ -238,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DateCard.resx">
       <DependentUpon>DateCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAccountPage.resx">
+      <DependentUpon>EditAccountPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomPopup.resx">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
