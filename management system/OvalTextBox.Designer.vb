@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmCustomPopup
-    Inherits System.Windows.Forms.Form
+Partial Class OvalTextBox
+    Inherits System.Windows.Forms.UserControl
 
-    'Form overrides dispose to clean up the component list.
+    'UserControl overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -22,19 +22,32 @@ Partial Class frmCustomPopup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.txtInput = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'frmCustomPopup
+        'txtInput
+        '
+        Me.txtInput.BackColor = System.Drawing.SystemColors.Control
+        Me.txtInput.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtInput.Location = New System.Drawing.Point(0, 6)
+        Me.txtInput.MaximumSize = New System.Drawing.Size(278, 22)
+        Me.txtInput.MinimumSize = New System.Drawing.Size(0, 22)
+        Me.txtInput.Name = "txtInput"
+        Me.txtInput.Size = New System.Drawing.Size(278, 22)
+        Me.txtInput.TabIndex = 0
+        '
+        'OvalTextBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(356, 320)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Name = "frmCustomPopup"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmCustomPopup"
+        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.Controls.Add(Me.txtInput)
+        Me.Name = "OvalTextBox"
+        Me.Size = New System.Drawing.Size(278, 35)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents txtInput As TextBox
 End Class
