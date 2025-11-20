@@ -51,12 +51,32 @@ Public Class OvalTextBox
         End Set
     End Property
 
+    ' --- NEW Multiline Property ---
+    Private _Multiline As Boolean = False
+    ''' <summary>Controls whether the text box can accept multiple lines of text.</summary>
+    <Category("Behavior")>
+    <Description("Controls whether the text box can accept multiple lines of text.")>
+    <DefaultValue(False)>
+    Public Property Multiline() As Boolean
+        Get
+            Return _Multiline
+        End Get
+        Set(value As Boolean)
+            _Multiline = value
+            ' Apply setting to inner control
+            txtInput.Multiline = value
+            ' Invalidate/Resize to reposition/resize the inner control
+            Me.Invalidate()
+            Me.OnResize(EventArgs.Empty)
+        End Set
+    End Property
+
     ' --- Exposed Inner TextBox Properties ---
 
     ''' <summary>Exposes the Text property of the inner TextBox.</summary>
     <Browsable(True)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
-    Public Property Text() As String
+    Public Overrides Property Text() As String ' Changed to Overrides for UserControl.Text
         Get
             Return txtInput.Text
         End Get
@@ -73,7 +93,10 @@ Public Class OvalTextBox
             Return txtInput.TextAlign
         End Get
         Set(value As HorizontalAlignment)
-            txtInput.TextAlign = value
+            ' Only allow horizontal alignment if NOT multiline
+            If Not Me.Multiline Then
+                txtInput.TextAlign = value
+            End If
         End Set
     End Property
 
@@ -86,7 +109,10 @@ Public Class OvalTextBox
             Return txtInput.PasswordChar
         End Get
         Set(value As Char)
-            txtInput.PasswordChar = value
+            ' Only set if NOT multiline
+            If Not Me.Multiline Then
+                txtInput.PasswordChar = value
+            End If
         End Set
     End Property
 
@@ -148,15 +174,28 @@ Public Class OvalTextBox
         ' Generous horizontal padding to prevent text from hitting the curved edge (8px buffer)
         Dim totalPaddingX As Integer = Me.CurvedRadius + Me.BorderSize + 8
 
-        ' Calculates vertical center (relies on inner textbox height being manually set lower)
-        Dim verticalPadding As Integer = (Me.Height - txtInput.Height) / 2
+        ' Check if Multiline is enabled to adjust vertical positioning and height
+        If Me.Multiline Then
+            ' Set the inner TextBox to fill most of the available vertical space
+            Dim paddingY As Integer = 5 ' Minimal vertical padding for multiline
+            txtInput.Location = New Point(totalPaddingX, paddingY)
+            txtInput.Height = Me.Height - (paddingY * 2) - 1 ' Subtract 1 for slight buffer
+        Else
+            ' Revert to centered alignment for single line
+            Dim verticalPadding As Integer = (Me.Height - txtInput.Height) / 2
+            txtInput.Location = New Point(totalPaddingX, verticalPadding)
+        End If
 
-        txtInput.Location = New Point(totalPaddingX, verticalPadding)
         txtInput.Width = Me.Width - (totalPaddingX * 2)
     End Sub
 
     Public Overrides Function GetPreferredSize(proposedSize As Size) As Size
-        Return New Size(200, 30)
+        ' If Multiline, a larger default height might be better
+        If Me.Multiline Then
+            Return New Size(200, 80)
+        Else
+            Return New Size(200, 30)
+        End If
     End Function
 
 End Class

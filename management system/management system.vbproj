@@ -114,6 +114,12 @@
     <Compile Include="EditAccountPage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomPopup.Designer.vb">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
     </Compile>
@@ -143,12 +149,6 @@
     </Compile>
     <Compile Include="InquiryCard.vb">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InquiryPage.Designer.vb">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InquiryPage.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
@@ -183,6 +183,12 @@
     </Compile>
     <Compile Include="OvalButton.vb">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OvalDescriptionBox.Designer.vb">
+      <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OvalDescriptionBox.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OvalTextBox.Designer.vb">
       <DependentUpon>OvalTextBox.vb</DependentUpon>
@@ -249,6 +255,9 @@
     <EmbeddedResource Include="EditAccountPage.resx">
       <DependentUpon>EditAccountPage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomPopup.resx">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
     </EmbeddedResource>
@@ -264,9 +273,6 @@
     <EmbeddedResource Include="InquiryCard.resx">
       <DependentUpon>InquiryCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InquiryPage.resx">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NavigationControl.resx">
       <DependentUpon>NavigationControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvalDescriptionBox.resx">
+      <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OvalTextBox.resx">
       <DependentUpon>OvalTextBox.vb</DependentUpon>
