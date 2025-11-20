@@ -114,10 +114,10 @@
     <Compile Include="EditAccountPage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="InquiryPage.Designer.vb">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="InquiryPage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCustomPopup.Designer.vb">
@@ -255,8 +255,8 @@
     <EmbeddedResource Include="EditAccountPage.resx">
       <DependentUpon>EditAccountPage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="InquiryPage.resx">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomPopup.resx">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
