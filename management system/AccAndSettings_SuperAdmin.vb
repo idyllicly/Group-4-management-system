@@ -4,8 +4,7 @@
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs)
-        Calenndar.Show()
-        Me.Hide()
+
 
     End Sub
 

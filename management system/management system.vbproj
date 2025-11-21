@@ -91,12 +91,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AppLogic.vb" />
-    <Compile Include="Calendar Page.Designer.vb">
-      <DependentUpon>Calendar Page.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Calendar Page.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="CreateAcc_SupAdmin.Designer.vb">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
     </Compile>
@@ -113,6 +107,19 @@
       <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
     <Compile Include="DateCard.vb" />
+    <Compile Include=".Designer.vb">
+      <DependentUpon>EditAccountPage.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAccountPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InquiryPage.Designer.vb">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InquiryPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCustomPopup.Designer.vb">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
     </Compile>
@@ -142,12 +149,6 @@
     </Compile>
     <Compile Include="InquiryCard.vb">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InquiryPage.Designer.vb">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="InquiryPage.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="log in.Designer.vb">
       <DependentUpon>log in.vb</DependentUpon>
@@ -180,8 +181,21 @@
     <Compile Include="navigationControl.Designer.vb">
       <DependentUpon>NavigationControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
+    <Compile Include="OvalButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OvalDescriptionBox.Designer.vb">
+      <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OvalDescriptionBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OvalTextBox.Designer.vb">
+      <DependentUpon>OvalTextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OvalTextBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="RoundedPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -229,9 +243,6 @@
     <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
       <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Calendar Page.resx">
-      <DependentUpon>Calendar Page.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +251,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DateCard.resx">
       <DependentUpon>DateCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAccountPage.resx">
+      <DependentUpon>EditAccountPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InquiryPage.resx">
+      <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomPopup.resx">
       <DependentUpon>frmCustomPopup.vb</DependentUpon>
@@ -256,9 +273,6 @@
     <EmbeddedResource Include="InquiryCard.resx">
       <DependentUpon>InquiryCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InquiryPage.resx">
-      <DependentUpon>InquiryPage.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +287,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NavigationControl.resx">
       <DependentUpon>NavigationControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvalDescriptionBox.resx">
+      <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OvalTextBox.resx">
+      <DependentUpon>OvalTextBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectTechnicianCard.resx">
       <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
@@ -305,10 +325,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\management system.vbproj.AssemblyReference.cache" />
-    <None Include="obj\Release\management system.vbproj.AssemblyReference.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -318,13 +334,9 @@
     <None Include="Resources\buton123456.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\management system.xml" />
-    <Content Include="obj\Debug\management system.vbproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\TempPE\My Project.Resources.Designer.vb.dll" />
+    <None Include="Resources\RRCLogo.png" />
     <Content Include="UpgradeLog.htm" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

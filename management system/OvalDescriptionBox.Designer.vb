@@ -1,8 +1,8 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmCustomPopup
-    Inherits System.Windows.Forms.Form
+Partial Class OvalDescriptionBox
+    Inherits System.Windows.Forms.UserControl
 
-    'Form overrides dispose to clean up the component list.
+    'UserControl overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -22,19 +22,26 @@ Partial Class frmCustomPopup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.innerTextbox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'frmCustomPopup
+        'innerTextbox
+        '
+        Me.innerTextbox.Location = New System.Drawing.Point(27, 63)
+        Me.innerTextbox.Name = "innerTextbox"
+        Me.innerTextbox.Size = New System.Drawing.Size(100, 22)
+        Me.innerTextbox.TabIndex = 0
+        '
+        'OvalDescriptionBox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(356, 320)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Name = "frmCustomPopup"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmCustomPopup"
+        Me.Controls.Add(Me.innerTextbox)
+        Me.Name = "OvalDescriptionBox"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents innerTextbox As TextBox
 End Class
