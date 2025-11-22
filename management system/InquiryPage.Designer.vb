@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class btnAssignTechnician
+Partial Class InquiryPage
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -30,7 +30,7 @@ Partial Class btnAssignTechnician
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.OvalTextBox6 = New management_system.OvalTextBox()
         Me.OvalTextBox5 = New management_system.OvalTextBox()
-        Me.OvalButton2 = New management_system.OvalButton()
+        Me.Clear = New management_system.OvalButton()
         Me.btnAssignTech = New management_system.OvalButton()
         Me.OvalTextBox4 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
@@ -59,7 +59,7 @@ Partial Class btnAssignTechnician
         Me.Panel2.Controls.Add(Me.RadioButton1)
         Me.Panel2.Controls.Add(Me.OvalTextBox6)
         Me.Panel2.Controls.Add(Me.OvalTextBox5)
-        Me.Panel2.Controls.Add(Me.OvalButton2)
+        Me.Panel2.Controls.Add(Me.Clear)
         Me.Panel2.Controls.Add(Me.btnAssignTech)
         Me.Panel2.Controls.Add(Me.OvalTextBox4)
         Me.Panel2.Controls.Add(Me.OvalTextBox3)
@@ -87,7 +87,7 @@ Partial Class btnAssignTechnician
         Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.OvalDescriptionBox1.Multiline = True
         Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
-        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(853, 73)
+        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(853, 79)
         Me.OvalDescriptionBox1.TabIndex = 39
         '
         'Label7
@@ -142,7 +142,7 @@ Partial Class btnAssignTechnician
         Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(5)
         Me.OvalTextBox6.Name = "OvalTextBox6"
         Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox6.Size = New System.Drawing.Size(462, 35)
+        Me.OvalTextBox6.Size = New System.Drawing.Size(462, 43)
         Me.OvalTextBox6.TabIndex = 33
         '
         'OvalTextBox5
@@ -156,19 +156,19 @@ Partial Class btnAssignTechnician
         Me.OvalTextBox5.Size = New System.Drawing.Size(462, 35)
         Me.OvalTextBox5.TabIndex = 32
         '
-        'OvalButton2
+        'Clear
         '
-        Me.OvalButton2.BackColor = System.Drawing.Color.White
-        Me.OvalButton2.CornerRadius = 15
-        Me.OvalButton2.FlatAppearance.BorderSize = 0
-        Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton2.Location = New System.Drawing.Point(857, 474)
-        Me.OvalButton2.Name = "OvalButton2"
-        Me.OvalButton2.Size = New System.Drawing.Size(127, 32)
-        Me.OvalButton2.TabIndex = 30
-        Me.OvalButton2.Text = "Clear"
-        Me.OvalButton2.UseVisualStyleBackColor = False
+        Me.Clear.BackColor = System.Drawing.Color.White
+        Me.Clear.CornerRadius = 15
+        Me.Clear.FlatAppearance.BorderSize = 0
+        Me.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Clear.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Clear.Location = New System.Drawing.Point(857, 474)
+        Me.Clear.Name = "Clear"
+        Me.Clear.Size = New System.Drawing.Size(127, 32)
+        Me.Clear.TabIndex = 30
+        Me.Clear.Text = "Clear"
+        Me.Clear.UseVisualStyleBackColor = False
         '
         'btnAssignTech
         '
@@ -316,7 +316,7 @@ Partial Class btnAssignTechnician
         Me.NavigationControl1.Size = New System.Drawing.Size(1361, 74)
         Me.NavigationControl1.TabIndex = 24
         '
-        'btnAssignTechnician
+        'InquiryPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -324,7 +324,7 @@ Partial Class btnAssignTechnician
         Me.ClientSize = New System.Drawing.Size(1361, 684)
         Me.Controls.Add(Me.NavigationControl1)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "btnAssignTechnician"
+        Me.Name = "InquiryPage"
         Me.Text = "Form1"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -339,7 +339,7 @@ Partial Class btnAssignTechnician
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents OvalTextBox6 As OvalTextBox
     Friend WithEvents OvalTextBox5 As OvalTextBox
-    Friend WithEvents OvalButton2 As OvalButton
+    Friend WithEvents Clear As OvalButton
     Friend WithEvents btnAssignTech As OvalButton
     Friend WithEvents OvalTextBox4 As OvalTextBox
     Friend WithEvents OvalTextBox3 As OvalTextBox

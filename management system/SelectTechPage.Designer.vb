@@ -25,11 +25,11 @@ Partial Class SelectTechPage
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MainPanel = New System.Windows.Forms.Panel()
         Me.FormHostPanel = New System.Windows.Forms.Panel()
+        Me.AddTechnician1 = New management_system.AddTechnician()
+        Me.TechnicianCard1 = New management_system.TechnicianCard()
         Me.PanelHeader = New System.Windows.Forms.Label()
         Me.ShadowPanel = New System.Windows.Forms.Panel()
-        Me.TechnicianCard1 = New management_system.TechnicianCard()
         Me.MainHeader = New management_system.NavigationControl()
-        Me.AddTechnician1 = New management_system.AddTechnician()
         Me.Panel1.SuspendLayout()
         Me.MainPanel.SuspendLayout()
         Me.FormHostPanel.SuspendLayout()
@@ -72,6 +72,20 @@ Partial Class SelectTechPage
         Me.FormHostPanel.Size = New System.Drawing.Size(1004, 447)
         Me.FormHostPanel.TabIndex = 1
         '
+        'AddTechnician1
+        '
+        Me.AddTechnician1.Location = New System.Drawing.Point(342, 44)
+        Me.AddTechnician1.Name = "AddTechnician1"
+        Me.AddTechnician1.Size = New System.Drawing.Size(216, 215)
+        Me.AddTechnician1.TabIndex = 2
+        '
+        'TechnicianCard1
+        '
+        Me.TechnicianCard1.Location = New System.Drawing.Point(80, 44)
+        Me.TechnicianCard1.Name = "TechnicianCard1"
+        Me.TechnicianCard1.Size = New System.Drawing.Size(216, 215)
+        Me.TechnicianCard1.TabIndex = 1
+        '
         'PanelHeader
         '
         Me.PanelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -96,13 +110,6 @@ Partial Class SelectTechPage
         Me.ShadowPanel.Size = New System.Drawing.Size(1006, 519)
         Me.ShadowPanel.TabIndex = 3
         '
-        'TechnicianCard1
-        '
-        Me.TechnicianCard1.Location = New System.Drawing.Point(80, 44)
-        Me.TechnicianCard1.Name = "TechnicianCard1"
-        Me.TechnicianCard1.Size = New System.Drawing.Size(216, 215)
-        Me.TechnicianCard1.TabIndex = 1
-        '
         'MainHeader
         '
         Me.MainHeader.BackColor = System.Drawing.Color.White
@@ -112,13 +119,6 @@ Partial Class SelectTechPage
         Me.MainHeader.Name = "MainHeader"
         Me.MainHeader.Size = New System.Drawing.Size(1361, 86)
         Me.MainHeader.TabIndex = 0
-        '
-        'AddTechnician1
-        '
-        Me.AddTechnician1.Location = New System.Drawing.Point(342, 44)
-        Me.AddTechnician1.Name = "AddTechnician1"
-        Me.AddTechnician1.Size = New System.Drawing.Size(216, 215)
-        Me.AddTechnician1.TabIndex = 2
         '
         'SelectTechPage
         '

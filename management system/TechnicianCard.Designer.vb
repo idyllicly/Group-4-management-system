@@ -23,10 +23,10 @@ Partial Class TechnicianCard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBoxTechnician = New System.Windows.Forms.PictureBox()
         Me.LblName = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBoxTechnician, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -34,7 +34,7 @@ Partial Class TechnicianCard
         Me.TableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.[Single]
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.PictureBox1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.PictureBoxTechnician, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LblName, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
@@ -42,26 +42,26 @@ Partial Class TechnicianCard
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.4902!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.5098!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(291, 306)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(273, 259)
         Me.TableLayoutPanel1.TabIndex = 0
         '
-        'PictureBox1
+        'PictureBoxTechnician
         '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(4, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(283, 222)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.PictureBoxTechnician.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBoxTechnician.Location = New System.Drawing.Point(4, 4)
+        Me.PictureBoxTechnician.Name = "PictureBoxTechnician"
+        Me.PictureBoxTechnician.Size = New System.Drawing.Size(265, 187)
+        Me.PictureBoxTechnician.TabIndex = 0
+        Me.PictureBoxTechnician.TabStop = False
         '
         'LblName
         '
         Me.LblName.AutoSize = True
         Me.LblName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LblName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblName.Location = New System.Drawing.Point(4, 230)
+        Me.LblName.Location = New System.Drawing.Point(4, 195)
         Me.LblName.Name = "LblName"
-        Me.LblName.Size = New System.Drawing.Size(283, 75)
+        Me.LblName.Size = New System.Drawing.Size(265, 63)
         Me.LblName.TabIndex = 1
         Me.LblName.Text = "Name"
         Me.LblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -70,17 +70,17 @@ Partial Class TechnicianCard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(273, 259)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "TechnicianCard"
-        Me.Size = New System.Drawing.Size(291, 306)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxTechnician, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents PictureBoxTechnician As PictureBox
     Friend WithEvents LblName As Label
 End Class
