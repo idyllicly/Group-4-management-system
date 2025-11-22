@@ -23,12 +23,14 @@ Partial Class CreateAcc_SupAdmin
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.btnBack = New management_system.OvalButton()
         Me.OvalButton3 = New management_system.OvalButton()
         Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.OvalTextBox11 = New management_system.OvalTextBox()
         Me.OvalTextBox10 = New management_system.OvalTextBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
@@ -57,14 +59,12 @@ Partial Class CreateAcc_SupAdmin
         Me.NavigationControl1 = New management_system.NavigationControl()
         Me.OvalTextBox1 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel5.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel2
@@ -74,11 +74,11 @@ Partial Class CreateAcc_SupAdmin
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.White
         Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.btnBack)
         Me.Panel2.Controls.Add(Me.OvalButton3)
         Me.Panel2.Controls.Add(Me.OvalDescriptionBox1)
         Me.Panel2.Controls.Add(Me.Label12)
-        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.Panel5)
         Me.Panel2.Controls.Add(Me.OvalButton1)
         Me.Panel2.Controls.Add(Me.OvalButton2)
@@ -87,6 +87,19 @@ Partial Class CreateAcc_SupAdmin
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1027, 964)
         Me.Panel2.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(1027, 70)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "          Create Account"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'btnBack
         '
@@ -127,7 +140,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalDescriptionBox1.BorderSize = 3
         Me.OvalDescriptionBox1.CurvedRadius = 10
         Me.OvalDescriptionBox1.Location = New System.Drawing.Point(65, 728)
-        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.OvalDescriptionBox1.Multiline = True
         Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
         Me.OvalDescriptionBox1.Size = New System.Drawing.Size(934, 154)
@@ -158,23 +171,31 @@ Partial Class CreateAcc_SupAdmin
         Me.Panel4.Controls.Add(Me.RadioButton1)
         Me.Panel4.Controls.Add(Me.Label7)
         Me.Panel4.Controls.Add(Me.Label10)
-        Me.Panel4.Location = New System.Drawing.Point(540, 68)
+        Me.Panel4.Location = New System.Drawing.Point(557, 71)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(943, 644)
         Me.Panel4.TabIndex = 106
         '
-        'Label1
+        'Button1
         '
-        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1027, 70)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "          Create Account"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button1.Location = New System.Drawing.Point(653, 254)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(121, 59)
+        Me.Button1.TabIndex = 119
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox1.Location = New System.Drawing.Point(543, 113)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(351, 346)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 118
+        Me.PictureBox1.TabStop = False
         '
         'OvalTextBox11
         '
@@ -466,7 +487,7 @@ Partial Class CreateAcc_SupAdmin
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.BlueViolet
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(332, 73)
+        Me.Panel1.Location = New System.Drawing.Point(332, 70)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1097, 1054)
         Me.Panel1.TabIndex = 0
@@ -503,27 +524,9 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox3.Size = New System.Drawing.Size(489, 35)
         Me.OvalTextBox3.TabIndex = 23
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(543, 113)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(351, 346)
-        Me.PictureBox1.TabIndex = 118
-        Me.PictureBox1.TabStop = False
-        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(653, 254)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(121, 59)
-        Me.Button1.TabIndex = 119
-        Me.Button1.Text = "Insert Photo Here"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'CreateAcc_SupAdmin
         '
@@ -539,10 +542,10 @@ Partial Class CreateAcc_SupAdmin
         Me.Panel2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
         Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
