@@ -188,7 +188,19 @@
     <Compile Include="AccAndSettings_SuperAdmin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddTechnician.Designer.vb">
+      <DependentUpon>AddTechnician.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AddTechnician.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="AppLogic.vb" />
+    <Compile Include="CreateAccTech.Designer.vb">
+      <DependentUpon>CreateAccTech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAccTech.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="CreateAcc_SupAdmin.Designer.vb">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
     </Compile>
@@ -309,10 +321,10 @@
     <Compile Include="SelectTechnicianCard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectTechnicianPage.Designer.vb">
-      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    <Compile Include="SelectTechPage.Designer.vb">
+      <DependentUpon>SelectTechPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="SelectTechnicianPage.vb">
+    <Compile Include="SelectTechPage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SideMenuControl.Designer.vb">
@@ -346,6 +358,12 @@
   <ItemGroup>
     <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
       <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddTechnician.resx">
+      <DependentUpon>AddTechnician.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateAccTech.resx">
+      <DependentUpon>CreateAccTech.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateAcc_SupAdmin.resx">
       <DependentUpon>CreateAcc_SupAdmin.vb</DependentUpon>
@@ -404,8 +422,8 @@
     <EmbeddedResource Include="SelectTechnicianCard.resx">
       <DependentUpon>SelectTechnicianCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectTechnicianPage.resx">
-      <DependentUpon>SelectTechnicianPage.vb</DependentUpon>
+    <EmbeddedResource Include="SelectTechPage.resx">
+      <DependentUpon>SelectTechPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SideMenuControl.resx">
       <DependentUpon>SideMenuControl.vb</DependentUpon>
@@ -501,6 +519,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RRCLogo.png" />
+    <None Include="Resources\contact-us-icon-png-21.jpg" />
+    <None Include="Resources\envelope-letter-icon-symbol-png.png" />
+    <None Include="Resources\facebook-logo-icon-free-png.png" />
+    <None Include="Resources\15452805.png" />
     <Content Include="UpgradeLog.htm" />
   </ItemGroup>
   <ItemGroup />
