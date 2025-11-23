@@ -23,14 +23,15 @@ Partial Class InquiryPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.OvalTextBox6 = New management_system.OvalTextBox()
         Me.OvalTextBox5 = New management_system.OvalTextBox()
-        Me.OvalButton2 = New management_system.OvalButton()
-        Me.OvalButton1 = New management_system.OvalButton()
+        Me.Clear = New management_system.OvalButton()
+        Me.btnAssignTech = New management_system.OvalButton()
         Me.OvalTextBox4 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
         Me.OvalTextBox2 = New management_system.OvalTextBox()
@@ -44,7 +45,6 @@ Partial Class InquiryPage
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.NavigationControl1 = New management_system.NavigationControl()
-        Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -59,8 +59,8 @@ Partial Class InquiryPage
         Me.Panel2.Controls.Add(Me.RadioButton1)
         Me.Panel2.Controls.Add(Me.OvalTextBox6)
         Me.Panel2.Controls.Add(Me.OvalTextBox5)
-        Me.Panel2.Controls.Add(Me.OvalButton2)
-        Me.Panel2.Controls.Add(Me.OvalButton1)
+        Me.Panel2.Controls.Add(Me.Clear)
+        Me.Panel2.Controls.Add(Me.btnAssignTech)
         Me.Panel2.Controls.Add(Me.OvalTextBox4)
         Me.Panel2.Controls.Add(Me.OvalTextBox3)
         Me.Panel2.Controls.Add(Me.OvalTextBox2)
@@ -77,6 +77,18 @@ Partial Class InquiryPage
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1076, 518)
         Me.Panel2.TabIndex = 1
+        '
+        'OvalDescriptionBox1
+        '
+        Me.OvalDescriptionBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.OvalDescriptionBox1.BorderSize = 3
+        Me.OvalDescriptionBox1.CurvedRadius = 10
+        Me.OvalDescriptionBox1.Location = New System.Drawing.Point(130, 388)
+        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalDescriptionBox1.Multiline = True
+        Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
+        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(853, 79)
+        Me.OvalDescriptionBox1.TabIndex = 39
         '
         'Label7
         '
@@ -130,7 +142,7 @@ Partial Class InquiryPage
         Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(5)
         Me.OvalTextBox6.Name = "OvalTextBox6"
         Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox6.Size = New System.Drawing.Size(462, 35)
+        Me.OvalTextBox6.Size = New System.Drawing.Size(462, 43)
         Me.OvalTextBox6.TabIndex = 33
         '
         'OvalTextBox5
@@ -144,33 +156,33 @@ Partial Class InquiryPage
         Me.OvalTextBox5.Size = New System.Drawing.Size(462, 35)
         Me.OvalTextBox5.TabIndex = 32
         '
-        'OvalButton2
+        'Clear
         '
-        Me.OvalButton2.BackColor = System.Drawing.Color.White
-        Me.OvalButton2.CornerRadius = 15
-        Me.OvalButton2.FlatAppearance.BorderSize = 0
-        Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton2.Location = New System.Drawing.Point(857, 474)
-        Me.OvalButton2.Name = "OvalButton2"
-        Me.OvalButton2.Size = New System.Drawing.Size(127, 32)
-        Me.OvalButton2.TabIndex = 30
-        Me.OvalButton2.Text = "Clear"
-        Me.OvalButton2.UseVisualStyleBackColor = False
+        Me.Clear.BackColor = System.Drawing.Color.White
+        Me.Clear.CornerRadius = 15
+        Me.Clear.FlatAppearance.BorderSize = 0
+        Me.Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Clear.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Clear.Location = New System.Drawing.Point(857, 474)
+        Me.Clear.Name = "Clear"
+        Me.Clear.Size = New System.Drawing.Size(127, 32)
+        Me.Clear.TabIndex = 30
+        Me.Clear.Text = "Clear"
+        Me.Clear.UseVisualStyleBackColor = False
         '
-        'OvalButton1
+        'btnAssignTech
         '
-        Me.OvalButton1.BackColor = System.Drawing.Color.Cyan
-        Me.OvalButton1.CornerRadius = 15
-        Me.OvalButton1.FlatAppearance.BorderSize = 0
-        Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton1.Location = New System.Drawing.Point(647, 474)
-        Me.OvalButton1.Name = "OvalButton1"
-        Me.OvalButton1.Size = New System.Drawing.Size(204, 32)
-        Me.OvalButton1.TabIndex = 29
-        Me.OvalButton1.Text = "Assign a Technician"
-        Me.OvalButton1.UseVisualStyleBackColor = False
+        Me.btnAssignTech.BackColor = System.Drawing.Color.Cyan
+        Me.btnAssignTech.CornerRadius = 15
+        Me.btnAssignTech.FlatAppearance.BorderSize = 0
+        Me.btnAssignTech.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAssignTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAssignTech.Location = New System.Drawing.Point(647, 474)
+        Me.btnAssignTech.Name = "btnAssignTech"
+        Me.btnAssignTech.Size = New System.Drawing.Size(204, 32)
+        Me.btnAssignTech.TabIndex = 29
+        Me.btnAssignTech.Text = "Assign a Technician"
+        Me.btnAssignTech.UseVisualStyleBackColor = False
         '
         'OvalTextBox4
         '
@@ -304,19 +316,7 @@ Partial Class InquiryPage
         Me.NavigationControl1.Size = New System.Drawing.Size(1361, 74)
         Me.NavigationControl1.TabIndex = 24
         '
-        'OvalDescriptionBox1
-        '
-        Me.OvalDescriptionBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.OvalDescriptionBox1.BorderSize = 3
-        Me.OvalDescriptionBox1.CurvedRadius = 10
-        Me.OvalDescriptionBox1.Location = New System.Drawing.Point(130, 388)
-        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.OvalDescriptionBox1.Multiline = True
-        Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
-        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(853, 73)
-        Me.OvalDescriptionBox1.TabIndex = 39
-        '
-        'Form1
+        'InquiryPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -324,7 +324,7 @@ Partial Class InquiryPage
         Me.ClientSize = New System.Drawing.Size(1361, 684)
         Me.Controls.Add(Me.NavigationControl1)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "Form1"
+        Me.Name = "InquiryPage"
         Me.Text = "Form1"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -339,8 +339,8 @@ Partial Class InquiryPage
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents OvalTextBox6 As OvalTextBox
     Friend WithEvents OvalTextBox5 As OvalTextBox
-    Friend WithEvents OvalButton2 As OvalButton
-    Friend WithEvents OvalButton1 As OvalButton
+    Friend WithEvents Clear As OvalButton
+    Friend WithEvents btnAssignTech As OvalButton
     Friend WithEvents OvalTextBox4 As OvalTextBox
     Friend WithEvents OvalTextBox3 As OvalTextBox
     Friend WithEvents OvalTextBox2 As OvalTextBox

@@ -22,350 +22,572 @@ Partial Class EditAccountPage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.NavigationControl1 = New management_system.NavigationControl()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.OvalTextBox7 = New management_system.OvalTextBox()
-        Me.OvalTextBox6 = New management_system.OvalTextBox()
-        Me.OvalTextBox5 = New management_system.OvalTextBox()
-        Me.OvalTextBox9 = New management_system.OvalTextBox()
-        Me.OvalButton2 = New management_system.OvalButton()
-        Me.OvalButton1 = New management_system.OvalButton()
-        Me.OvalTextBox4 = New management_system.OvalTextBox()
-        Me.OvalTextBox3 = New management_system.OvalTextBox()
-        Me.OvalTextBox2 = New management_system.OvalTextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2.SuspendLayout()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.NavigationControl1 = New management_system.NavigationControl()
+        Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
+        Me.OvalTextBox11 = New management_system.OvalTextBox()
+        Me.OvalTextBox10 = New management_system.OvalTextBox()
+        Me.OvalTextBox2 = New management_system.OvalTextBox()
+        Me.btnBack = New management_system.OvalButton()
+        Me.OvalButton3 = New management_system.OvalButton()
+        Me.OvalTextBox13 = New management_system.OvalTextBox()
+        Me.OvalTextBox6 = New management_system.OvalTextBox()
+        Me.OvalTextBox5 = New management_system.OvalTextBox()
+        Me.OvalTextBox4 = New management_system.OvalTextBox()
+        Me.OvalTextBox12 = New management_system.OvalTextBox()
+        Me.OvalTextBox9 = New management_system.OvalTextBox()
+        Me.OvalButton1 = New management_system.OvalButton()
+        Me.OvalButton2 = New management_system.OvalButton()
+        Me.OvalTextBox1 = New management_system.OvalTextBox()
+        Me.OvalTextBox3 = New management_system.OvalTextBox()
         Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
-        'NavigationControl1
+        'Label11
         '
-        Me.NavigationControl1.BackColor = System.Drawing.Color.White
-        Me.NavigationControl1.Location = New System.Drawing.Point(-3, 0)
-        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(1361, 74)
-        Me.NavigationControl1.TabIndex = 24
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(62, 516)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(46, 18)
+        Me.Label11.TabIndex = 111
+        Me.Label11.Text = "Viber"
         '
-        'Label10
+        'Label2
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(535, 343)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(123, 20)
-        Me.Label10.TabIndex = 37
-        Me.Label10.Text = "Staff Position"
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(62, 428)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(149, 18)
+        Me.Label2.TabIndex = 110
+        Me.Label2.Text = "Facebook Account"
         '
-        'RadioButton2
+        'Label3
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton2.Location = New System.Drawing.Point(672, 366)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(82, 24)
-        Me.RadioButton2.TabIndex = 36
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Admin"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(62, 80)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 18)
+        Me.Label3.TabIndex = 106
+        Me.Label3.Text = "Name"
         '
-        'RadioButton1
+        'Label4
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton1.Location = New System.Drawing.Point(537, 366)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(121, 24)
-        Me.RadioButton1.TabIndex = 35
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Technician"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'OvalTextBox7
-        '
-        Me.OvalTextBox7.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox7.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox7.Location = New System.Drawing.Point(521, 278)
-        Me.OvalTextBox7.Margin = New System.Windows.Forms.Padding(5)
-        Me.OvalTextBox7.Name = "OvalTextBox7"
-        Me.OvalTextBox7.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.OvalTextBox7.Size = New System.Drawing.Size(296, 39)
-        Me.OvalTextBox7.TabIndex = 34
-        '
-        'OvalTextBox6
-        '
-        Me.OvalTextBox6.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox6.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox6.Location = New System.Drawing.Point(521, 215)
-        Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(5)
-        Me.OvalTextBox6.Name = "OvalTextBox6"
-        Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.OvalTextBox6.Size = New System.Drawing.Size(296, 43)
-        Me.OvalTextBox6.TabIndex = 33
-        '
-        'OvalTextBox5
-        '
-        Me.OvalTextBox5.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox5.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox5.Location = New System.Drawing.Point(521, 145)
-        Me.OvalTextBox5.Margin = New System.Windows.Forms.Padding(5)
-        Me.OvalTextBox5.Name = "OvalTextBox5"
-        Me.OvalTextBox5.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox5.Size = New System.Drawing.Size(296, 43)
-        Me.OvalTextBox5.TabIndex = 32
-        '
-        'OvalTextBox9
-        '
-        Me.OvalTextBox9.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox9.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox9.Location = New System.Drawing.Point(128, 344)
-        Me.OvalTextBox9.Margin = New System.Windows.Forms.Padding(5)
-        Me.OvalTextBox9.Name = "OvalTextBox9"
-        Me.OvalTextBox9.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox9.Size = New System.Drawing.Size(310, 46)
-        Me.OvalTextBox9.TabIndex = 31
-        '
-        'OvalButton2
-        '
-        Me.OvalButton2.BackColor = System.Drawing.Color.White
-        Me.OvalButton2.CornerRadius = 15
-        Me.OvalButton2.FlatAppearance.BorderSize = 0
-        Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton2.Location = New System.Drawing.Point(672, 417)
-        Me.OvalButton2.Name = "OvalButton2"
-        Me.OvalButton2.Size = New System.Drawing.Size(135, 41)
-        Me.OvalButton2.TabIndex = 30
-        Me.OvalButton2.Text = "Cancel"
-        Me.OvalButton2.UseVisualStyleBackColor = False
-        '
-        'OvalButton1
-        '
-        Me.OvalButton1.BackColor = System.Drawing.Color.Cyan
-        Me.OvalButton1.CornerRadius = 15
-        Me.OvalButton1.FlatAppearance.BorderSize = 0
-        Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton1.Location = New System.Drawing.Point(521, 417)
-        Me.OvalButton1.Name = "OvalButton1"
-        Me.OvalButton1.Size = New System.Drawing.Size(145, 41)
-        Me.OvalButton1.TabIndex = 29
-        Me.OvalButton1.Text = "Save Changes"
-        Me.OvalButton1.UseVisualStyleBackColor = False
-        '
-        'OvalTextBox4
-        '
-        Me.OvalTextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox4.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox4.Location = New System.Drawing.Point(128, 278)
-        Me.OvalTextBox4.Margin = New System.Windows.Forms.Padding(4)
-        Me.OvalTextBox4.Name = "OvalTextBox4"
-        Me.OvalTextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox4.Size = New System.Drawing.Size(310, 39)
-        Me.OvalTextBox4.TabIndex = 24
-        '
-        'OvalTextBox3
-        '
-        Me.OvalTextBox3.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox3.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox3.Location = New System.Drawing.Point(128, 216)
-        Me.OvalTextBox3.Margin = New System.Windows.Forms.Padding(4)
-        Me.OvalTextBox3.Name = "OvalTextBox3"
-        Me.OvalTextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox3.Size = New System.Drawing.Size(310, 42)
-        Me.OvalTextBox3.TabIndex = 23
-        '
-        'OvalTextBox2
-        '
-        Me.OvalTextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox2.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox2.Location = New System.Drawing.Point(128, 149)
-        Me.OvalTextBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.OvalTextBox2.Name = "OvalTextBox2"
-        Me.OvalTextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox2.Size = New System.Drawing.Size(310, 47)
-        Me.OvalTextBox2.TabIndex = 22
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(536, 257)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(130, 18)
-        Me.Label7.TabIndex = 14
-        Me.Label7.Text = "Verify Password"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(536, 192)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(83, 18)
-        Me.Label8.TabIndex = 12
-        Me.Label8.Text = "Password"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(536, 125)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(85, 18)
-        Me.Label9.TabIndex = 10
-        Me.Label9.Text = "Username"
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(62, 165)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(69, 18)
+        Me.Label4.TabIndex = 107
+        Me.Label4.Text = "Address"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(143, 321)
+        Me.Label5.Location = New System.Drawing.Point(62, 342)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(116, 18)
-        Me.Label5.TabIndex = 8
+        Me.Label5.TabIndex = 109
         Me.Label5.Text = "Email Address"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(143, 256)
+        Me.Label6.Location = New System.Drawing.Point(62, 254)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(99, 18)
-        Me.Label6.TabIndex = 6
+        Me.Label6.TabIndex = 108
         Me.Label6.Text = "Contact No."
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(143, 192)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(69, 18)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Address"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(143, 125)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(52, 18)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Name"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(33, 66)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(929, 32)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "_____________________________________________________________"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(43, 37)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(158, 29)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Edit Account"
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.Color.White
-        Me.Panel2.Controls.Add(Me.Label10)
-        Me.Panel2.Controls.Add(Me.RadioButton2)
-        Me.Panel2.Controls.Add(Me.RadioButton1)
-        Me.Panel2.Controls.Add(Me.OvalTextBox7)
-        Me.Panel2.Controls.Add(Me.OvalTextBox6)
-        Me.Panel2.Controls.Add(Me.OvalTextBox5)
-        Me.Panel2.Controls.Add(Me.OvalTextBox9)
-        Me.Panel2.Controls.Add(Me.OvalButton2)
-        Me.Panel2.Controls.Add(Me.OvalButton1)
-        Me.Panel2.Controls.Add(Me.OvalTextBox4)
-        Me.Panel2.Controls.Add(Me.OvalTextBox3)
-        Me.Panel2.Controls.Add(Me.OvalTextBox2)
-        Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Controls.Add(Me.Label8)
-        Me.Panel2.Controls.Add(Me.Label9)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel2.Location = New System.Drawing.Point(37, 35)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1076, 518)
-        Me.Panel2.TabIndex = 1
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.BlueViolet
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(114, 89)
+        Me.Panel1.Location = New System.Drawing.Point(343, 79)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1158, 583)
-        Me.Panel1.TabIndex = 23
+        Me.Panel1.Size = New System.Drawing.Size(1086, 1024)
+        Me.Panel1.TabIndex = 24
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.OvalDescriptionBox1)
+        Me.Panel2.Controls.Add(Me.Panel4)
+        Me.Panel2.Controls.Add(Me.Label12)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.btnBack)
+        Me.Panel2.Controls.Add(Me.OvalButton3)
+        Me.Panel2.Controls.Add(Me.Panel5)
+        Me.Panel2.Controls.Add(Me.OvalButton1)
+        Me.Panel2.Controls.Add(Me.OvalButton2)
+        Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel2.Location = New System.Drawing.Point(37, 35)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1016, 944)
+        Me.Panel2.TabIndex = 1
+        '
+        'Panel4
+        '
+        Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.Controls.Add(Me.Button1)
+        Me.Panel4.Controls.Add(Me.PictureBox1)
+        Me.Panel4.Controls.Add(Me.OvalTextBox11)
+        Me.Panel4.Controls.Add(Me.OvalTextBox10)
+        Me.Panel4.Controls.Add(Me.RadioButton2)
+        Me.Panel4.Controls.Add(Me.Label8)
+        Me.Panel4.Controls.Add(Me.OvalTextBox2)
+        Me.Panel4.Controls.Add(Me.Label9)
+        Me.Panel4.Controls.Add(Me.RadioButton1)
+        Me.Panel4.Controls.Add(Me.Label7)
+        Me.Panel4.Controls.Add(Me.Label10)
+        Me.Panel4.Location = New System.Drawing.Point(544, 71)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(943, 654)
+        Me.Panel4.TabIndex = 106
+        '
+        'Button1
+        '
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button1.Location = New System.Drawing.Point(672, 298)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(121, 59)
+        Me.Button1.TabIndex = 120
+        Me.Button1.Text = "Insert a Photo Here"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox1.Location = New System.Drawing.Point(557, 161)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(351, 346)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 119
+        Me.PictureBox1.TabStop = False
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton2.Location = New System.Drawing.Point(232, 483)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(82, 24)
+        Me.RadioButton2.TabIndex = 113
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Admin"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(59, 254)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(83, 18)
+        Me.Label8.TabIndex = 110
+        Me.Label8.Text = "Password"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(55, 165)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(85, 18)
+        Me.Label9.TabIndex = 109
+        Me.Label9.Text = "Username"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton1.Location = New System.Drawing.Point(105, 483)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(121, 24)
+        Me.RadioButton1.TabIndex = 112
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Technician"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(59, 339)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(130, 18)
+        Me.Label7.TabIndex = 111
+        Me.Label7.Text = "Verify Password"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(66, 456)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(123, 20)
+        Me.Label10.TabIndex = 114
+        Me.Label10.Text = "Staff Position"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(62, 686)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(171, 18)
+        Me.Label12.TabIndex = 127
+        Me.Label12.Text = "Additional Information"
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(1016, 70)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "          Edit Account"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Panel5
+        '
+        Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel5.Controls.Add(Me.OvalTextBox13)
+        Me.Panel5.Controls.Add(Me.OvalTextBox6)
+        Me.Panel5.Controls.Add(Me.OvalTextBox5)
+        Me.Panel5.Controls.Add(Me.OvalTextBox4)
+        Me.Panel5.Controls.Add(Me.OvalTextBox12)
+        Me.Panel5.Controls.Add(Me.OvalTextBox9)
+        Me.Panel5.Controls.Add(Me.Label11)
+        Me.Panel5.Controls.Add(Me.Label2)
+        Me.Panel5.Controls.Add(Me.Label3)
+        Me.Panel5.Controls.Add(Me.Label4)
+        Me.Panel5.Controls.Add(Me.Label5)
+        Me.Panel5.Controls.Add(Me.Label6)
+        Me.Panel5.Location = New System.Drawing.Point(0, 71)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(659, 654)
+        Me.Panel5.TabIndex = 100
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'NavigationControl1
+        '
+        Me.NavigationControl1.BackColor = System.Drawing.Color.White
+        Me.NavigationControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
+        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.NavigationControl1.Name = "NavigationControl1"
+        Me.NavigationControl1.Size = New System.Drawing.Size(1429, 74)
+        Me.NavigationControl1.TabIndex = 25
+        '
+        'OvalDescriptionBox1
+        '
+        Me.OvalDescriptionBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalDescriptionBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.OvalDescriptionBox1.BorderSize = 3
+        Me.OvalDescriptionBox1.CurvedRadius = 10
+        Me.OvalDescriptionBox1.Location = New System.Drawing.Point(65, 710)
+        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(6)
+        Me.OvalDescriptionBox1.Multiline = True
+        Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
+        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(923, 138)
+        Me.OvalDescriptionBox1.TabIndex = 128
+        '
+        'OvalTextBox11
+        '
+        Me.OvalTextBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox11.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox11.Location = New System.Drawing.Point(57, 360)
+        Me.OvalTextBox11.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox11.Name = "OvalTextBox11"
+        Me.OvalTextBox11.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.OvalTextBox11.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox11.TabIndex = 117
+        '
+        'OvalTextBox10
+        '
+        Me.OvalTextBox10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox10.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox10.Location = New System.Drawing.Point(57, 274)
+        Me.OvalTextBox10.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox10.Name = "OvalTextBox10"
+        Me.OvalTextBox10.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.OvalTextBox10.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox10.TabIndex = 116
+        '
+        'OvalTextBox2
+        '
+        Me.OvalTextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox2.Location = New System.Drawing.Point(57, 184)
+        Me.OvalTextBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox2.Name = "OvalTextBox2"
+        Me.OvalTextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox2.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox2.TabIndex = 112
+        '
+        'btnBack
+        '
+        Me.btnBack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBack.BackColor = System.Drawing.Color.IndianRed
+        Me.btnBack.CornerRadius = 15
+        Me.btnBack.FlatAppearance.BorderSize = 0
+        Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBack.Location = New System.Drawing.Point(841, 872)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(147, 61)
+        Me.btnBack.TabIndex = 126
+        Me.btnBack.Text = "Cancel"
+        Me.btnBack.UseVisualStyleBackColor = False
+        '
+        'OvalButton3
+        '
+        Me.OvalButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton3.BackColor = System.Drawing.Color.MediumPurple
+        Me.OvalButton3.CornerRadius = 15
+        Me.OvalButton3.FlatAppearance.BorderSize = 0
+        Me.OvalButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton3.Location = New System.Drawing.Point(637, 872)
+        Me.OvalButton3.Name = "OvalButton3"
+        Me.OvalButton3.Size = New System.Drawing.Size(177, 61)
+        Me.OvalButton3.TabIndex = 125
+        Me.OvalButton3.Text = "Confirm Edit"
+        Me.OvalButton3.UseVisualStyleBackColor = False
+        '
+        'OvalTextBox13
+        '
+        Me.OvalTextBox13.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox13.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox13.Location = New System.Drawing.Point(65, 532)
+        Me.OvalTextBox13.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox13.Name = "OvalTextBox13"
+        Me.OvalTextBox13.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox13.Size = New System.Drawing.Size(433, 52)
+        Me.OvalTextBox13.TabIndex = 122
+        '
+        'OvalTextBox6
+        '
+        Me.OvalTextBox6.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox6.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox6.Location = New System.Drawing.Point(65, 448)
+        Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox6.Name = "OvalTextBox6"
+        Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox6.Size = New System.Drawing.Size(433, 52)
+        Me.OvalTextBox6.TabIndex = 121
+        '
+        'OvalTextBox5
+        '
+        Me.OvalTextBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox5.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox5.Location = New System.Drawing.Point(65, 362)
+        Me.OvalTextBox5.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox5.Name = "OvalTextBox5"
+        Me.OvalTextBox5.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox5.Size = New System.Drawing.Size(433, 52)
+        Me.OvalTextBox5.TabIndex = 120
+        '
+        'OvalTextBox4
+        '
+        Me.OvalTextBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox4.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox4.Location = New System.Drawing.Point(65, 274)
+        Me.OvalTextBox4.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox4.Name = "OvalTextBox4"
+        Me.OvalTextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox4.Size = New System.Drawing.Size(433, 52)
+        Me.OvalTextBox4.TabIndex = 119
+        '
+        'OvalTextBox12
+        '
+        Me.OvalTextBox12.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox12.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox12.Location = New System.Drawing.Point(65, 185)
+        Me.OvalTextBox12.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox12.Name = "OvalTextBox12"
+        Me.OvalTextBox12.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox12.Size = New System.Drawing.Size(433, 52)
+        Me.OvalTextBox12.TabIndex = 118
+        '
+        'OvalTextBox9
+        '
+        Me.OvalTextBox9.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox9.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox9.Location = New System.Drawing.Point(65, 100)
+        Me.OvalTextBox9.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox9.Name = "OvalTextBox9"
+        Me.OvalTextBox9.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox9.Size = New System.Drawing.Size(433, 51)
+        Me.OvalTextBox9.TabIndex = 115
+        '
+        'OvalButton1
+        '
+        Me.OvalButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton1.BackColor = System.Drawing.Color.Cyan
+        Me.OvalButton1.CornerRadius = 15
+        Me.OvalButton1.FlatAppearance.BorderSize = 0
+        Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton1.Location = New System.Drawing.Point(1170, 878)
+        Me.OvalButton1.Name = "OvalButton1"
+        Me.OvalButton1.Size = New System.Drawing.Size(145, 48)
+        Me.OvalButton1.TabIndex = 82
+        Me.OvalButton1.Text = "Create Account"
+        Me.OvalButton1.UseVisualStyleBackColor = False
+        '
+        'OvalButton2
+        '
+        Me.OvalButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton2.BackColor = System.Drawing.Color.White
+        Me.OvalButton2.CornerRadius = 15
+        Me.OvalButton2.FlatAppearance.BorderSize = 0
+        Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton2.Location = New System.Drawing.Point(1345, 878)
+        Me.OvalButton2.Name = "OvalButton2"
+        Me.OvalButton2.Size = New System.Drawing.Size(127, 48)
+        Me.OvalButton2.TabIndex = 83
+        Me.OvalButton2.Text = "Clear Inputs"
+        Me.OvalButton2.UseVisualStyleBackColor = False
+        '
+        'OvalTextBox1
+        '
+        Me.OvalTextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox1.Location = New System.Drawing.Point(7, -303)
+        Me.OvalTextBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalTextBox1.Name = "OvalTextBox1"
+        Me.OvalTextBox1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox1.Size = New System.Drawing.Size(315, 35)
+        Me.OvalTextBox1.TabIndex = 26
+        '
+        'OvalTextBox3
+        '
+        Me.OvalTextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox3.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox3.BorderColor = System.Drawing.Color.BlueViolet
+        Me.OvalTextBox3.Location = New System.Drawing.Point(-99, -406)
+        Me.OvalTextBox3.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalTextBox3.Name = "OvalTextBox3"
+        Me.OvalTextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox3.Size = New System.Drawing.Size(557, 35)
+        Me.OvalTextBox3.TabIndex = 27
         '
         'EditAccountPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1361, 684)
+        Me.ClientSize = New System.Drawing.Size(1429, 1100)
         Me.Controls.Add(Me.NavigationControl1)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.OvalTextBox1)
+        Me.Controls.Add(Me.OvalTextBox3)
         Me.Name = "EditAccountPage"
         Me.Text = "Form1"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents NavigationControl1 As NavigationControl
-    Friend WithEvents Label10 As Label
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents OvalTextBox7 As OvalTextBox
-    Friend WithEvents OvalTextBox6 As OvalTextBox
     Friend WithEvents OvalTextBox5 As OvalTextBox
+    Friend WithEvents OvalTextBox12 As OvalTextBox
     Friend WithEvents OvalTextBox9 As OvalTextBox
-    Friend WithEvents OvalButton2 As OvalButton
-    Friend WithEvents OvalButton1 As OvalButton
-    Friend WithEvents OvalTextBox4 As OvalTextBox
-    Friend WithEvents OvalTextBox3 As OvalTextBox
-    Friend WithEvents OvalTextBox2 As OvalTextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents Label11 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents NavigationControl1 As NavigationControl
+    Friend WithEvents Label6 As Label
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnBack As OvalButton
+    Friend WithEvents OvalButton3 As OvalButton
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents OvalTextBox11 As OvalTextBox
+    Friend WithEvents OvalTextBox10 As OvalTextBox
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents Label8 As Label
+    Friend WithEvents OvalTextBox2 As OvalTextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents OvalTextBox13 As OvalTextBox
+    Friend WithEvents OvalTextBox6 As OvalTextBox
+    Friend WithEvents OvalTextBox4 As OvalTextBox
+    Friend WithEvents OvalButton1 As OvalButton
+    Friend WithEvents OvalButton2 As OvalButton
+    Friend WithEvents OvalTextBox1 As OvalTextBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents OvalTextBox3 As OvalTextBox
+    Friend WithEvents OvalDescriptionBox1 As OvalDescriptionBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button1 As Button
 End Class
