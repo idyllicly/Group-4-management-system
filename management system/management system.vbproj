@@ -167,6 +167,9 @@
     <Reference Include="Transitions, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\dot-net-transitions.1.2.1.0\lib\net40-full\Transitions.dll</HintPath>
     </Reference>
+    <Reference Include="ZstdSharp, Version=0.8.6.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>packages\ZstdSharp.Port.0.8.6\lib\net462\ZstdSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -187,6 +190,12 @@
     </Compile>
     <Compile Include="AccAndSettings_SuperAdmin.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccCard.Designer.vb">
+      <DependentUpon>AccCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AccCard.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AddTechnician.Designer.vb">
       <DependentUpon>AddTechnician.vb</DependentUpon>
@@ -221,6 +230,7 @@
       <DependentUpon>EditAccountPage.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="db_connection.vb" />
     <Compile Include="EditAccountPage.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -358,6 +368,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
       <DependentUpon>AccAndSettings_SuperAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccCard.resx">
+      <DependentUpon>AccCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddTechnician.resx">
       <DependentUpon>AddTechnician.vb</DependentUpon>

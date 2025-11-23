@@ -1,8 +1,9 @@
 ﻿Public Class CreateAcc_SupAdmin
 
-    ' Variable to hold the file path, essential for a complete clear
+    ' Variable to hold the file path
     Private currentImagePath As String = String.Empty
 
+    ' --- 1. IMAGE UPLOAD BUTTON ---
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             ' Dispose of any previous image to prevent memory leaks
@@ -14,23 +15,20 @@
             Try
                 PictureBox1.Image = Image.FromFile(OpenFileDialog1.FileName)
 
-                ' 🔑 THE FIX: Hide the button once the image is successfully loaded
+                ' Hide the button once the image is successfully loaded
                 Button1.Visible = False
 
             Catch ex As Exception
-                ' Handle errors, such as invalid image format
                 MessageBox.Show("Error loading image: " & ex.Message)
             End Try
         End If
     End Sub
 
     Private Sub CreateAcc_SupAdmin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Initialization logic, if any
     End Sub
 
+    ' --- 2. CLEAR / BACK BUTTON (THE FIX IS HERE) ---
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        ' --- START OF CONFIRMATION DIALOG LOGIC ---
-
         Dim result As MsgBoxResult
 
         ' Display the confirmation box.
@@ -40,16 +38,15 @@
 
         ' Check if the user clicked the 'Yes' button
         If result = MsgBoxResult.Yes Then
-            ' If the user confirms, then proceed to clear the inputs
+            ' Proceed to clear the inputs
             ClearAllInputControls(Me)
-        Else
-            ' If the user clicks 'No' or closes the box, do nothing.
-        End If
 
-        ' --- END OF CONFIRMATION DIALOG LOGIC ---
+            ' ✅ THE FIX: Make the upload button visible again!
+            Button1.Visible = True
+        End If
     End Sub
 
-    ' Updated subroutine to handle PictureBox clearing
+    ' --- 3. CLEARING LOGIC ---
     Private Sub ClearAllInputControls(parent As Control)
         For Each ctrl As Control In parent.Controls
 
@@ -66,21 +63,40 @@
                 CType(ctrl, RadioButton).Checked = False
 
             ElseIf TypeOf ctrl Is PictureBox Then
-                ' 🖼️ NEW: Logic to clear the PictureBox and dispose of the image.
+                ' Logic to clear the PictureBox and dispose of the image.
                 Dim picBox As PictureBox = CType(ctrl, PictureBox)
                 If picBox.Image IsNot Nothing Then
-                    picBox.Image.Dispose() ' Important to release file lock/memory
+                    picBox.Image.Dispose()
                     picBox.Image = Nothing
                 End If
-                ' Also clear the associated file path variable
+
+                ' Reset variables
                 currentImagePath = String.Empty
-                OpenFileDialog1.FileName = String.Empty ' Optionally clear the OFD's remembered file name
+                OpenFileDialog1.FileName = String.Empty
 
             ElseIf ctrl.Controls.Count > 0 Then
-                ' Recursively call this function for containers
+                ' Recursively call this function for containers (Panels, GroupBoxes)
                 ClearAllInputControls(ctrl)
 
             End If
         Next
+    End Sub
+
+    Private Sub Panel5_Paint(sender As Object, e As PaintEventArgs) Handles Panel5.Paint
+    End Sub
+
+    ' --- 4. SUBMIT / NAVIGATION BUTTON ---
+    Private Sub OvalButton3_Click(sender As Object, e As EventArgs) Handles OvalButton3.Click
+
+        Dim result As DialogResult = MessageBox.Show("Are you sure that all of the details are correct?",
+                                                     "Confirm Navigation",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Warning)
+
+        If result = DialogResult.Yes Then
+            ManageAccounts.Show()
+            Me.Hide()
+        End If
+
     End Sub
 End Class

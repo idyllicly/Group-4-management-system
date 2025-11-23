@@ -30,26 +30,24 @@ Partial Class EditAccountPage
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.OvalTextBox11 = New management_system.OvalTextBox()
+        Me.OvalTextBox10 = New management_system.OvalTextBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.OvalTextBox2 = New management_system.OvalTextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.NavigationControl1 = New management_system.NavigationControl()
-        Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
-        Me.OvalTextBox11 = New management_system.OvalTextBox()
-        Me.OvalTextBox10 = New management_system.OvalTextBox()
-        Me.OvalTextBox2 = New management_system.OvalTextBox()
         Me.btnBack = New management_system.OvalButton()
         Me.OvalButton3 = New management_system.OvalButton()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.OvalTextBox13 = New management_system.OvalTextBox()
         Me.OvalTextBox6 = New management_system.OvalTextBox()
         Me.OvalTextBox5 = New management_system.OvalTextBox()
@@ -58,6 +56,8 @@ Partial Class EditAccountPage
         Me.OvalTextBox9 = New management_system.OvalTextBox()
         Me.OvalButton1 = New management_system.OvalButton()
         Me.OvalButton2 = New management_system.OvalButton()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.NavigationControl1 = New management_system.NavigationControl()
         Me.OvalTextBox1 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
         Me.Panel1.SuspendLayout()
@@ -160,6 +160,21 @@ Partial Class EditAccountPage
         Me.Panel2.Size = New System.Drawing.Size(1016, 944)
         Me.Panel2.TabIndex = 1
         '
+        'OvalDescriptionBox1
+        '
+        Me.OvalDescriptionBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalDescriptionBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.OvalDescriptionBox1.BorderSize = 3
+        Me.OvalDescriptionBox1.CurvedRadius = 10
+        Me.OvalDescriptionBox1.Location = New System.Drawing.Point(65, 710)
+        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(6)
+        Me.OvalDescriptionBox1.Multiline = True
+        Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
+        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(923, 138)
+        Me.OvalDescriptionBox1.TabIndex = 128
+        '
         'Panel4
         '
         Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -201,6 +216,30 @@ Partial Class EditAccountPage
         Me.PictureBox1.TabIndex = 119
         Me.PictureBox1.TabStop = False
         '
+        'OvalTextBox11
+        '
+        Me.OvalTextBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox11.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox11.Location = New System.Drawing.Point(57, 360)
+        Me.OvalTextBox11.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox11.Name = "OvalTextBox11"
+        Me.OvalTextBox11.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.OvalTextBox11.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox11.TabIndex = 117
+        '
+        'OvalTextBox10
+        '
+        Me.OvalTextBox10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox10.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox10.Location = New System.Drawing.Point(57, 274)
+        Me.OvalTextBox10.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox10.Name = "OvalTextBox10"
+        Me.OvalTextBox10.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.OvalTextBox10.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox10.TabIndex = 116
+        '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
@@ -222,6 +261,18 @@ Partial Class EditAccountPage
         Me.Label8.Size = New System.Drawing.Size(83, 18)
         Me.Label8.TabIndex = 110
         Me.Label8.Text = "Password"
+        '
+        'OvalTextBox2
+        '
+        Me.OvalTextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox2.Location = New System.Drawing.Point(57, 184)
+        Me.OvalTextBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.OvalTextBox2.Name = "OvalTextBox2"
+        Me.OvalTextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox2.Size = New System.Drawing.Size(385, 51)
+        Me.OvalTextBox2.TabIndex = 112
         '
         'Label9
         '
@@ -288,92 +339,6 @@ Partial Class EditAccountPage
         Me.Label1.Text = "          Edit Account"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel5
-        '
-        Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Panel5.Controls.Add(Me.OvalTextBox13)
-        Me.Panel5.Controls.Add(Me.OvalTextBox6)
-        Me.Panel5.Controls.Add(Me.OvalTextBox5)
-        Me.Panel5.Controls.Add(Me.OvalTextBox4)
-        Me.Panel5.Controls.Add(Me.OvalTextBox12)
-        Me.Panel5.Controls.Add(Me.OvalTextBox9)
-        Me.Panel5.Controls.Add(Me.Label11)
-        Me.Panel5.Controls.Add(Me.Label2)
-        Me.Panel5.Controls.Add(Me.Label3)
-        Me.Panel5.Controls.Add(Me.Label4)
-        Me.Panel5.Controls.Add(Me.Label5)
-        Me.Panel5.Controls.Add(Me.Label6)
-        Me.Panel5.Location = New System.Drawing.Point(0, 71)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(659, 654)
-        Me.Panel5.TabIndex = 100
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'NavigationControl1
-        '
-        Me.NavigationControl1.BackColor = System.Drawing.Color.White
-        Me.NavigationControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
-        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(1429, 74)
-        Me.NavigationControl1.TabIndex = 25
-        '
-        'OvalDescriptionBox1
-        '
-        Me.OvalDescriptionBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OvalDescriptionBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.OvalDescriptionBox1.BorderSize = 3
-        Me.OvalDescriptionBox1.CurvedRadius = 10
-        Me.OvalDescriptionBox1.Location = New System.Drawing.Point(65, 710)
-        Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(6)
-        Me.OvalDescriptionBox1.Multiline = True
-        Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
-        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(923, 138)
-        Me.OvalDescriptionBox1.TabIndex = 128
-        '
-        'OvalTextBox11
-        '
-        Me.OvalTextBox11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OvalTextBox11.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox11.Location = New System.Drawing.Point(57, 360)
-        Me.OvalTextBox11.Margin = New System.Windows.Forms.Padding(2)
-        Me.OvalTextBox11.Name = "OvalTextBox11"
-        Me.OvalTextBox11.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.OvalTextBox11.Size = New System.Drawing.Size(385, 51)
-        Me.OvalTextBox11.TabIndex = 117
-        '
-        'OvalTextBox10
-        '
-        Me.OvalTextBox10.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OvalTextBox10.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox10.Location = New System.Drawing.Point(57, 274)
-        Me.OvalTextBox10.Margin = New System.Windows.Forms.Padding(2)
-        Me.OvalTextBox10.Name = "OvalTextBox10"
-        Me.OvalTextBox10.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.OvalTextBox10.Size = New System.Drawing.Size(385, 51)
-        Me.OvalTextBox10.TabIndex = 116
-        '
-        'OvalTextBox2
-        '
-        Me.OvalTextBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OvalTextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.OvalTextBox2.Location = New System.Drawing.Point(57, 184)
-        Me.OvalTextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.OvalTextBox2.Name = "OvalTextBox2"
-        Me.OvalTextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox2.Size = New System.Drawing.Size(385, 51)
-        Me.OvalTextBox2.TabIndex = 112
-        '
         'btnBack
         '
         Me.btnBack.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -403,6 +368,27 @@ Partial Class EditAccountPage
         Me.OvalButton3.TabIndex = 125
         Me.OvalButton3.Text = "Confirm Edit"
         Me.OvalButton3.UseVisualStyleBackColor = False
+        '
+        'Panel5
+        '
+        Me.Panel5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel5.Controls.Add(Me.OvalTextBox13)
+        Me.Panel5.Controls.Add(Me.OvalTextBox6)
+        Me.Panel5.Controls.Add(Me.OvalTextBox5)
+        Me.Panel5.Controls.Add(Me.OvalTextBox4)
+        Me.Panel5.Controls.Add(Me.OvalTextBox12)
+        Me.Panel5.Controls.Add(Me.OvalTextBox9)
+        Me.Panel5.Controls.Add(Me.Label11)
+        Me.Panel5.Controls.Add(Me.Label2)
+        Me.Panel5.Controls.Add(Me.Label3)
+        Me.Panel5.Controls.Add(Me.Label4)
+        Me.Panel5.Controls.Add(Me.Label5)
+        Me.Panel5.Controls.Add(Me.Label6)
+        Me.Panel5.Location = New System.Drawing.Point(0, 71)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(659, 654)
+        Me.Panel5.TabIndex = 100
         '
         'OvalTextBox13
         '
@@ -505,6 +491,20 @@ Partial Class EditAccountPage
         Me.OvalButton2.TabIndex = 83
         Me.OvalButton2.Text = "Clear Inputs"
         Me.OvalButton2.UseVisualStyleBackColor = False
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'NavigationControl1
+        '
+        Me.NavigationControl1.BackColor = System.Drawing.Color.White
+        Me.NavigationControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
+        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.NavigationControl1.Name = "NavigationControl1"
+        Me.NavigationControl1.Size = New System.Drawing.Size(1429, 74)
+        Me.NavigationControl1.TabIndex = 25
         '
         'OvalTextBox1
         '
