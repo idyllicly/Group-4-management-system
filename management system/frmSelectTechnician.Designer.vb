@@ -38,18 +38,18 @@ Partial Class frmSelectTechnician
         Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
         Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(711, 74)
+        Me.NavigationControl1.Size = New System.Drawing.Size(800, 92)
         Me.NavigationControl1.TabIndex = 0
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 74)
+        Me.Panel1.Location = New System.Drawing.Point(0, 92)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Padding = New System.Windows.Forms.Padding(18, 16, 18, 16)
-        Me.Panel1.Size = New System.Drawing.Size(711, 286)
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(20, 20, 20, 20)
+        Me.Panel1.Size = New System.Drawing.Size(800, 358)
         Me.Panel1.TabIndex = 1
         '
         'Panel2
@@ -57,20 +57,20 @@ Partial Class frmSelectTechnician
         Me.Panel2.Controls.Add(Me.FlowLayoutPanel1)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(18, 16)
+        Me.Panel2.Location = New System.Drawing.Point(20, 20)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(675, 254)
+        Me.Panel2.Size = New System.Drawing.Size(760, 318)
         Me.Panel2.TabIndex = 0
         '
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 54)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 68)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(675, 200)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(760, 250)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'Label1
@@ -78,18 +78,18 @@ Partial Class frmSelectTechnician
         Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(269, 22)
+        Me.Label1.Location = New System.Drawing.Point(303, 28)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(143, 16)
+        Me.Label1.Size = New System.Drawing.Size(172, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "SELECT TECHNICIAN"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'frmSelectTechnician
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(711, 360)
+        Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.NavigationControl1)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)

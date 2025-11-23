@@ -102,4 +102,7 @@
         pnl.ResumeLayout()
     End Sub
 
+    Private Sub NavigationControl1_Load(sender As Object, e As EventArgs) Handles NavigationControl1.Load
+
+    End Sub
 End Class

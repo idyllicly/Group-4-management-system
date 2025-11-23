@@ -51,9 +51,9 @@ Partial Class log_in
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.MediumPurple
-        Me.Label1.Location = New System.Drawing.Point(538, 103)
+        Me.Label1.Location = New System.Drawing.Point(605, 129)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(262, 25)
+        Me.Label1.Size = New System.Drawing.Size(316, 29)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Please Login To Continue"
         '
@@ -62,9 +62,9 @@ Partial Class log_in
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.MediumPurple
-        Me.Label2.Location = New System.Drawing.Point(497, 183)
+        Me.Label2.Location = New System.Drawing.Point(559, 229)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 16)
+        Me.Label2.Size = New System.Drawing.Size(109, 20)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "USERNAME"
         '
@@ -73,9 +73,9 @@ Partial Class log_in
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.MediumPurple
-        Me.Label3.Location = New System.Drawing.Point(497, 272)
+        Me.Label3.Location = New System.Drawing.Point(559, 340)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(94, 16)
+        Me.Label3.Size = New System.Drawing.Size(111, 20)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "PASSWORD"
         '
@@ -84,9 +84,9 @@ Partial Class log_in
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 13.8!, System.Drawing.FontStyle.Bold)
         Me.Label4.ForeColor = System.Drawing.Color.MediumBlue
-        Me.Label4.Location = New System.Drawing.Point(163, 323)
+        Me.Label4.Location = New System.Drawing.Point(183, 404)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(119, 27)
+        Me.Label4.Size = New System.Drawing.Size(148, 33)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Welcome!"
         '
@@ -94,18 +94,18 @@ Partial Class log_in
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(597, 406)
+        Me.Label5.Location = New System.Drawing.Point(672, 508)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(86, 16)
+        Me.Label5.Size = New System.Drawing.Size(105, 20)
         Me.Label5.TabIndex = 13
         Me.Label5.Text = "No Account? "
         '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(676, 406)
+        Me.LinkLabel1.Location = New System.Drawing.Point(760, 508)
         Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(88, 16)
+        Me.LinkLabel1.Size = New System.Drawing.Size(105, 20)
         Me.LinkLabel1.TabIndex = 14
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "Sign Up Now!"
@@ -117,17 +117,19 @@ Partial Class log_in
         Me.Panel1.Controls.Add(Me.PictureBox4)
         Me.Panel1.Controls.Add(Me.PictureBox3)
         Me.Panel1.Controls.Add(Me.PictureBox2)
-        Me.Panel1.Location = New System.Drawing.Point(-5, 471)
+        Me.Panel1.Location = New System.Drawing.Point(-6, 589)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(937, 100)
+        Me.Panel1.Size = New System.Drawing.Size(1054, 125)
         Me.Panel1.TabIndex = 15
         '
         'PictureBox5
         '
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(184, 0)
+        Me.PictureBox5.Location = New System.Drawing.Point(207, 0)
+        Me.PictureBox5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(621, 100)
+        Me.PictureBox5.Size = New System.Drawing.Size(699, 125)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox5.TabIndex = 19
         Me.PictureBox5.TabStop = False
@@ -135,9 +137,10 @@ Partial Class log_in
         'PictureBox4
         '
         Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(802, -3)
+        Me.PictureBox4.Location = New System.Drawing.Point(902, -4)
+        Me.PictureBox4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(135, 103)
+        Me.PictureBox4.Size = New System.Drawing.Size(152, 129)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox4.TabIndex = 18
         Me.PictureBox4.TabStop = False
@@ -145,9 +148,10 @@ Partial Class log_in
         'PictureBox3
         '
         Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(92, 0)
+        Me.PictureBox3.Location = New System.Drawing.Point(104, 0)
+        Me.PictureBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(96, 100)
+        Me.PictureBox3.Size = New System.Drawing.Size(108, 125)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox3.TabIndex = 17
         Me.PictureBox3.TabStop = False
@@ -156,8 +160,9 @@ Partial Class log_in
         '
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.Location = New System.Drawing.Point(3, 0)
+        Me.PictureBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(96, 100)
+        Me.PictureBox2.Size = New System.Drawing.Size(108, 125)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 16
         Me.PictureBox2.TabStop = False
@@ -166,9 +171,10 @@ Partial Class log_in
         '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(42, 78)
+        Me.PictureBox1.Location = New System.Drawing.Point(47, 98)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(361, 313)
+        Me.PictureBox1.Size = New System.Drawing.Size(406, 391)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 7
         Me.PictureBox1.TabStop = False
@@ -180,11 +186,11 @@ Partial Class log_in
         Me.PassText.BorderSize = 2
         Me.PassText.CurvedRadius = 20
         Me.PassText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PassText.Location = New System.Drawing.Point(474, 300)
-        Me.PassText.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PassText.Location = New System.Drawing.Point(533, 375)
+        Me.PassText.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PassText.Name = "PassText"
         Me.PassText.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.PassText.Size = New System.Drawing.Size(397, 34)
+        Me.PassText.Size = New System.Drawing.Size(447, 42)
         Me.PassText.TabIndex = 12
         '
         'UserText
@@ -194,11 +200,11 @@ Partial Class log_in
         Me.UserText.BorderSize = 2
         Me.UserText.CurvedRadius = 20
         Me.UserText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UserText.Location = New System.Drawing.Point(474, 211)
-        Me.UserText.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.UserText.Location = New System.Drawing.Point(533, 264)
+        Me.UserText.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.UserText.Name = "UserText"
         Me.UserText.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.UserText.Size = New System.Drawing.Size(397, 34)
+        Me.UserText.Size = New System.Drawing.Size(447, 42)
         Me.UserText.TabIndex = 11
         '
         'OvalButton1
@@ -209,19 +215,20 @@ Partial Class log_in
         Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OvalButton1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.OvalButton1.Location = New System.Drawing.Point(611, 360)
+        Me.OvalButton1.Location = New System.Drawing.Point(687, 450)
+        Me.OvalButton1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.OvalButton1.Name = "OvalButton1"
-        Me.OvalButton1.Size = New System.Drawing.Size(131, 31)
+        Me.OvalButton1.Size = New System.Drawing.Size(147, 39)
         Me.OvalButton1.TabIndex = 10
         Me.OvalButton1.Text = "Log In!"
         Me.OvalButton1.UseVisualStyleBackColor = False
         '
         'log_in
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(924, 570)
+        Me.ClientSize = New System.Drawing.Size(1040, 712)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label5)
