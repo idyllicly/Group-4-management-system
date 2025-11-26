@@ -27,8 +27,6 @@ Partial Class log_in
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -89,26 +87,6 @@ Partial Class log_in
         Me.Label4.Size = New System.Drawing.Size(148, 33)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Welcome!"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(672, 508)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(105, 20)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "No Account? "
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(760, 508)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(105, 20)
-        Me.LinkLabel1.TabIndex = 14
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Sign Up Now!"
         '
         'Panel1
         '
@@ -230,8 +208,6 @@ Partial Class log_in
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1040, 712)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.PassText)
         Me.Controls.Add(Me.UserText)
         Me.Controls.Add(Me.OvalButton1)
@@ -262,8 +238,6 @@ Partial Class log_in
     Friend WithEvents OvalButton1 As OvalButton
     Friend WithEvents UserText As OvalTextBox
     Friend WithEvents PassText As OvalTextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents PictureBox3 As PictureBox

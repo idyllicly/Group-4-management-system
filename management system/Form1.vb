@@ -64,13 +64,13 @@ Public Class Form1
             Dim technicianId As String = "5BmdL4dcYWdOrFi60rAcK80IjeK2" ' Your Real ID
 
             Dim jobData As New Dictionary(Of String, Object) From {
-                {"clientName", "Juan Dela Cruz"},
-                {"address", "Quezon City, Manila"},
-                {"serviceType", "Aircon Repair"},
-                {"description", "Unit is leaking water."},
+                {"clientName", "Euro gaufo"},
+                {"address", "dlanay area b Quezon City, Manila"},
+                {"serviceType", "general pest control"},
+                {"description", "may mga piste."},
                 {"schedule", DateTime.Now.ToString("MMMM dd, yyyy h:mm tt")},
                 {"status", "pending"},
-                {"assignedBy", "Office Admin"},
+                {"assignedBy", "vince pondavilla"},
                 {"technicianId", technicianId}
             }
 
@@ -91,7 +91,7 @@ Public Class Form1
                     .Token = token,
                     .Notification = New FirebaseAdmin.Messaging.Notification() With {
                         .Title = "New Job Assigned!",
-                        .Body = "Client: Juan Dela Cruz - Aircon Repair"
+                        .Body = "Client: euro gaufo"
                     },
                     .Data = New Dictionary(Of String, String) From {
                         {"jobId", docRef.Id}

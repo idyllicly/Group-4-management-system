@@ -11,11 +11,12 @@
     <AssemblyName>management system</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -54,8 +55,8 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FirebaseAdmin, Version=3.4.0.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
-      <HintPath>packages\FirebaseAdmin.3.4.0\lib\net462\FirebaseAdmin.dll</HintPath>
+    <Reference Include="FirebaseAdmin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
+      <HintPath>packages\FirebaseAdmin.3.0.0\lib\net462\FirebaseAdmin.dll</HintPath>
     </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.17.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>packages\Google.Api.CommonProtos.2.17.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
@@ -111,15 +112,18 @@
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlConnector.2.5.0\lib\net471\MySqlConnector.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -134,8 +138,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Linq.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
@@ -158,6 +162,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -197,6 +202,7 @@
     <Compile Include="AccCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="AccountManager.vb" />
     <Compile Include="AddTechnician.Designer.vb">
       <DependentUpon>AddTechnician.vb</DependentUpon>
     </Compile>
@@ -222,6 +228,7 @@
     <Compile Include="Dashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DatabaseConnection.vb" />
     <Compile Include="DateCard.Designer.vb">
       <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
@@ -234,10 +241,17 @@
     <Compile Include="EditAccountPage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EventManager.vb" />
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
     <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCalendar.Designer.vb">
+      <DependentUpon>FormCalendar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InquiryPage.Designer.vb">
@@ -282,6 +296,12 @@
     <Compile Include="log in.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ManageAccountCard.Designer.vb">
+      <DependentUpon>ManageAccountCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManageAccountCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ManageAccounts.Designer.vb">
       <DependentUpon>ManageAccounts.vb</DependentUpon>
     </Compile>
@@ -304,9 +324,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="MySql\Data.vb" />
     <Compile Include="navigationControl.Designer.vb">
       <DependentUpon>NavigationControl.vb</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
     <Compile Include="OvalButton.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -364,6 +387,12 @@
     <Compile Include="NavigationControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UC_DayBlock.Designer.vb">
+      <DependentUpon>UC_DayBlock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UC_DayBlock.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
@@ -393,6 +422,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCalendar.resx">
+      <DependentUpon>FormCalendar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
@@ -413,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="log in.resx">
       <DependentUpon>log in.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageAccountCard.resx">
+      <DependentUpon>ManageAccountCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAccounts.resx">
       <DependentUpon>ManageAccounts.vb</DependentUpon>
@@ -450,6 +485,9 @@
     <EmbeddedResource Include="TimelineItemControl.resx">
       <DependentUpon>TimelineItemControl.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_DayBlock.resx">
+      <DependentUpon>UC_DayBlock.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\app.manifest" />
@@ -463,12 +501,231 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="obj\Release\management system.vbproj.AssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="key.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages\BouncyCastle.Cryptography.2.6.2\.signature.p7s" />
+    <None Include="packages\BouncyCastle.Cryptography.2.6.2\BouncyCastle.Cryptography.2.6.2.nupkg" />
+    <None Include="packages\BouncyCastle.Cryptography.2.6.2\LICENSE.md" />
+    <None Include="packages\BouncyCastle.Cryptography.2.6.2\README.md" />
+    <None Include="packages\dot-net-transitions.1.2.1.0\.signature.p7s" />
+    <None Include="packages\dot-net-transitions.1.2.1.0\dot-net-transitions.1.2.1.0.nupkg" />
+    <None Include="packages\FirebaseAdmin.3.4.0\.signature.p7s" />
+    <None Include="packages\FirebaseAdmin.3.4.0\FirebaseAdmin.3.4.0.nupkg" />
+    <None Include="packages\FirebaseAdmin.3.4.0\README.md" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\.signature.p7s" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\annotations.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\auth.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\backend.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\billing.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\client.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\config_change.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\consumer.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\context.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\control.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\distribution.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\documentation.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\endpoint.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\error_reason.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\field_behavior.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\field_info.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\http.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\httpbody.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\label.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\launch_stage.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\log.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\logging.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\metric.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\monitored_resource.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\monitoring.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\policy.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\quota.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\resource.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\routing.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\service.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\source_info.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\system_parameter.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\usage.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\api\visibility.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\code.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\context\attribute_context.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\context\audit_context.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\error_details.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\http.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\rpc\status.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\calendar_period.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\color.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\date.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\datetime.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\dayofweek.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\decimal.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\expr.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\fraction.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\interval.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\latlng.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\localized_text.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\money.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\month.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\phone_number.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\postal_address.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\quaternion.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\content\protos\google\type\timeofday.proto" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\Google.Api.CommonProtos.2.17.0.nupkg" />
+    <None Include="packages\Google.Api.CommonProtos.2.17.0\LICENSE" />
+    <None Include="packages\Google.Api.Gax.4.12.1\.signature.p7s" />
+    <None Include="packages\Google.Api.Gax.4.12.1\Google.Api.Gax.4.12.1.nupkg" />
+    <None Include="packages\Google.Api.Gax.4.12.1\LICENSE" />
+    <None Include="packages\Google.Api.Gax.Grpc.4.12.1\.signature.p7s" />
+    <None Include="packages\Google.Api.Gax.Grpc.4.12.1\Google.Api.Gax.Grpc.4.12.1.nupkg" />
+    <None Include="packages\Google.Api.Gax.Grpc.4.12.1\LICENSE" />
+    <None Include="packages\Google.Api.Gax.Rest.4.8.0\.signature.p7s" />
+    <None Include="packages\Google.Api.Gax.Rest.4.8.0\Google.Api.Gax.Rest.4.8.0.nupkg" />
+    <None Include="packages\Google.Api.Gax.Rest.4.8.0\LICENSE" />
+    <None Include="packages\Google.Apis.1.72.0\.signature.p7s" />
+    <None Include="packages\Google.Apis.1.72.0\Google.Apis.1.72.0.nupkg" />
+    <None Include="packages\Google.Apis.1.72.0\LICENSE" />
+    <None Include="packages\Google.Apis.Auth.1.72.0\.signature.p7s" />
+    <None Include="packages\Google.Apis.Auth.1.72.0\Google.Apis.Auth.1.72.0.nupkg" />
+    <None Include="packages\Google.Apis.Auth.1.72.0\LICENSE" />
+    <None Include="packages\Google.Apis.Core.1.72.0\.signature.p7s" />
+    <None Include="packages\Google.Apis.Core.1.72.0\Google.Apis.Core.1.72.0.nupkg" />
+    <None Include="packages\Google.Apis.Core.1.72.0\LICENSE" />
+    <None Include="packages\Google.Cloud.Firestore.3.13.0\.signature.p7s" />
+    <None Include="packages\Google.Cloud.Firestore.3.13.0\Google.Cloud.Firestore.3.13.0.nupkg" />
+    <None Include="packages\Google.Cloud.Firestore.3.13.0\LICENSE" />
+    <None Include="packages\Google.Cloud.Firestore.V1.3.13.0\.signature.p7s" />
+    <None Include="packages\Google.Cloud.Firestore.V1.3.13.0\Google.Cloud.Firestore.V1.3.13.0.nupkg" />
+    <None Include="packages\Google.Cloud.Firestore.V1.3.13.0\LICENSE" />
+    <None Include="packages\Google.Cloud.Location.2.4.0\.signature.p7s" />
+    <None Include="packages\Google.Cloud.Location.2.4.0\Google.Cloud.Location.2.4.0.nupkg" />
+    <None Include="packages\Google.Cloud.Location.2.4.0\LICENSE" />
+    <None Include="packages\Google.LongRunning.3.5.0\.signature.p7s" />
+    <None Include="packages\Google.LongRunning.3.5.0\Google.LongRunning.3.5.0.nupkg" />
+    <None Include="packages\Google.LongRunning.3.5.0\LICENSE" />
+    <None Include="packages\Google.Protobuf.3.31.1\.signature.p7s" />
+    <None Include="packages\Google.Protobuf.3.31.1\Google.Protobuf.3.31.1.nupkg" />
+    <None Include="packages\Grpc.Auth.2.71.0\.signature.p7s" />
+    <None Include="packages\Grpc.Auth.2.71.0\Grpc.Auth.2.71.0.nupkg" />
+    <None Include="packages\Grpc.Auth.2.71.0\README.md" />
+    <None Include="packages\Grpc.Core.2.46.6\.signature.p7s" />
+    <None Include="packages\Grpc.Core.2.46.6\buildTransitive\net45\Grpc.Core.targets" />
+    <None Include="packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets" />
+    <None Include="packages\Grpc.Core.2.46.6\Grpc.Core.2.46.6.nupkg" />
+    <None Include="packages\Grpc.Core.2.46.6\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so" />
+    <None Include="packages\Grpc.Core.2.46.6\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so" />
+    <None Include="packages\Grpc.Core.2.46.6\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib" />
+    <None Include="packages\Grpc.Core.Api.2.71.0\.signature.p7s" />
+    <None Include="packages\Grpc.Core.Api.2.71.0\Grpc.Core.Api.2.71.0.nupkg" />
+    <None Include="packages\Grpc.Core.Api.2.71.0\README.md" />
+    <None Include="packages\Grpc.Net.Client.2.71.0\.signature.p7s" />
+    <None Include="packages\Grpc.Net.Client.2.71.0\Grpc.Net.Client.2.71.0.nupkg" />
+    <None Include="packages\Grpc.Net.Client.2.71.0\README.md" />
+    <None Include="packages\Grpc.Net.Common.2.71.0\.signature.p7s" />
+    <None Include="packages\Grpc.Net.Common.2.71.0\Grpc.Net.Common.2.71.0.nupkg" />
+    <None Include="packages\MaterialSkin.2.2.3.1\.signature.p7s" />
+    <None Include="packages\MaterialSkin.2.2.3.1\MaterialSkin.2.2.3.1.nupkg" />
+    <None Include="packages\MaterialSkin.2.2.3.1\README.md" />
+    <None Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\.signature.p7s" />
+    <None Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\Microsoft.Bcl.AsyncInterfaces.6.0.0.nupkg" />
+    <None Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\.signature.p7s" />
+    <None Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.DependencyInjection.Abstractions.targets" />
+    <None Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\buildTransitive\netcoreapp3.1\_._" />
+    <None Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0.nupkg" />
+    <None Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\.signature.p7s" />
+    <None Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Logging.Abstractions.targets" />
+    <None Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\buildTransitive\netcoreapp3.1\_._" />
+    <None Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" />
+    <None Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\Microsoft.Extensions.Logging.Abstractions.6.0.0.nupkg" />
+    <None Include="packages\Newtonsoft.Json.13.0.4\.signature.p7s" />
+    <None Include="packages\Newtonsoft.Json.13.0.4\LICENSE.md" />
+    <None Include="packages\Newtonsoft.Json.13.0.4\Newtonsoft.Json.13.0.4.nupkg" />
+    <None Include="packages\Newtonsoft.Json.13.0.4\README.md" />
+    <None Include="packages\System.Buffers.4.5.1\.signature.p7s" />
+    <None Include="packages\System.Buffers.4.5.1\lib\netcoreapp2.0\_._" />
+    <None Include="packages\System.Buffers.4.5.1\lib\uap10.0.16299\_._" />
+    <None Include="packages\System.Buffers.4.5.1\ref\netcoreapp2.0\_._" />
+    <None Include="packages\System.Buffers.4.5.1\ref\uap10.0.16299\_._" />
+    <None Include="packages\System.Buffers.4.5.1\System.Buffers.4.5.1.nupkg" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\.signature.p7s" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\buildTransitive\net461\System.Collections.Immutable.targets" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\buildTransitive\net462\_._" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\buildTransitive\net6.0\_._" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\buildTransitive\netcoreapp2.0\System.Collections.Immutable.targets" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\PACKAGE.md" />
+    <None Include="packages\System.Collections.Immutable.8.0.0\System.Collections.Immutable.8.0.0.nupkg" />
+    <None Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\.signature.p7s" />
+    <None Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\buildTransitive\netcoreapp2.0\System.Diagnostics.DiagnosticSource.targets" />
+    <None Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\buildTransitive\netcoreapp3.1\_._" />
+    <None Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\System.Diagnostics.DiagnosticSource.6.0.2.nupkg" />
+    <None Include="packages\System.Linq.Async.6.0.3\.signature.p7s" />
+    <None Include="packages\System.Linq.Async.6.0.3\ref\net6.0\System.Linq.Async.deps.json" />
+    <None Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.0\System.Linq.Async.deps.json" />
+    <None Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.1\System.Linq.Async.deps.json" />
+    <None Include="packages\System.Linq.Async.6.0.3\System.Linq.Async.6.0.3.nupkg" />
+    <None Include="packages\System.Memory.4.5.5\.signature.p7s" />
+    <None Include="packages\System.Memory.4.5.5\lib\netcoreapp2.1\_._" />
+    <None Include="packages\System.Memory.4.5.5\ref\netcoreapp2.1\_._" />
+    <None Include="packages\System.Memory.4.5.5\System.Memory.4.5.5.nupkg" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\.signature.p7s" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\buildTransitive\net461\System.Net.Http.WinHttpHandler.targets" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\buildTransitive\net462\_._" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\buildTransitive\net6.0\_._" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\buildTransitive\netcoreapp2.0\System.Net.Http.WinHttpHandler.targets" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\PACKAGE.md" />
+    <None Include="packages\System.Net.Http.WinHttpHandler.8.0.0\System.Net.Http.WinHttpHandler.8.0.0.nupkg" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\.signature.p7s" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\MonoAndroid10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\MonoTouch10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\netcoreapp2.0\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\uap10.0.16299\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinios10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinmac20\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarintvos10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\lib\xamarinwatchos10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\MonoAndroid10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\MonoTouch10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\netcoreapp2.0\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\uap10.0.16299\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinios10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinmac20\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarintvos10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\ref\xamarinwatchos10\_._" />
+    <None Include="packages\System.Numerics.Vectors.4.5.0\System.Numerics.Vectors.4.5.0.nupkg" />
+    <None Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\.signature.p7s" />
+    <None Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\buildTransitive\netcoreapp2.0\System.Runtime.CompilerServices.Unsafe.targets" />
+    <None Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\buildTransitive\netcoreapp3.1\_._" />
+    <None Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\System.Runtime.CompilerServices.Unsafe.6.0.0.nupkg" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\.signature.p7s" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\MonoAndroid10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\MonoTouch10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\netcoreapp2.1\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\xamarinios10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\xamarinmac20\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\xamarintvos10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\xamarinwatchos10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\MonoAndroid10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\MonoTouch10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\netcoreapp2.1\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarinios10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarinmac20\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarintvos10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\ref\xamarinwatchos10\_._" />
+    <None Include="packages\System.Threading.Tasks.Extensions.4.5.4\System.Threading.Tasks.Extensions.4.5.4.nupkg" />
+    <None Include="packages\System.ValueTuple.4.6.1\.signature.p7s" />
+    <None Include="packages\System.ValueTuple.4.6.1\buildTransitive\net461\System.ValueTuple.targets" />
+    <None Include="packages\System.ValueTuple.4.6.1\buildTransitive\net462\_._" />
+    <None Include="packages\System.ValueTuple.4.6.1\buildTransitive\net471\System.ValueTuple.targets" />
+    <None Include="packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" />
+    <None Include="packages\System.ValueTuple.4.6.1\lib\net471\_._" />
+    <None Include="packages\System.ValueTuple.4.6.1\lib\netcoreapp2.0\_._" />
+    <None Include="packages\System.ValueTuple.4.6.1\lib\netstandard2.0\_._" />
+    <None Include="packages\System.ValueTuple.4.6.1\PACKAGE.md" />
+    <None Include="packages\System.ValueTuple.4.6.1\System.ValueTuple.4.6.1.nupkg" />
     <None Include="protos\google\api\annotations.proto" />
     <None Include="protos\google\api\auth.proto" />
     <None Include="protos\google\api\backend.proto" />
@@ -531,6 +788,407 @@
     <None Include="Resources\buton123456.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.xml" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net6.0\BouncyCastle.Cryptography.dll" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net6.0\BouncyCastle.Cryptography.xml" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\netstandard2.0\BouncyCastle.Cryptography.dll" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\netstandard2.0\BouncyCastle.Cryptography.xml" />
+    <Content Include="packages\BouncyCastle.Cryptography.2.6.2\packageIcon.png" />
+    <Content Include="packages\dot-net-transitions.1.2.1.0\lib\net40-full\Transitions.dll" />
+    <Content Include="packages\dot-net-transitions.1.2.1.0\lib\net40-full\Transitions.pdb" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\net462\FirebaseAdmin.dll" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\net462\FirebaseAdmin.xml" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\net6.0\FirebaseAdmin.dll" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\net6.0\FirebaseAdmin.xml" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\netstandard2.0\FirebaseAdmin.dll" />
+    <Content Include="packages\FirebaseAdmin.3.4.0\lib\netstandard2.0\FirebaseAdmin.xml" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\net461\Google.Api.CommonProtos.dll" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\net461\Google.Api.CommonProtos.pdb" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\net461\Google.Api.CommonProtos.xml" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\netstandard2.0\Google.Api.CommonProtos.dll" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\netstandard2.0\Google.Api.CommonProtos.pdb" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\lib\netstandard2.0\Google.Api.CommonProtos.xml" />
+    <Content Include="packages\Google.Api.CommonProtos.2.17.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\net462\Google.Api.Gax.dll" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\net462\Google.Api.Gax.pdb" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\net462\Google.Api.Gax.xml" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\netstandard2.0\Google.Api.Gax.dll" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\netstandard2.0\Google.Api.Gax.pdb" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\lib\netstandard2.0\Google.Api.Gax.xml" />
+    <Content Include="packages\Google.Api.Gax.4.12.1\NuGetIcon.png" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\net462\Google.Api.Gax.Grpc.dll" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\net462\Google.Api.Gax.Grpc.pdb" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\net462\Google.Api.Gax.Grpc.xml" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\netstandard2.0\Google.Api.Gax.Grpc.dll" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\netstandard2.0\Google.Api.Gax.Grpc.pdb" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\lib\netstandard2.0\Google.Api.Gax.Grpc.xml" />
+    <Content Include="packages\Google.Api.Gax.Grpc.4.12.1\NuGetIcon.png" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\net462\Google.Api.Gax.Rest.dll" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\net462\Google.Api.Gax.Rest.pdb" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\net462\Google.Api.Gax.Rest.xml" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\netstandard2.0\Google.Api.Gax.Rest.dll" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\netstandard2.0\Google.Api.Gax.Rest.pdb" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\lib\netstandard2.0\Google.Api.Gax.Rest.xml" />
+    <Content Include="packages\Google.Api.Gax.Rest.4.8.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net462\Google.Apis.dll" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net462\Google.Apis.pdb" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net462\Google.Apis.xml" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net6.0\Google.Apis.dll" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net6.0\Google.Apis.pdb" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\net6.0\Google.Apis.xml" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\netstandard2.0\Google.Apis.dll" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\netstandard2.0\Google.Apis.pdb" />
+    <Content Include="packages\Google.Apis.1.72.0\lib\netstandard2.0\Google.Apis.xml" />
+    <Content Include="packages\Google.Apis.1.72.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net462\Google.Apis.Auth.dll" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net462\Google.Apis.Auth.pdb" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net462\Google.Apis.Auth.xml" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net6.0\Google.Apis.Auth.dll" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net6.0\Google.Apis.Auth.pdb" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\net6.0\Google.Apis.Auth.xml" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\netstandard2.0\Google.Apis.Auth.dll" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\netstandard2.0\Google.Apis.Auth.pdb" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\lib\netstandard2.0\Google.Apis.Auth.xml" />
+    <Content Include="packages\Google.Apis.Auth.1.72.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net462\Google.Apis.Core.dll" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net462\Google.Apis.Core.pdb" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net462\Google.Apis.Core.xml" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net6.0\Google.Apis.Core.dll" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net6.0\Google.Apis.Core.pdb" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\net6.0\Google.Apis.Core.xml" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\netstandard2.0\Google.Apis.Core.dll" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\netstandard2.0\Google.Apis.Core.pdb" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\lib\netstandard2.0\Google.Apis.Core.xml" />
+    <Content Include="packages\Google.Apis.Core.1.72.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\net462\Google.Cloud.Firestore.dll" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\net462\Google.Cloud.Firestore.pdb" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\net462\Google.Cloud.Firestore.xml" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.dll" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.pdb" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.xml" />
+    <Content Include="packages\Google.Cloud.Firestore.3.13.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\net462\Google.Cloud.Firestore.V1.dll" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\net462\Google.Cloud.Firestore.V1.pdb" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\net462\Google.Cloud.Firestore.V1.xml" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.V1.dll" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.V1.pdb" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\lib\netstandard2.0\Google.Cloud.Firestore.V1.xml" />
+    <Content Include="packages\Google.Cloud.Firestore.V1.3.13.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\net462\Google.Cloud.Location.dll" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\net462\Google.Cloud.Location.pdb" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\net462\Google.Cloud.Location.xml" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\netstandard2.0\Google.Cloud.Location.dll" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\netstandard2.0\Google.Cloud.Location.pdb" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\lib\netstandard2.0\Google.Cloud.Location.xml" />
+    <Content Include="packages\Google.Cloud.Location.2.4.0\NuGetIcon.png" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\net462\Google.LongRunning.dll" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\net462\Google.LongRunning.pdb" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\net462\Google.LongRunning.xml" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\netstandard2.0\Google.LongRunning.dll" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\netstandard2.0\Google.LongRunning.pdb" />
+    <Content Include="packages\Google.LongRunning.3.5.0\lib\netstandard2.0\Google.LongRunning.xml" />
+    <Content Include="packages\Google.LongRunning.3.5.0\NuGetIcon.png" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net45\Google.Protobuf.dll" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net45\Google.Protobuf.pdb" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net45\Google.Protobuf.xml" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net5.0\Google.Protobuf.dll" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net5.0\Google.Protobuf.pdb" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\net5.0\Google.Protobuf.xml" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard1.1\Google.Protobuf.dll" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard1.1\Google.Protobuf.pdb" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard1.1\Google.Protobuf.xml" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard2.0\Google.Protobuf.dll" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard2.0\Google.Protobuf.pdb" />
+    <Content Include="packages\Google.Protobuf.3.31.1\lib\netstandard2.0\Google.Protobuf.xml" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\net462\Grpc.Auth.dll" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\net462\Grpc.Auth.pdb" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\net462\Grpc.Auth.xml" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\netstandard2.0\Grpc.Auth.dll" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\netstandard2.0\Grpc.Auth.pdb" />
+    <Content Include="packages\Grpc.Auth.2.71.0\lib\netstandard2.0\Grpc.Auth.xml" />
+    <Content Include="packages\Grpc.Auth.2.71.0\packageIcon.png" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\net45\Grpc.Core.dll" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\net45\Grpc.Core.pdb" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\net45\Grpc.Core.xml" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard1.5\Grpc.Core.dll" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard1.5\Grpc.Core.pdb" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard1.5\Grpc.Core.xml" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard2.0\Grpc.Core.dll" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard2.0\Grpc.Core.pdb" />
+    <Content Include="packages\Grpc.Core.2.46.6\lib\netstandard2.0\Grpc.Core.xml" />
+    <Content Include="packages\Grpc.Core.2.46.6\packageIcon.png" />
+    <Content Include="packages\Grpc.Core.2.46.6\runtimes\win-x64\native\grpc_csharp_ext.x64.dll" />
+    <Content Include="packages\Grpc.Core.2.46.6\runtimes\win-x86\native\grpc_csharp_ext.x86.dll" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\net462\Grpc.Core.Api.dll" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\net462\Grpc.Core.Api.pdb" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\net462\Grpc.Core.Api.xml" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.0\Grpc.Core.Api.dll" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.0\Grpc.Core.Api.pdb" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.0\Grpc.Core.Api.xml" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.1\Grpc.Core.Api.dll" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.1\Grpc.Core.Api.pdb" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\lib\netstandard2.1\Grpc.Core.Api.xml" />
+    <Content Include="packages\Grpc.Core.Api.2.71.0\packageIcon.png" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net462\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net462\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net462\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net6.0\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net6.0\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net6.0\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net7.0\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net7.0\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net7.0\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net8.0\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net8.0\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\net8.0\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.0\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.0\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.0\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.1\Grpc.Net.Client.dll" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.1\Grpc.Net.Client.pdb" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\lib\netstandard2.1\Grpc.Net.Client.xml" />
+    <Content Include="packages\Grpc.Net.Client.2.71.0\packageIcon.png" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net6.0\Grpc.Net.Common.dll" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net6.0\Grpc.Net.Common.pdb" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net6.0\Grpc.Net.Common.xml" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net7.0\Grpc.Net.Common.dll" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net7.0\Grpc.Net.Common.pdb" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net7.0\Grpc.Net.Common.xml" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net8.0\Grpc.Net.Common.dll" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net8.0\Grpc.Net.Common.pdb" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\net8.0\Grpc.Net.Common.xml" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.0\Grpc.Net.Common.dll" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.0\Grpc.Net.Common.pdb" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.0\Grpc.Net.Common.xml" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.1\Grpc.Net.Common.dll" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.1\Grpc.Net.Common.pdb" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\lib\netstandard2.1\Grpc.Net.Common.xml" />
+    <Content Include="packages\Grpc.Net.Common.2.71.0\packageIcon.png" />
+    <Content Include="packages\MaterialSkin.2.2.3.1\lib\net45\MaterialSkin.dll" />
+    <Content Include="packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll" />
+    <Content Include="packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll" />
+    <Content Include="packages\MaterialSkin.2.2.3.1\lib\net5.0-windows7.0\MaterialSkin.dll" />
+    <Content Include="packages\MaterialSkin.2.2.3.1\nugetIcon.png" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\Icon.png" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.xml" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.xml" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.xml" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\LICENSE.TXT" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\Icon.png" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\netstandard2.1\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\LICENSE.TXT" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\cs\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\de\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\es\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\fr\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\it\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\ja\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\ko\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\Microsoft.Extensions.Logging.Generators.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\pl\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\pt-BR\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\ru\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\tr\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\zh-Hans\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn3.11\cs\zh-Hant\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\cs\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\de\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\es\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\fr\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\it\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\ja\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\ko\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\Microsoft.Extensions.Logging.Generators.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\pl\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\pt-BR\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\ru\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\tr\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\zh-Hans\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\analyzers\dotnet\roslyn4.0\cs\zh-Hant\Microsoft.Extensions.Logging.Generators.resources.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\Icon.png" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net6.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net6.0\Microsoft.Extensions.Logging.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.xml" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\LICENSE.TXT" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net6.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\net6.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard1.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard1.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard1.3\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard1.3\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard2.0\Newtonsoft.Json.dll" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\lib\netstandard2.0\Newtonsoft.Json.xml" />
+    <Content Include="packages\Newtonsoft.Json.13.0.4\packageIcon.png" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\net461\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard1.1\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\LICENSE.TXT" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\net45\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\net45\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard1.1\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard1.1\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard2.0\System.Buffers.dll" />
+    <Content Include="packages\System.Buffers.4.5.1\ref\netstandard2.0\System.Buffers.xml" />
+    <Content Include="packages\System.Buffers.4.5.1\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Buffers.4.5.1\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Buffers.4.5.1\version.txt" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\Icon.png" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.xml" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net6.0\System.Collections.Immutable.dll" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net6.0\System.Collections.Immutable.xml" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net7.0\System.Collections.Immutable.dll" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net7.0\System.Collections.Immutable.xml" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net8.0\System.Collections.Immutable.dll" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\net8.0\System.Collections.Immutable.xml" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\netstandard2.0\System.Collections.Immutable.dll" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\lib\netstandard2.0\System.Collections.Immutable.xml" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\LICENSE.TXT" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Collections.Immutable.8.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\Icon.png" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net461\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net461\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net5.0\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net5.0\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net6.0\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\net6.0\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\netstandard2.0\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\lib\netstandard2.0\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\LICENSE.TXT" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Diagnostics.DiagnosticSource.6.0.2\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\net48\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\net48\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\net6.0\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\net6.0\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\netstandard2.0\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\netstandard2.0\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\netstandard2.1\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\lib\netstandard2.1\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\Logo.png" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net48\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net48\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net48\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net48\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net48\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net6.0\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\net6.0\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.0\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.0\System.Linq.Async.xml" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.1\System.Linq.Async.dll" />
+    <Content Include="packages\System.Linq.Async.6.0.3\ref\netstandard2.1\System.Linq.Async.xml" />
+    <Content Include="packages\System.Memory.4.5.5\lib\net461\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.5\lib\net461\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.5\lib\netstandard1.1\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.5\lib\netstandard1.1\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.5\lib\netstandard2.0\System.Memory.dll" />
+    <Content Include="packages\System.Memory.4.5.5\lib\netstandard2.0\System.Memory.xml" />
+    <Content Include="packages\System.Memory.4.5.5\LICENSE.TXT" />
+    <Content Include="packages\System.Memory.4.5.5\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Memory.4.5.5\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Memory.4.5.5\version.txt" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\Icon.png" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net462\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net462\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net6.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net6.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net7.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net7.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net8.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net8.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\lib\netstandard2.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\LICENSE.TXT" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net6.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net6.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net7.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net7.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net8.0\System.Net.Http.WinHttpHandler.dll" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\runtimes\win\lib\net8.0\System.Net.Http.WinHttpHandler.xml" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Net.Http.WinHttpHandler.8.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\LICENSE.TXT" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net45\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\net46\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard1.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.dll" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\ref\netstandard2.0\System.Numerics.Vectors.xml" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Numerics.Vectors.4.5.0\version.txt" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\Icon.png" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net6.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net6.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\LICENSE.TXT" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Runtime.CompilerServices.Unsafe.6.0.0\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard1.0\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard1.0\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\netstandard2.0\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\LICENSE.TXT" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\THIRD-PARTY-NOTICES.TXT" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\useSharedDesignerContext.txt" />
+    <Content Include="packages\System.Threading.Tasks.Extensions.4.5.4\version.txt" />
+    <Content Include="packages\System.ValueTuple.4.6.1\Icon.png" />
+    <Content Include="packages\System.ValueTuple.4.6.1\lib\net462\System.ValueTuple.dll" />
+    <Content Include="packages\System.ValueTuple.4.6.1\lib\net462\System.ValueTuple.xml" />
+    <Content Include="packages\System.ValueTuple.4.6.1\lib\net47\System.ValueTuple.dll" />
+    <Content Include="packages\System.ValueTuple.4.6.1\lib\net47\System.ValueTuple.xml" />
+    <Content Include="UpgradeLog2.htm" />
     <None Include="Resources\RRCLogo.png" />
     <None Include="Resources\contact-us-icon-png-21.jpg" />
     <None Include="Resources\envelope-letter-icon-symbol-png.png" />
@@ -538,7 +1196,10 @@
     <None Include="Resources\15452805.png" />
     <Content Include="UpgradeLog.htm" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets" Condition="Exists('packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -547,10 +1208,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets'))" />
     <Error Condition="!Exists('packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets'))" />
-    <Error Condition="!Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
     <Error Condition="!Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
   </Target>
   <Import Project="packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets" Condition="Exists('packages\Grpc.Core.2.46.6\build\net45\Grpc.Core.targets')" />
-  <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Import Project="packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
 </Project>
