@@ -1,11 +1,11 @@
 ﻿Public Class AccAndSettings_SuperAdmin
-    Private Sub UserControl11_Load(sender As Object, e As EventArgs)
 
-    End Sub
+    Private Sub ManAcc_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ManAcc.LinkClicked
+        ' Show the default instance of ManageAccounts
+        ManageAccounts.Show()
 
-    Private Sub Label3_Click(sender As Object, e As EventArgs)
-
-
+        ' Hide the current form instance (Me)
+        Me.Hide()
     End Sub
 
 End Class
