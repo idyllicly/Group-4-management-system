@@ -41,7 +41,7 @@
             ' Proceed to clear the inputs
             ClearAllInputControls(Me)
 
-            ' ✅ THE FIX: Make the upload button visible again!
+            ' Make the upload button visible again!
             Button1.Visible = True
         End If
     End Sub
@@ -85,18 +85,41 @@
     Private Sub Panel5_Paint(sender As Object, e As PaintEventArgs) Handles Panel5.Paint
     End Sub
 
-    ' --- 4. SUBMIT / NAVIGATION BUTTON ---
+    ' --- 4. SUBMIT / NAVIGATION BUTTON (MODIFIED TO CLEAR INPUTS) ---
     Private Sub OvalButton3_Click(sender As Object, e As EventArgs) Handles OvalButton3.Click
 
-        Dim result As DialogResult = MessageBox.Show("Are you sure that all of the details are correct?",
-                                                     "Confirm Navigation",
+        Dim confirmResult As DialogResult = MessageBox.Show("Are you sure that all of the details are correct?",
+                                                     "Confirm Submission",
                                                      MessageBoxButtons.YesNo,
                                                      MessageBoxIcon.Warning)
 
-        If result = DialogResult.Yes Then
-            ManageAccounts.Show()
-            Me.Hide()
+        If confirmResult = DialogResult.Yes Then
+            ' Account creation logic would typically go here (e.g., saving data)
+
+            ' Show the success message.
+            Dim successResult As DialogResult = MessageBox.Show("Account has been created succesfully!",
+                                                                "Account Creation",
+                                                                MessageBoxButtons.OK,
+                                                                MessageBoxIcon.Information)
+
+            ' If the user clicks OK on the success message, clear the form inputs.
+            If successResult = DialogResult.OK Then
+                ' Clear all inputs on the form
+                ClearAllInputControls(Me)
+
+                ' Make the image upload button visible again
+                Button1.Visible = True
+            End If
+
         End If
+
+    End Sub
+
+    Private Sub NavigationControl1_Load(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub SideNavControl1_Load(sender As Object, e As EventArgs)
 
     End Sub
 End Class

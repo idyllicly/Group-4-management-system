@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class AccAndSettings_SuperAdmin
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,193 +20,289 @@ Partial Class AccAndSettings_SuperAdmin
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.MaterialDivider1 = New MaterialSkin.Controls.MaterialDivider()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.MaterialDivider2 = New MaterialSkin.Controls.MaterialDivider()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AccAndSettings_SuperAdmin))
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.UserControl11 = New management_system.NavigationControl()
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
+        Me.ManAcc = New System.Windows.Forms.LinkLabel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PageLabel1 = New management_system.PageLabel()
+        Me.OvalTextBox3 = New management_system.OvalTextBox()
+        Me.OvalButton1 = New management_system.OvalButton()
+        Me.OvalButton2 = New management_system.OvalButton()
+        Me.SideNavControl1 = New management_system.SideNavControl()
+        Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel4.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'MaterialDivider1
+        'Label13
         '
-        Me.MaterialDivider1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.MediumPurple
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(54, 26)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(0, 32)
+        Me.Label13.TabIndex = 27
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MaterialDivider1.BackColor = System.Drawing.Color.DodgerBlue
-        Me.MaterialDivider1.Depth = 0
-        Me.MaterialDivider1.Location = New System.Drawing.Point(113, 137)
-        Me.MaterialDivider1.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialDivider1.Name = "MaterialDivider1"
-        Me.MaterialDivider1.Size = New System.Drawing.Size(1085, 476)
-        Me.MaterialDivider1.TabIndex = 2
-        Me.MaterialDivider1.Text = "MaterialDivider1"
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.PictureBox2)
+        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.LinkLabel3)
+        Me.Panel2.Controls.Add(Me.ManAcc)
+        Me.Panel2.Controls.Add(Me.Panel4)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.OvalButton1)
+        Me.Panel2.Controls.Add(Me.OvalButton2)
+        Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel2.Location = New System.Drawing.Point(37, 35)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1033, 964)
+        Me.Panel2.TabIndex = 1
         '
-        'Label1
+        'PictureBox2
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(226, 208)
-        Me.Label1.MinimumSize = New System.Drawing.Size(300, 40)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(350, 40)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Account And Settings"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox2.Location = New System.Drawing.Point(38, 415)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(53, 50)
+        Me.PictureBox2.TabIndex = 133
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.Location = New System.Drawing.Point(38, 335)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(53, 50)
+        Me.PictureBox1.TabIndex = 132
+        Me.PictureBox1.TabStop = False
+        '
+        'LinkLabel3
+        '
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Location = New System.Drawing.Point(115, 430)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(82, 25)
+        Me.LinkLabel3.TabIndex = 131
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "Log Out"
+        '
+        'ManAcc
+        '
+        Me.ManAcc.AutoSize = True
+        Me.ManAcc.Location = New System.Drawing.Point(115, 348)
+        Me.ManAcc.Name = "ManAcc"
+        Me.ManAcc.Size = New System.Drawing.Size(171, 25)
+        Me.ManAcc.TabIndex = 130
+        Me.ManAcc.TabStop = True
+        Me.ManAcc.Text = "Manage Accounts"
+        '
+        'Panel4
+        '
+        Me.Panel4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.BackColor = System.Drawing.Color.White
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.LinkLabel1)
+        Me.Panel4.Controls.Add(Me.Label3)
+        Me.Panel4.Controls.Add(Me.Panel3)
+        Me.Panel4.Location = New System.Drawing.Point(0, 91)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(1040, 214)
+        Me.Panel4.TabIndex = 129
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(233, 88)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(178, 25)
+        Me.LinkLabel1.TabIndex = 130
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "View Your Account" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(233, 39)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(258, 36)
+        Me.Label3.TabIndex = 129
+        Me.Label3.Text = "ACCOUNT NAME"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackgroundImage = CType(resources.GetObject("Panel3.BackgroundImage"), System.Drawing.Image)
+        Me.Panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel3.Location = New System.Drawing.Point(21, 10)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(154, 145)
+        Me.Panel3.TabIndex = 128
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(392, 303)
-        Me.Label2.MinimumSize = New System.Drawing.Size(300, 40)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(25, 31)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(325, 40)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Super Admin Account"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label2.Size = New System.Drawing.Size(259, 29)
+        Me.Label2.TabIndex = 127
+        Me.Label2.Text = "Account And Settings"
         '
-        'Label4
+        'Label1
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Location = New System.Drawing.Point(259, 442)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(889, 16)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "_________________________________________________________________________________" &
-    "_____________________________________________"
+        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(0, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(1033, 70)
+        Me.Label1.TabIndex = 30
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Button1
+        'OpenFileDialog1
         '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(222, 533)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(950, 31)
-        Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Switch Account"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Button2
+        'Panel1
         '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(222, 582)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(950, 31)
-        Me.Button2.TabIndex = 12
-        Me.Button2.Text = "Logout"
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(392, 361)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(319, 40)
-        Me.Button3.TabIndex = 13
-        Me.Button3.Text = "Bio"
-        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.Transparent
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(222, 487)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(950, 31)
-        Me.Button4.TabIndex = 14
-        Me.Button4.Text = "Manage Accounts"
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'MaterialDivider2
-        '
-        Me.MaterialDivider2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MaterialDivider2.BackColor = System.Drawing.Color.White
-        Me.MaterialDivider2.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.MaterialDivider2.Depth = 0
-        Me.MaterialDivider2.Location = New System.Drawing.Point(157, 178)
-        Me.MaterialDivider2.MouseState = MaterialSkin.MouseState.HOVER
-        Me.MaterialDivider2.Name = "MaterialDivider2"
-        Me.MaterialDivider2.Size = New System.Drawing.Size(1085, 476)
-        Me.MaterialDivider2.TabIndex = 3
-        Me.MaterialDivider2.Text = "MaterialDivider2"
+        Me.Panel1.BackColor = System.Drawing.Color.BlueViolet
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Location = New System.Drawing.Point(359, 68)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1103, 1054)
+        Me.Panel1.TabIndex = 24
         '
-        'PictureBox1
+        'PageLabel1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(222, 293)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(140, 130)
-        Me.PictureBox1.TabIndex = 5
-        Me.PictureBox1.TabStop = False
+        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
+        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
+        Me.PageLabel1.Name = "PageLabel1"
+        Me.PageLabel1.Size = New System.Drawing.Size(1429, 114)
+        Me.PageLabel1.TabIndex = 30
         '
-        'UserControl11
+        'OvalTextBox3
         '
-        Me.UserControl11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.UserControl11.BackColor = System.Drawing.Color.White
-        Me.UserControl11.Location = New System.Drawing.Point(-1, -2)
-        Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(1372, 95)
-        Me.UserControl11.TabIndex = 7
+        Me.OvalTextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalTextBox3.BackColor = System.Drawing.SystemColors.Control
+        Me.OvalTextBox3.BorderColor = System.Drawing.Color.BlueViolet
+        Me.OvalTextBox3.Location = New System.Drawing.Point(29, -160)
+        Me.OvalTextBox3.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalTextBox3.Name = "OvalTextBox3"
+        Me.OvalTextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.OvalTextBox3.Size = New System.Drawing.Size(489, 35)
+        Me.OvalTextBox3.TabIndex = 29
+        '
+        'OvalButton1
+        '
+        Me.OvalButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton1.BackColor = System.Drawing.Color.Cyan
+        Me.OvalButton1.CornerRadius = 15
+        Me.OvalButton1.FlatAppearance.BorderSize = 0
+        Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton1.Location = New System.Drawing.Point(1187, 898)
+        Me.OvalButton1.Name = "OvalButton1"
+        Me.OvalButton1.Size = New System.Drawing.Size(145, 48)
+        Me.OvalButton1.TabIndex = 82
+        Me.OvalButton1.Text = "Create Account"
+        Me.OvalButton1.UseVisualStyleBackColor = False
+        '
+        'OvalButton2
+        '
+        Me.OvalButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton2.BackColor = System.Drawing.Color.White
+        Me.OvalButton2.CornerRadius = 15
+        Me.OvalButton2.FlatAppearance.BorderSize = 0
+        Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton2.Location = New System.Drawing.Point(1362, 898)
+        Me.OvalButton2.Name = "OvalButton2"
+        Me.OvalButton2.Size = New System.Drawing.Size(127, 48)
+        Me.OvalButton2.TabIndex = 83
+        Me.OvalButton2.Text = "Clear Inputs"
+        Me.OvalButton2.UseVisualStyleBackColor = False
+        '
+        'SideNavControl1
+        '
+        Me.SideNavControl1.BackColor = System.Drawing.Color.White
+        Me.SideNavControl1.Location = New System.Drawing.Point(-2, 103)
+        Me.SideNavControl1.Name = "SideNavControl1"
+        Me.SideNavControl1.Size = New System.Drawing.Size(365, 997)
+        Me.SideNavControl1.TabIndex = 31
         '
         'AccAndSettings_SuperAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1361, 684)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.UserControl11)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.MaterialDivider2)
-        Me.Controls.Add(Me.MaterialDivider1)
+        Me.ClientSize = New System.Drawing.Size(1429, 1100)
+        Me.Controls.Add(Me.PageLabel1)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.OvalTextBox3)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.SideNavControl1)
         Me.Name = "AccAndSettings_SuperAdmin"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Text = "AccAndSettings_SuperAdmin"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents MaterialDivider1 As MaterialSkin.Controls.MaterialDivider
+
+    Friend WithEvents Label13 As Label
+    Friend WithEvents OvalButton1 As OvalButton
+    Friend WithEvents OvalButton2 As OvalButton
+    Friend WithEvents OvalTextBox3 As OvalTextBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
-    Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents UserControl11 As NavigationControl
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents MaterialDivider2 As MaterialSkin.Controls.MaterialDivider
+    Friend WithEvents PageLabel1 As PageLabel
+    Friend WithEvents SideNavControl1 As SideNavControl
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents Label3 As Label
+    Friend WithEvents LinkLabel3 As LinkLabel
+    Friend WithEvents ManAcc As LinkLabel
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

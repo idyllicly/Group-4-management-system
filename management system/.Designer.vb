@@ -57,9 +57,10 @@ Partial Class EditAccountPage
         Me.OvalButton1 = New management_system.OvalButton()
         Me.OvalButton2 = New management_system.OvalButton()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.NavigationControl1 = New management_system.NavigationControl()
+        Me.PageLabel1 = New management_system.PageLabel()
         Me.OvalTextBox1 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
+        Me.SideNavControl1 = New management_system.SideNavControl()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -134,9 +135,9 @@ Partial Class EditAccountPage
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.BlueViolet
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(343, 79)
+        Me.Panel1.Location = New System.Drawing.Point(368, 78)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1086, 1024)
+        Me.Panel1.Size = New System.Drawing.Size(1120, 1012)
         Me.Panel1.TabIndex = 24
         '
         'Panel2
@@ -157,7 +158,7 @@ Partial Class EditAccountPage
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel2.Location = New System.Drawing.Point(37, 35)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1016, 944)
+        Me.Panel2.Size = New System.Drawing.Size(1050, 918)
         Me.Panel2.TabIndex = 1
         '
         'OvalDescriptionBox1
@@ -172,7 +173,7 @@ Partial Class EditAccountPage
         Me.OvalDescriptionBox1.Margin = New System.Windows.Forms.Padding(6)
         Me.OvalDescriptionBox1.Multiline = True
         Me.OvalDescriptionBox1.Name = "OvalDescriptionBox1"
-        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(923, 138)
+        Me.OvalDescriptionBox1.Size = New System.Drawing.Size(928, 112)
         Me.OvalDescriptionBox1.TabIndex = 128
         '
         'Panel4
@@ -192,7 +193,7 @@ Partial Class EditAccountPage
         Me.Panel4.Controls.Add(Me.Label10)
         Me.Panel4.Location = New System.Drawing.Point(544, 71)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(943, 654)
+        Me.Panel4.Size = New System.Drawing.Size(943, 628)
         Me.Panel4.TabIndex = 106
         '
         'Button1
@@ -334,7 +335,7 @@ Partial Class EditAccountPage
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(0, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1016, 70)
+        Me.Label1.Size = New System.Drawing.Size(1050, 70)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "          Edit Account"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -347,7 +348,7 @@ Partial Class EditAccountPage
         Me.btnBack.FlatAppearance.BorderSize = 0
         Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnBack.Location = New System.Drawing.Point(841, 872)
+        Me.btnBack.Location = New System.Drawing.Point(854, 846)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(147, 61)
         Me.btnBack.TabIndex = 126
@@ -362,7 +363,7 @@ Partial Class EditAccountPage
         Me.OvalButton3.FlatAppearance.BorderSize = 0
         Me.OvalButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OvalButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton3.Location = New System.Drawing.Point(637, 872)
+        Me.OvalButton3.Location = New System.Drawing.Point(659, 846)
         Me.OvalButton3.Name = "OvalButton3"
         Me.OvalButton3.Size = New System.Drawing.Size(177, 61)
         Me.OvalButton3.TabIndex = 125
@@ -387,7 +388,7 @@ Partial Class EditAccountPage
         Me.Panel5.Controls.Add(Me.Label6)
         Me.Panel5.Location = New System.Drawing.Point(0, 71)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(659, 654)
+        Me.Panel5.Size = New System.Drawing.Size(659, 628)
         Me.Panel5.TabIndex = 100
         '
         'OvalTextBox13
@@ -470,7 +471,7 @@ Partial Class EditAccountPage
         Me.OvalButton1.FlatAppearance.BorderSize = 0
         Me.OvalButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OvalButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton1.Location = New System.Drawing.Point(1170, 878)
+        Me.OvalButton1.Location = New System.Drawing.Point(1204, 852)
         Me.OvalButton1.Name = "OvalButton1"
         Me.OvalButton1.Size = New System.Drawing.Size(145, 48)
         Me.OvalButton1.TabIndex = 82
@@ -485,7 +486,7 @@ Partial Class EditAccountPage
         Me.OvalButton2.FlatAppearance.BorderSize = 0
         Me.OvalButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OvalButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OvalButton2.Location = New System.Drawing.Point(1345, 878)
+        Me.OvalButton2.Location = New System.Drawing.Point(1379, 852)
         Me.OvalButton2.Name = "OvalButton2"
         Me.OvalButton2.Size = New System.Drawing.Size(127, 48)
         Me.OvalButton2.TabIndex = 83
@@ -496,15 +497,14 @@ Partial Class EditAccountPage
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'NavigationControl1
+        'PageLabel1
         '
-        Me.NavigationControl1.BackColor = System.Drawing.Color.White
-        Me.NavigationControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
-        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(1429, 74)
-        Me.NavigationControl1.TabIndex = 25
+        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
+        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
+        Me.PageLabel1.Name = "PageLabel1"
+        Me.PageLabel1.Size = New System.Drawing.Size(1429, 114)
+        Me.PageLabel1.TabIndex = 32
         '
         'OvalTextBox1
         '
@@ -521,22 +521,31 @@ Partial Class EditAccountPage
         Me.OvalTextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OvalTextBox3.BackColor = System.Drawing.SystemColors.Control
         Me.OvalTextBox3.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox3.Location = New System.Drawing.Point(-99, -406)
+        Me.OvalTextBox3.Location = New System.Drawing.Point(-99, -429)
         Me.OvalTextBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.OvalTextBox3.Name = "OvalTextBox3"
         Me.OvalTextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.OvalTextBox3.Size = New System.Drawing.Size(557, 35)
         Me.OvalTextBox3.TabIndex = 27
         '
+        'SideNavControl1
+        '
+        Me.SideNavControl1.BackColor = System.Drawing.Color.White
+        Me.SideNavControl1.Location = New System.Drawing.Point(3, 113)
+        Me.SideNavControl1.Name = "SideNavControl1"
+        Me.SideNavControl1.Size = New System.Drawing.Size(371, 975)
+        Me.SideNavControl1.TabIndex = 28
+        '
         'EditAccountPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1429, 1100)
-        Me.Controls.Add(Me.NavigationControl1)
-        Me.Controls.Add(Me.Panel1)
+        Me.ClientSize = New System.Drawing.Size(1429, 1055)
+        Me.Controls.Add(Me.PageLabel1)
         Me.Controls.Add(Me.OvalTextBox1)
         Me.Controls.Add(Me.OvalTextBox3)
+        Me.Controls.Add(Me.SideNavControl1)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "EditAccountPage"
         Me.Text = "Form1"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -560,7 +569,6 @@ Partial Class EditAccountPage
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents NavigationControl1 As NavigationControl
     Friend WithEvents Label6 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
@@ -590,4 +598,6 @@ Partial Class EditAccountPage
     Friend WithEvents Label12 As Label
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents SideNavControl1 As SideNavControl
+    Friend WithEvents PageLabel1 As PageLabel
 End Class

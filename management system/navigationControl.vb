@@ -66,4 +66,14 @@ Public Class NavigationControl1
         Me.BringToFront()
     End Sub
 
+    Private Sub InitializeComponent()
+        Me.SuspendLayout()
+        '
+        'NavigationControl1
+        '
+        Me.Name = "NavigationControl1"
+        Me.Size = New System.Drawing.Size(738, 150)
+        Me.ResumeLayout(False)
+
+    End Sub
 End Class
