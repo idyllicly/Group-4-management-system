@@ -1,3 +1,5 @@
 ﻿Public Class NotificationForm
+    Private Sub NotificationForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
 End Class

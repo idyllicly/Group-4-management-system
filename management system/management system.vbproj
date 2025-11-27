@@ -384,6 +384,9 @@
     <EmbeddedResource Include="NavigationControl.resx">
       <DependentUpon>NavigationControl.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NotificationForm.resx">
+      <DependentUpon>NotificationForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OvalDescriptionBox.resx">
       <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
     </EmbeddedResource>
