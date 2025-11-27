@@ -36,8 +36,10 @@ Public Class DatabaseConnection
         End Try
     End Sub
 
-    ' Generic function to retrieve data (SELECT)
-    Protected Function ExecuteSelect(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
+    ' ---------------------------------------------------------
+    ' CHANGE 1: Changed 'Protected' to 'Public' so Forms can use it
+    ' ---------------------------------------------------------
+    Public Function ExecuteSelect(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
         Dim dt As New DataTable()
         Try
             If Connect() Then
@@ -62,8 +64,10 @@ Public Class DatabaseConnection
         Return dt
     End Function
 
-    ' Generic function to modify data (INSERT, UPDATE, DELETE)
-    Protected Function ExecuteAction(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Integer
+    ' ---------------------------------------------------------
+    ' CHANGE 2: Changed 'Protected' to 'Public' so Forms can use it
+    ' ---------------------------------------------------------
+    Public Function ExecuteAction(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Integer
         Dim rowsAffected As Integer = 0
         Try
             If Connect() Then
