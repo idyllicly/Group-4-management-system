@@ -8,4 +8,7 @@
         Me.Hide()
     End Sub
 
+    Private Sub PageLabel1_Load(sender As Object, e As EventArgs) Handles PageLabel1.Load
+
+    End Sub
 End Class
