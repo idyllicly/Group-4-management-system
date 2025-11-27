@@ -41,4 +41,27 @@ Public Class EventManager
         Next
         Return eventDays
     End Function
+
+    Public Function GetJobsForDate(targetDate As DateTime) As DataTable
+        Dim sql As String = "SELECT j.ScheduleTime, s.ServiceInclusion " &
+                            "FROM tbl_job j " &
+                            "JOIN tbl_service s ON j.ServiceID = s.ServiceID " &
+                            "WHERE j.ScheduleDate = @dt"
+
+        Dim params As New Dictionary(Of String, Object)
+        params.Add("@dt", targetDate.ToString("yyyy-MM-dd"))
+
+        Return ExecuteSelect(sql, params)
+    End Function
+
+    ' NEW: Get detailed list of INSPECTIONS for a specific date
+    Public Function GetInspectionsForDate(targetDate As DateTime) As DataTable
+        Dim sql As String = "SELECT VisitTime, IRemarks FROM tbl_inspection " &
+                            "WHERE VisitDate = @dt"
+
+        Dim params As New Dictionary(Of String, Object)
+        params.Add("@dt", targetDate.ToString("yyyy-MM-dd"))
+
+        Return ExecuteSelect(sql, params)
+    End Function
 End Class

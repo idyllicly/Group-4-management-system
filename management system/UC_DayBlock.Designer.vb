@@ -38,11 +38,12 @@ Partial Class UC_DayBlock
         '
         'pnlEvents
         '
-        Me.pnlEvents.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlEvents.Location = New System.Drawing.Point(0, 85)
-        Me.pnlEvents.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlEvents.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlEvents.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft
+        Me.pnlEvents.Location = New System.Drawing.Point(0, 0)
+        Me.pnlEvents.Margin = New System.Windows.Forms.Padding(4)
         Me.pnlEvents.Name = "pnlEvents"
-        Me.pnlEvents.Size = New System.Drawing.Size(198, 25)
+        Me.pnlEvents.Size = New System.Drawing.Size(190, 25)
         Me.pnlEvents.TabIndex = 1
         '
         'UC_DayBlock
@@ -54,9 +55,9 @@ Partial Class UC_DayBlock
         Me.Controls.Add(Me.pnlEvents)
         Me.Controls.Add(Me.lblDay)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "UC_DayBlock"
-        Me.Size = New System.Drawing.Size(198, 110)
+        Me.Size = New System.Drawing.Size(190, 110)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

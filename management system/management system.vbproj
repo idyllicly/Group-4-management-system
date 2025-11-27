@@ -255,6 +255,12 @@
     <Compile Include="FormCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDayDetails.Designer.vb">
+      <DependentUpon>FormDayDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDayDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InquiryPage.Designer.vb">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </Compile>
@@ -412,6 +418,12 @@
     <Compile Include="UC_DayBlock.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UC_JobCard.Designer.vb">
+      <DependentUpon>UC_JobCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UC_JobCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AccAndSettings_SuperAdmin.resx">
@@ -443,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalendar.resx">
       <DependentUpon>FormCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDayDetails.resx">
+      <DependentUpon>FormDayDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>
@@ -512,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_DayBlock.resx">
       <DependentUpon>UC_DayBlock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_JobCard.resx">
+      <DependentUpon>UC_JobCard.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

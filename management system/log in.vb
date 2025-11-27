@@ -38,8 +38,8 @@
             Me.Hide()
 
             ' SHOW Main Menu (Assuming you have a Form named MainMenu)
-            ' Dim mainForm As New MainMenu()
-            ' mainForm.Show()
+            Dim mainForm As New FormCalendar()
+            mainForm.Show()
         Else
             MessageBox.Show("Invalid Username or Password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
