@@ -90,4 +90,7 @@ Public Class ManageAccounts
         CreateAcc_SupAdmin.Show()
     End Sub
 
+    Private Sub AccCard1_Load(sender As Object, e As EventArgs) Handles AccCard1.Load
+
+    End Sub
 End Class

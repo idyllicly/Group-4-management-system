@@ -1,10 +1,14 @@
 ﻿Public Class InquiryPage
 
     Private Sub btnAssignTech_Click(sender As Object, e As EventArgs) Handles btnAssignTech.Click
-        ' Use Show() and Hide() for SelectTechPage if it's a main screen. 
-        ' If it's a small pop-up, you can still use ShowDialog().
-        SelectTechPage.Show()
-        Me.Hide()
+
+        Dim result As MsgBoxResult = MsgBox("Inquiry has been created successfully! Would you like to assign a Technician to this job?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Confirm Assignment")
+
+        If result = MsgBoxResult.Yes Then
+            SelectTechPage.Show()
+            Me.Hide()
+
+        End If
     End Sub
 
     Private Sub Clear_Click(sender As Object, e As EventArgs) Handles Clear.Click

@@ -17,17 +17,14 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <DefineDebug>true</DefineDebug>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Any CPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>management system.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -341,8 +338,6 @@
     <Compile Include="NotificationForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.vb" />
     <Compile Include="OvalButton.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -422,6 +417,12 @@
       <DependentUpon>UC_JobCard.vb</DependentUpon>
     </Compile>
     <Compile Include="UC_JobCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotifCard.Designer.vb">
+      <DependentUpon>NotifCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="NotifCard.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -533,6 +534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_JobCard.resx">
       <DependentUpon>UC_JobCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotifCard.resx">
+      <DependentUpon>NotifCard.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
