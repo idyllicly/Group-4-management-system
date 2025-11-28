@@ -11,4 +11,8 @@
     Private Sub PageLabel1_Load(sender As Object, e As EventArgs) Handles PageLabel1.Load
 
     End Sub
+
+    Private Sub AccAndSettings_SuperAdmin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
