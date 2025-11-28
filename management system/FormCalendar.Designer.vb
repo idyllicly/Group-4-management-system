@@ -52,14 +52,14 @@ Partial Class FormCalendar
         Me.dayContainer.Location = New System.Drawing.Point(47, 135)
         Me.dayContainer.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.dayContainer.Name = "dayContainer"
-        Me.dayContainer.Size = New System.Drawing.Size(739, 329)
+        Me.dayContainer.Size = New System.Drawing.Size(727, 329)
         Me.dayContainer.TabIndex = 0
         '
         'btnPrevious
         '
         Me.btnPrevious.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnPrevious.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrevious.Location = New System.Drawing.Point(553, 0)
+        Me.btnPrevious.Location = New System.Drawing.Point(541, 0)
         Me.btnPrevious.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnPrevious.Name = "btnPrevious"
         Me.btnPrevious.Size = New System.Drawing.Size(89, 41)
@@ -71,7 +71,7 @@ Partial Class FormCalendar
         '
         Me.btnNext.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnNext.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNext.Location = New System.Drawing.Point(642, 0)
+        Me.btnNext.Location = New System.Drawing.Point(630, 0)
         Me.btnNext.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(101, 41)
@@ -96,9 +96,9 @@ Partial Class FormCalendar
         Me.Label1.AutoSize = True
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(109, 0)
+        Me.Label1.Location = New System.Drawing.Point(107, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 31)
+        Me.Label1.Size = New System.Drawing.Size(98, 31)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "MONDAY"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -108,9 +108,9 @@ Partial Class FormCalendar
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(215, 0)
+        Me.Label2.Location = New System.Drawing.Point(211, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 31)
+        Me.Label2.Size = New System.Drawing.Size(94, 31)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "TUESDAY"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -120,9 +120,9 @@ Partial Class FormCalendar
         Me.Label3.AutoSize = True
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(317, 0)
+        Me.Label3.Location = New System.Drawing.Point(311, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(103, 31)
+        Me.Label3.Size = New System.Drawing.Size(102, 31)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "WEDNESDAY"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -132,9 +132,9 @@ Partial Class FormCalendar
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(426, 0)
+        Me.Label4.Location = New System.Drawing.Point(419, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(99, 31)
+        Me.Label4.Size = New System.Drawing.Size(98, 31)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "THURSDAY"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -144,9 +144,9 @@ Partial Class FormCalendar
         Me.Label5.AutoSize = True
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(531, 0)
+        Me.Label5.Location = New System.Drawing.Point(523, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(100, 31)
+        Me.Label5.Size = New System.Drawing.Size(98, 31)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "FRIDAY"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -156,9 +156,9 @@ Partial Class FormCalendar
         Me.Label6.AutoSize = True
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(637, 0)
+        Me.Label6.Location = New System.Drawing.Point(627, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(103, 31)
+        Me.Label6.Size = New System.Drawing.Size(101, 31)
         Me.Label6.TabIndex = 9
         Me.Label6.Text = "SATURDAY"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -170,7 +170,7 @@ Partial Class FormCalendar
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(3, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(100, 31)
+        Me.Label7.Size = New System.Drawing.Size(98, 31)
         Me.Label7.TabIndex = 10
         Me.Label7.Text = "SUNDAY"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -184,11 +184,11 @@ Partial Class FormCalendar
         Me.calendarPanel.Controls.Add(Me.dayContainer)
         Me.calendarPanel.Controls.Add(Me.TableLayoutPanel1)
         Me.calendarPanel.Controls.Add(Me.Panel2)
-        Me.calendarPanel.Location = New System.Drawing.Point(368, 114)
+        Me.calendarPanel.Location = New System.Drawing.Point(380, 114)
         Me.calendarPanel.Margin = New System.Windows.Forms.Padding(18, 16, 18, 16)
         Me.calendarPanel.Name = "calendarPanel"
         Me.calendarPanel.Padding = New System.Windows.Forms.Padding(44, 40, 44, 40)
-        Me.calendarPanel.Size = New System.Drawing.Size(831, 524)
+        Me.calendarPanel.Size = New System.Drawing.Size(819, 524)
         Me.calendarPanel.TabIndex = 11
         '
         'TableLayoutPanel1
@@ -214,7 +214,7 @@ Partial Class FormCalendar
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(743, 31)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(731, 31)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'Panel2
@@ -226,7 +226,7 @@ Partial Class FormCalendar
         Me.Panel2.Location = New System.Drawing.Point(44, 40)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(743, 41)
+        Me.Panel2.Size = New System.Drawing.Size(731, 41)
         Me.Panel2.TabIndex = 1
         '
         'PageLabel1
@@ -243,7 +243,7 @@ Partial Class FormCalendar
         Me.SideNavControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.SideNavControl1.BackColor = System.Drawing.Color.White
-        Me.SideNavControl1.Location = New System.Drawing.Point(-10, 114)
+        Me.SideNavControl1.Location = New System.Drawing.Point(0, 114)
         Me.SideNavControl1.Name = "SideNavControl1"
         Me.SideNavControl1.Size = New System.Drawing.Size(348, 524)
         Me.SideNavControl1.TabIndex = 13

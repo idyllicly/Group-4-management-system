@@ -74,4 +74,8 @@
         End If
 
     End Sub
+
+    Private Sub MainPanel_Paint(sender As Object, e As PaintEventArgs) Handles MainPanel.Paint
+
+    End Sub
 End Class

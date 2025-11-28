@@ -23,6 +23,7 @@ Partial Class InquiryPage
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.OvalComboBox1 = New management_system.OvalComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -62,6 +63,7 @@ Partial Class InquiryPage
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.OvalComboBox1)
         Me.Panel2.Controls.Add(Me.Label13)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label10)
@@ -82,6 +84,16 @@ Partial Class InquiryPage
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1163, 911)
         Me.Panel2.TabIndex = 1
+        '
+        'OvalComboBox1
+        '
+        Me.OvalComboBox1.BackColor = System.Drawing.Color.Transparent
+        Me.OvalComboBox1.Location = New System.Drawing.Point(554, 343)
+        Me.OvalComboBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalComboBox1.Name = "OvalComboBox1"
+
+        Me.OvalComboBox1.Size = New System.Drawing.Size(380, 51)
+        Me.OvalComboBox1.TabIndex = 50
         '
         'Label13
         '
@@ -108,7 +120,7 @@ Partial Class InquiryPage
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(562, 440)
+        Me.Label10.Location = New System.Drawing.Point(594, 544)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(162, 20)
         Me.Label10.TabIndex = 47
@@ -118,7 +130,7 @@ Partial Class InquiryPage
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton2.Location = New System.Drawing.Point(642, 473)
+        Me.RadioButton2.Location = New System.Drawing.Point(674, 577)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(53, 24)
         Me.RadioButton2.TabIndex = 46
@@ -130,7 +142,7 @@ Partial Class InquiryPage
         '
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton1.Location = New System.Drawing.Point(566, 473)
+        Me.RadioButton1.Location = New System.Drawing.Point(598, 577)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(61, 24)
         Me.RadioButton1.TabIndex = 45
@@ -142,7 +154,7 @@ Partial Class InquiryPage
         '
         Me.OvalTextBox6.BackColor = System.Drawing.SystemColors.Control
         Me.OvalTextBox6.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox6.Location = New System.Drawing.Point(536, 350)
+        Me.OvalTextBox6.Location = New System.Drawing.Point(554, 276)
         Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(6)
         Me.OvalTextBox6.Name = "OvalTextBox6"
         Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -153,7 +165,7 @@ Partial Class InquiryPage
         '
         Me.OvalTextBox5.BackColor = System.Drawing.SystemColors.Control
         Me.OvalTextBox5.BorderColor = System.Drawing.Color.BlueViolet
-        Me.OvalTextBox5.Location = New System.Drawing.Point(536, 270)
+        Me.OvalTextBox5.Location = New System.Drawing.Point(554, 196)
         Me.OvalTextBox5.Margin = New System.Windows.Forms.Padding(6)
         Me.OvalTextBox5.Name = "OvalTextBox5"
         Me.OvalTextBox5.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -164,7 +176,7 @@ Partial Class InquiryPage
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(533, 326)
+        Me.Label8.Location = New System.Drawing.Point(551, 252)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(138, 18)
         Me.Label8.TabIndex = 42
@@ -174,7 +186,7 @@ Partial Class InquiryPage
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(533, 244)
+        Me.Label9.Location = New System.Drawing.Point(551, 170)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(64, 18)
         Me.Label9.TabIndex = 41
@@ -201,9 +213,9 @@ Partial Class InquiryPage
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(66, 108)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(388, 25)
+        Me.Label7.Size = New System.Drawing.Size(449, 25)
         Me.Label7.TabIndex = 38
-        Me.Label7.Text = "Fill up the form below for your inquiries."
+        Me.Label7.Text = "Fill up the form below for the client's inquiries."
         '
         'Clear
         '
@@ -381,9 +393,9 @@ Partial Class InquiryPage
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(57, 12)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(145, 18)
+        Me.Label3.Size = New System.Drawing.Size(91, 18)
         Me.Label3.TabIndex = 44
-        Me.Label3.Text = "Client's Full Name"
+        Me.Label3.Text = "First Name"
         '
         'Panel1
         '
@@ -467,4 +479,5 @@ Partial Class InquiryPage
     Friend WithEvents Label13 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents PageLabel1 As PageLabel
+    Friend WithEvents OvalComboBox1 As OvalComboBox
 End Class
