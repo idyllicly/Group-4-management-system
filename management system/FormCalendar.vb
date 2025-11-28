@@ -111,7 +111,5 @@ Public Class FormCalendar
         DisplayDays(currentMonth, currentYear)
     End Sub
 
-    Private Sub SideNavControl1_Load(sender As Object, e As EventArgs)
 
-    End Sub
 End Class
