@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.management_system.FormCalendar
+            Me.MainForm = Global.management_system.splashscreenvb
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _

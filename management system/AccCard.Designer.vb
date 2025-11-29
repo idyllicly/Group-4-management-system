@@ -87,7 +87,7 @@ Partial Class AccCard
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "AccCard"
-        Me.Size = New System.Drawing.Size(534, 209)
+        Me.Size = New System.Drawing.Size(923, 209)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)

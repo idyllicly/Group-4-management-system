@@ -1,90 +1,107 @@
-﻿Imports System.Data
-Imports MySql.Data.MySqlClient
-Imports MySqlConnector
+﻿Imports MySql.Data.MySqlClient
+Imports System.Collections.Generic
+Imports System.Data
+Imports System.Windows.Forms
+Imports System.IO
 
-' Parent Class: Handles the raw connection and generic query execution
 Public Class DatabaseConnection
-    ' connection string - adjust generic credentials if needed
-    Private ReadOnly connString As String = "Server=localhost;Database=db_rrcms;Uid=root;Pwd=;"
-    Protected conn As MySqlConnection
 
-    Public Sub New()
-        conn = New MySqlConnection(connString)
+    ' ⚠️ CRITICAL: Verify this connection string is correct ⚠️
+    Private Const MyConnectionString As String = "Server=localhost;Database=db_rrcms;Uid=root;Pwd=;"
+
+    ''' <summary>
+    ''' Helper function to correctly add parameters to the command, handling NOT NULL constraints 
+    ''' for string types and allowing DBNull only for the image (BLOB) type.
+    ''' </summary>
+    Private Sub AddParametersToCommand(ByVal cmd As MySqlCommand, ByVal parameters As Dictionary(Of String, Object))
+        If parameters Is Nothing Then Return
+
+        For Each param In parameters
+            Dim value As Object = param.Value
+
+            If TypeOf value Is Byte() Then
+                ' Handle BLOB (Picture) Data: Use DBNull.Value if no picture data is provided
+                cmd.Parameters.Add(param.Key, MySqlDbType.Blob).Value = If(value Is Nothing, DBNull.Value, CType(value, Byte()))
+            Else
+                ' Handle String/Other Data: 
+                ' Since many string columns in tbl_account are NOT NULL, we MUST pass 
+                ' String.Empty for empty/null values to avoid MySQL Error 1048.
+                Dim strValue As String = If(value Is Nothing OrElse value Is DBNull.Value, String.Empty, CStr(value))
+
+                cmd.Parameters.AddWithValue(param.Key, strValue)
+            End If
+        Next
     End Sub
 
-    ' Open Connection safely
-    Protected Function Connect() As Boolean
+    ' ------------------------------------------------------------------
+    ' --- 1. Execute Action (INSERT, UPDATE, DELETE) ---
+    ' ------------------------------------------------------------------
+    Public Function ExecuteAction(ByVal sql As String, ByVal parameters As Dictionary(Of String, Object)) As Integer
         Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
-            End If
-            Return True
+            Using con As New MySqlConnection(MyConnectionString)
+                Using cmd As New MySqlCommand(sql, con)
+                    AddParametersToCommand(cmd, parameters)
+
+                    con.Open()
+                    Return cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+        Catch ex As MySqlException
+            ' ⭐️ Enhanced Error Reporting: Shows the specific MySQL error ⭐️
+            MessageBox.Show(
+                $"Database action failed:{vbCrLf}" &
+                $"MySQL Error Code: {ex.Number}{vbCrLf}" &
+                $"Message: {ex.Message}",
+                "Database Error: Constraint Violation or Server Issue",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+            Return 0
+
         Catch ex As Exception
-            MessageBox.Show("Connection Error: " & ex.Message)
-            Return False
+            MessageBox.Show($"An unexpected application error occurred: {ex.Message}", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 0
         End Try
     End Function
 
-    ' Close Connection safely
-    Protected Sub Disconnect()
-        Try
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Disconnection Error: " & ex.Message)
-        End Try
-    End Sub
+    ' ------------------------------------------------------------------
+    ' --- 2. Execute Select (The Missing Function) ---
+    ' ------------------------------------------------------------------
+    ''' <summary>
+    ''' Executes a SELECT query and returns the results as a DataTable.
+    ''' </summary>
+    Public Function ExecuteSelect(ByVal sql As String, ByVal Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
+        Dim dataTable As New DataTable()
 
-    ' ---------------------------------------------------------
-    ' CHANGE 1: Changed 'Protected' to 'Public' so Forms can use it
-    ' ---------------------------------------------------------
-    Public Function ExecuteSelect(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As DataTable
-        Dim dt As New DataTable()
         Try
-            If Connect() Then
-                Using cmd As New MySqlCommand(query, conn)
-                    ' Add parameters to prevent SQL Injection
+            Using con As New MySqlConnection(MyConnectionString)
+                Using cmd As New MySqlCommand(sql, con)
+                    ' Parameters are optional for simple SELECT * FROM table
                     If parameters IsNot Nothing Then
-                        For Each param In parameters
-                            cmd.Parameters.AddWithValue(param.Key, param.Value)
-                        Next
+                        AddParametersToCommand(cmd, parameters)
                     End If
 
                     Using adapter As New MySqlDataAdapter(cmd)
-                        adapter.Fill(dt)
+                        adapter.Fill(dataTable)
                     End Using
                 End Using
-            End If
+            End Using
+
+        Catch ex As MySqlException
+            ' Handle and report SELECT query errors
+            MessageBox.Show(
+                $"Database SELECT failed:{vbCrLf}" &
+                $"MySQL Error Code: {ex.Number}{vbCrLf}" &
+                $"Message: {ex.Message}",
+                "Database Error: SELECT Failure",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error)
+
         Catch ex As Exception
-            MessageBox.Show("Query Error: " & ex.Message)
-        Finally
-            Disconnect()
+            MessageBox.Show($"An unexpected application error occurred during SELECT: {ex.Message}", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-        Return dt
+
+        Return dataTable
     End Function
 
-    ' ---------------------------------------------------------
-    ' CHANGE 2: Changed 'Protected' to 'Public' so Forms can use it
-    ' ---------------------------------------------------------
-    Public Function ExecuteAction(query As String, Optional parameters As Dictionary(Of String, Object) = Nothing) As Integer
-        Dim rowsAffected As Integer = 0
-        Try
-            If Connect() Then
-                Using cmd As New MySqlCommand(query, conn)
-                    If parameters IsNot Nothing Then
-                        For Each param In parameters
-                            cmd.Parameters.AddWithValue(param.Key, param.Value)
-                        Next
-                    End If
-                    rowsAffected = cmd.ExecuteNonQuery()
-                End Using
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Action Error: " & ex.Message)
-        Finally
-            Disconnect()
-        End Try
-        Return rowsAffected
-    End Function
 End Class
