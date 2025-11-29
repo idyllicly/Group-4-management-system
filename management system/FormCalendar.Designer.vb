@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormCalendar
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormCalendar
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.dayContainer = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnPrevious = New System.Windows.Forms.Button()
@@ -245,6 +245,7 @@ Partial Class FormCalendar
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.SideNavControl1.BackColor = System.Drawing.Color.White
         Me.SideNavControl1.Location = New System.Drawing.Point(-11, 142)
+        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.SideNavControl1.Name = "SideNavControl1"
         Me.SideNavControl1.Size = New System.Drawing.Size(392, 655)

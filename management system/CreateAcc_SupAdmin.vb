@@ -8,8 +8,32 @@ Public Class CreateAcc_SupAdmin
     ' Variable to hold the file path
     Private currentImagePath As String = String.Empty
 
-    ' --- 1. IMAGE UPLOAD BUTTON ---
+    ' ⭐️ GDI+ FIX: Store the file contents in memory (Byte Array) instead of the file path (String).
+    Private PrivatePictureData As Byte() = Nothing
+
+    ' -------------------------------------------
+    ' |           GDI+ FIX HELPERS              |
+    ' -------------------------------------------
+
+    ''' <summary>
+    ''' Safely disposes of the PictureBox's Image object to release any file locks (GDI+ Fix).
+    ''' </summary>
+    Private Sub DisposePictureBoxImage()
+        If PictureBox1 IsNot Nothing AndAlso PictureBox1.Image IsNot Nothing Then
+            Try
+                PictureBox1.Image.Dispose()
+                PictureBox1.Image = Nothing
+            Catch
+                ' Ignore disposal errors if the resource is already released
+            End Try
+        End If
+    End Sub
+
+    ' --- 1. IMAGE UPLOAD BUTTON (DEFINITIVE GDI+ FIX: Read to Memory Immediately) ---
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        OpenFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*"
+        OpenFileDialog1.Title = "Select an Account Picture"
+
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             If PictureBox1.Image IsNot Nothing Then
                 PictureBox1.Image.Dispose()
@@ -19,9 +43,17 @@ Public Class CreateAcc_SupAdmin
                 PictureBox1.Image = Image.FromFile(OpenFileDialog1.FileName)
                 Button1.Visible = False
             Catch ex As Exception
-                MessageBox.Show("Error loading image: " & ex.Message)
+                MessageBox.Show("Error loading image: " & ex.Message & vbCrLf & "Please try again or select a different file.", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                PrivatePictureData = Nothing
+                Button1.Visible = True
             End Try
         End If
+    End Sub
+
+    ' --- 2. FORM CLOSE/HIDE HANDLER (GDI+ FIX) ---
+    Private Sub CreateAcc_SupAdmin_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        ' Ensure image resource is disposed when the form is closed/hidden to prevent GDI+ errors
+        DisposePictureBoxImage()
     End Sub
 
     ' --- 2. INITIALIZE FIREBASE ON LOAD ---
@@ -62,8 +94,24 @@ Public Class CreateAcc_SupAdmin
         Next
     End Sub
 
-    Private Sub Panel5_Paint(sender As Object, e As PaintEventArgs) Handles Panel5.Paint
-    End Sub
+    ' --- Name Splitting Function ---
+    Private Function SplitFullName(ByVal fullName As String) As (FirstName As String, MiddleName As String, LastName As String)
+        Dim parts As String() = fullName.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries)
+        Dim firstName As String = ""
+        Dim middleName As String = ""
+        Dim lastName As String = ""
+
+        If parts.Length = 1 Then
+            lastName = parts(0)
+        ElseIf parts.Length >= 2 Then
+            lastName = parts(parts.Length - 1)
+            firstName = parts(0)
+            If parts.Length > 2 Then
+                middleName = String.Join(" ", parts.Skip(1).Take(parts.Length - 2).ToArray())
+            End If
+        End If
+        Return (firstName, middleName, lastName)
+    End Function
 
     ' --- 5. SUBMIT BUTTON (ASYNC For Firebase) ---
     Private Async Sub OvalButton3_Click(sender As Object, e As EventArgs) Handles OvalButton3.Click

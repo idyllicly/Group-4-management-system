@@ -25,17 +25,15 @@ Partial Class CreateAcc_SupAdmin
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.OvalComboBox1 = New management_system.OvalComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.OvalTextBox11 = New management_system.OvalTextBox()
         Me.OvalTextBox10 = New management_system.OvalTextBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.OvalTextBox2 = New management_system.OvalTextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.btnBack = New management_system.OvalButton()
         Me.OvalButton3 = New management_system.OvalButton()
         Me.OvalDescriptionBox1 = New management_system.OvalDescriptionBox()
@@ -61,6 +59,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox1 = New management_system.OvalTextBox()
         Me.OvalTextBox3 = New management_system.OvalTextBox()
         Me.SideNavControl1 = New management_system.SideNavControl()
+        Me.MySqlConnection1 = New MySqlConnector.MySqlConnection()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,21 +105,29 @@ Partial Class CreateAcc_SupAdmin
         '
         Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.Controls.Add(Me.OvalComboBox1)
         Me.Panel4.Controls.Add(Me.Button1)
         Me.Panel4.Controls.Add(Me.PictureBox1)
         Me.Panel4.Controls.Add(Me.OvalTextBox11)
         Me.Panel4.Controls.Add(Me.OvalTextBox10)
-        Me.Panel4.Controls.Add(Me.RadioButton2)
         Me.Panel4.Controls.Add(Me.Label8)
         Me.Panel4.Controls.Add(Me.OvalTextBox2)
         Me.Panel4.Controls.Add(Me.Label9)
-        Me.Panel4.Controls.Add(Me.RadioButton1)
         Me.Panel4.Controls.Add(Me.Label7)
-        Me.Panel4.Controls.Add(Me.Label10)
         Me.Panel4.Location = New System.Drawing.Point(589, 71)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(943, 599)
         Me.Panel4.TabIndex = 106
+        '
+        'OvalComboBox1
+        '
+        Me.OvalComboBox1.BackColor = System.Drawing.Color.Transparent
+        Me.OvalComboBox1.Location = New System.Drawing.Point(57, 448)
+        Me.OvalComboBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.OvalComboBox1.Name = "OvalComboBox1"
+        Me.OvalComboBox1.Size = New System.Drawing.Size(385, 52)
+        Me.OvalComboBox1.TabIndex = 120
+        Me.OvalComboBox1.Text = "Select an Item"
         '
         'Button1
         '
@@ -169,18 +176,6 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox10.Size = New System.Drawing.Size(385, 51)
         Me.OvalTextBox10.TabIndex = 116
         '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton2.Location = New System.Drawing.Point(232, 483)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(82, 24)
-        Me.RadioButton2.TabIndex = 113
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Admin"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -213,18 +208,6 @@ Partial Class CreateAcc_SupAdmin
         Me.Label9.TabIndex = 109
         Me.Label9.Text = "Username"
         '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButton1.Location = New System.Drawing.Point(105, 483)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(121, 24)
-        Me.RadioButton1.TabIndex = 112
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Technician"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -234,16 +217,6 @@ Partial Class CreateAcc_SupAdmin
         Me.Label7.Size = New System.Drawing.Size(130, 18)
         Me.Label7.TabIndex = 111
         Me.Label7.Text = "Verify Password"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(66, 456)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(123, 20)
-        Me.Label10.TabIndex = 114
-        Me.Label10.Text = "Staff Position"
         '
         'btnBack
         '
@@ -540,6 +513,12 @@ Partial Class CreateAcc_SupAdmin
         Me.SideNavControl1.Size = New System.Drawing.Size(362, 977)
         Me.SideNavControl1.TabIndex = 29
         '
+        'MySqlConnection1
+        '
+        Me.MySqlConnection1.ProvideClientCertificatesCallback = Nothing
+        Me.MySqlConnection1.ProvidePasswordCallback = Nothing
+        Me.MySqlConnection1.RemoteCertificateValidationCallback = Nothing
+        '
         'CreateAcc_SupAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -573,12 +552,9 @@ Partial Class CreateAcc_SupAdmin
     Friend WithEvents OvalTextBox11 As OvalTextBox
     Friend WithEvents OvalTextBox10 As OvalTextBox
     Friend WithEvents OvalTextBox9 As OvalTextBox
-    Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents Label7 As Label
-    Friend WithEvents Label10 As Label
     Friend WithEvents Panel5 As Panel
     Friend WithEvents OvalTextBox2 As OvalTextBox
     Friend WithEvents OvalTextBox13 As OvalTextBox
@@ -601,4 +577,6 @@ Partial Class CreateAcc_SupAdmin
     Friend WithEvents Button1 As Button
     Friend WithEvents PageLabel1 As PageLabel
     Friend WithEvents SideNavControl1 As SideNavControl
+    Friend WithEvents MySqlConnection1 As MySqlConnector.MySqlConnection
+    Friend WithEvents OvalComboBox1 As OvalComboBox
 End Class

@@ -42,18 +42,18 @@ Partial Class frmTechnicianDetails
         Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
         Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(753, 92)
+        Me.NavigationControl1.Size = New System.Drawing.Size(669, 74)
         Me.NavigationControl1.TabIndex = 0
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 92)
+        Me.Panel1.Location = New System.Drawing.Point(0, 74)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Padding = New System.Windows.Forms.Padding(20, 20, 20, 20)
-        Me.Panel1.Size = New System.Drawing.Size(753, 494)
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(18, 16, 18, 16)
+        Me.Panel1.Size = New System.Drawing.Size(669, 395)
         Me.Panel1.TabIndex = 1
         '
         'Panel2
@@ -61,11 +61,11 @@ Partial Class frmTechnicianDetails
         Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(20, 20)
+        Me.Panel2.Location = New System.Drawing.Point(18, 16)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Padding = New System.Windows.Forms.Padding(50, 0, 50, 50)
-        Me.Panel2.Size = New System.Drawing.Size(713, 454)
+        Me.Panel2.Padding = New System.Windows.Forms.Padding(44, 0, 44, 40)
+        Me.Panel2.Size = New System.Drawing.Size(633, 363)
         Me.Panel2.TabIndex = 0
         '
         'Panel3
@@ -75,18 +75,18 @@ Partial Class frmTechnicianDetails
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Controls.Add(Me.PictureBox1)
-        Me.Panel3.Location = New System.Drawing.Point(53, 65)
+        Me.Panel3.Location = New System.Drawing.Point(47, 52)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(607, 336)
+        Me.Panel3.Size = New System.Drawing.Size(539, 269)
         Me.Panel3.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(188, 19)
+        Me.Label2.Location = New System.Drawing.Point(167, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(131, 20)
+        Me.Label2.Size = New System.Drawing.Size(113, 16)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Technician Name"
         '
@@ -95,7 +95,7 @@ Partial Class frmTechnicianDetails
         Me.PictureBox1.Location = New System.Drawing.Point(3, 2)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(166, 126)
+        Me.PictureBox1.Size = New System.Drawing.Size(148, 101)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
@@ -103,18 +103,18 @@ Partial Class frmTechnicianDetails
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(312, 22)
+        Me.Label1.Location = New System.Drawing.Point(277, 18)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(134, 20)
+        Me.Label1.Size = New System.Drawing.Size(114, 16)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Select Technician"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'frmTechnicianDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(753, 586)
+        Me.ClientSize = New System.Drawing.Size(669, 469)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.NavigationControl1)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)

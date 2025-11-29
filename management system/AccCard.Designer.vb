@@ -64,19 +64,19 @@ Partial Class AccCard
         'ViewAccountToolStripMenuItem
         '
         Me.ViewAccountToolStripMenuItem.Name = "ViewAccountToolStripMenuItem"
-        Me.ViewAccountToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.ViewAccountToolStripMenuItem.Size = New System.Drawing.Size(184, 24)
         Me.ViewAccountToolStripMenuItem.Text = "View Account"
         '
         'EditAccountToolStripMenuItem1
         '
         Me.EditAccountToolStripMenuItem1.Name = "EditAccountToolStripMenuItem1"
-        Me.EditAccountToolStripMenuItem1.Size = New System.Drawing.Size(210, 24)
+        Me.EditAccountToolStripMenuItem1.Size = New System.Drawing.Size(184, 24)
         Me.EditAccountToolStripMenuItem1.Text = "Edit Account"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(184, 24)
         Me.DeleteToolStripMenuItem.Text = " Delete Account"
         '
         'AccCard
@@ -87,7 +87,7 @@ Partial Class AccCard
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Name = "AccCard"
-        Me.Size = New System.Drawing.Size(504, 209)
+        Me.Size = New System.Drawing.Size(534, 209)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)

@@ -82,4 +82,8 @@ Public Class SelectTechnicianCard
 
     Private Sub TechPicture_Click(sender As Object, e As EventArgs) Handles TechPicture.Click
     End Sub
+
+    Private Sub MainPanel_Paint(sender As Object, e As PaintEventArgs) Handles MainPanel.Paint
+
+    End Sub
 End Class

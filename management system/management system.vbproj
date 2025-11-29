@@ -344,6 +344,12 @@
     <Compile Include="OvalButton.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ovalCombobox.Designer.vb">
+      <DependentUpon>ovalCombobox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ovalCombobox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="OvalDescriptionBox.Designer.vb">
       <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
     </Compile>
@@ -389,6 +395,12 @@
     <Compile Include="SideNavControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="splashscreenvb.Designer.vb">
+      <DependentUpon>splashscreenvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="splashscreenvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="technicianCard.Designer.vb">
       <DependentUpon>technicianCard.vb</DependentUpon>
     </Compile>
@@ -427,6 +439,12 @@
     </Compile>
     <Compile Include="NotifCard.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewAccDetailsvb.Designer.vb">
+      <DependentUpon>ViewAccDetailsvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAccDetailsvb.vb">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -502,6 +520,9 @@
     <EmbeddedResource Include="NotificationForm.resx">
       <DependentUpon>NotificationForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ovalCombobox.resx">
+      <DependentUpon>ovalCombobox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OvalDescriptionBox.resx">
       <DependentUpon>OvalDescriptionBox.vb</DependentUpon>
     </EmbeddedResource>
@@ -523,6 +544,9 @@
     <EmbeddedResource Include="SideNavControl.resx">
       <DependentUpon>SideNavControl.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="splashscreenvb.resx">
+      <DependentUpon>splashscreenvb.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="technicianCard.resx">
       <DependentUpon>technicianCard.vb</DependentUpon>
     </EmbeddedResource>
@@ -540,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotifCard.resx">
       <DependentUpon>NotifCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAccDetailsvb.resx">
+      <DependentUpon>ViewAccDetailsvb.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
