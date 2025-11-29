@@ -22,7 +22,6 @@ Partial Class Dashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.NavigationControl1 = New management_system.NavigationControl()
         Me.pnlMainContent = New System.Windows.Forms.Panel()
         Me.RoundedPanel1 = New management_system.RoundedPanel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -35,29 +34,24 @@ Partial Class Dashboard
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.PageLabel1 = New management_system.PageLabel()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.SideNavControl1 = New management_system.SideNavControl()
         Me.pnlMainContent.SuspendLayout()
         Me.RoundedPanel1.SuspendLayout()
         Me.tlpColumns.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'NavigationControl1
-        '
-        Me.NavigationControl1.BackColor = System.Drawing.Color.White
-        Me.NavigationControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.NavigationControl1.Location = New System.Drawing.Point(0, 0)
-        Me.NavigationControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.NavigationControl1.Name = "NavigationControl1"
-        Me.NavigationControl1.Size = New System.Drawing.Size(937, 92)
-        Me.NavigationControl1.TabIndex = 0
         '
         'pnlMainContent
         '
-        Me.pnlMainContent.Controls.Add(Me.RoundedPanel1)
+        Me.pnlMainContent.Controls.Add(Me.TableLayoutPanel1)
+        Me.pnlMainContent.Controls.Add(Me.PageLabel1)
         Me.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlMainContent.Location = New System.Drawing.Point(0, 92)
+        Me.pnlMainContent.Location = New System.Drawing.Point(0, 0)
         Me.pnlMainContent.Name = "pnlMainContent"
         Me.pnlMainContent.Padding = New System.Windows.Forms.Padding(20)
-        Me.pnlMainContent.Size = New System.Drawing.Size(937, 576)
+        Me.pnlMainContent.Size = New System.Drawing.Size(840, 582)
         Me.pnlMainContent.TabIndex = 2
         '
         'RoundedPanel1
@@ -69,10 +63,10 @@ Partial Class Dashboard
         Me.RoundedPanel1.CornerRadius = 20
         Me.RoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RoundedPanel1.ForeColor = System.Drawing.Color.DarkCyan
-        Me.RoundedPanel1.Location = New System.Drawing.Point(20, 20)
+        Me.RoundedPanel1.Location = New System.Drawing.Point(420, 3)
         Me.RoundedPanel1.Name = "RoundedPanel1"
         Me.RoundedPanel1.Padding = New System.Windows.Forms.Padding(10, 50, 10, 10)
-        Me.RoundedPanel1.Size = New System.Drawing.Size(897, 536)
+        Me.RoundedPanel1.Size = New System.Drawing.Size(377, 394)
         Me.RoundedPanel1.TabIndex = 0
         '
         'lblTitle
@@ -108,7 +102,7 @@ Partial Class Dashboard
         Me.tlpColumns.RowCount = 2
         Me.tlpColumns.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.tlpColumns.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpColumns.Size = New System.Drawing.Size(877, 476)
+        Me.tlpColumns.Size = New System.Drawing.Size(357, 334)
         Me.tlpColumns.TabIndex = 1
         '
         'Label4
@@ -118,9 +112,9 @@ Partial Class Dashboard
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(661, 1)
+        Me.Label4.Location = New System.Drawing.Point(271, 1)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(212, 40)
+        Me.Label4.Size = New System.Drawing.Size(82, 40)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Cancelled/Rejected"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -132,9 +126,9 @@ Partial Class Dashboard
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label3.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(442, 1)
+        Me.Label3.Location = New System.Drawing.Point(182, 1)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(212, 40)
+        Me.Label3.Size = New System.Drawing.Size(82, 40)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Completed Jobs"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -146,9 +140,9 @@ Partial Class Dashboard
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(223, 1)
+        Me.Label2.Location = New System.Drawing.Point(93, 1)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(212, 40)
+        Me.Label2.Size = New System.Drawing.Size(82, 40)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Follow-up Jobs"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -162,7 +156,7 @@ Partial Class Dashboard
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(4, 1)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(212, 40)
+        Me.Label1.Size = New System.Drawing.Size(82, 40)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Jobs in Progress"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -174,7 +168,7 @@ Partial Class Dashboard
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(4, 45)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(212, 427)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(82, 285)
         Me.FlowLayoutPanel1.TabIndex = 4
         Me.FlowLayoutPanel1.WrapContents = False
         '
@@ -183,9 +177,9 @@ Partial Class Dashboard
         Me.FlowLayoutPanel2.AutoScroll = True
         Me.FlowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(223, 45)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(93, 45)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(212, 427)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(82, 285)
         Me.FlowLayoutPanel2.TabIndex = 5
         Me.FlowLayoutPanel2.WrapContents = False
         '
@@ -194,9 +188,9 @@ Partial Class Dashboard
         Me.FlowLayoutPanel3.AutoScroll = True
         Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(442, 45)
+        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(182, 45)
         Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(212, 427)
+        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(82, 285)
         Me.FlowLayoutPanel3.TabIndex = 6
         Me.FlowLayoutPanel3.WrapContents = False
         '
@@ -205,33 +199,66 @@ Partial Class Dashboard
         Me.FlowLayoutPanel4.AutoScroll = True
         Me.FlowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(661, 45)
+        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(271, 45)
         Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(212, 427)
+        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(82, 285)
         Me.FlowLayoutPanel4.TabIndex = 7
         Me.FlowLayoutPanel4.WrapContents = False
+        '
+        'PageLabel1
+        '
+        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
+        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PageLabel1.Location = New System.Drawing.Point(20, 20)
+        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PageLabel1.Name = "PageLabel1"
+        Me.PageLabel1.Size = New System.Drawing.Size(800, 142)
+        Me.PageLabel1.TabIndex = 1
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 417.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.Controls.Add(Me.RoundedPanel1, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.SideNavControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(20, 162)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(800, 400)
+        Me.TableLayoutPanel1.TabIndex = 2
+        '
+        'SideNavControl1
+        '
+        Me.SideNavControl1.BackColor = System.Drawing.Color.White
+        Me.SideNavControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SideNavControl1.Location = New System.Drawing.Point(3, 4)
+        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SideNavControl1.Name = "SideNavControl1"
+        Me.SideNavControl1.Size = New System.Drawing.Size(411, 392)
+        Me.SideNavControl1.TabIndex = 1
         '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(937, 668)
+        Me.ClientSize = New System.Drawing.Size(840, 582)
         Me.Controls.Add(Me.pnlMainContent)
-        Me.Controls.Add(Me.NavigationControl1)
         Me.Name = "Dashboard"
         Me.Text = "Dashboard"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pnlMainContent.ResumeLayout(False)
-        Me.pnlMainContent.PerformLayout()
         Me.RoundedPanel1.ResumeLayout(False)
         Me.RoundedPanel1.PerformLayout()
         Me.tlpColumns.ResumeLayout(False)
         Me.tlpColumns.PerformLayout()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents NavigationControl1 As NavigationControl
     Friend WithEvents pnlMainContent As Panel
     Friend WithEvents RoundedPanel1 As RoundedPanel
     Friend WithEvents lblTitle As Label
@@ -244,4 +271,7 @@ Partial Class Dashboard
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents PageLabel1 As PageLabel
+    Friend WithEvents SideNavControl1 As SideNavControl
 End Class

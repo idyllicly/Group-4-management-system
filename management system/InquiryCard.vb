@@ -1,9 +1,8 @@
 ﻿Public Class InquiryCard
-    Private Sub InquiryCard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    ' 1. New Property to store the Database ID
+    Public Property JobID As Integer
 
-    End Sub
-
-    ' 1. Create Properties so we can set data from the Dashboard
+    ' 2. Existing Properties
     Public Property CustomerName As String
         Get
             Return lblName.Text
@@ -31,8 +30,20 @@
         End Set
     End Property
 
-    ' Optional: Change color based on urgency or type
     Public Sub SetColor(c As Color)
         Me.BackColor = c
+    End Sub
+
+    ' 3. CLICK EVENT: This opens the details form
+    ' We handle clicks on the Card itself AND the labels inside it
+    Private Sub Card_Click(sender As Object, e As EventArgs) Handles MyBase.Click, lblName.Click, lblDetails.Click, lblDate.Click
+        If JobID > 0 Then
+            ' Create the details form
+            Dim detailsForm As New FormJobDetails()
+            ' Pass the ID to the form
+            detailsForm.TargetJobID = Me.JobID
+            ' Show it
+            detailsForm.ShowDialog()
+        End If
     End Sub
 End Class

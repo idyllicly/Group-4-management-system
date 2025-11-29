@@ -208,6 +208,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AppLogic.vb" />
+    <Compile Include="AppState.vb" />
     <Compile Include="CreateAccTech.Designer.vb">
       <DependentUpon>CreateAccTech.vb</DependentUpon>
     </Compile>
@@ -240,6 +241,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EventManager.vb" />
+    <Compile Include="FirebaseManager.vb" />
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
@@ -264,6 +266,7 @@
     <Compile Include="FormJobDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlobalVariables.vb" />
     <Compile Include="InquiryPage.Designer.vb">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </Compile>

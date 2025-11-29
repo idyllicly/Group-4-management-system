@@ -1,18 +1,27 @@
-﻿Public Class SelectTechPage
+﻿Imports MySql.Data.MySqlClient
+
+Public Class SelectTechPage
+    ' Database Connection
+    Dim db As New DatabaseConnection()
+
+    ' Property to know which Job we are assigning
+    Public Property TargetJobID As Integer = 0
 
     ' ----------------------------------------------------------------------
-    ' 1. INLINE DATA STRUCTURE AND DEFINITIONS (Required for LoadProfileData)
+    ' 1. INLINE DATA STRUCTURE (Updated with ID)
     ' ----------------------------------------------------------------------
-
-    ' Structure must be PUBLIC so SelectTechnicianCard can access it.
     Public Structure TechnicianProfile
+        Public ID As Integer ' Added ID
+        Public ReadOnly Name As String
         Public ReadOnly Background As String
         Public ReadOnly ContactNo As String
         Public ReadOnly Email As String
         Public ReadOnly Facebook As String
         Public ReadOnly Viber As String
 
-        Public Sub New(bg As String, no As String, mail As String, fb As String, vb As String)
+        Public Sub New(id As Integer, name As String, bg As String, no As String, mail As String, fb As String, vb As String)
+            Me.ID = id
+            Me.Name = name
             Me.Background = bg
             Me.ContactNo = no
             Me.Email = mail
@@ -27,74 +36,59 @@
     Private Const CARDS_PER_ROW As Integer = 4
     Private Const CARD_MARGIN As Integer = 40
 
-    Private ReadOnly technicianNames() As String = {"John Smith", "Sarah Connor", "Mike Ross", "Lisa Green", "Tom Baker", "Amy Wong"}
-
     ' ----------------------------------------------------------------------
-    ' 2. DATA INITIALIZATION (Required for data lookup)
-    ' ----------------------------------------------------------------------
-
-    Private Sub InitializeTechnicianData()
-        If TechnicianData.Count > 0 Then Return
-
-        TechnicianData.Add("John Smith", New TechnicianProfile(
-            "Rat Infestation & Rodent Control. Focuses on complex rodent exclusion using Integrated Pest Management (IPM).",
-            "(555) 101-2001", "john.s@rrcpestcontrol.com", "/JohnSmithPestControl", "+63 917 111 2222"))
-
-        TechnicianData.Add("Sarah Connor", New TechnicianProfile(
-            "Termite Exterminator & Wood Preservation. Specialized in subterranean and drywood termite identification and advanced baiting systems.",
-            "(555) 303-4003", "sarah.c@rrcpestcontrol.com", "/SarahConnorRRC", "+63 917 888 2222"))
-
-        TechnicianData.Add("Mike Ross", New TechnicianProfile(
-            "Cockroach Annihilator & Sanitation Expert. Rapid response for severe infestations in commercial settings, focusing on harborage elimination.",
-            "(555) 505-6005", "mike.r@rrcpestcontrol.com", "/MikeRossPestSolutions", "+63 917 333 4444"))
-
-        TechnicianData.Add("Lisa Green", New TechnicianProfile(
-            "Bedbugs Exterminator & Heat Treatment. Certified in discreet residential bed bug eradication using thermal remediation (heat) and chemicals.",
-            "(555) 707-8007", "lisa.g@rrcpestcontrol.com", "/LisaGreenBedBugs", "+63 917 555 6666"))
-
-        TechnicianData.Add("Tom Baker", New TechnicianProfile(
-            "General Insect Pest Control (Ants, Spiders). Focuses on preventative, recurring maintenance and control of common household insects.",
-            "(555) 909-0009", "tom.b@rrcpestcontrol.com", "/TomBakerIPM", "+63 917 777 8888"))
-
-        TechnicianData.Add("Amy Wong", New TechnicianProfile(
-            "Wildlife & Nuisance Control. Focuses on the humane removal and exclusion of larger pests (squirrels, raccoons) and sealing entry points.",
-            "(555) 212-3132", "amy.w@rrcpestcontrol.com", "/AmyWongExclusion", "+63 917 999 0000"))
-    End Sub
-
-    ' ----------------------------------------------------------------------
-    ' 3. FORM LOAD AND CARD GENERATION (Standard Logic)
+    ' 2. FORM LOAD (Fetch from DB)
     ' ----------------------------------------------------------------------
 
     Private Sub SelectTechPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        InitializeTechnicianData()
         LoadTechnicianCards()
     End Sub
 
     Private Sub LoadTechnicianCards()
         FormHostPanel.Controls.Clear()
+        TechnicianData.Clear()
+
+        ' 1. Fetch Technicians from Database
+        Dim sql As String = "SELECT * FROM tbl_technician"
+        Dim dt As DataTable = db.ExecuteSelect(sql)
 
         Dim cardCount As Integer = 0
         Dim cardWidth As Integer = 0
         Dim cardHeight As Integer = 0
         Dim CENTER_OFFSET_X As Integer = 0
 
-        For Each techName As String In technicianNames
+        ' 2. Loop through DB rows
+        For Each row As DataRow In dt.Rows
+            Dim id As Integer = Convert.ToInt32(row("TechnicianID"))
+            Dim fullName As String = row("TFirstName").ToString() & " " & row("TLastName").ToString()
+            Dim specialization As String = row("Specialization").ToString()
+            Dim contact As String = row("TechnicianNo").ToString()
+
+            ' Note: Email/FB/Viber are not in tbl_technician, using placeholders or you can join tbl_account if linked
+            Dim profile As New TechnicianProfile(id, fullName, specialization, contact, "N/A", "N/A", "N/A")
+
+            ' Store in dictionary (using Name as key for the event system)
+            If Not TechnicianData.ContainsKey(fullName) Then
+                TechnicianData.Add(fullName, profile)
+            End If
+
+            ' 3. Create Card
             Dim card As New TechnicianCard()
-            ' ... (Card positioning and event linking) ...
+
+            ' Calculate Layout (Same as before)
             If cardCount = 0 Then
                 cardWidth = card.Width
                 cardHeight = card.Height
-
                 Dim totalRowWidth As Integer = (cardWidth * CARDS_PER_ROW) + (CARD_MARGIN * (CARDS_PER_ROW + 1))
                 CENTER_OFFSET_X = (FormHostPanel.Width - totalRowWidth) \ 2
-
-                If CENTER_OFFSET_X < 0 Then
-                    CENTER_OFFSET_X = 0
-                End If
+                If CENTER_OFFSET_X < 0 Then CENTER_OFFSET_X = 0
             End If
 
             AddHandler card.CardClicked, AddressOf TechnicianCard1_CardClicked
-            card.SetTechnicianName(techName)
+            card.SetTechnicianName(fullName)
+            ' Assuming SetTechnicianName sets the label text. 
+            ' Ideally, TechnicianCard should have a Public Property ID to avoid string lookup, 
+            ' but we'll stick to your existing Name-based pattern for now.
 
             Dim currentXPosition As Integer = CENTER_OFFSET_X + CARD_MARGIN + ((cardWidth + CARD_MARGIN) * (cardCount Mod CARDS_PER_ROW))
             Dim currentYPosition As Integer = CARD_MARGIN + ((cardHeight + CARD_MARGIN) * (cardCount \ CARDS_PER_ROW))
@@ -108,11 +102,10 @@
     End Sub
 
     ' ----------------------------------------------------------------------
-    ' 4. VIEW SWITCHING AND DATA PASSING HANDLER (FIXED)
+    ' 3. VIEW SWITCHING (Pass Data)
     ' ----------------------------------------------------------------------
 
-    Private Sub TechnicianCard1_CardClicked(technicianName As String) Handles TechnicianCard1.CardClicked
-
+    Private Sub TechnicianCard1_CardClicked(technicianName As String)
         If Not TechnicianData.ContainsKey(technicianName) Then
             MessageBox.Show($"Error: Data not found for {technicianName}.", "Data Error")
             Return
@@ -122,42 +115,36 @@
 
         Dim SelectForm As New SelectTechnicianCard()
 
-        ' Link GoBack event
-        AddHandler SelectForm.GoBackToCards, AddressOf LoadTechnicianCards
+        ' Pass the Job ID we are working on
+        SelectForm.TargetJobID = Me.TargetJobID
 
-        ' Link AssignmentComplete event
+        AddHandler SelectForm.GoBackToCards, AddressOf LoadTechnicianCards
         AddHandler SelectForm.AssignmentComplete, AddressOf HandleAssignmentNavigation
 
         FormHostPanel.Controls.Clear()
-
         SelectForm.TopLevel = False
         SelectForm.FormBorderStyle = FormBorderStyle.None
         SelectForm.Dock = DockStyle.Fill
 
-        ' *** FIX: Re-insert the call to LoadProfileData to set the details ***
         SelectForm.LoadProfileData(technicianName, profile)
 
         FormHostPanel.Controls.Add(SelectForm)
         SelectForm.Show()
-
     End Sub
 
     ' ----------------------------------------------------------------------
-    ' 5. NAVIGATION HANDLER
+    ' 4. NAVIGATION HANDLER
     ' ----------------------------------------------------------------------
 
     Private Sub HandleAssignmentNavigation(ByVal action As String)
-        FormHostPanel.Controls.Clear()
-
         If action = "Homepage" Then
-            LoadTechnicianCards()
+            Me.Close() ' Close the selection page entirely
         ElseIf action = "ViewDetails" Then
-            MessageBox.Show("Placeholder: Loading the specific Job Details form now.", "Job Details")
-            LoadTechnicianCards()
+            ' Logic to go back to job details could go here
+            Me.Close()
         End If
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
     End Sub
 End Class

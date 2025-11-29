@@ -1,7 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
-
-Public Class FormCalendar
-    ' Keep track of the current month/year we are viewing
+﻿Public Class FormCalendar
     Private currentMonth As Integer = DateTime.Now.Month
     Private currentYear As Integer = DateTime.Now.Year
 
@@ -9,21 +6,14 @@ Public Class FormCalendar
         DisplayDays(currentMonth, currentYear)
     End Sub
 
-    ' New Event: When the window is resized, resize the blocks too
     Private Sub FormCalendar_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         UpdateBlockSizes()
     End Sub
 
-    ' Helper to resize existing blocks without reloading the database
     Private Sub UpdateBlockSizes()
         If dayContainer.Controls.Count > 0 Then
-            ' Calculate new size based on current container size
-            ' We divide by 7 columns and 6 rows
-            ' We subtract 12 pixels to account for margins and borders
             Dim newWidth As Integer = (dayContainer.ClientSize.Width / 7) - 12
             Dim newHeight As Integer = (dayContainer.ClientSize.Height / 6) - 12
-
-            ' Apply to all blocks
             For Each ctrl As Control In dayContainer.Controls
                 ctrl.Size = New Size(newWidth, newHeight)
             Next
@@ -31,28 +21,25 @@ Public Class FormCalendar
     End Sub
 
     Private Sub DisplayDays(month As Integer, year As Integer)
-        ' 1. Update the Header Label
-        Dim monthName As String = New DateTime(year, month, 1).ToString("MMMM yyyy")
-        lblMonthYear.Text = monthName.ToUpper()
-
-        ' 2. Clear the container
+        lblMonthYear.Text = New DateTime(year, month, 1).ToString("MMMM yyyy").ToUpper()
         dayContainer.Controls.Clear()
 
-        ' 3. Calculate start day and days in month
         Dim startOfTheMonth As New DateTime(year, month, 1)
         Dim daysInMonth As Integer = DateTime.DaysInMonth(year, month)
         Dim startDayOfWeek As Integer = Convert.ToInt32(startOfTheMonth.DayOfWeek)
-
-        ' Calculate Size Dynamically
         Dim blockWidth As Integer = (dayContainer.ClientSize.Width / 7) - 12
         Dim blockHeight As Integer = (dayContainer.ClientSize.Height / 6) - 12
 
-        ' 4. Connect to DB to get events
+        ' --- CONNECT TO DB ---
         Dim evtManager As New EventManager()
-        Dim jobDays As List(Of Integer) = evtManager.GetJobDays(month, year)
+
+        ' 1. Fetch Job Colors (Dictionary of Day -> List of Colors)
+        Dim jobColors As Dictionary(Of Integer, List(Of Color)) = evtManager.GetJobColorsForMonth(month, year)
+
+        ' 2. Fetch Inspections (List of Days) - Keeping Inspections simple (Green) for now
         Dim inspectDays As List(Of Integer) = evtManager.GetInspectionDays(month, year)
 
-        ' 5. Create "Blank" blocks for days before the 1st of the month
+        ' Create Blanks
         For i As Integer = 1 To startDayOfWeek
             Dim blank As New UC_DayBlock()
             blank.SetDay("")
@@ -61,30 +48,30 @@ Public Class FormCalendar
             dayContainer.Controls.Add(blank)
         Next
 
-        ' 6. Create actual Day blocks
+        ' Create Days
         For i As Integer = 1 To daysInMonth
             Dim dayBlock As New UC_DayBlock()
             dayBlock.SetDay(i.ToString())
             dayBlock.Size = New Size(blockWidth, blockHeight)
-
-            ' =========================================================
-            ' THIS IS THE FIX! Make sure this line is exactly here:
-            ' We construct a Date object using the current Year, Month, and Loop Index (Day)
-            ' =========================================================
             dayBlock.FullDate = New DateTime(year, month, i)
-            ' =========================================================
 
-            ' Check if this day has a Job (Orange Dot)
-            If jobDays.Contains(i) Then
-                dayBlock.AddEventDot(Color.Orange)
+            ' --- A. ADD JOB DOTS (Based on Status Color) ---
+            If jobColors.ContainsKey(i) Then
+                ' Loop through every job on this day and add its specific color dot
+                For Each c As Color In jobColors(i)
+                    dayBlock.AddEventDot(c)
+                Next
             End If
 
-            ' Check if this day has an Inspection (Green Dot)
-            If inspectDays.Contains(i) Then
-                dayBlock.AddEventDot(Color.LightGreen)
-            End If
+            ' --- B. ADD INSPECTION DOTS (Standard Green) ---
+            ' We check count to add multiple dots if multiple inspections exist (optional logic)
+            Dim inspectionCount As Integer = inspectDays.Where(Function(x) x = i).Count()
+            For k As Integer = 1 To inspectionCount
+                ' Use a distinct color for inspections so they don't look like "Completed" jobs
+                dayBlock.AddEventDot(Color.LimeGreen)
+            Next
 
-            ' Highlight "Today"
+            ' Highlight Today
             If i = DateTime.Now.Day AndAlso month = DateTime.Now.Month AndAlso year = DateTime.Now.Year Then
                 dayBlock.BackColor = Color.LightYellow
             End If
@@ -110,6 +97,4 @@ Public Class FormCalendar
         End If
         DisplayDays(currentMonth, currentYear)
     End Sub
-
-
 End Class

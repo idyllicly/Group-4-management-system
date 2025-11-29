@@ -150,4 +150,12 @@ Public Class SideNavControl
         FormCalendar.Show()
 
     End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Dashboard.Show()
+    End Sub
+
+    Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        timeline_page.Show()
+    End Sub
 End Class

@@ -32,6 +32,7 @@
         Dim isSuccess As Boolean = accManager.ValidateLogin(UserText.Text, PassText.Text)
 
         If isSuccess Then
+            AppState.CurrentUserRole = "Super Admin"
             MessageBox.Show("Login Successful! Welcome.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' HIDE current login form
@@ -43,6 +44,8 @@
         Else
             MessageBox.Show("Invalid Username or Password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
+
+
     End Sub
 
 End Class

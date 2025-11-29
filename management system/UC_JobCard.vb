@@ -1,32 +1,28 @@
 ﻿Public Class UC_JobCard
-    ' Setup the visuals
-    Public Sub SetData(title As String, time As String, bgColor As Color)
-        ' 1. Set the Text
+    ' Property to hold the ID
+    Public Property JobID As Integer = 0
+
+    ' Updated SetData to accept JobID
+    Public Sub SetData(id As Integer, title As String, time As String, bgColor As Color)
+        Me.JobID = id ' Store the ID
+
         lblTitle.Text = title
         lblTime.Text = time
-
-        ' 2. Set the Background Color
         Me.BackColor = bgColor
 
-        ' 3. Styling & Dimensions
-        Me.Size = New Size(350, 75) ' Increased height slightly to fit both lines comfortably
-        Me.Padding = New Padding(10)
-
-        ' 4. FIX: Force the Label Positions (Layout)
-        ' This ensures they don't overlap even if they are stacked in the Designer
-
-        ' Title goes to Top-Left
+        ' (Keep your existing styling/centering code here...)
+        Me.Size = New Size(350, 75)
         lblTitle.Location = New Point(15, 10)
-        lblTitle.AutoSize = True
-        lblTitle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
-        lblTitle.ForeColor = Color.Black
-        lblTitle.BackColor = Color.Transparent ' Ensure it doesn't block background
-
-        ' Time goes Below the Title
         lblTime.Location = New Point(15, 35)
-        lblTime.AutoSize = True
-        lblTime.Font = New Font("Segoe UI", 9, FontStyle.Regular)
-        lblTime.ForeColor = Color.Black
-        lblTime.BackColor = Color.Transparent
+    End Sub
+
+    ' CLICK EVENT: Open the Details Form
+    Private Sub UC_JobCard_Click(sender As Object, e As EventArgs) Handles MyBase.Click, lblTitle.Click, lblTime.Click
+        If JobID > 0 Then
+            ' Create the details form and pass the ID
+            Dim detailsForm As New FormJobDetails()
+            detailsForm.TargetJobID = Me.JobID
+            detailsForm.ShowDialog()
+        End If
     End Sub
 End Class
