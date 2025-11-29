@@ -23,46 +23,75 @@ Partial Class timeline_page
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.MainTimelinePanel = New System.Windows.Forms.FlowLayoutPanel()
-        Me.UserControl11 = New management_system.NavigationControl()
+        Me.PageLabel1 = New management_system.PageLabel()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.SideNavControl1 = New management_system.SideNavControl()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MainTimelinePanel
         '
-        Me.MainTimelinePanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MainTimelinePanel.AutoScroll = True
+        Me.MainTimelinePanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainTimelinePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.MainTimelinePanel.Location = New System.Drawing.Point(92, 115)
+        Me.MainTimelinePanel.Location = New System.Drawing.Point(420, 3)
         Me.MainTimelinePanel.Name = "MainTimelinePanel"
-        Me.MainTimelinePanel.Size = New System.Drawing.Size(643, 568)
+        Me.MainTimelinePanel.Size = New System.Drawing.Size(1343, 1121)
         Me.MainTimelinePanel.TabIndex = 0
         Me.MainTimelinePanel.WrapContents = False
         '
-        'UserControl11
+        'PageLabel1
         '
-        Me.UserControl11.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.UserControl11.BackColor = System.Drawing.Color.White
-        Me.UserControl11.Location = New System.Drawing.Point(-4, 1)
-        Me.UserControl11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.UserControl11.Name = "UserControl11"
-        Me.UserControl11.Size = New System.Drawing.Size(815, 94)
-        Me.UserControl11.TabIndex = 1
+        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
+        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
+        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PageLabel1.Name = "PageLabel1"
+        Me.PageLabel1.Size = New System.Drawing.Size(1766, 142)
+        Me.PageLabel1.TabIndex = 1
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 417.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.MainTimelinePanel, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.SideNavControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 142)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1766, 1127)
+        Me.TableLayoutPanel1.TabIndex = 2
+        '
+        'SideNavControl1
+        '
+        Me.SideNavControl1.BackColor = System.Drawing.Color.White
+        Me.SideNavControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SideNavControl1.Location = New System.Drawing.Point(3, 4)
+        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SideNavControl1.Name = "SideNavControl1"
+        Me.SideNavControl1.Size = New System.Drawing.Size(411, 1119)
+        Me.SideNavControl1.TabIndex = 1
         '
         'timeline_page
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(815, 542)
-        Me.Controls.Add(Me.UserControl11)
-        Me.Controls.Add(Me.MainTimelinePanel)
+        Me.ClientSize = New System.Drawing.Size(1766, 1269)
+        Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Controls.Add(Me.PageLabel1)
         Me.Name = "timeline_page"
         Me.Text = "timeline_page"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents MainTimelinePanel As FlowLayoutPanel
-    Friend WithEvents UserControl11 As NavigationControl
+    Friend WithEvents PageLabel1 As PageLabel
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents SideNavControl1 As SideNavControl
 End Class

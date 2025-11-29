@@ -1,4 +1,6 @@
-﻿Public Class FormJobDetails
+﻿Imports System.Drawing
+
+Public Class FormJobDetails
     ' Property to receive the ID
     Public Property TargetJobID As Integer = 0
 
@@ -56,18 +58,46 @@
             Else
                 lblStatus.ForeColor = Color.White
             End If
+
+            ' --- 3. NEW: Button Visibility Logic ---
+
+            ' A. "Assign Technician" Button (Button5)
+            ' Hide if job is already assigned, active, completed, or cancelled.
+            ' Show ONLY if status is 'Pending' or 'Follow Up' (and unassigned)
+            If status.ToLower() = "pending" Or status.ToLower() = "follow up" Then
+                btnAssign.Visible = True
+            Else
+                btnAssign.Visible = False
+            End If
+
+            ' B. "Revisit" Button (Button1)
+            ' Show ONLY if job is Completed.
+            If status.ToLower() = "completed" Then
+                btnRevisit.Visible = True
+            Else
+                btnRevisit.Visible = False
+            End If
+
         Else
             MessageBox.Show("Job details not found!")
             Me.Close()
         End If
     End Sub
 
+    ' Keep your Assign Technician click event
     Private Sub btnAssign_Click(sender As Object, e As EventArgs) Handles btnAssign.Click
         Dim selectPage As New SelectTechPage()
         selectPage.TargetJobID = Me.TargetJobID ' Pass the current Job ID
         selectPage.ShowDialog()
 
-        ' Reload data after assignment to show new status
+        ' Reload data after assignment to show new status and update button visibility
         LoadJobData()
     End Sub
+
+    ' You can add logic for the Revisit button (Button1) here later
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRevisit.Click
+        MessageBox.Show("This will create a new Follow-up job based on this one.", "Revisit Feature")
+        ' Logic to duplicate this job with "Follow Up" status can go here
+    End Sub
+
 End Class

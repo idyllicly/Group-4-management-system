@@ -1,81 +1,85 @@
-﻿
-Imports System.Linq
+﻿Imports System.Linq
 Imports System.Windows.Forms
+Imports MySql.Data.MySqlClient
+Imports System.Drawing
 
 Public Class timeline_page
+    Dim db As New DatabaseConnection()
+    Dim evtManager As New EventManager()
+
+    ' Updated Data Class to include ID
+    Public Class TimelineData
+        Public Property JobID As Integer ' Added JobID
+        Public Property Title As String
+        Public Property ClientName As String
+        Public Property EventDate As DateTime
+        Public Property Status As String
+    End Class
 
     Private Sub timeline_page_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTimelineData()
     End Sub
 
     Private Sub LoadTimelineData()
-        ' --- 1. Get and sort your data ---
-        ' Make sure the data is sorted by date for the grouping to be in order
-        Dim timelineData = GetDataFromDatabase().OrderBy(Function(item) item.EventDate).ToList()
+        Dim timelineList As New List(Of TimelineData)()
 
-        ' --- 2. Group the data by month and year ---
-        ' This is the key! It creates groups like "October 2025", "November 2025"
-        Dim groupedData = timelineData.GroupBy(Function(item) item.EventDate.ToString("MMMM yyyy"))
+        ' Updated Query to fetch JobID
+        Dim sql As String = "SELECT j.JobID, j.ScheduleDate, j.JobStatus, s.ServiceInclusion, c.CFirstName, c.CLastName " &
+                            "FROM tbl_job j " &
+                            "JOIN tbl_client c ON j.ClientID = c.ClientID " &
+                            "JOIN tbl_service s ON j.ServiceID = s.ServiceID " &
+                            "ORDER BY j.ScheduleDate ASC"
 
-        ' --- 3. Clear the main panel ---
-        MainTimelinePanel.Controls.Clear() ' Assuming your panel is named MainTimelinePanel
+        Dim dt As DataTable = db.ExecuteSelect(sql)
 
-        ' --- 4. Loop through each MONTH group ---
+        For Each row As DataRow In dt.Rows
+            Dim dateVal As DateTime
+            If DateTime.TryParse(row("ScheduleDate").ToString(), dateVal) Then
+                Dim item As New TimelineData()
+                item.JobID = Convert.ToInt32(row("JobID")) ' Get ID
+                item.EventDate = dateVal
+                item.Title = row("ServiceInclusion").ToString()
+                item.ClientName = row("CFirstName").ToString() & " " & row("CLastName").ToString()
+                item.Status = row("JobStatus").ToString()
+
+                timelineList.Add(item)
+            End If
+        Next
+
+        Dim groupedData = timelineList.GroupBy(Function(item) item.EventDate.ToString("MMMM yyyy"))
+
+        MainTimelinePanel.Controls.Clear()
+
         For Each monthGroup In groupedData
-            ' --- A. Create the Month Label (e.g., "October 2025") ---
             Dim monthLabel As New Label()
-            monthLabel.Text = monthGroup.Key ' The Key is the month/year string
+            monthLabel.Text = monthGroup.Key.ToUpper()
             monthLabel.Font = New Font("Arial", 16, FontStyle.Bold)
+            monthLabel.ForeColor = Color.DarkSlateBlue
             monthLabel.AutoSize = True
-            monthLabel.Margin = New Padding(10, 20, 10, 10) ' Give it space
+            monthLabel.Margin = New Padding(20, 30, 10, 10)
             MainTimelinePanel.Controls.Add(monthLabel)
 
-            ' --- B. Create a NEW horizontal panel for this month's jobs ---
             Dim monthItemsPanel As New FlowLayoutPanel()
-            monthItemsPanel.FlowDirection = FlowDirection.LeftToRight ' Stack jobs side-by-side
-            monthItemsPanel.WrapContents = True ' Let them wrap to the next line
-            monthItemsPanel.AutoSize = True ' Let panel grow as tall as needed
-            monthItemsPanel.MaximumSize = New Size(MainTimelinePanel.Width - 25, 0) ' Fit parent width
-            monthItemsPanel.MinimumSize = New Size(MainTimelinePanel.Width - 25, 100) ' Set a min width
+            monthItemsPanel.FlowDirection = FlowDirection.LeftToRight
+            monthItemsPanel.WrapContents = True
+            monthItemsPanel.AutoSize = True
+            monthItemsPanel.MaximumSize = New Size(MainTimelinePanel.Width - 40, 0)
+            monthItemsPanel.Margin = New Padding(20, 0, 0, 20)
 
-            ' --- C. Loop through all JOBS in this month ---
-            For Each itemData In monthGroup
-                ' Create your blue box template
+            For Each job In monthGroup
                 Dim newItem As New TimelineItemControl()
-                newItem.Populate(itemData.Title, itemData.Details, itemData.EventDate)
 
-                ' Add the job box to the HORIZONTAL panel
+                ' Pass the JobID here!
+                newItem.Populate(job.JobID, job.Title, "Client: " & job.ClientName, job.EventDate)
+
+                newItem.SetColor(evtManager.GetStatusColor(job.Status))
+                newItem.Margin = New Padding(0, 0, 15, 15)
+
                 monthItemsPanel.Controls.Add(newItem)
             Next
 
-            ' --- D. Add the new horizontal panel to the MAIN vertical panel ---
             MainTimelinePanel.Controls.Add(monthItemsPanel)
         Next
     End Sub
-
-    ' (Your existing GetDataFromDatabase and TimelineEvent class are here)
-    ' ...
-#Region "Database and Data Class Stub"
-    Private Function GetDataFromDatabase() As List(Of TimelineEvent)
-        Dim fakeList As New List(Of TimelineEvent)
-        fakeList.Add(New TimelineEvent("Job in progress", "Fix the login bug", New Date(2025, 10, 1)))
-        fakeList.Add(New TimelineEvent("Follow-up Job", "Call the client", New Date(2025, 10, 5)))
-        fakeList.Add(New TimelineEvent("New Feature", "Add timeline", New Date(2025, 10, 15))) ' 3rd item for Oct
-        fakeList.Add(New TimelineEvent("Completed Job", "Database migration", New Date(2025, 11, 5)))
-        fakeList.Add(New TimelineEvent("Follow-up Job", "Send invoice", New Date(2025, 11, 6)))
-        Return fakeList
-    End Function
-
-    Public Class TimelineEvent
-        Public Property Title As String
-        Public Property Details As String
-        Public Property EventDate As Date
-        Public Sub New(t As String, d As String, dt As Date)
-            Title = t
-            Details = d
-            EventDate = dt
-        End Sub
-    End Class
-#End Region
 
 End Class

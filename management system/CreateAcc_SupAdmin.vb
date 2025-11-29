@@ -137,7 +137,7 @@ Public Class CreateAcc_SupAdmin
         If MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.Yes Then
 
             ' Prepare Variables
-            Dim accType As String = If(RadioButton2.Checked, "Admin", "Technician")
+            Dim accType As String = "Admin" 'If(RadioButton2.Checked, "Admin", "Technician")
             Dim fullName As String = OvalTextBox9.Text.Trim()
 
             Dim nameParts As String() = fullName.Split(" "c)
@@ -191,5 +191,9 @@ Public Class CreateAcc_SupAdmin
     End Sub
 
     Private Sub SideNavControl1_Load(sender As Object, e As EventArgs)
+    End Sub
+
+    Private Sub OvalComboBox1_Load(sender As Object, e As EventArgs) Handles OvalComboBox1.Load
+
     End Sub
 End Class

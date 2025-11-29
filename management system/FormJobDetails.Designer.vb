@@ -69,7 +69,7 @@ Partial Class FormJobDetails
         Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(439, 23)
+        Me.lblStatus.Location = New System.Drawing.Point(286, 17)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(98, 32)
         Me.lblStatus.TabIndex = 13
@@ -91,9 +91,11 @@ Partial Class FormJobDetails
         'btnAssign
         '
         Me.btnAssign.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAssign.Location = New System.Drawing.Point(406, 3)
+        Me.btnAssign.AutoSize = True
+        Me.btnAssign.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnAssign.Location = New System.Drawing.Point(435, 3)
         Me.btnAssign.Name = "btnAssign"
-        Me.btnAssign.Size = New System.Drawing.Size(170, 36)
+        Me.btnAssign.Size = New System.Drawing.Size(141, 30)
         Me.btnAssign.TabIndex = 4
         Me.btnAssign.Text = "assign technician"
         Me.btnAssign.UseVisualStyleBackColor = True
@@ -101,9 +103,11 @@ Partial Class FormJobDetails
         'btnMarkComplete
         '
         Me.btnMarkComplete.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnMarkComplete.Location = New System.Drawing.Point(22, 45)
+        Me.btnMarkComplete.AutoSize = True
+        Me.btnMarkComplete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnMarkComplete.Location = New System.Drawing.Point(22, 46)
         Me.btnMarkComplete.Name = "btnMarkComplete"
-        Me.btnMarkComplete.Size = New System.Drawing.Size(158, 31)
+        Me.btnMarkComplete.Size = New System.Drawing.Size(144, 30)
         Me.btnMarkComplete.TabIndex = 3
         Me.btnMarkComplete.Text = "mark as complete"
         Me.btnMarkComplete.UseVisualStyleBackColor = True
@@ -111,9 +115,11 @@ Partial Class FormJobDetails
         'btnRevisit
         '
         Me.btnRevisit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRevisit.Location = New System.Drawing.Point(340, 45)
+        Me.btnRevisit.AutoSize = True
+        Me.btnRevisit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnRevisit.Location = New System.Drawing.Point(361, 46)
         Me.btnRevisit.Name = "btnRevisit"
-        Me.btnRevisit.Size = New System.Drawing.Size(80, 31)
+        Me.btnRevisit.Size = New System.Drawing.Size(59, 30)
         Me.btnRevisit.TabIndex = 0
         Me.btnRevisit.Text = "revisit"
         Me.btnRevisit.UseVisualStyleBackColor = True
@@ -121,9 +127,11 @@ Partial Class FormJobDetails
         'btnEdit
         '
         Me.btnEdit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEdit.Location = New System.Drawing.Point(426, 45)
+        Me.btnEdit.AutoSize = True
+        Me.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnEdit.Location = New System.Drawing.Point(456, 46)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(75, 31)
+        Me.btnEdit.Size = New System.Drawing.Size(45, 30)
         Me.btnEdit.TabIndex = 1
         Me.btnEdit.Text = "edit"
         Me.btnEdit.UseVisualStyleBackColor = True
@@ -131,11 +139,13 @@ Partial Class FormJobDetails
         'btnDelete
         '
         Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDelete.Location = New System.Drawing.Point(507, 45)
+        Me.btnDelete.AutoSize = True
+        Me.btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.btnDelete.Location = New System.Drawing.Point(517, 46)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(75, 31)
+        Me.btnDelete.Size = New System.Drawing.Size(65, 30)
         Me.btnDelete.TabIndex = 2
-        Me.btnDelete.Text = "delete"
+        Me.btnDelete.Text = "cancel"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'descriptionText
@@ -267,6 +277,7 @@ Partial Class FormJobDetails
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
