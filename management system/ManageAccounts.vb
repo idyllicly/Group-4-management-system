@@ -1,152 +1,160 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Windows.Forms
-Imports System.Data
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.IO
+Imports System.Windows.Forms
+Imports MySql.Data.MySqlClient
+Imports System.Data
+Imports System.Collections.Generic
 
 Public Class ManageAccounts
-    ' Create an instance of your DB Connection helper
-    Dim db As New DatabaseConnection()
+
+    ' ⭐️ Uses the DatabaseConnection helper instance for consistent DB access ⭐️
+    Private ReadOnly db As New DatabaseConnection()
+
+    ' Define spacing constants for the Panel layout
+    Private Const CARD_SPACING As Integer = 10
+    Private Const CARD_X_START As Integer = 10
+
+    ' ----------------------------------------------------
+    ' | 1. FORM LOADING & FLOATING BUTTON
+    ' ----------------------------------------------------
 
     Private Sub ManageAccounts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Ensure the panel designed for displaying account cards is scrollable
-        If Panel2 IsNot Nothing Then
-            Panel2.AutoScroll = True
-        End If
-
-        LoadAccounts()
+        ' Assumes Button1 is the plus button and Panel2 is the scrolling container.
+        MakeButtonFloating(Button1, Panel2)
+        LoadAccountCards()
     End Sub
 
     ''' <summary>
-    ''' Fetches user accounts from DB and generates cards, now including profile pictures.
+    ''' Moves a control (like a button) to the main form to achieve a fixed, floating effect.
     ''' </summary>
-    Public Sub LoadAccounts()
-        Dim targetPanel As Panel = Panel2 ' Assuming Panel2 is the container for the cards
+    Private Sub MakeButtonFloating(ByVal btn As Button, ByVal scrollContainer As Control)
+        If btn Is Nothing OrElse scrollContainer Is Nothing Then Return
 
-        ' ⭐️ AGGRESSIVE SCROLL FIX 1: Reset scroll position before loading to eliminate previous gaps.
-        If targetPanel IsNot Nothing Then
-            targetPanel.AutoScrollPosition = New Point(0, 0)
-            targetPanel.AutoScroll = False ' Temporarily disable scroll to prevent flicker/jumping
-        End If
-        ' -------------------------------------------------------------------
+        Dim currentX As Integer = btn.Location.X + scrollContainer.Location.X
+        Dim currentY As Integer = btn.Location.Y + scrollContainer.Location.Y
 
-        ' 1. Clear existing cards to prevent duplication on refresh
-        For i As Integer = targetPanel.Controls.Count - 1 To 0 Step -1
-            Dim ctrl = targetPanel.Controls(i)
-            If TypeOf ctrl Is AccCard Then
-                targetPanel.Controls.Remove(ctrl)
-                ctrl.Dispose()
-            End If
-        Next
-
-        ' 2. Fetch Data
-        Dim sqlQuery As String = "SELECT AccountID, AUsername, AccType, APicture FROM tbl_account"
-        Dim dt As DataTable = db.ExecuteSelect(sqlQuery)
-
-        ' 3. Layout Settings
-        ' LAYOUT FIX: Reduced startY to minimize the gap between the header and the first card.
-        Dim startY As Integer = 5
-        Dim gap As Integer = 10
-
-        ' 4. Loop through rows and create cards
-        For Each row As DataRow In dt.Rows
-            Dim newCard As New AccCard()
-
-            ' Set Properties
-            newCard.UserID = Convert.ToInt32(row("AccountID"))
-            newCard.UserName = row("AUsername").ToString() & " (" & row("AccType").ToString() & ")"
-
-            ' --- LOAD IMAGE DATA ---
-            If row("APicture") IsNot DBNull.Value AndAlso TypeOf row("APicture") Is Byte() Then
-                Dim pictureBytes As Byte() = CType(row("APicture"), Byte())
-                newCard.SetPictureFromBytes(pictureBytes)
-            Else
-                newCard.SetPictureFromBytes(Nothing)
-            End If
-            ' -----------------------------
-
-            ' Positioning
-            newCard.Left = 57
-            newCard.Top = startY
-
-            ' Update next Y position
-            startY += newCard.Height + gap
-
-            ' Connect the event handler
-            AddHandler newCard.ActionRequested, AddressOf GlobalActionHandler
-
-            ' Add to Panel
-            targetPanel.Controls.Add(newCard)
-        Next
-
-        ' ⭐️ AGGRESSIVE SCROLL FIX 2: Re-enable AutoScroll and reset position after drawing.
-        If targetPanel IsNot Nothing Then
-            targetPanel.AutoScroll = True
-            ' Use BeginInvoke to ensure the reset happens after the form engine finishes layout calculation.
-            targetPanel.BeginInvoke(
-                New Action(
-                    Sub()
-                        targetPanel.AutoScrollPosition = New Point(0, 0)
-                    End Sub
-                )
-            )
-        End If
+        btn.Parent = Me
+        btn.Location = New Point(currentX, currentY)
+        btn.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btn.BringToFront()
     End Sub
 
+    ' ----------------------------------------------------
+    ' | 2. ACCOUNT CARD LOADING (Uses db.ExecuteSelect)
+    ' ----------------------------------------------------
+
     ''' <summary>
-    ''' The universal handler for all account card actions (View, Edit, Delete).
+    ''' Clears the list and reloads all account cards from the database.
     ''' </summary>
-    Private Sub GlobalActionHandler(UserID As Integer, Action As String)
-        Select Case Action
-            Case "Edit"
-                EditAccountPage.TargetUserID = UserID
-                ' Ensures form state is reset and data is loaded
-                EditAccountPage.LoadAccountData(UserID)
-                Me.Hide()
-                EditAccountPage.Show()
+    Public Sub LoadAccountCards()
 
-            Case "View"
-                Me.Hide()
-                ViewAccDetailsvb.TargetUserID = UserID
-                ViewAccDetailsvb.Show()
+        Panel2.Controls.Clear()
+        Dim nextYPosition As Integer = CARD_SPACING
 
-            Case "Delete"
-                If MessageBox.Show("Are you sure you want to permanently delete this account? This cannot be undone.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+        ' Query selects all necessary user data for the card
+        Dim query As String = "SELECT AccountID, AccType, AFirstName, ALastName, AMiddleName, APicture FROM tbl_account ORDER BY ALastName, AFirstName"
 
-                    Dim sql As String = "DELETE FROM tbl_account WHERE AccountID = @id"
-                    Dim params As New Dictionary(Of String, Object)
-                    params.Add("@id", UserID)
+        Try
+            ' Execute query using the DatabaseConnection helper
+            Dim dt As DataTable = db.ExecuteSelect(query, New Dictionary(Of String, Object))
 
-                    Dim result As Integer = db.ExecuteAction(sql, params)
+            For Each row As DataRow In dt.Rows
+                Dim card As New AccCard()
 
-                    If result > 0 Then
-                        MessageBox.Show("Account Deleted Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        ' Refresh List immediately
-                        LoadAccounts()
-                    Else
-                        MessageBox.Show("Deletion failed or account not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
+                ' ⭐️ Set the position and size for the card ⭐️
+                card.Location = New Point(CARD_X_START, nextYPosition)
+                card.Width = Panel2.ClientSize.Width - (CARD_X_START * 2)
+
+                ' A. Set Card Properties
+                card.UserID = CType(row("AccountID"), Integer)
+                card.UserName = $"{row("AFirstName")} {row("ALastName")} ({row("AccType")})"
+
+                ' B. Load Picture Data
+                If Not row.IsNull("APicture") Then
+                    Dim pictureData As Byte() = DirectCast(row("APicture"), Byte())
+                    card.SetPictureFromBytes(pictureData)
                 End If
-        End Select
+
+                ' C. ⭐️ CRITICAL FIX: Wire up the custom event handler ⭐️
+                AddHandler card.ActionRequested, AddressOf AccCard_ActionRequested
+
+                ' D. Add to the scrollable container
+                Panel2.Controls.Add(card)
+
+                ' Update the Y-position for the NEXT card
+                nextYPosition += card.Height + CARD_SPACING
+            Next
+
+        Catch ex As Exception
+            ' The helper usually handles the DB message, this catches application-level errors.
+            MessageBox.Show($"Error loading account data: {ex.Message}", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        ' Set Scrollable Area
+        Panel2.AutoScroll = True
+        Panel2.AutoScrollMinSize = New Size(0, nextYPosition)
+        Panel2.PerformLayout()
+        Panel2.Refresh()
     End Sub
 
-    ' --- Navigation Button Handler (Leads to the Create Account form) ---
+    ' ----------------------------------------------------
+    ' | 3. ACC CARD EVENT HANDLER (View/Edit/Delete Logic)
+    ' ----------------------------------------------------
+
+    ''' <summary>
+    ''' Handles the custom ActionRequested event raised by the AccCard control.
+    ''' </summary>
+    Private Sub AccCard_ActionRequested(ByVal cardUserID As Integer, ByVal Action As String)
+
+        If Action = "Edit" Then
+            Dim editForm As New EditAccountPage()
+            editForm.ParentManageAccountsForm = Me ' Used to refresh this form after editing
+            editForm.TargetUserID = cardUserID
+
+            editForm.LoadAccountData(cardUserID) ' Assumes this method exists on EditAccountPage
+            editForm.ShowDialog()
+
+        ElseIf Action = "Delete" Then
+
+            Dim result As DialogResult = MessageBox.Show($"Are you sure you want to delete Account ID: {cardUserID}?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+
+            If result = DialogResult.Yes Then
+
+                Dim sqlDelete As String = "DELETE FROM tbl_account WHERE AccountID = @id"
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("@id", cardUserID)
+
+                Try
+                    ' Execute delete action using the DatabaseConnection helper
+                    Dim rowsAffected As Integer = db.ExecuteAction(sqlDelete, params)
+                    If rowsAffected > 0 Then
+                        MessageBox.Show($"Account ID: {cardUserID} deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LoadAccountCards() ' Refresh list immediately
+                    Else
+                        MessageBox.Show("Deletion failed. Account not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                Catch ex As Exception
+                    MessageBox.Show($"Error deleting account: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
+
+        ElseIf Action = "View" Then
+            Dim viewForm As New ViewAccDetailsvb()
+            viewForm.TargetUserID = cardUserID
+            viewForm.ShowDialog()
+        End If
+
+    End Sub
+
+    ' ----------------------------------------------------
+    ' | 4. BUTTON CLICK EVENTS (Plus Button)
+    ' ----------------------------------------------------
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Hide()
-        CreateAcc_SupAdmin.Show()
+        ' Assumes CreateAcc_SupAdmin is the next form to open
+        Dim createForm As New CreateAcc_SupAdmin()
+        createForm.Show()
     End Sub
-
-    ' --- Designer-Generated Event Handlers (Kept for compatibility) ---
-    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
-    End Sub
-
-    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
-    End Sub
-
-    Private Sub PictureBox7_Click(sender As Object, e As EventArgs)
-        Me.Hide()
-        CreateAcc_SupAdmin.Show()
-    End Sub
-
 
 End Class

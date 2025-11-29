@@ -26,7 +26,6 @@ Partial Class ManageAccounts
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.AccCard1 = New management_system.AccCard()
-        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SideNavControl1 = New management_system.SideNavControl()
@@ -45,7 +44,7 @@ Partial Class ManageAccounts
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Location = New System.Drawing.Point(368, 114)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1164, 1201)
+        Me.Panel1.Size = New System.Drawing.Size(1164, 1156)
         Me.Panel1.TabIndex = 17
         '
         'Panel2
@@ -57,11 +56,10 @@ Partial Class ManageAccounts
         Me.Panel2.BackColor = System.Drawing.Color.White
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.AccCard1)
-        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel2.Location = New System.Drawing.Point(40, 96)
+        Me.Panel2.Location = New System.Drawing.Point(40, 92)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1107, 861)
+        Me.Panel2.Size = New System.Drawing.Size(1165, 816)
         Me.Panel2.TabIndex = 18
         '
         'Button1
@@ -69,7 +67,7 @@ Partial Class ManageAccounts
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.Image = Global.management_system.My.Resources.Resources.buton123456
-        Me.Button1.Location = New System.Drawing.Point(1017, 802)
+        Me.Button1.Location = New System.Drawing.Point(1102, 755)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(51, 45)
         Me.Button1.TabIndex = 0
@@ -78,22 +76,14 @@ Partial Class ManageAccounts
         'AccCard1
         '
         Me.AccCard1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.AccCard1.Location = New System.Drawing.Point(57, 4)
+        Me.AccCard1.Location = New System.Drawing.Point(58, 30)
         Me.AccCard1.Margin = New System.Windows.Forms.Padding(4)
         Me.AccCard1.Name = "AccCard1"
-        Me.AccCard1.Size = New System.Drawing.Size(656, 259)
+        Me.AccCard1.Size = New System.Drawing.Size(980, 260)
         Me.AccCard1.TabIndex = 18
         Me.AccCard1.UserID = 0
         Me.AccCard1.UserImage = Nothing
         Me.AccCard1.UserName = "AccountNAME"
-        '
-        'Panel4
-        '
-        Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel4.Location = New System.Drawing.Point(1017, 802)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(51, 45)
-        Me.Panel4.TabIndex = 17
         '
         'Panel3
         '
@@ -139,7 +129,7 @@ Partial Class ManageAccounts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1515, 1100)
+        Me.ClientSize = New System.Drawing.Size(1515, 1055)
         Me.Controls.Add(Me.SideNavControl1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PageLabel1)
@@ -157,7 +147,6 @@ Partial Class ManageAccounts
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label1 As Label
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel2 As Panel
     Friend WithEvents AccCard1 As AccCard

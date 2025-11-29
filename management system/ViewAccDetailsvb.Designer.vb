@@ -23,17 +23,12 @@ Partial Class ViewAccDetailsvb
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ViewAccDetailsvb))
-        Me.PageLabel1 = New management_system.PageLabel()
-        Me.SideNavControl1 = New management_system.SideNavControl()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TechPanel = New System.Windows.Forms.Panel()
         Me.TechDesc = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.accType = New System.Windows.Forms.Label()
         Me.TechName = New System.Windows.Forms.Label()
         Me.PicturePanel = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
@@ -45,33 +40,19 @@ Partial Class ViewAccDetailsvb
         Me.TechEmail = New System.Windows.Forms.Label()
         Me.TechNumber = New System.Windows.Forms.Label()
         Me.TechPicture = New System.Windows.Forms.PictureBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.OvalButton3 = New management_system.OvalButton()
+        Me.PageLabel1 = New management_system.PageLabel()
+        Me.SideNavControl1 = New management_system.SideNavControl()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
         Me.TechPanel.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.PicturePanel.SuspendLayout()
         CType(Me.TechPicture, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'PageLabel1
-        '
-        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
-        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
-        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.PageLabel1.Name = "PageLabel1"
-        Me.PageLabel1.Size = New System.Drawing.Size(1429, 114)
-        Me.PageLabel1.TabIndex = 34
-        '
-        'SideNavControl1
-        '
-        Me.SideNavControl1.BackColor = System.Drawing.Color.White
-        Me.SideNavControl1.Location = New System.Drawing.Point(0, 100)
-        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.SideNavControl1.Name = "SideNavControl1"
-        Me.SideNavControl1.Size = New System.Drawing.Size(371, 999)
-        Me.SideNavControl1.TabIndex = 35
         '
         'Panel1
         '
@@ -80,9 +61,9 @@ Partial Class ViewAccDetailsvb
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.MediumPurple
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(377, 112)
+        Me.Panel1.Location = New System.Drawing.Point(381, 112)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1164, 1201)
+        Me.Panel1.Size = New System.Drawing.Size(1659, 1156)
         Me.Panel1.TabIndex = 36
         '
         'Panel2
@@ -92,54 +73,13 @@ Partial Class ViewAccDetailsvb
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.AutoScroll = True
         Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.Controls.Add(Me.OvalButton3)
         Me.Panel2.Controls.Add(Me.TechPanel)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel2.Location = New System.Drawing.Point(40, 96)
+        Me.Panel2.Location = New System.Drawing.Point(36, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1107, 861)
+        Me.Panel2.Size = New System.Drawing.Size(1507, 909)
         Me.Panel2.TabIndex = 18
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.Image = Global.management_system.My.Resources.Resources.buton123456
-        Me.Button1.Location = New System.Drawing.Point(1017, 802)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(51, 45)
-        Me.Button1.TabIndex = 0
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Panel4
-        '
-        Me.Panel4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel4.Location = New System.Drawing.Point(1017, 802)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(51, 45)
-        Me.Panel4.TabIndex = 17
-        '
-        'Panel3
-        '
-        Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Location = New System.Drawing.Point(417, 112)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1012, 100)
-        Me.Panel3.TabIndex = 19
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(50, 36)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(223, 36)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Account Details"
         '
         'TechPanel
         '
@@ -150,16 +90,16 @@ Partial Class ViewAccDetailsvb
         Me.TechPanel.Controls.Add(Me.TechDesc)
         Me.TechPanel.Controls.Add(Me.Panel5)
         Me.TechPanel.Controls.Add(Me.PicturePanel)
-        Me.TechPanel.Location = New System.Drawing.Point(57, 116)
+        Me.TechPanel.Location = New System.Drawing.Point(57, 168)
         Me.TechPanel.Name = "TechPanel"
-        Me.TechPanel.Size = New System.Drawing.Size(1100, 598)
+        Me.TechPanel.Size = New System.Drawing.Size(1429, 657)
         Me.TechPanel.TabIndex = 18
         '
         'TechDesc
         '
         Me.TechDesc.AutoSize = True
         Me.TechDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TechDesc.Location = New System.Drawing.Point(332, 174)
+        Me.TechDesc.Location = New System.Drawing.Point(318, 170)
         Me.TechDesc.MaximumSize = New System.Drawing.Size(1050, 0)
         Me.TechDesc.Name = "TechDesc"
         Me.TechDesc.Size = New System.Drawing.Size(1020, 325)
@@ -168,19 +108,31 @@ Partial Class ViewAccDetailsvb
         '
         'Panel5
         '
+        Me.Panel5.Controls.Add(Me.accType)
         Me.Panel5.Controls.Add(Me.TechName)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(312, 0)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(788, 154)
+        Me.Panel5.Size = New System.Drawing.Size(1117, 154)
         Me.Panel5.TabIndex = 1
+        '
+        'accType
+        '
+        Me.accType.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.accType.AutoSize = True
+        Me.accType.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.accType.Location = New System.Drawing.Point(78, 105)
+        Me.accType.Name = "accType"
+        Me.accType.Size = New System.Drawing.Size(102, 30)
+        Me.accType.TabIndex = 2
+        Me.accType.Text = "Acctype"
         '
         'TechName
         '
         Me.TechName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TechName.AutoSize = True
         Me.TechName.Font = New System.Drawing.Font("Microsoft YaHei", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TechName.Location = New System.Drawing.Point(41, 73)
+        Me.TechName.Location = New System.Drawing.Point(40, 65)
         Me.TechName.Name = "TechName"
         Me.TechName.Size = New System.Drawing.Size(105, 40)
         Me.TechName.TabIndex = 1
@@ -201,7 +153,7 @@ Partial Class ViewAccDetailsvb
         Me.PicturePanel.Dock = System.Windows.Forms.DockStyle.Left
         Me.PicturePanel.Location = New System.Drawing.Point(0, 0)
         Me.PicturePanel.Name = "PicturePanel"
-        Me.PicturePanel.Size = New System.Drawing.Size(312, 598)
+        Me.PicturePanel.Size = New System.Drawing.Size(312, 657)
         Me.PicturePanel.TabIndex = 0
         '
         'Panel6
@@ -286,18 +238,75 @@ Partial Class ViewAccDetailsvb
         '
         Me.TechPicture.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TechPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.TechPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TechPicture.Location = New System.Drawing.Point(29, 53)
         Me.TechPicture.Name = "TechPicture"
         Me.TechPicture.Size = New System.Drawing.Size(260, 221)
+        Me.TechPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.TechPicture.TabIndex = 0
         Me.TechPicture.TabStop = False
+        '
+        'Panel3
+        '
+        Me.Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.Label1)
+        Me.Panel3.Location = New System.Drawing.Point(417, 112)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1507, 100)
+        Me.Panel3.TabIndex = 19
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(41, 35)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(223, 36)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Account Details"
+        '
+        'OvalButton3
+        '
+        Me.OvalButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.OvalButton3.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.OvalButton3.CornerRadius = 15
+        Me.OvalButton3.FlatAppearance.BorderSize = 0
+        Me.OvalButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.OvalButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OvalButton3.Location = New System.Drawing.Point(1309, 831)
+        Me.OvalButton3.Name = "OvalButton3"
+        Me.OvalButton3.Size = New System.Drawing.Size(177, 61)
+        Me.OvalButton3.TabIndex = 126
+        Me.OvalButton3.Text = "Back"
+        Me.OvalButton3.UseVisualStyleBackColor = False
+        '
+        'PageLabel1
+        '
+        Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
+        Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
+        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PageLabel1.Name = "PageLabel1"
+        Me.PageLabel1.Size = New System.Drawing.Size(1924, 114)
+        Me.PageLabel1.TabIndex = 34
+        '
+        'SideNavControl1
+        '
+        Me.SideNavControl1.BackColor = System.Drawing.Color.White
+        Me.SideNavControl1.Location = New System.Drawing.Point(0, 100)
+        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SideNavControl1.Name = "SideNavControl1"
+        Me.SideNavControl1.Size = New System.Drawing.Size(384, 999)
+        Me.SideNavControl1.TabIndex = 35
         '
         'ViewAccDetailsvb
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1429, 1100)
+        Me.ClientSize = New System.Drawing.Size(1924, 1055)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PageLabel1)
@@ -307,8 +316,6 @@ Partial Class ViewAccDetailsvb
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
         Me.TechPanel.ResumeLayout(False)
         Me.TechPanel.PerformLayout()
         Me.Panel5.ResumeLayout(False)
@@ -316,6 +323,8 @@ Partial Class ViewAccDetailsvb
         Me.PicturePanel.ResumeLayout(False)
         Me.PicturePanel.PerformLayout()
         CType(Me.TechPicture, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -324,8 +333,6 @@ Partial Class ViewAccDetailsvb
     Friend WithEvents SideNavControl1 As SideNavControl
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents TechPanel As Panel
@@ -342,4 +349,6 @@ Partial Class ViewAccDetailsvb
     Friend WithEvents TechEmail As Label
     Friend WithEvents TechNumber As Label
     Friend WithEvents TechPicture As PictureBox
+    Friend WithEvents accType As Label
+    Friend WithEvents OvalButton3 As OvalButton
 End Class

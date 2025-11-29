@@ -310,7 +310,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox13.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox13.Name = "OvalTextBox13"
         Me.OvalTextBox13.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox13.Size = New System.Drawing.Size(487, 65)
+        Me.OvalTextBox13.Size = New System.Drawing.Size(432, 52)
         Me.OvalTextBox13.TabIndex = 122
         '
         'OvalTextBox6
@@ -322,7 +322,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox6.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox6.Name = "OvalTextBox6"
         Me.OvalTextBox6.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox6.Size = New System.Drawing.Size(487, 65)
+        Me.OvalTextBox6.Size = New System.Drawing.Size(432, 52)
         Me.OvalTextBox6.TabIndex = 121
         '
         'OvalTextBox5
@@ -334,7 +334,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox5.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox5.Name = "OvalTextBox5"
         Me.OvalTextBox5.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox5.Size = New System.Drawing.Size(487, 65)
+        Me.OvalTextBox5.Size = New System.Drawing.Size(432, 52)
         Me.OvalTextBox5.TabIndex = 120
         '
         'OvalTextBox4
@@ -346,7 +346,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox4.Name = "OvalTextBox4"
         Me.OvalTextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox4.Size = New System.Drawing.Size(487, 65)
+        Me.OvalTextBox4.Size = New System.Drawing.Size(432, 52)
         Me.OvalTextBox4.TabIndex = 119
         '
         'OvalTextBox12
@@ -358,7 +358,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox12.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox12.Name = "OvalTextBox12"
         Me.OvalTextBox12.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox12.Size = New System.Drawing.Size(487, 65)
+        Me.OvalTextBox12.Size = New System.Drawing.Size(432, 52)
         Me.OvalTextBox12.TabIndex = 118
         '
         'OvalTextBox9
@@ -370,7 +370,7 @@ Partial Class CreateAcc_SupAdmin
         Me.OvalTextBox9.Margin = New System.Windows.Forms.Padding(2)
         Me.OvalTextBox9.Name = "OvalTextBox9"
         Me.OvalTextBox9.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.OvalTextBox9.Size = New System.Drawing.Size(487, 64)
+        Me.OvalTextBox9.Size = New System.Drawing.Size(432, 51)
         Me.OvalTextBox9.TabIndex = 115
         '
         'Label11

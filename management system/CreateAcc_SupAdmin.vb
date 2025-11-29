@@ -1,190 +1,201 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Windows.Forms
+Imports System.Data
+Imports System.Drawing
+Imports System.IO
+Imports System.Linq
+Imports System.Collections.Generic
 
 Public Class CreateAcc_SupAdmin
 
-    ' --- FIX: Declare the Database Connection ---
-    Dim db As New DatabaseConnection()
+    ' Direct instance of DatabaseConnection
+    Private ReadOnly db As New DatabaseConnection()
 
-    ' Variable to hold the file path
     Private currentImagePath As String = String.Empty
 
-    ' ⭐️ GDI+ FIX: Store the file contents in memory (Byte Array) instead of the file path (String).
-    Private PrivatePictureData As Byte() = Nothing
+    ' --- Form Initialization ---
+    Private Sub CreateAcc_SupAdmin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitializeAccountTypeComboBox()
+    End Sub
 
-    ' -------------------------------------------
-    ' |           GDI+ FIX HELPERS              |
-    ' -------------------------------------------
+    ' --- HELPER: Load Account Types into the ComboBox ---
+    Private Sub InitializeAccountTypeComboBox()
+        ' Assuming OvalComboBox1 is your ComboBox control
+        If OvalComboBox1 Is Nothing Then Return
+
+        OvalComboBox1.Items.Clear()
+        OvalComboBox1.Items.Add("Super Admin")
+        OvalComboBox1.Items.Add("Admin")
+        OvalComboBox1.Items.Add("User")
+
+        If OvalComboBox1.Items.Contains("Admin") Then
+            OvalComboBox1.Text = "Admin"
+        ElseIf OvalComboBox1.Items.Count > 0 Then
+            OvalComboBox1.Text = CStr(OvalComboBox1.Items(0))
+        End If
+    End Sub
+
+    ' --- HELPER: Clears all input controls ---
+    Private Sub ClearAllInputControls()
+        ' Clear TextBoxes
+        OvalTextBox9.Text = String.Empty  ' Full Name
+        OvalTextBox10.Text = String.Empty ' Username
+        OvalTextBox1.Text = String.Empty   ' Password 
+        OvalTextBox2.Text = String.Empty   ' Address
+        OvalTextBox3.Text = String.Empty   ' Email
+        OvalTextBox4.Text = String.Empty   ' Contact No.
+        OvalTextBox5.Text = String.Empty   ' Facebook
+        OvalTextBox6.Text = String.Empty   ' Viber
+
+        ' Clear ComboBox
+        OvalComboBox1.Text = String.Empty
+        InitializeAccountTypeComboBox()
+
+        ' Clear PictureBox
+        If PictureBox1.Image IsNot Nothing Then
+            PictureBox1.Image.Dispose()
+            PictureBox1.Image = Nothing
+        End If
+        currentImagePath = String.Empty
+    End Sub
 
     ''' <summary>
-    ''' Safely disposes of the PictureBox's Image object to release any file locks (GDI+ Fix).
+    ''' Splits a full name into First, Middle, and Last name, returning a String array.
+    ''' Index 0 = FirstName, Index 1 = MiddleName, Index 2 = LastName
     ''' </summary>
-    Private Sub DisposePictureBoxImage()
-        If PictureBox1 IsNot Nothing AndAlso PictureBox1.Image IsNot Nothing Then
-            Try
-                PictureBox1.Image.Dispose()
-                PictureBox1.Image = Nothing
-            Catch
-                ' Ignore disposal errors if the resource is already released
-            End Try
-        End If
-    End Sub
-
-    ' --- 1. IMAGE UPLOAD BUTTON (DEFINITIVE GDI+ FIX: Read to Memory Immediately) ---
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        OpenFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*"
-        OpenFileDialog1.Title = "Select an Account Picture"
-
-        If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            If PictureBox1.Image IsNot Nothing Then
-                PictureBox1.Image.Dispose()
-            End If
-
-            Try
-                PictureBox1.Image = Image.FromFile(OpenFileDialog1.FileName)
-                Button1.Visible = False
-            Catch ex As Exception
-                MessageBox.Show("Error loading image: " & ex.Message & vbCrLf & "Please try again or select a different file.", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                PrivatePictureData = Nothing
-                Button1.Visible = True
-            End Try
-        End If
-    End Sub
-
-    ' --- 2. FORM CLOSE/HIDE HANDLER (GDI+ FIX) ---
-    Private Sub CreateAcc_SupAdmin_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        ' Ensure image resource is disposed when the form is closed/hidden to prevent GDI+ errors
-        DisposePictureBoxImage()
-    End Sub
-
-    ' --- 2. INITIALIZE FIREBASE ON LOAD ---
-    Private Sub CreateAcc_SupAdmin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        FirebaseManager.Initialize()
-    End Sub
-
-    ' --- 3. CLEAR / BACK BUTTON ---
-    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        If MsgBox("Are you sure you want to clear all the inputs?", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "Warning") = MsgBoxResult.Yes Then
-            ClearAllInputControls(Me)
-            Button1.Visible = True
-        End If
-    End Sub
-
-    ' --- 4. CLEARING LOGIC ---
-    Private Sub ClearAllInputControls(parent As Control)
-        For Each ctrl As Control In parent.Controls
-            If TypeOf ctrl Is TextBox Then
-                CType(ctrl, TextBox).Text = String.Empty
-            ElseIf TypeOf ctrl Is ComboBox Then
-                CType(ctrl, ComboBox).SelectedIndex = -1
-            ElseIf TypeOf ctrl Is CheckBox Then
-                CType(ctrl, CheckBox).Checked = False
-            ElseIf TypeOf ctrl Is RadioButton Then
-                CType(ctrl, RadioButton).Checked = False
-            ElseIf TypeOf ctrl Is PictureBox Then
-                Dim picBox As PictureBox = CType(ctrl, PictureBox)
-                If picBox.Image IsNot Nothing Then
-                    picBox.Image.Dispose()
-                    picBox.Image = Nothing
-                End If
-                currentImagePath = String.Empty
-                OpenFileDialog1.FileName = String.Empty
-            ElseIf ctrl.Controls.Count > 0 Then
-                ClearAllInputControls(ctrl)
-            End If
-        Next
-    End Sub
-
-    ' --- Name Splitting Function ---
-    Private Function SplitFullName(ByVal fullName As String) As (FirstName As String, MiddleName As String, LastName As String)
+    Private Function SplitFullName(ByVal fullName As String) As String()
         Dim parts As String() = fullName.Split(New Char() {" "c}, StringSplitOptions.RemoveEmptyEntries)
         Dim firstName As String = ""
         Dim middleName As String = ""
         Dim lastName As String = ""
 
-        If parts.Length = 1 Then
-            lastName = parts(0)
-        ElseIf parts.Length >= 2 Then
-            lastName = parts(parts.Length - 1)
-            firstName = parts(0)
-            If parts.Length > 2 Then
+        Select Case parts.Length
+            Case 0
+                ' All names are empty
+            Case 1
+                lastName = parts(0)
+            Case 2
+                firstName = parts(0)
+                lastName = parts(1)
+            Case Is >= 3
+                firstName = parts(0)
+                lastName = parts(parts.Length - 1)
+                ' Join all parts between first and last name to form the middle name
                 middleName = String.Join(" ", parts.Skip(1).Take(parts.Length - 2).ToArray())
-            End If
-        End If
-        Return (firstName, middleName, lastName)
+        End Select
+
+        Return New String() {firstName, middleName, lastName}
     End Function
 
-    ' --- 5. SUBMIT BUTTON (ASYNC For Firebase) ---
-    Private Async Sub OvalButton3_Click(sender As Object, e As EventArgs) Handles OvalButton3.Click
+    ' ------------------------------------------------------------------
+    ' --- A. SAVE BUTTON (OvalButton3) ---
+    ' ------------------------------------------------------------------
+    Private Sub OvalButton3_Click(sender As Object, e As EventArgs) Handles OvalButton3.Click
+        ' 1. COLLECT DATA
+        ' Using the safe access method (If object IsNot Nothing) but simplified variable assignment
+        Dim fullNameInput As String = OvalTextBox9.Text.Trim()
+        Dim usernameInput As String = OvalTextBox10.Text.Trim()
+        Dim passwordInput As String = OvalTextBox1.Text.Trim()
+        Dim addressInput As String = OvalTextBox2.Text.Trim()
+        Dim emailInput As String = OvalTextBox3.Text.Trim()
+        Dim contactInput As String = OvalTextBox4.Text.Trim()
+        Dim facebookInput As String = OvalTextBox5.Text.Trim()
+        Dim viberInput As String = OvalTextBox6.Text.Trim()
+        Dim accTypeInput As String = OvalComboBox1.Text.Trim()
 
-        ' --- A. SECURITY CHECK ---
-        If AppState.CurrentUserRole <> "Super Admin" Then
-            MessageBox.Show("Access Denied: Only Super Admins can create new accounts.", "Security Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' 2. PICTURE DATA
+        Dim pictureData As Byte() = Nothing
+        If Not String.IsNullOrEmpty(currentImagePath) Then
+            Try
+                pictureData = File.ReadAllBytes(currentImagePath)
+            Catch ex As Exception
+                MessageBox.Show($"Error reading image file: {ex.Message}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End Try
+        End If
+
+        ' 3. SPLIT NAME (Using array to fix potential syntax error)
+        Dim nameParts() As String = SplitFullName(fullNameInput)
+        Dim fName As String = nameParts(0) ' First Name
+        Dim mName As String = nameParts(1) ' Middle Name
+        Dim lName As String = nameParts(2) ' Last Name
+
+        ' 4. VALIDATION (Basic Check for Required Fields)
+        If String.IsNullOrEmpty(fName) OrElse String.IsNullOrEmpty(lName) OrElse String.IsNullOrEmpty(usernameInput) OrElse String.IsNullOrEmpty(passwordInput) Then
+            MessageBox.Show("First Name, Last Name, Username, and Password are required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' --- B. VALIDATION ---
-        If OvalTextBox10.Text <> OvalTextBox11.Text Then
-            MessageBox.Show("Passwords do not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+        ' 5. CONFIRMATION AND DATABASE CALL
+        If MessageBox.Show("Are you sure you want to save this new account?", "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
-        If String.IsNullOrWhiteSpace(OvalTextBox5.Text) Or String.IsNullOrWhiteSpace(OvalTextBox10.Text) Then
-            MessageBox.Show("Email and Password are required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+            ' Database Logic (SQL and Parameter Assembly)
+            Dim sql As String = "INSERT INTO tbl_account (AccType, ALastName, AFirstName, AMiddleName, AUsername, APassword, AAddress, AEmail, AContactNo, AFacebook, AViber, APicture) " &
+                                "VALUES (@AccType, @ALastName, @AFirstName, @AMiddleName, @AUsername, @APassword, @AAddress, @AEmail, @AContactNo, @AFacebook, @AViber, @APicture)"
 
-        ' --- C. CONFIRMATION ---
-        If MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            Dim parameters As New Dictionary(Of String, Object) From {
+                {"@AccType", accTypeInput},
+                {"@ALastName", lName},
+                {"@AFirstName", fName},
+                {"@AMiddleName", mName}, ' Fixed to use mName (Index 1)
+                {"@AUsername", usernameInput},
+                {"@APassword", passwordInput},
+                {"@AAddress", addressInput},
+                {"@AEmail", emailInput},
+                {"@AContactNo", contactInput},
+                {"@AFacebook", facebookInput},
+                {"@AViber", viberInput},
+                {"@APicture", pictureData} ' Handled as Nothing/DBNull in DatabaseConnection
+            }
 
-            ' Prepare Variables
-            Dim accType As String = "Admin" 'If(RadioButton2.Checked, "Admin", "Technician")
-            Dim fullName As String = OvalTextBox9.Text.Trim()
+            Try
+                Dim rowsAffected As Integer = db.ExecuteAction(sql, parameters)
 
-            Dim nameParts As String() = fullName.Split(" "c)
-            Dim fName As String = If(nameParts.Length > 0, nameParts(0), "")
-            Dim lName As String = If(nameParts.Length > 1, nameParts(nameParts.Length - 1), "")
-
-            ' --- D. SAVE TO MYSQL ---
-            Dim sql As String = "INSERT INTO tbl_account " &
-                                "(AccType, AUsername, APassword, AFirstName, ALastName, AMiddleName, AEmail, AContactno, AFacebook, AViber) " &
-                                "VALUES (@type, @user, @pass, @fname, @lname, '', @email, @contact, @fb, @viber)"
-
-            Dim params As New Dictionary(Of String, Object)
-            params.Add("@type", accType)
-            params.Add("@user", OvalTextBox2.Text)
-            params.Add("@pass", OvalTextBox10.Text)
-            params.Add("@fname", fName)
-            params.Add("@lname", lName)
-            params.Add("@email", OvalTextBox5.Text)
-            params.Add("@contact", OvalTextBox4.Text)
-            params.Add("@fb", OvalTextBox6.Text)
-            params.Add("@viber", OvalTextBox13.Text)
-
-            ' This line now works because 'db' is declared at the top!
-            Dim rows As Integer = db.ExecuteAction(sql, params)
-
-            ' --- E. SAVE TO FIREBASE ---
-            If rows > 0 Then
-                If accType = "Technician" Then
-                    Cursor = Cursors.WaitCursor
-
-                    Dim fbResult As String = Await FirebaseManager.CreateUser(OvalTextBox5.Text, OvalTextBox10.Text, fullName)
-
-                    Cursor = Cursors.Default
-
-                    If fbResult.StartsWith("Error") Then
-                        MessageBox.Show("MySQL Success, BUT Firebase Failed: " & fbResult, "Warning")
-                    Else
-                        MessageBox.Show("Success! Technician created in Database and Firebase.", "Complete")
-                    End If
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ClearAllInputControls()
                 Else
-                    MessageBox.Show("Admin account created in Database.", "Success")
+                    ' Failure handled by DatabaseConnection's MessageBox, which shows the MySQL error code
+                    ' We only need a generic failure message here as a fallback
                 End If
 
-                ClearAllInputControls(Me)
-                Button1.Visible = True
-            End If
+            Catch ex As Exception
+                MessageBox.Show($"Application error during account creation: {ex.Message}", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
+    End Sub
+
+    ' --- B. CLEAR OUTPUT BUTTON (btnBack_Click) ---
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        ClearAllInputControls()
+    End Sub
+
+    ' --- C. INSERT PHOTO BUTTON (Button1_Click) ---
+    Private Sub InsertPhotoButton_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.Title = "Select Account Picture"
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp"
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                Try
+                    currentImagePath = openFileDialog.FileName
+
+                    If PictureBox1.Image IsNot Nothing Then
+                        PictureBox1.Image.Dispose()
+                    End If
+
+                    ' Create a temporary copy to release the file lock immediately
+                    Using tempImage As Image = Image.FromFile(currentImagePath)
+                        PictureBox1.Image = CType(tempImage.Clone(), Image)
+                    End Using
+
+                    PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
+                Catch ex As Exception
+                    MessageBox.Show($"Error loading image: {ex.Message}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    currentImagePath = String.Empty
+                End Try
+            End If
+        End Using
     End Sub
 
     Private Sub NavigationControl1_Load(sender As Object, e As EventArgs)
