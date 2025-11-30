@@ -284,6 +284,12 @@
     <Compile Include="FormJobDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm_Main.Designer.vb">
+      <DependentUpon>frm_Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalVariables.vb" />
     <Compile Include="InquiryPage.Designer.vb">
       <DependentUpon>InquiryPage.vb</DependentUpon>
@@ -352,6 +358,48 @@
     <Compile Include="MySql\Data.vb" />
     <Compile Include="navigationControl.Designer.vb">
       <DependentUpon>NavigationControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcAccountManager.Designer.vb">
+      <DependentUpon>newUcAccountManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcAccountManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcBilling.Designer.vb">
+      <DependentUpon>newUcBilling.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcBilling.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcClientManager.Designer.vb">
+      <DependentUpon>newUcClientManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcClientManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcDashboard.Designer.vb">
+      <DependentUpon>newUcDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcDashboard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcInquiryManager.Designer.vb">
+      <DependentUpon>newUcInquiryManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcInquiryManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcPageHeader.Designer.vb">
+      <DependentUpon>newUcPageHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcPageHeader.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcSideNav.Designer.vb">
+      <DependentUpon>newUcSideNav.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcSideNav.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NotificationForm.Designer.vb">
       <DependentUpon>NotificationForm.vb</DependentUpon>
@@ -446,6 +494,12 @@
     <Compile Include="UC_DayBlock.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="uc_InquiryManager.Designer.vb">
+      <DependentUpon>uc_InquiryManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="uc_InquiryManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC_JobCard.Designer.vb">
       <DependentUpon>UC_JobCard.vb</DependentUpon>
     </Compile>
@@ -456,6 +510,12 @@
       <DependentUpon>NotifCard.vb</DependentUpon>
     </Compile>
     <Compile Include="NotifCard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="uc_NewContractEntry.Designer.vb">
+      <DependentUpon>uc_NewContractEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="uc_NewContractEntry.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ViewAccDetailsvb.Designer.vb">
@@ -502,6 +562,9 @@
     <EmbeddedResource Include="FormJobDetails.resx">
       <DependentUpon>FormJobDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_Main.resx">
+      <DependentUpon>frm_Main.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InquiryPage.resx">
       <DependentUpon>InquiryPage.vb</DependentUpon>
     </EmbeddedResource>
@@ -534,6 +597,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NavigationControl.resx">
       <DependentUpon>NavigationControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcAccountManager.resx">
+      <DependentUpon>newUcAccountManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcBilling.resx">
+      <DependentUpon>newUcBilling.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcClientManager.resx">
+      <DependentUpon>newUcClientManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcDashboard.resx">
+      <DependentUpon>newUcDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcInquiryManager.resx">
+      <DependentUpon>newUcInquiryManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcPageHeader.resx">
+      <DependentUpon>newUcPageHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcSideNav.resx">
+      <DependentUpon>newUcSideNav.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotificationForm.resx">
       <DependentUpon>NotificationForm.vb</DependentUpon>
@@ -582,6 +666,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NotifCard.resx">
       <DependentUpon>NotifCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uc_NewContractEntry.resx">
+      <DependentUpon>uc_NewContractEntry.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewAccDetailsvb.resx">
       <DependentUpon>ViewAccDetailsvb.vb</DependentUpon>

@@ -61,7 +61,7 @@ Partial Class FormJobDetails
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(420, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(602, 510)
+        Me.Panel1.Size = New System.Drawing.Size(1126, 1148)
         Me.Panel1.TabIndex = 0
         '
         'lblStatus
@@ -69,7 +69,7 @@ Partial Class FormJobDetails
         Me.lblStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(286, 17)
+        Me.lblStatus.Location = New System.Drawing.Point(810, 17)
         Me.lblStatus.Name = "lblStatus"
         Me.lblStatus.Size = New System.Drawing.Size(98, 32)
         Me.lblStatus.TabIndex = 13
@@ -83,9 +83,9 @@ Partial Class FormJobDetails
         Me.Panel2.Controls.Add(Me.btnEdit)
         Me.Panel2.Controls.Add(Me.btnDelete)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 410)
+        Me.Panel2.Location = New System.Drawing.Point(0, 1048)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(602, 100)
+        Me.Panel2.Size = New System.Drawing.Size(1126, 100)
         Me.Panel2.TabIndex = 12
         '
         'btnAssign
@@ -93,7 +93,7 @@ Partial Class FormJobDetails
         Me.btnAssign.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnAssign.AutoSize = True
         Me.btnAssign.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnAssign.Location = New System.Drawing.Point(435, 3)
+        Me.btnAssign.Location = New System.Drawing.Point(959, 3)
         Me.btnAssign.Name = "btnAssign"
         Me.btnAssign.Size = New System.Drawing.Size(141, 30)
         Me.btnAssign.TabIndex = 4
@@ -117,7 +117,7 @@ Partial Class FormJobDetails
         Me.btnRevisit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRevisit.AutoSize = True
         Me.btnRevisit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnRevisit.Location = New System.Drawing.Point(361, 46)
+        Me.btnRevisit.Location = New System.Drawing.Point(885, 46)
         Me.btnRevisit.Name = "btnRevisit"
         Me.btnRevisit.Size = New System.Drawing.Size(59, 30)
         Me.btnRevisit.TabIndex = 0
@@ -129,7 +129,7 @@ Partial Class FormJobDetails
         Me.btnEdit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEdit.AutoSize = True
         Me.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnEdit.Location = New System.Drawing.Point(456, 46)
+        Me.btnEdit.Location = New System.Drawing.Point(980, 46)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(45, 30)
         Me.btnEdit.TabIndex = 1
@@ -141,7 +141,7 @@ Partial Class FormJobDetails
         Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnDelete.AutoSize = True
         Me.btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.btnDelete.Location = New System.Drawing.Point(517, 46)
+        Me.btnDelete.Location = New System.Drawing.Point(1041, 46)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(65, 30)
         Me.btnDelete.TabIndex = 2
@@ -241,7 +241,7 @@ Partial Class FormJobDetails
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1025, 516)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1549, 1154)
         Me.TableLayoutPanel1.TabIndex = 3
         '
         'SideNavControl1
@@ -251,7 +251,7 @@ Partial Class FormJobDetails
         Me.SideNavControl1.Location = New System.Drawing.Point(3, 4)
         Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SideNavControl1.Name = "SideNavControl1"
-        Me.SideNavControl1.Size = New System.Drawing.Size(411, 508)
+        Me.SideNavControl1.Size = New System.Drawing.Size(411, 1146)
         Me.SideNavControl1.TabIndex = 1
         '
         'PageLabel1
@@ -261,14 +261,14 @@ Partial Class FormJobDetails
         Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
         Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PageLabel1.Name = "PageLabel1"
-        Me.PageLabel1.Size = New System.Drawing.Size(1025, 142)
+        Me.PageLabel1.Size = New System.Drawing.Size(1549, 142)
         Me.PageLabel1.TabIndex = 2
         '
         'FormJobDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1025, 658)
+        Me.ClientSize = New System.Drawing.Size(1549, 1296)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.PageLabel1)
         Me.Name = "FormJobDetails"
