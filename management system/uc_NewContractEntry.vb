@@ -4,10 +4,31 @@ Public Class uc_NewContractEntry
 
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
-    Private Sub uc_NewContractEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    ' Variables to hold data passed from the Quotation Manager
+    Private _pfClientID As Integer = 0
+    Private _pfServiceID As Integer = 0
+    Private _pfAmount As Decimal = 0
+    Private _pfQuoteID As Integer = 0 ' To track which quote generated this contract
 
+    Private Sub uc_NewContractEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadDropdowns()
-        CalculateEndDate() ' Init label
+
+        ' === APPLY PRE-FILLED DATA (If coming from a Quote) ===
+        If _pfClientID > 0 Then cmbClient.SelectedValue = _pfClientID
+        If _pfServiceID > 0 Then cmbService.SelectedValue = _pfServiceID
+        If _pfAmount > 0 Then txtAmount.Text = _pfAmount.ToString("0.00")
+
+        CalculateEndDate()
+    End Sub
+
+    ' ==========================================
+    ' 0. PRE-FILL METHOD (Called by Quote Manager)
+    ' ==========================================
+    Public Sub PreFillData(clientID As Integer, serviceID As Integer, amount As Decimal, quoteID As Integer)
+        _pfClientID = clientID
+        _pfServiceID = serviceID
+        _pfAmount = amount
+        _pfQuoteID = quoteID
     End Sub
 
     ' === 1. LOAD DATA ===
@@ -31,19 +52,18 @@ Public Class uc_NewContractEntry
                 cmbService.DisplayMember = "ServiceName"
                 cmbService.ValueMember = "ServiceID"
 
-                ' [FIX 2] Simplify Payment Terms Options
-                ' Instead of confusing text, we limit this to the Logic Drivers
+                ' Payment Terms
                 cmbPaymentTerms.Items.Clear()
                 cmbPaymentTerms.Items.Add("Full Payment")
                 cmbPaymentTerms.Items.Add("Installment")
-                cmbPaymentTerms.SelectedIndex = 0 ' Default to Full Payment
+                cmbPaymentTerms.SelectedIndex = 0
 
-                ' Update Pay Intervals (Added Quarterly)
+                ' Pay Intervals
                 cmbPayInterval.Items.Clear()
                 cmbPayInterval.Items.AddRange(New Object() {"Weekly", "Bi-Weekly", "Monthly", "Quarterly"})
-                cmbPayInterval.SelectedIndex = 2 ' Default Monthly
+                cmbPayInterval.SelectedIndex = 2
 
-                cmbFrequency.SelectedIndex = 0 ' Default Monthly
+                cmbFrequency.SelectedIndex = 0
 
             Catch ex As Exception
                 MessageBox.Show("Error loading data: " & ex.Message)
@@ -83,13 +103,11 @@ Public Class uc_NewContractEntry
         Dim endDate As Date = startDate.AddMonths(duration)
 
         Dim totalAmt As Decimal = Convert.ToDecimal(txtAmount.Text)
-        Dim freq As String = cmbFrequency.Text ' e.g., "Monthly"
-
-        ' [FIX 3] Use Payment Terms as the source of truth
+        Dim freq As String = cmbFrequency.Text
         Dim terms As String = cmbPaymentTerms.Text
 
-        ' Determine Days Interval based on Dropdown
-        Dim dayInterval As Integer = 30 ' Default
+        ' Determine Days Interval
+        Dim dayInterval As Integer = 30
         If freq = "Monthly" Then dayInterval = 30
         If freq = "Quarterly" Then dayInterval = 90
         If freq = "Bi-Monthly" Then dayInterval = 60
@@ -103,8 +121,8 @@ Public Class uc_NewContractEntry
                 ' A. INSERT CONTRACT
                 Dim sqlCon As String = "INSERT INTO tbl_Contracts " &
                                        "(ClientID, ServiceID, StartDate, DurationMonths, TotalAmount, " &
-                                       "ServiceFrequency, PaymentStatus, PaymentTerms, BalanceRemaining, VisitsCompleted) " &
-                                       "VALUES (@cid, @sid, @start, @dur, @amt, @freq, 'With Balance', @term, @amt, 0); " &
+                                       "ServiceFrequency, PaymentStatus, PaymentTerms, BalanceRemaining, VisitsCompleted, NextVisitDate) " &
+                                       "VALUES (@cid, @sid, @start, @dur, @amt, @freq, 'With Balance', @term, @amt, 0, @start); " &
                                        "SELECT LAST_INSERT_ID();"
 
                 Dim cmdCon As New MySqlCommand(sqlCon, conn, trans)
@@ -118,7 +136,7 @@ Public Class uc_NewContractEntry
 
                 Dim newContractID As Integer = Convert.ToInt32(cmdCon.ExecuteScalar())
 
-                ' B. GENERATE SCHEDULE LOOP (Service Visits)
+                ' B. GENERATE SCHEDULE LOOP
                 Dim nextDate As Date = startDate
                 Dim visitCount As Integer = 0
 
@@ -128,7 +146,7 @@ Public Class uc_NewContractEntry
                     If dayInterval > 0 Then
                         visitCount = Math.Ceiling((duration * 30) / dayInterval)
                     Else
-                        visitCount = 1 ' Fallback
+                        visitCount = 1
                     End If
                 End If
 
@@ -145,8 +163,7 @@ Public Class uc_NewContractEntry
                     If dayInterval > 0 Then nextDate = nextDate.AddDays(dayInterval)
                 Next
 
-                ' === C. GENERATE PAYMENT SCHEDULE ===
-                ' [FIX 4] Logic now depends on cmbPaymentTerms
+                ' C. GENERATE PAYMENT SCHEDULE
                 Dim payIntervalDays As Integer = 0
                 Dim isInstallment As Boolean = (cmbPaymentTerms.Text = "Installment")
 
@@ -154,10 +171,9 @@ Public Class uc_NewContractEntry
                     If cmbPayInterval.Text = "Weekly" Then payIntervalDays = 7
                     If cmbPayInterval.Text = "Bi-Weekly" Then payIntervalDays = 14
                     If cmbPayInterval.Text = "Monthly" Then payIntervalDays = 30
-                    If cmbPayInterval.Text = "Quarterly" Then payIntervalDays = 90 ' Added Quarterly
+                    If cmbPayInterval.Text = "Quarterly" Then payIntervalDays = 90
                 End If
 
-                ' Determine Count and Amount
                 Dim payCount As Integer = 1
                 Dim payAmount As Decimal = totalAmt
 
@@ -183,8 +199,19 @@ Public Class uc_NewContractEntry
                     If payIntervalDays > 0 Then nextPayDate = nextPayDate.AddDays(payIntervalDays)
                 Next
 
+                ' === D. UPDATE QUOTE STATUS (If this came from a Quote) ===
+                If _pfQuoteID > 0 Then
+                    Dim sqlUpdateQuote As String = "UPDATE tbl_quotations SET Status = 'Approved' WHERE QuoteID = @qid"
+                    Dim cmdUpdate As New MySqlCommand(sqlUpdateQuote, conn, trans)
+                    cmdUpdate.Parameters.AddWithValue("@qid", _pfQuoteID)
+                    cmdUpdate.ExecuteNonQuery()
+                End If
+
                 trans.Commit()
-                MessageBox.Show("Contract Saved! " & visitCount & " visits and " & payCount & " payments generated.")
+                MessageBox.Show("Contract Created Successfully!" & vbCrLf & "Generated " & visitCount & " visits and " & payCount & " payment schedules.")
+
+                ' Optional: Navigate back to Dashboard or clear form
+                ' ...
 
             Catch ex As Exception
                 trans.Rollback()
@@ -194,17 +221,15 @@ Public Class uc_NewContractEntry
     End Sub
 
     ' === VISUAL: Show/Hide Installment Options ===
-    ' [FIX 5] This event now handles cmbPaymentTerms instead of the deleted Mode combo
     Private Sub cmbPaymentTerms_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPaymentTerms.SelectedIndexChanged
         Dim isInstallment As Boolean = (cmbPaymentTerms.Text = "Installment")
 
-        ' Show controls only if Installment is selected
         lblTerms.Visible = isInstallment
         numInstallments.Visible = isInstallment
         lblInterval.Visible = isInstallment
         cmbPayInterval.Visible = isInstallment
         lblInstallmentAmt.Visible = isInstallment
-        lblFirstDue.Visible = True ' Always show first due date
+        lblFirstDue.Visible = True
         dtpFirstPayment.Visible = True
 
         CalculateInstallmentAmount()
@@ -219,7 +244,6 @@ Public Class uc_NewContractEntry
         If Not Decimal.TryParse(txtAmount.Text, total) Then Exit Sub
 
         Dim terms As Integer = 1
-        ' Only use the number box if we are in Installment mode
         If cmbPaymentTerms.Text = "Installment" Then
             terms = Convert.ToInt32(numInstallments.Value)
         End If

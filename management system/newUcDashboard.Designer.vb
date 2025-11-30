@@ -22,16 +22,17 @@ Partial Class newUcDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpViewDate = New System.Windows.Forms.DateTimePicker()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.dgvDailyJobs = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lblSelectedJob = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmbTechnician = New System.Windows.Forms.ComboBox()
         Me.btnAssignJob = New System.Windows.Forms.Button()
+        Me.cmbTechnician = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblSelectedJob = New System.Windows.Forms.Label()
         CType(Me.dgvDailyJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -78,7 +79,17 @@ Partial Class newUcDashboard
         Me.dgvDailyJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvDailyJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvDailyJobs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvDailyJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvDailyJobs.Location = New System.Drawing.Point(72, 180)
         Me.dgvDailyJobs.Name = "dgvDailyJobs"
         Me.dgvDailyJobs.ReadOnly = True
@@ -102,15 +113,22 @@ Partial Class newUcDashboard
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Dispatch Job"
         '
-        'lblSelectedJob
+        'btnAssignJob
         '
-        Me.lblSelectedJob.AutoSize = True
-        Me.lblSelectedJob.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedJob.Location = New System.Drawing.Point(26, 39)
-        Me.lblSelectedJob.Name = "lblSelectedJob"
-        Me.lblSelectedJob.Size = New System.Drawing.Size(177, 20)
-        Me.lblSelectedJob.TabIndex = 0
-        Me.lblSelectedJob.Text = "Select a Job above..."
+        Me.btnAssignJob.Location = New System.Drawing.Point(177, 97)
+        Me.btnAssignJob.Name = "btnAssignJob"
+        Me.btnAssignJob.Size = New System.Drawing.Size(151, 39)
+        Me.btnAssignJob.TabIndex = 3
+        Me.btnAssignJob.Text = "ASSIGN TECH"
+        Me.btnAssignJob.UseVisualStyleBackColor = True
+        '
+        'cmbTechnician
+        '
+        Me.cmbTechnician.FormattingEnabled = True
+        Me.cmbTechnician.Location = New System.Drawing.Point(177, 63)
+        Me.cmbTechnician.Name = "cmbTechnician"
+        Me.cmbTechnician.Size = New System.Drawing.Size(121, 28)
+        Me.cmbTechnician.TabIndex = 2
         '
         'Label3
         '
@@ -121,22 +139,15 @@ Partial Class newUcDashboard
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Assign Technician:"
         '
-        'cmbTechnician
+        'lblSelectedJob
         '
-        Me.cmbTechnician.FormattingEnabled = True
-        Me.cmbTechnician.Location = New System.Drawing.Point(177, 63)
-        Me.cmbTechnician.Name = "cmbTechnician"
-        Me.cmbTechnician.Size = New System.Drawing.Size(121, 28)
-        Me.cmbTechnician.TabIndex = 2
-        '
-        'btnAssignJob
-        '
-        Me.btnAssignJob.Location = New System.Drawing.Point(177, 97)
-        Me.btnAssignJob.Name = "btnAssignJob"
-        Me.btnAssignJob.Size = New System.Drawing.Size(151, 39)
-        Me.btnAssignJob.TabIndex = 3
-        Me.btnAssignJob.Text = "ASSIGN TECH"
-        Me.btnAssignJob.UseVisualStyleBackColor = True
+        Me.lblSelectedJob.AutoSize = True
+        Me.lblSelectedJob.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedJob.Location = New System.Drawing.Point(26, 39)
+        Me.lblSelectedJob.Name = "lblSelectedJob"
+        Me.lblSelectedJob.Size = New System.Drawing.Size(177, 20)
+        Me.lblSelectedJob.TabIndex = 0
+        Me.lblSelectedJob.Text = "Select a Job above..."
         '
         'newUcDashboard
         '

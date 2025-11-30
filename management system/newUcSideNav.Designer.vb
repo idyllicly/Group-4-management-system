@@ -24,23 +24,23 @@ Partial Class newUcSideNav
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(newUcSideNav))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.btnManageAccounts = New System.Windows.Forms.Button()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btnNavBilling = New System.Windows.Forms.Button()
         Me.btnNavTechs = New System.Windows.Forms.Button()
         Me.btnNavCalendar = New System.Windows.Forms.Button()
         Me.btnNavContracts = New System.Windows.Forms.Button()
         Me.btnNavClients = New System.Windows.Forms.Button()
+        Me.btnNavDashboard = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.btnNavDashboard = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,18 +91,6 @@ Partial Class newUcSideNav
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(284, 480)
         Me.TableLayoutPanel1.TabIndex = 35
         '
-        'PictureBox9
-        '
-        Me.PictureBox9.BackgroundImage = Global.management_system.My.Resources.Resources.envelope_letter_icon_symbol_png
-        Me.PictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox9.Location = New System.Drawing.Point(203, 424)
-        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(81, 52)
-        Me.PictureBox9.TabIndex = 44
-        Me.PictureBox9.TabStop = False
-        '
         'btnManageAccounts
         '
         Me.btnManageAccounts.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -112,18 +100,6 @@ Partial Class newUcSideNav
         Me.btnManageAccounts.TabIndex = 43
         Me.btnManageAccounts.Text = "Manage Accounts"
         Me.btnManageAccounts.UseVisualStyleBackColor = True
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.BackgroundImage = Global.management_system.My.Resources.Resources.envelope_letter_icon_symbol_png
-        Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox7.Location = New System.Drawing.Point(203, 364)
-        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(81, 52)
-        Me.PictureBox7.TabIndex = 42
-        Me.PictureBox7.TabStop = False
         '
         'Button1
         '
@@ -162,7 +138,7 @@ Partial Class newUcSideNav
         Me.btnNavCalendar.Name = "btnNavCalendar"
         Me.btnNavCalendar.Size = New System.Drawing.Size(194, 38)
         Me.btnNavCalendar.TabIndex = 38
-        Me.btnNavCalendar.Text = "Schedule / Dispatch"
+        Me.btnNavCalendar.Text = "Oculars"
         Me.btnNavCalendar.UseVisualStyleBackColor = True
         '
         'btnNavContracts
@@ -184,6 +160,53 @@ Partial Class newUcSideNav
         Me.btnNavClients.TabIndex = 36
         Me.btnNavClients.Text = "Client Management"
         Me.btnNavClients.UseVisualStyleBackColor = True
+        '
+        'btnNavDashboard
+        '
+        Me.btnNavDashboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(3, 11)
+        Me.btnNavDashboard.Name = "btnNavDashboard"
+        Me.btnNavDashboard.Size = New System.Drawing.Size(194, 38)
+        Me.btnNavDashboard.TabIndex = 35
+        Me.btnNavDashboard.Text = "Dashboard"
+        Me.btnNavDashboard.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(63, 216)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(257, 46)
+        Me.Label1.TabIndex = 36
+        Me.Label1.Text = "MAIN MENU"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.BackgroundImage = Global.management_system.My.Resources.Resources.envelope_letter_icon_symbol_png
+        Me.PictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox9.Location = New System.Drawing.Point(203, 424)
+        Me.PictureBox9.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(81, 52)
+        Me.PictureBox9.TabIndex = 44
+        Me.PictureBox9.TabStop = False
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.BackgroundImage = Global.management_system.My.Resources.Resources.envelope_letter_icon_symbol_png
+        Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox7.Location = New System.Drawing.Point(203, 364)
+        Me.PictureBox7.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(81, 52)
+        Me.PictureBox7.TabIndex = 42
+        Me.PictureBox7.TabStop = False
         '
         'PictureBox8
         '
@@ -259,28 +282,6 @@ Partial Class newUcSideNav
         Me.PictureBox4.TabIndex = 30
         Me.PictureBox4.TabStop = False
         '
-        'btnNavDashboard
-        '
-        Me.btnNavDashboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnNavDashboard.Location = New System.Drawing.Point(3, 11)
-        Me.btnNavDashboard.Name = "btnNavDashboard"
-        Me.btnNavDashboard.Size = New System.Drawing.Size(194, 38)
-        Me.btnNavDashboard.TabIndex = 35
-        Me.btnNavDashboard.Text = "Dashboard"
-        Me.btnNavDashboard.UseVisualStyleBackColor = True
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(63, 216)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(257, 46)
-        Me.Label1.TabIndex = 36
-        Me.Label1.Text = "MAIN MENU"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
         'PictureBox1
         '
         Me.PictureBox1.BackgroundImage = Global.management_system.My.Resources.Resources.RRCLogo
@@ -299,6 +300,7 @@ Partial Class newUcSideNav
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.DeepSkyBlue
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.PictureBox1)

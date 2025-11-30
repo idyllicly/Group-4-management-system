@@ -22,6 +22,7 @@ Partial Class newUcAccountManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.cmbFilterRole = New System.Windows.Forms.ComboBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -73,11 +74,23 @@ Partial Class newUcAccountManager
         '
         'dgvAccounts
         '
+        Me.dgvAccounts.AllowUserToAddRows = False
         Me.dgvAccounts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvAccounts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvAccounts.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvAccounts.Location = New System.Drawing.Point(38, 173)
         Me.dgvAccounts.Name = "dgvAccounts"
+        Me.dgvAccounts.ReadOnly = True
         Me.dgvAccounts.RowHeadersWidth = 62
         Me.dgvAccounts.RowTemplate.Height = 28
         Me.dgvAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -111,7 +124,7 @@ Partial Class newUcAccountManager
         '
         Me.btnDelete.Location = New System.Drawing.Point(26, 336)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(199, 29)
+        Me.btnDelete.Size = New System.Drawing.Size(280, 29)
         Me.btnDelete.TabIndex = 12
         Me.btnDelete.Text = "DELETE ACCOUNT"
         Me.btnDelete.UseVisualStyleBackColor = True
@@ -120,7 +133,7 @@ Partial Class newUcAccountManager
         '
         Me.btnUpdate.Location = New System.Drawing.Point(25, 305)
         Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(200, 26)
+        Me.btnUpdate.Size = New System.Drawing.Size(281, 26)
         Me.btnUpdate.TabIndex = 11
         Me.btnUpdate.Text = "UPDATE"
         Me.btnUpdate.UseVisualStyleBackColor = True
@@ -129,14 +142,14 @@ Partial Class newUcAccountManager
         '
         Me.btnSave.Location = New System.Drawing.Point(25, 271)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(200, 27)
+        Me.btnSave.Size = New System.Drawing.Size(281, 27)
         Me.btnSave.TabIndex = 10
         Me.btnSave.Text = "CREATE ACCOUNT"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'txtPhone
         '
-        Me.txtPhone.Location = New System.Drawing.Point(117, 210)
+        Me.txtPhone.Location = New System.Drawing.Point(185, 210)
         Me.txtPhone.Name = "txtPhone"
         Me.txtPhone.Size = New System.Drawing.Size(100, 26)
         Me.txtPhone.TabIndex = 9
@@ -154,7 +167,7 @@ Partial Class newUcAccountManager
         '
         Me.cmbRole.FormattingEnabled = True
         Me.cmbRole.Items.AddRange(New Object() {"Super Admin", "Admin", "Technician"})
-        Me.cmbRole.Location = New System.Drawing.Point(117, 166)
+        Me.cmbRole.Location = New System.Drawing.Point(185, 166)
         Me.cmbRole.Name = "cmbRole"
         Me.cmbRole.Size = New System.Drawing.Size(121, 28)
         Me.cmbRole.TabIndex = 7
@@ -170,7 +183,7 @@ Partial Class newUcAccountManager
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(144, 115)
+        Me.txtPassword.Location = New System.Drawing.Point(185, 115)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(100, 26)
@@ -187,7 +200,7 @@ Partial Class newUcAccountManager
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(156, 73)
+        Me.txtEmail.Location = New System.Drawing.Point(185, 73)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(100, 26)
         Me.txtEmail.TabIndex = 3
@@ -203,7 +216,7 @@ Partial Class newUcAccountManager
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(117, 32)
+        Me.txtName.Location = New System.Drawing.Point(185, 32)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(100, 26)
         Me.txtName.TabIndex = 1

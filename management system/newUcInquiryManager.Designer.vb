@@ -22,6 +22,7 @@ Partial Class newUcInquiryManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvClients = New System.Windows.Forms.DataGridView()
@@ -33,6 +34,8 @@ Partial Class newUcInquiryManager
         Me.dtpInspectDate = New System.Windows.Forms.DateTimePicker()
         Me.btnDispatch = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmbService = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.dgvClients, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -57,11 +60,23 @@ Partial Class newUcInquiryManager
         '
         'dgvClients
         '
+        Me.dgvClients.AllowUserToAddRows = False
         Me.dgvClients.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvClients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvClients.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvClients.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvClients.Location = New System.Drawing.Point(27, 133)
         Me.dgvClients.Name = "dgvClients"
+        Me.dgvClients.ReadOnly = True
         Me.dgvClients.RowHeadersWidth = 62
         Me.dgvClients.RowTemplate.Height = 28
         Me.dgvClients.Size = New System.Drawing.Size(339, 392)
@@ -108,7 +123,7 @@ Partial Class newUcInquiryManager
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 124)
+        Me.Label4.Location = New System.Drawing.Point(5, 216)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(126, 20)
         Me.Label4.TabIndex = 7
@@ -118,7 +133,7 @@ Partial Class newUcInquiryManager
         '
         Me.dtpInspectDate.CustomFormat = "MM/dd/yyyy hh:mm tt"
         Me.dtpInspectDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpInspectDate.Location = New System.Drawing.Point(160, 124)
+        Me.dtpInspectDate.Location = New System.Drawing.Point(152, 216)
         Me.dtpInspectDate.Name = "dtpInspectDate"
         Me.dtpInspectDate.Size = New System.Drawing.Size(182, 26)
         Me.dtpInspectDate.TabIndex = 8
@@ -135,6 +150,8 @@ Partial Class newUcInquiryManager
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.cmbService)
         Me.GroupBox1.Controls.Add(Me.dtpInspectDate)
         Me.GroupBox1.Controls.Add(Me.btnDispatch)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -148,6 +165,23 @@ Partial Class newUcInquiryManager
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Schedule Inspection"
+        '
+        'cmbService
+        '
+        Me.cmbService.FormattingEnabled = True
+        Me.cmbService.Location = New System.Drawing.Point(213, 118)
+        Me.cmbService.Name = "cmbService"
+        Me.cmbService.Size = New System.Drawing.Size(121, 28)
+        Me.cmbService.TabIndex = 10
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(21, 125)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 20)
+        Me.Label5.TabIndex = 11
+        Me.Label5.Text = "Service:"
         '
         'newUcInquiryManager
         '
@@ -178,4 +212,6 @@ Partial Class newUcInquiryManager
     Friend WithEvents dtpInspectDate As DateTimePicker
     Friend WithEvents btnDispatch As Button
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents cmbService As ComboBox
 End Class

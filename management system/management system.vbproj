@@ -395,6 +395,12 @@
     <Compile Include="newUcPageHeader.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="newUcQuoteManager.Designer.vb">
+      <DependentUpon>newUcQuoteManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcQuoteManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="newUcSideNav.Designer.vb">
       <DependentUpon>newUcSideNav.vb</DependentUpon>
     </Compile>
@@ -518,6 +524,7 @@
     <Compile Include="uc_NewContractEntry.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UiHelper.vb" />
     <Compile Include="ViewAccDetailsvb.Designer.vb">
       <DependentUpon>ViewAccDetailsvb.vb</DependentUpon>
     </Compile>
@@ -615,6 +622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newUcPageHeader.resx">
       <DependentUpon>newUcPageHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcQuoteManager.resx">
+      <DependentUpon>newUcQuoteManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newUcSideNav.resx">
       <DependentUpon>newUcSideNav.vb</DependentUpon>

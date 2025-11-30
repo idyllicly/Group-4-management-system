@@ -72,4 +72,8 @@
     Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
         NavigateTo(New newUcAccountManager(), "accounts")
     End Sub
+
+    Private Sub btnNavCalendar_Click(sender As Object, e As EventArgs) Handles btnNavCalendar.Click
+        NavigateTo(New newUcQuoteManager(), "Quotes")
+    End Sub
 End Class
