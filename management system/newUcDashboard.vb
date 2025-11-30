@@ -1,13 +1,198 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Globalization
 
 Public Class newUcDashboard
 
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
     Private _selectedJobID As Integer = 0
 
+    ' Calendar Variables
+    Private _currentMonth As Integer = DateTime.Now.Month
+    Private _currentYear As Integer = DateTime.Now.Year
+
+    ' ---------------------------------------------------------
+    ' 1. RESIZING LOGIC (The Math Fix)
+    ' ---------------------------------------------------------
+    Private Sub ResizeCalendarItems()
+        ' Guard clause to prevent crash if calendar is empty or disposed
+        If flpCalendar.Controls.Count = 0 Then Return
+
+        flpCalendar.SuspendLayout()
+
+        ' WIDTH MATH: Divide total width by 7 days
+        ' We subtract 25px for scrollbar safety and margins
+        Dim newWidth As Integer = CInt((flpCalendar.ClientSize.Width - 25) / 7)
+
+        ' HEIGHT MATH: Divide total height by 6 rows (max weeks in a month)
+        ' This ensures it fills the panel exactly, even if blocks become rectangles
+        Dim newHeight As Integer = CInt((flpCalendar.ClientSize.Height - 20) / 6)
+
+        ' Apply to all controls (Empty Panels & Day Tiles)
+        For Each ctrl As Control In flpCalendar.Controls
+            ctrl.Size = New Size(newWidth, newHeight)
+            ctrl.Margin = New Padding(1) ' Keep margin tight
+        Next
+
+        flpCalendar.ResumeLayout()
+    End Sub
+
+    ' Event to trigger resize when window/panel changes size
+    Private Sub flpCalendar_Resize(sender As Object, e As EventArgs) Handles flpCalendar.Resize
+        ResizeCalendarItems()
+    End Sub
+
+    ' ---------------------------------------------------------
+    ' 2. VISUAL UPDATE LOGIC (The Flicker Fix)
+    ' ---------------------------------------------------------
+    Private Sub UpdateSelectionVisuals()
+        ' Loop through existing blocks instead of reloading the whole calendar
+        For Each ctrl As Control In flpCalendar.Controls
+            ' We only care about the actual Day Tiles, not the empty spacers
+            If TypeOf ctrl Is ucCalendarDay Then
+                Dim tile As ucCalendarDay = CType(ctrl, ucCalendarDay)
+
+                ' Reset to default White
+                tile.BackColor = Color.White
+
+                ' Check if it is TODAY
+                If tile.DayDate.Date = DateTime.Now.Date Then
+                    tile.BackColor = Color.LightBlue
+                End If
+
+                ' Check if it is SELECTED (Matches the DateTimePicker)
+                If tile.DayDate.Date = dtpViewDate.Value.Date Then
+                    tile.BackColor = Color.LightGray
+                End If
+            End If
+        Next
+    End Sub
+
+    ' ---------------------------------------------------------
+    ' 3. CALENDAR GENERATION
+    ' ---------------------------------------------------------
+    Private Sub LoadCalendar()
+        flpCalendar.Controls.Clear()
+        flpCalendar.SuspendLayout() ' Stop flickering while drawing
+
+        ' A. Update Header Label
+        Dim strMonth As String = MonthName(_currentMonth)
+        lblMonthYear.Text = $"{strMonth.ToUpper()} {_currentYear}"
+
+        ' B. Get First Day of Month and Total Days
+        Dim startOfMonth As New DateTime(_currentYear, _currentMonth, 1)
+        Dim daysInMonth As Integer = DateTime.DaysInMonth(_currentYear, _currentMonth)
+        Dim startDayOfWeek As Integer = CInt(startOfMonth.DayOfWeek) ' Sunday = 0
+
+        ' C. GET JOB DATES FROM DATABASE (To show dots)
+        Dim jobDays As New List(Of Integer)
+        Using conn As New MySqlConnection(connString)
+            conn.Open()
+            ' We look at ScheduledDate to find matches in this month/year
+            Dim sql As String = "SELECT DISTINCT DAY(ScheduledDate) FROM tbl_JobOrders " &
+                                "WHERE MONTH(ScheduledDate) = @m AND YEAR(ScheduledDate) = @y"
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.AddWithValue("@m", _currentMonth)
+            cmd.Parameters.AddWithValue("@y", _currentYear)
+            Dim dr As MySqlDataReader = cmd.ExecuteReader()
+            While dr.Read()
+                jobDays.Add(dr.GetInt32(0))
+            End While
+        End Using
+
+        ' D. Generate Empty Slots (Padding for days before the 1st)
+        For i As Integer = 0 To startDayOfWeek - 1
+            Dim emptyPanel As New Panel()
+            ' Initial size doesn't matter, ResizeCalendarItems will fix it immediately
+            emptyPanel.Size = New Size(10, 10)
+            flpCalendar.Controls.Add(emptyPanel)
+        Next
+
+        ' E. Generate Actual Days
+        For day As Integer = 1 To daysInMonth
+            Dim dayTile As New ucCalendarDay()
+            Dim currentDate As New DateTime(_currentYear, _currentMonth, day)
+
+            ' Check if this day has a job
+            Dim hasJob As Boolean = jobDays.Contains(day)
+
+            dayTile.SetDay(day, currentDate, hasJob)
+
+            ' Highlight Today
+            If currentDate.Date = DateTime.Now.Date Then
+                dayTile.BackColor = Color.LightBlue
+            End If
+
+            ' Highlight Selected Date
+            If currentDate.Date = dtpViewDate.Value.Date Then
+                dayTile.BackColor = Color.LightGray
+            End If
+
+            ' Add Click Event Handler
+            AddHandler dayTile.DayClicked, AddressOf OnDayTileClicked
+
+            flpCalendar.Controls.Add(dayTile)
+        Next
+
+        ' F. Apply the calculated sizes immediately after loading
+        ResizeCalendarItems()
+
+        flpCalendar.ResumeLayout()
+    End Sub
+
+    Private Sub btnPrevMonth_Click(sender As Object, e As EventArgs) Handles btnPrevMonth.Click
+        _currentMonth -= 1
+        If _currentMonth < 1 Then
+            _currentMonth = 12
+            _currentYear -= 1
+        End If
+        LoadCalendar()
+    End Sub
+
+    Private Sub btnNextMonth_Click(sender As Object, e As EventArgs) Handles btnNextMonth.Click
+        _currentMonth += 1
+        If _currentMonth > 12 Then
+            _currentMonth = 1
+            _currentYear += 1
+        End If
+        LoadCalendar()
+    End Sub
+
+    ' This runs when a user clicks a calendar tile
+    Private Sub OnDayTileClicked(selectedDate As Date)
+        ' 1. Update the DateTimePicker (triggers grid refresh)
+        dtpViewDate.Value = selectedDate
+
+        ' 2. Update visuals ONLY (No Reloading!)
+        UpdateSelectionVisuals()
+    End Sub
+
+    ' ---------------------------------------------------------
+    ' 4. MAIN FORM LOGIC (Existing Code)
+    ' ---------------------------------------------------------
     Private Sub newUcDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Initialize Firebase Connection
+        FirebaseManager.Initialize()
+
+        ' Load Data
         LoadTechnicians()
         LoadJobs(DateTime.Now)
+
+        ' Initialize Calendar
+        _currentMonth = DateTime.Now.Month
+        _currentYear = DateTime.Now.Year
+        LoadCalendar()
+
+        ' Start Real-time Listener
+        FirebaseManager.ListenForJobUpdates()
+        AddHandler FirebaseManager.JobStatusUpdated, AddressOf OnJobStatusUpdate
+    End Sub
+
+    Private Sub OnJobStatusUpdate(jobID As Integer, newStatus As String)
+        If Me.InvokeRequired Then
+            Me.Invoke(Sub() OnJobStatusUpdate(jobID, newStatus))
+        Else
+            LoadJobs(dtpViewDate.Value)
+        End If
     End Sub
 
     Private Sub LoadTechnicians()
@@ -26,7 +211,6 @@ Public Class newUcDashboard
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' Added S.ServiceID to the query so we can grab it later
                 Dim sql As String = "SELECT " &
                                     "   J.JobID, " &
                                     "   C.ClientName, " &
@@ -67,8 +251,13 @@ Public Class newUcDashboard
         For Each row As DataGridViewRow In dgvDailyJobs.Rows
             Dim status As String = row.Cells("Status").Value.ToString()
             Dim type As String = row.Cells("JobType").Value.ToString()
+
             If status = "Completed" Then
                 row.DefaultCellStyle.BackColor = Color.LightGreen
+            ElseIf status = "Accepted" Then
+                row.DefaultCellStyle.BackColor = Color.LightBlue
+            ElseIf status = "In Progress" Then
+                row.DefaultCellStyle.BackColor = Color.Orange
             ElseIf type = "Inspection" Then
                 row.DefaultCellStyle.BackColor = Color.LightYellow
             End If
@@ -77,6 +266,8 @@ Public Class newUcDashboard
 
     Private Sub dtpViewDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpViewDate.ValueChanged
         LoadJobs(dtpViewDate.Value)
+        ' Optional: Force calendar to update its grey selection if date changes via picker
+        UpdateSelectionVisuals()
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
@@ -111,7 +302,6 @@ Public Class newUcDashboard
         Dim visitDate As Date = dtpViewDate.Value
         Dim jobType As String = selectedRow.Cells("JobType").Value.ToString()
 
-        ' Get Service ID safely (handle nulls for inquiries that might not have one here yet)
         Dim serviceID As Integer = 0
         If Not IsDBNull(selectedRow.Cells("ServiceID").Value) Then
             serviceID = Convert.ToInt32(selectedRow.Cells("ServiceID").Value)
@@ -131,7 +321,6 @@ Public Class newUcDashboard
             End Using
 
             If techFirebaseUID <> "" Then
-                ' Passed serviceID here
                 Await FirebaseManager.DispatchJobToMobile(_selectedJobID, clientName, address, serviceName, visitDate, techFirebaseUID, jobType, serviceID)
             Else
                 MessageBox.Show("Warning: Technician has no Mobile Account.")

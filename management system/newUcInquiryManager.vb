@@ -8,14 +8,19 @@ Public Class newUcInquiryManager
     Private _selectedClientAddress As String = ""
 
     Private Sub newUcInquiryManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' 1. Initialize Firebase Connection FIRST
+        FirebaseManager.Initialize()
+
+        ' 2. Load Data
         LoadClients("")
         LoadInspectors()
-        LoadServices() ' <--- New: Load Service Packages
-        FirebaseManager.Initialize()
-        FirebaseManager.ListenForCompletedInspections()
+        LoadServices()
+
+        ' 3. Start the NEW Universal Listener (Fixes the error)
+        FirebaseManager.ListenForJobUpdates()
     End Sub
 
-    ' ... (LoadClients and LoadInspectors remain the same) ...
+    ' ... (LoadClients remains the same) ...
     Private Sub LoadClients(search As String)
         Using conn As New MySqlConnection(connString)
             conn.Open()
@@ -43,7 +48,7 @@ Public Class newUcInquiryManager
         End Using
     End Sub
 
-    ' === NEW: LOAD SERVICES ===
+    ' === LOAD SERVICES ===
     Private Sub LoadServices()
         Using conn As New MySqlConnection(connString)
             Dim cmd As New MySqlCommand("SELECT ServiceID, ServiceName FROM tbl_Services", conn)

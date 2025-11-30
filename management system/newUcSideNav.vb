@@ -76,4 +76,12 @@
     Private Sub btnNavCalendar_Click(sender As Object, e As EventArgs) Handles btnNavCalendar.Click
         NavigateTo(New newUcQuoteManager(), "Quotes")
     End Sub
+
+    Private Sub btnNavTechs_Click(sender As Object, e As EventArgs) Handles btnNavTechs.Click
+        NavigateTo(New newUcTechMonitor(), "Quotes")
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        NavigateTo(New newUcContractManager(), "Quotes")
+    End Sub
 End Class

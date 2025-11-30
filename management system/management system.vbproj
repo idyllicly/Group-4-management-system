@@ -377,6 +377,12 @@
     <Compile Include="newUcClientManager.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="newUcContractManager.Designer.vb">
+      <DependentUpon>newUcContractManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcContractManager.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="newUcDashboard.Designer.vb">
       <DependentUpon>newUcDashboard.vb</DependentUpon>
     </Compile>
@@ -405,6 +411,12 @@
       <DependentUpon>newUcSideNav.vb</DependentUpon>
     </Compile>
     <Compile Include="newUcSideNav.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="newUcTechMonitor.Designer.vb">
+      <DependentUpon>newUcTechMonitor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="newUcTechMonitor.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NotificationForm.Designer.vb">
@@ -492,6 +504,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="NavigationControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCalendarDay.Designer.vb">
+      <DependentUpon>ucCalendarDay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucCalendarDay.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC_DayBlock.Designer.vb">
@@ -614,6 +632,9 @@
     <EmbeddedResource Include="newUcClientManager.resx">
       <DependentUpon>newUcClientManager.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="newUcContractManager.resx">
+      <DependentUpon>newUcContractManager.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="newUcDashboard.resx">
       <DependentUpon>newUcDashboard.vb</DependentUpon>
     </EmbeddedResource>
@@ -628,6 +649,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newUcSideNav.resx">
       <DependentUpon>newUcSideNav.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newUcTechMonitor.resx">
+      <DependentUpon>newUcTechMonitor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotificationForm.resx">
       <DependentUpon>NotificationForm.vb</DependentUpon>
@@ -667,6 +691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TimelineItemControl.resx">
       <DependentUpon>TimelineItemControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCalendarDay.resx">
+      <DependentUpon>ucCalendarDay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_DayBlock.resx">
       <DependentUpon>UC_DayBlock.vb</DependentUpon>
