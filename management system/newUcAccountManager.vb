@@ -2,7 +2,7 @@
 
 Public Class newUcAccountManager
 
-    ' ⚠️ CHECK CONNECTION STRING
+    ' ⚠️ Ensure your database has the 'ContactNumber' column in tbl_account
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
     Private _selectedLocalID As Integer = 0
@@ -11,12 +11,12 @@ Public Class newUcAccountManager
 
     Private Sub newUcAccountManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadAccounts("All")
-        ' Only init Firebase if we might need it (good practice, but okay to leave)
+        ' Initialize Firebase
         FirebaseManager.Initialize()
     End Sub
 
     ' ==========================================
-    ' 1. MASTER LOADER (Fixed for New DB Structure)
+    ' 1. MASTER LOADER (Updated to fetch Admin Phone)
     ' ==========================================
     Private Sub LoadAccounts(roleFilter As String)
         Dim dtMerged As New DataTable()
@@ -31,7 +31,7 @@ Public Class newUcAccountManager
         Using conn As New MySqlConnection(connString)
             conn.Open()
 
-            ' A. FETCH TECHNICIANS (Field Staff - Use Mobile App)
+            ' A. FETCH TECHNICIANS (Field Staff - Uses 'ContactNo')
             If roleFilter = "All" Or roleFilter = "Technician" Then
                 Dim sqlTech As String = "SELECT TechnicianID, CONCAT(FirstName, ' ', LastName) as Name, 'Technician' as Role, AppUsername, ContactNo, FirebaseUID FROM tbl_Technicians WHERE Status='Active'"
                 Dim cmd As New MySqlCommand(sqlTech, conn)
@@ -42,15 +42,17 @@ Public Class newUcAccountManager
                 rdr.Close()
             End If
 
-            ' B. FETCH ADMINS (Office Staff - No Mobile App)
+            ' B. FETCH ADMINS (Office Staff - Uses 'ContactNumber')
             If roleFilter = "All" Or roleFilter = "Admin" Or roleFilter = "Super Admin" Then
-                ' FIX: Uses 'FullName' instead of 'AFirstName', matching your new DB
-                Dim sqlAdmin As String = "SELECT AccountID, FullName, Role, Username FROM tbl_Account"
+                ' UPDATED: Now selects ContactNumber [cite: 7]
+                Dim sqlAdmin As String = "SELECT AccountID, FullName, ContactNumber, Role, Username FROM tbl_Account"
                 Dim cmd As New MySqlCommand(sqlAdmin, conn)
                 Dim rdr As MySqlDataReader = cmd.ExecuteReader()
                 While rdr.Read()
-                    ' Admins don't have FirebaseUIDs or Phones usually in the new structure
-                    dtMerged.Rows.Add(rdr("AccountID"), rdr("FullName"), rdr("Role"), rdr("Username"), "", "", "tbl_Account")
+                    ' Handle potential NULL values for ContactNumber
+                    Dim phone As String = If(IsDBNull(rdr("ContactNumber")), "", rdr("ContactNumber").ToString())
+
+                    dtMerged.Rows.Add(rdr("AccountID"), rdr("FullName"), rdr("Role"), rdr("Username"), phone, "", "tbl_Account")
                 End While
                 rdr.Close()
             End If
@@ -69,7 +71,7 @@ Public Class newUcAccountManager
     End Sub
 
     ' ==========================================
-    ' 2. ADD ACCOUNT (LOGIC SPLIT: ADMIN vs TECH)
+    ' 2. ADD ACCOUNT (Updated to Save Admin Phone)
     ' ==========================================
     Private Async Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
@@ -131,11 +133,13 @@ Public Class newUcAccountManager
                     cmd.Parameters.AddWithValue("@uid", firebaseID)
 
                 Else
-                    ' INSERT ADMIN (Local Only - No Firebase)
-                    sql = "INSERT INTO tbl_Account (FullName, Role, Username, Password) " &
-                          "VALUES (@name, @role, @user, @pass)"
+                    ' INSERT ADMIN (Local Only)
+                    ' UPDATED: Now inserts ContactNumber 
+                    sql = "INSERT INTO tbl_Account (FullName, ContactNumber, Role, Username, Password) " &
+                          "VALUES (@name, @phone, @role, @user, @pass)"
 
                     cmd.Parameters.AddWithValue("@name", txtName.Text)
+                    cmd.Parameters.AddWithValue("@phone", txtPhone.Text) ' Added this parameter
                     cmd.Parameters.AddWithValue("@role", cmbRole.Text)
                     cmd.Parameters.AddWithValue("@user", txtEmail.Text) ' Admin uses this as Username
                     cmd.Parameters.AddWithValue("@pass", txtPassword.Text)

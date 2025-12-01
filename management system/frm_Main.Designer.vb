@@ -23,8 +23,8 @@ Partial Class frm_Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.pnlContent = New System.Windows.Forms.Panel()
         Me.pnlSideMenu = New management_system.newUcSideNav()
+        Me.pnlContent = New System.Windows.Forms.Panel()
         Me.pnlHeader = New management_system.newUcPageHeader()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -44,6 +44,15 @@ Partial Class frm_Main
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(946, 544)
         Me.TableLayoutPanel1.TabIndex = 2
         '
+        'pnlSideMenu
+        '
+        Me.pnlSideMenu.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.pnlSideMenu.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlSideMenu.Location = New System.Drawing.Point(3, 3)
+        Me.pnlSideMenu.Name = "pnlSideMenu"
+        Me.pnlSideMenu.Size = New System.Drawing.Size(411, 538)
+        Me.pnlSideMenu.TabIndex = 0
+        '
         'pnlContent
         '
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
@@ -51,14 +60,6 @@ Partial Class frm_Main
         Me.pnlContent.Name = "pnlContent"
         Me.pnlContent.Size = New System.Drawing.Size(523, 538)
         Me.pnlContent.TabIndex = 1
-        '
-        'pnlSideMenu
-        '
-        Me.pnlSideMenu.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlSideMenu.Location = New System.Drawing.Point(3, 3)
-        Me.pnlSideMenu.Name = "pnlSideMenu"
-        Me.pnlSideMenu.Size = New System.Drawing.Size(411, 538)
-        Me.pnlSideMenu.TabIndex = 0
         '
         'pnlHeader
         '

@@ -134,4 +134,7 @@ Public Class newUcClientManager
         ClearForm()
     End Sub
 
+    Private Sub dgvClientList_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientList.CellContentClick
+
+    End Sub
 End Class

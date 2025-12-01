@@ -26,6 +26,8 @@ Partial Class newUcTechMonitor
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lstTechnicians = New System.Windows.Forms.ListBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.dgvAssignments = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnReset = New System.Windows.Forms.Button()
@@ -41,19 +43,17 @@ Partial Class newUcTechMonitor
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.lblContact = New System.Windows.Forms.Label()
         Me.lblTechName = New System.Windows.Forms.Label()
-        Me.dgvAssignments = New System.Windows.Forms.DataGridView()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -107,6 +107,30 @@ Partial Class newUcTechMonitor
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(485, 536)
         Me.TabControl1.TabIndex = 1
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.dgvAssignments)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(477, 503)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Current Assignments"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'dgvAssignments
+        '
+        Me.dgvAssignments.AllowUserToAddRows = False
+        Me.dgvAssignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvAssignments.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvAssignments.Location = New System.Drawing.Point(3, 3)
+        Me.dgvAssignments.Name = "dgvAssignments"
+        Me.dgvAssignments.ReadOnly = True
+        Me.dgvAssignments.RowHeadersWidth = 62
+        Me.dgvAssignments.RowTemplate.Height = 28
+        Me.dgvAssignments.Size = New System.Drawing.Size(471, 497)
+        Me.dgvAssignments.TabIndex = 0
         '
         'TabPage2
         '
@@ -188,12 +212,14 @@ Partial Class newUcTechMonitor
         '
         'dgvHistory
         '
+        Me.dgvHistory.AllowUserToAddRows = False
         Me.dgvHistory.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvHistory.Location = New System.Drawing.Point(3, 101)
         Me.dgvHistory.Name = "dgvHistory"
+        Me.dgvHistory.ReadOnly = True
         Me.dgvHistory.RowHeadersWidth = 62
         Me.dgvHistory.RowTemplate.Height = 28
         Me.dgvHistory.Size = New System.Drawing.Size(471, 399)
@@ -259,28 +285,6 @@ Partial Class newUcTechMonitor
         Me.lblTechName.TabIndex = 0
         Me.lblTechName.Text = "Label2"
         '
-        'dgvAssignments
-        '
-        Me.dgvAssignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvAssignments.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvAssignments.Location = New System.Drawing.Point(3, 3)
-        Me.dgvAssignments.Name = "dgvAssignments"
-        Me.dgvAssignments.RowHeadersWidth = 62
-        Me.dgvAssignments.RowTemplate.Height = 28
-        Me.dgvAssignments.Size = New System.Drawing.Size(471, 497)
-        Me.dgvAssignments.TabIndex = 0
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.dgvAssignments)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(477, 503)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Current Assignments"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
         'newUcTechMonitor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -294,14 +298,14 @@ Partial Class newUcTechMonitor
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

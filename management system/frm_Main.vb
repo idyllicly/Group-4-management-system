@@ -16,8 +16,8 @@
         _header.Dock = DockStyle.Fill
         pnlHeader.Controls.Add(_header)
 
-        ' === C. LOAD DEFAULT SCREEN ===
-        ' LoadDashboard() ' Uncomment this when you have the dashboard ready
+
+        LoadPage(New newUcDashboard(), "Daily Operations Dashboard")
     End Sub
 
     ' === THE NAVIGATION ENGINE ===
@@ -36,4 +36,7 @@
         _header.lblPageTitle.Text = pageTitle.ToUpper()
     End Sub
 
+    Private Sub frm_Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Application.Exit()
+    End Sub
 End Class
