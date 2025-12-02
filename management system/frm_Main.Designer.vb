@@ -77,6 +77,7 @@ Partial Class frm_Main
         Me.ClientSize = New System.Drawing.Size(946, 730)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.pnlHeader)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frm_Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frm_Main"

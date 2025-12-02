@@ -22,7 +22,7 @@ Partial Class newUcDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpViewDate = New System.Windows.Forms.DateTimePicker()
@@ -32,64 +32,76 @@ Partial Class newUcDashboard
         Me.btnAssignJob = New System.Windows.Forms.Button()
         Me.cmbTechnician = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.lblSelectedJob = New System.Windows.Forms.Label()
         Me.btnPrevMonth = New System.Windows.Forms.Button()
         Me.btnNextMonth = New System.Windows.Forms.Button()
-        Me.lblMonthYear = New System.Windows.Forms.Label()
-        Me.flpCalendar = New System.Windows.Forms.FlowLayoutPanel()
+        Me.lblMonthYear1 = New System.Windows.Forms.Label()
+        Me.flpCalendar1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblMonthYear2 = New System.Windows.Forms.Label()
+        Me.flpCalendar2 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.grpJobDetails = New System.Windows.Forms.GroupBox()
+        Me.lblDetailVisit = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.lblDetailTech = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblDetailService = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.lblDetailAddress = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblDetailClient = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.dgvDailyJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.grpJobDetails.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
         '
-        Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(9, 51)
+        Me.Label1.Location = New System.Drawing.Point(14, 22)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(172, 25)
+        Me.Label1.Size = New System.Drawing.Size(162, 25)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Daily Operations"
+        Me.Label1.Text = "Day Operations"
         '
         'Label2
         '
-        Me.Label2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(187, 58)
+        Me.Label2.Location = New System.Drawing.Point(19, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(97, 20)
+        Me.Label2.Size = New System.Drawing.Size(157, 20)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Select Date:"
+        Me.Label2.Text = "Select Specific Date:"
         '
         'dtpViewDate
         '
-        Me.dtpViewDate.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtpViewDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpViewDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpViewDate.Location = New System.Drawing.Point(309, 53)
+        Me.dtpViewDate.Location = New System.Drawing.Point(228, 46)
         Me.dtpViewDate.Name = "dtpViewDate"
-        Me.dtpViewDate.Size = New System.Drawing.Size(209, 26)
+        Me.dtpViewDate.Size = New System.Drawing.Size(196, 26)
         Me.dtpViewDate.TabIndex = 2
         '
         'btnRefresh
         '
         Me.btnRefresh.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRefresh.Location = New System.Drawing.Point(521, 51)
+        Me.btnRefresh.Location = New System.Drawing.Point(521, 636)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(135, 29)
+        Me.btnRefresh.Size = New System.Drawing.Size(0, 29)
         Me.btnRefresh.TabIndex = 3
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -97,82 +109,78 @@ Partial Class newUcDashboard
         'dgvDailyJobs
         '
         Me.dgvDailyJobs.AllowUserToAddRows = False
-        Me.dgvDailyJobs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.dgvDailyJobs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvDailyJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDailyJobs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvDailyJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvDailyJobs.Location = New System.Drawing.Point(19, 86)
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvDailyJobs.EnableHeadersVisualStyles = False
+        Me.dgvDailyJobs.Location = New System.Drawing.Point(19, 72)
         Me.dgvDailyJobs.Name = "dgvDailyJobs"
         Me.dgvDailyJobs.ReadOnly = True
+        Me.dgvDailyJobs.RowHeadersVisible = False
         Me.dgvDailyJobs.RowHeadersWidth = 62
         Me.dgvDailyJobs.RowTemplate.Height = 28
         Me.dgvDailyJobs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDailyJobs.Size = New System.Drawing.Size(637, 94)
+        Me.dgvDailyJobs.Size = New System.Drawing.Size(405, 278)
         Me.dgvDailyJobs.TabIndex = 4
         '
         'GroupBox1
         '
-        Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.btnAssignJob)
         Me.GroupBox1.Controls.Add(Me.cmbTechnician)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.lblSelectedJob)
-        Me.GroupBox1.Location = New System.Drawing.Point(678, 23)
+        Me.GroupBox1.Location = New System.Drawing.Point(31, 596)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(393, 157)
+        Me.GroupBox1.Size = New System.Drawing.Size(393, 163)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Dispatch Job"
         '
         'btnAssignJob
         '
-        Me.btnAssignJob.Location = New System.Drawing.Point(177, 97)
+        Me.btnAssignJob.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAssignJob.Location = New System.Drawing.Point(17, 113)
         Me.btnAssignJob.Name = "btnAssignJob"
-        Me.btnAssignJob.Size = New System.Drawing.Size(198, 39)
+        Me.btnAssignJob.Size = New System.Drawing.Size(359, 39)
         Me.btnAssignJob.TabIndex = 3
         Me.btnAssignJob.Text = "ASSIGN TECH"
         Me.btnAssignJob.UseVisualStyleBackColor = True
         '
         'cmbTechnician
         '
+        Me.cmbTechnician.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbTechnician.FormattingEnabled = True
-        Me.cmbTechnician.Location = New System.Drawing.Point(177, 63)
+        Me.cmbTechnician.Location = New System.Drawing.Point(17, 79)
         Me.cmbTechnician.Name = "cmbTechnician"
-        Me.cmbTechnician.Size = New System.Drawing.Size(198, 28)
+        Me.cmbTechnician.Size = New System.Drawing.Size(359, 28)
         Me.cmbTechnician.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(30, 63)
+        Me.Label3.Location = New System.Drawing.Point(13, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(141, 20)
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Assign Technician:"
         '
-        'lblSelectedJob
-        '
-        Me.lblSelectedJob.AutoSize = True
-        Me.lblSelectedJob.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSelectedJob.Location = New System.Drawing.Point(6, 22)
-        Me.lblSelectedJob.Name = "lblSelectedJob"
-        Me.lblSelectedJob.Size = New System.Drawing.Size(177, 20)
-        Me.lblSelectedJob.TabIndex = 0
-        Me.lblSelectedJob.Text = "Select a Job above..."
-        '
         'btnPrevMonth
         '
-        Me.btnPrevMonth.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnPrevMonth.Location = New System.Drawing.Point(857, 22)
+        Me.btnPrevMonth.Location = New System.Drawing.Point(25, 22)
         Me.btnPrevMonth.Name = "btnPrevMonth"
         Me.btnPrevMonth.Size = New System.Drawing.Size(89, 38)
         Me.btnPrevMonth.TabIndex = 6
@@ -182,39 +190,40 @@ Partial Class newUcDashboard
         'btnNextMonth
         '
         Me.btnNextMonth.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnNextMonth.Location = New System.Drawing.Point(952, 22)
+        Me.btnNextMonth.Location = New System.Drawing.Point(516, 22)
         Me.btnNextMonth.Name = "btnNextMonth"
         Me.btnNextMonth.Size = New System.Drawing.Size(92, 38)
         Me.btnNextMonth.TabIndex = 7
         Me.btnNextMonth.Text = ">"
         Me.btnNextMonth.UseVisualStyleBackColor = True
         '
-        'lblMonthYear
+        'lblMonthYear1
         '
-        Me.lblMonthYear.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblMonthYear.AutoSize = True
-        Me.lblMonthYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMonthYear.Location = New System.Drawing.Point(484, 27)
-        Me.lblMonthYear.Name = "lblMonthYear"
-        Me.lblMonthYear.Size = New System.Drawing.Size(172, 25)
-        Me.lblMonthYear.TabIndex = 8
-        Me.lblMonthYear.Text = "OCTOBER 2025"
+        Me.lblMonthYear1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.lblMonthYear1.AutoSize = True
+        Me.lblMonthYear1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear1.Location = New System.Drawing.Point(222, 27)
+        Me.lblMonthYear1.Name = "lblMonthYear1"
+        Me.lblMonthYear1.Size = New System.Drawing.Size(172, 25)
+        Me.lblMonthYear1.TabIndex = 8
+        Me.lblMonthYear1.Text = "OCTOBER 2025"
         '
-        'flpCalendar
+        'flpCalendar1
         '
-        Me.flpCalendar.BackColor = System.Drawing.Color.White
-        Me.flpCalendar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpCalendar.Location = New System.Drawing.Point(0, 0)
-        Me.flpCalendar.Name = "flpCalendar"
-        Me.flpCalendar.Size = New System.Drawing.Size(1074, 509)
-        Me.flpCalendar.TabIndex = 9
+        Me.flpCalendar1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.flpCalendar1.BackColor = System.Drawing.Color.White
+        Me.flpCalendar1.Location = New System.Drawing.Point(0, 1)
+        Me.flpCalendar1.Name = "flpCalendar1"
+        Me.flpCalendar1.Size = New System.Drawing.Size(625, 277)
+        Me.flpCalendar1.TabIndex = 9
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
         'SplitContainer1.Panel1
         '
@@ -223,6 +232,7 @@ Partial Class newUcDashboard
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.grpJobDetails)
         Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvDailyJobs)
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnRefresh)
@@ -230,28 +240,166 @@ Partial Class newUcDashboard
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.dtpViewDate)
         Me.SplitContainer1.Size = New System.Drawing.Size(1074, 780)
-        Me.SplitContainer1.SplitterDistance = 581
+        Me.SplitContainer1.SplitterDistance = 625
         Me.SplitContainer1.TabIndex = 10
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.lblMonthYear2)
+        Me.Panel2.Controls.Add(Me.flpCalendar2)
+        Me.Panel2.Controls.Add(Me.flpCalendar1)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 72)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(625, 708)
+        Me.Panel2.TabIndex = 11
+        '
+        'lblMonthYear2
+        '
+        Me.lblMonthYear2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.lblMonthYear2.AutoSize = True
+        Me.lblMonthYear2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear2.Location = New System.Drawing.Point(222, 301)
+        Me.lblMonthYear2.Name = "lblMonthYear2"
+        Me.lblMonthYear2.Size = New System.Drawing.Size(172, 25)
+        Me.lblMonthYear2.TabIndex = 9
+        Me.lblMonthYear2.Text = "OCTOBER 2025"
+        '
+        'flpCalendar2
+        '
+        Me.flpCalendar2.BackColor = System.Drawing.Color.White
+        Me.flpCalendar2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.flpCalendar2.Location = New System.Drawing.Point(0, 343)
+        Me.flpCalendar2.Name = "flpCalendar2"
+        Me.flpCalendar2.Size = New System.Drawing.Size(625, 365)
+        Me.flpCalendar2.TabIndex = 10
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.lblMonthYear)
+        Me.Panel1.Controls.Add(Me.lblMonthYear1)
         Me.Panel1.Controls.Add(Me.btnNextMonth)
         Me.Panel1.Controls.Add(Me.btnPrevMonth)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1074, 72)
+        Me.Panel1.Size = New System.Drawing.Size(625, 72)
         Me.Panel1.TabIndex = 10
         '
-        'Panel2
+        'grpJobDetails
         '
-        Me.Panel2.Controls.Add(Me.flpCalendar)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 72)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1074, 509)
-        Me.Panel2.TabIndex = 11
+        Me.grpJobDetails.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailVisit)
+        Me.grpJobDetails.Controls.Add(Me.Label8)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailTech)
+        Me.grpJobDetails.Controls.Add(Me.Label7)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailService)
+        Me.grpJobDetails.Controls.Add(Me.Label6)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailAddress)
+        Me.grpJobDetails.Controls.Add(Me.Label5)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailClient)
+        Me.grpJobDetails.Controls.Add(Me.Label4)
+        Me.grpJobDetails.Location = New System.Drawing.Point(31, 389)
+        Me.grpJobDetails.Name = "grpJobDetails"
+        Me.grpJobDetails.Size = New System.Drawing.Size(393, 173)
+        Me.grpJobDetails.TabIndex = 6
+        Me.grpJobDetails.TabStop = False
+        Me.grpJobDetails.Text = "Job Details"
+        '
+        'lblDetailVisit
+        '
+        Me.lblDetailVisit.AutoSize = True
+        Me.lblDetailVisit.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailVisit.Location = New System.Drawing.Point(121, 137)
+        Me.lblDetailVisit.Name = "lblDetailVisit"
+        Me.lblDetailVisit.Size = New System.Drawing.Size(24, 20)
+        Me.lblDetailVisit.TabIndex = 9
+        Me.lblDetailVisit.Text = "..."
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(17, 137)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(56, 20)
+        Me.Label8.TabIndex = 8
+        Me.Label8.Text = "Visit #:"
+        '
+        'lblDetailTech
+        '
+        Me.lblDetailTech.AutoSize = True
+        Me.lblDetailTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailTech.Location = New System.Drawing.Point(121, 107)
+        Me.lblDetailTech.Name = "lblDetailTech"
+        Me.lblDetailTech.Size = New System.Drawing.Size(24, 20)
+        Me.lblDetailTech.TabIndex = 7
+        Me.lblDetailTech.Text = "..."
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(17, 107)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(89, 20)
+        Me.Label7.TabIndex = 6
+        Me.Label7.Text = "Technician:"
+        '
+        'lblDetailService
+        '
+        Me.lblDetailService.AutoSize = True
+        Me.lblDetailService.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailService.Location = New System.Drawing.Point(121, 79)
+        Me.lblDetailService.Name = "lblDetailService"
+        Me.lblDetailService.Size = New System.Drawing.Size(24, 20)
+        Me.lblDetailService.TabIndex = 5
+        Me.lblDetailService.Text = "..."
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(17, 79)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(65, 20)
+        Me.Label6.TabIndex = 4
+        Me.Label6.Text = "Service:"
+        '
+        'lblDetailAddress
+        '
+        Me.lblDetailAddress.AutoSize = True
+        Me.lblDetailAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailAddress.Location = New System.Drawing.Point(121, 50)
+        Me.lblDetailAddress.Name = "lblDetailAddress"
+        Me.lblDetailAddress.Size = New System.Drawing.Size(24, 20)
+        Me.lblDetailAddress.TabIndex = 3
+        Me.lblDetailAddress.Text = "..."
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(17, 50)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(72, 20)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "Address:"
+        '
+        'lblDetailClient
+        '
+        Me.lblDetailClient.AutoSize = True
+        Me.lblDetailClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailClient.Location = New System.Drawing.Point(121, 26)
+        Me.lblDetailClient.Name = "lblDetailClient"
+        Me.lblDetailClient.Size = New System.Drawing.Size(24, 20)
+        Me.lblDetailClient.TabIndex = 1
+        Me.lblDetailClient.Text = "..."
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(17, 26)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(99, 20)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Client Name:"
         '
         'newUcDashboard
         '
@@ -268,9 +416,12 @@ Partial Class newUcDashboard
         Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        Me.Panel2.ResumeLayout(False)
+        Me.grpJobDetails.ResumeLayout(False)
+        Me.grpJobDetails.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -284,12 +435,24 @@ Partial Class newUcDashboard
     Friend WithEvents btnAssignJob As Button
     Friend WithEvents cmbTechnician As ComboBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents lblSelectedJob As Label
     Friend WithEvents btnPrevMonth As Button
     Friend WithEvents btnNextMonth As Button
-    Friend WithEvents lblMonthYear As Label
-    Friend WithEvents flpCalendar As FlowLayoutPanel
+    Friend WithEvents lblMonthYear1 As Label
+    Friend WithEvents flpCalendar1 As FlowLayoutPanel
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents grpJobDetails As GroupBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents lblDetailAddress As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents lblDetailClient As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lblDetailVisit As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents lblDetailTech As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents lblDetailService As Label
+    Friend WithEvents flpCalendar2 As FlowLayoutPanel
+    Friend WithEvents lblMonthYear2 As Label
 End Class

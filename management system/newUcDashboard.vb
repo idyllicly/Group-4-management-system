@@ -11,33 +11,56 @@ Public Class newUcDashboard
     Private _currentYear As Integer = DateTime.Now.Year
 
     ' ---------------------------------------------------------
-    ' 1. RESIZING LOGIC (The Math Fix)
+    ' 1. RESIZING LOGIC (Handles Both Calendars)
     ' ---------------------------------------------------------
     Private Sub ResizeCalendarItems()
-        ' Guard clause to prevent crash if calendar is empty or disposed
-        If flpCalendar.Controls.Count = 0 Then Return
+        ' Resize Left Panel
+        ResizeSinglePanel(flpCalendar1)
+        ' Resize Right Panel
+        ResizeSinglePanel(flpCalendar2)
+    End Sub
 
-        flpCalendar.SuspendLayout()
+    Private Sub ResizeSinglePanel(panel As FlowLayoutPanel)
+        ' Guard clause
+        If panel.Controls.Count = 0 Then Return
 
-        ' WIDTH MATH: Divide total width by 7 days
-        ' We subtract 25px for scrollbar safety and margins
-        Dim newWidth As Integer = CInt((flpCalendar.ClientSize.Width - 25) / 7)
+        panel.SuspendLayout()
 
-        ' HEIGHT MATH: Divide total height by 6 rows (max weeks in a month)
-        ' This ensures it fills the panel exactly, even if blocks become rectangles
-        Dim newHeight As Integer = CInt((flpCalendar.ClientSize.Height - 20) / 6)
+        ' 1. Calculate Width (Standard for all items)
+        Dim newWidth As Integer = CInt((panel.ClientSize.Width - 25) / 7)
 
-        ' Apply to all controls (Empty Panels & Day Tiles)
-        For Each ctrl As Control In flpCalendar.Controls
-            ctrl.Size = New Size(newWidth, newHeight)
-            ctrl.Margin = New Padding(1) ' Keep margin tight
+        ' 2. Calculate Height dynamically
+        Dim headerHeight As Integer = 30
+        Dim totalDaySlots As Integer = panel.Controls.Count - 7 ' Subtract 7 headers
+
+        ' Calculate rows needed
+        Dim numRows As Integer = Math.Ceiling(totalDaySlots / 7)
+        If numRows < 1 Then numRows = 1
+
+        Dim availableHeight As Integer = panel.ClientSize.Height - headerHeight - 10
+        Dim newTileHeight As Integer = CInt(availableHeight / numRows)
+
+        ' 3. Apply sizes
+        For i As Integer = 0 To panel.Controls.Count - 1
+            Dim ctrl As Control = panel.Controls(i)
+
+            If i < 7 Then
+                ' Header
+                ctrl.Size = New Size(newWidth, headerHeight)
+                ctrl.Margin = New Padding(1, 0, 1, 0)
+            Else
+                ' Day Tile
+                ctrl.Size = New Size(newWidth, newTileHeight)
+                ctrl.Margin = New Padding(1)
+            End If
         Next
 
-        flpCalendar.ResumeLayout()
+        panel.ResumeLayout()
     End Sub
 
     ' Event to trigger resize when window/panel changes size
-    Private Sub flpCalendar_Resize(sender As Object, e As EventArgs) Handles flpCalendar.Resize
+    ' MAKE SURE BOTH flpCalendar1 AND flpCalendar2 use this event in Designer!
+    Private Sub flpCalendar_Resize(sender As Object, e As EventArgs) Handles flpCalendar1.Resize, flpCalendar2.Resize
         ResizeCalendarItems()
     End Sub
 
@@ -45,9 +68,12 @@ Public Class newUcDashboard
     ' 2. VISUAL UPDATE LOGIC (The Flicker Fix)
     ' ---------------------------------------------------------
     Private Sub UpdateSelectionVisuals()
-        ' Loop through existing blocks instead of reloading the whole calendar
-        For Each ctrl As Control In flpCalendar.Controls
-            ' We only care about the actual Day Tiles, not the empty spacers
+        UpdatePanelVisuals(flpCalendar1)
+        UpdatePanelVisuals(flpCalendar2)
+    End Sub
+
+    Private Sub UpdatePanelVisuals(panel As FlowLayoutPanel)
+        For Each ctrl As Control In panel.Controls
             If TypeOf ctrl Is ucCalendarDay Then
                 Dim tile As ucCalendarDay = CType(ctrl, ucCalendarDay)
 
@@ -59,7 +85,7 @@ Public Class newUcDashboard
                     tile.BackColor = Color.LightBlue
                 End If
 
-                ' Check if it is SELECTED (Matches the DateTimePicker)
+                ' Check if it is SELECTED
                 If tile.DayDate.Date = dtpViewDate.Value.Date Then
                     tile.BackColor = Color.LightGray
                 End If
@@ -68,53 +94,82 @@ Public Class newUcDashboard
     End Sub
 
     ' ---------------------------------------------------------
-    ' 3. CALENDAR GENERATION
+    ' 3. CALENDAR GENERATION (Dual View)
     ' ---------------------------------------------------------
-    Private Sub LoadCalendar()
-        flpCalendar.Controls.Clear()
-        flpCalendar.SuspendLayout() ' Stop flickering while drawing
+    Private Sub LoadCalendars()
+        ' 1. Load Left Calendar (Current Month)
+        GenerateSingleCalendar(flpCalendar1, lblMonthYear1, _currentMonth, _currentYear)
+
+        ' 2. Calculate Right Calendar (Next Month)
+        Dim nextMonth As Integer = _currentMonth + 1
+        Dim nextYear As Integer = _currentYear
+
+        If nextMonth > 12 Then
+            nextMonth = 1
+            nextYear += 1
+        End If
+
+        ' 3. Load Right Calendar
+        GenerateSingleCalendar(flpCalendar2, lblMonthYear2, nextMonth, nextYear)
+
+        ' 4. Resize immediately
+        ResizeCalendarItems()
+    End Sub
+
+    Private Sub GenerateSingleCalendar(targetPanel As FlowLayoutPanel, targetLabel As Label, m As Integer, y As Integer)
+        targetPanel.Controls.Clear()
+        targetPanel.SuspendLayout()
 
         ' A. Update Header Label
-        Dim strMonth As String = MonthName(_currentMonth)
-        lblMonthYear.Text = $"{strMonth.ToUpper()} {_currentYear}"
+        Dim strMonth As String = MonthName(m)
+        targetLabel.Text = $"{strMonth.ToUpper()} {y}"
 
-        ' B. Get First Day of Month and Total Days
-        Dim startOfMonth As New DateTime(_currentYear, _currentMonth, 1)
-        Dim daysInMonth As Integer = DateTime.DaysInMonth(_currentYear, _currentMonth)
-        Dim startDayOfWeek As Integer = CInt(startOfMonth.DayOfWeek) ' Sunday = 0
+        ' B. Add Headers (Sun, Mon...)
+        Dim dayNames As String() = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
+        For Each dayName As String In dayNames
+            Dim lbl As New Label()
+            lbl.Text = dayName.ToUpper()
+            lbl.TextAlign = ContentAlignment.MiddleCenter
+            lbl.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+            lbl.BackColor = Color.Transparent
+            lbl.ForeColor = Color.DimGray
+            lbl.AutoSize = False
+            targetPanel.Controls.Add(lbl)
+        Next
 
-        ' C. GET JOB DATES FROM DATABASE (To show dots)
+        ' C. Get Jobs for this specific month
         Dim jobDays As New List(Of Integer)
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            ' We look at ScheduledDate to find matches in this month/year
             Dim sql As String = "SELECT DISTINCT DAY(ScheduledDate) FROM tbl_JobOrders " &
                                 "WHERE MONTH(ScheduledDate) = @m AND YEAR(ScheduledDate) = @y"
             Dim cmd As New MySqlCommand(sql, conn)
-            cmd.Parameters.AddWithValue("@m", _currentMonth)
-            cmd.Parameters.AddWithValue("@y", _currentYear)
+            cmd.Parameters.AddWithValue("@m", m)
+            cmd.Parameters.AddWithValue("@y", y)
+
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
             While dr.Read()
                 jobDays.Add(dr.GetInt32(0))
             End While
         End Using
 
-        ' D. Generate Empty Slots (Padding for days before the 1st)
+        ' D. Generate Empty Slots
+        Dim startOfMonth As New DateTime(y, m, 1)
+        Dim daysInMonth As Integer = DateTime.DaysInMonth(y, m)
+        Dim startDayOfWeek As Integer = CInt(startOfMonth.DayOfWeek)
+
         For i As Integer = 0 To startDayOfWeek - 1
             Dim emptyPanel As New Panel()
-            ' Initial size doesn't matter, ResizeCalendarItems will fix it immediately
             emptyPanel.Size = New Size(10, 10)
-            flpCalendar.Controls.Add(emptyPanel)
+            targetPanel.Controls.Add(emptyPanel)
         Next
 
-        ' E. Generate Actual Days
+        ' E. Generate Days
         For day As Integer = 1 To daysInMonth
             Dim dayTile As New ucCalendarDay()
-            Dim currentDate As New DateTime(_currentYear, _currentMonth, day)
+            Dim currentDate As New DateTime(y, m, day)
 
-            ' Check if this day has a job
             Dim hasJob As Boolean = jobDays.Contains(day)
-
             dayTile.SetDay(day, currentDate, hasJob)
 
             ' Highlight Today
@@ -122,21 +177,16 @@ Public Class newUcDashboard
                 dayTile.BackColor = Color.LightBlue
             End If
 
-            ' Highlight Selected Date
+            ' Highlight Selected
             If currentDate.Date = dtpViewDate.Value.Date Then
                 dayTile.BackColor = Color.LightGray
             End If
 
-            ' Add Click Event Handler
             AddHandler dayTile.DayClicked, AddressOf OnDayTileClicked
-
-            flpCalendar.Controls.Add(dayTile)
+            targetPanel.Controls.Add(dayTile)
         Next
 
-        ' F. Apply the calculated sizes immediately after loading
-        ResizeCalendarItems()
-
-        flpCalendar.ResumeLayout()
+        targetPanel.ResumeLayout()
     End Sub
 
     Private Sub btnPrevMonth_Click(sender As Object, e As EventArgs) Handles btnPrevMonth.Click
@@ -145,7 +195,7 @@ Public Class newUcDashboard
             _currentMonth = 12
             _currentYear -= 1
         End If
-        LoadCalendar()
+        LoadCalendars()
     End Sub
 
     Private Sub btnNextMonth_Click(sender As Object, e As EventArgs) Handles btnNextMonth.Click
@@ -154,20 +204,18 @@ Public Class newUcDashboard
             _currentMonth = 1
             _currentYear += 1
         End If
-        LoadCalendar()
+        LoadCalendars()
     End Sub
 
-    ' This runs when a user clicks a calendar tile
     Private Sub OnDayTileClicked(selectedDate As Date)
         ' 1. Update the DateTimePicker (triggers grid refresh)
         dtpViewDate.Value = selectedDate
-
-        ' 2. Update visuals ONLY (No Reloading!)
+        ' 2. Update visuals
         UpdateSelectionVisuals()
     End Sub
 
     ' ---------------------------------------------------------
-    ' 4. MAIN FORM LOGIC (Existing Code)
+    ' 4. MAIN FORM LOGIC (Your Table & Details)
     ' ---------------------------------------------------------
     Private Sub newUcDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize Firebase Connection
@@ -180,7 +228,7 @@ Public Class newUcDashboard
         ' Initialize Calendar
         _currentMonth = DateTime.Now.Month
         _currentYear = DateTime.Now.Year
-        LoadCalendar()
+        LoadCalendars() ' <--- CHANGED TO PLURAL
 
         ' Start Real-time Listener
         FirebaseManager.ListenForJobUpdates()
@@ -236,9 +284,26 @@ Public Class newUcDashboard
                 da.Fill(dt)
 
                 dgvDailyJobs.DataSource = dt
-                dgvDailyJobs.Columns("JobID").Visible = False
-                If dgvDailyJobs.Columns("ServiceID") IsNot Nothing Then dgvDailyJobs.Columns("ServiceID").Visible = False
 
+                ' --- COLUMN VISIBILITY & SETTINGS ---
+                dgvDailyJobs.RowHeadersVisible = False ' Hide the left arrow bar
+                dgvDailyJobs.DefaultCellStyle.WrapMode = DataGridViewTriState.True
+
+                ' Hide IDs and Details moved to GroupBox
+                Dim colsToHide() As String = {"JobID", "ServiceID", "Address", "ServiceName", "VisitNumber", "AssignedTech"}
+                For Each colName As String In colsToHide
+                    If dgvDailyJobs.Columns(colName) IsNot Nothing Then
+                        dgvDailyJobs.Columns(colName).Visible = False
+                    End If
+                Next
+
+                ' Adjust widths for the visible ones
+                If dgvDailyJobs.Columns("ClientName") IsNot Nothing Then dgvDailyJobs.Columns("ClientName").Width = 150
+                If dgvDailyJobs.Columns("JobType") IsNot Nothing Then dgvDailyJobs.Columns("JobType").Width = 100
+                If dgvDailyJobs.Columns("Status") IsNot Nothing Then dgvDailyJobs.Columns("Status").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
+                ' Reset details
+                ClearDetails()
                 ColorCodeRows()
 
             Catch ex As Exception
@@ -266,7 +331,6 @@ Public Class newUcDashboard
 
     Private Sub dtpViewDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpViewDate.ValueChanged
         LoadJobs(dtpViewDate.Value)
-        ' Optional: Force calendar to update its grey selection if date changes via picker
         UpdateSelectionVisuals()
     End Sub
 
@@ -277,12 +341,26 @@ Public Class newUcDashboard
     Private Sub dgvDailyJobs_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailyJobs.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvDailyJobs.Rows(e.RowIndex)
+
+            ' 1. Job ID for assignment
             _selectedJobID = Convert.ToInt32(row.Cells("JobID").Value)
-            Dim client As String = row.Cells("ClientName").Value.ToString()
-            Dim service As String = row.Cells("ServiceName").Value.ToString()
-            lblSelectedJob.Text = "Dispatching: " & client & " (" & service & ")"
-            lblSelectedJob.ForeColor = Color.Blue
+
+            ' 2. FILL DETAILS GROUP BOX
+            lblDetailClient.Text = row.Cells("ClientName").Value.ToString()
+            lblDetailAddress.Text = row.Cells("Address").Value.ToString()
+            lblDetailService.Text = row.Cells("ServiceName").Value.ToString()
+            lblDetailTech.Text = row.Cells("AssignedTech").Value.ToString()
+            lblDetailVisit.Text = row.Cells("VisitNumber").Value.ToString()
         End If
+    End Sub
+
+    Private Sub ClearDetails()
+        lblDetailClient.Text = "---"
+        lblDetailAddress.Text = "---"
+        lblDetailService.Text = "---"
+        lblDetailTech.Text = "---"
+        lblDetailVisit.Text = "---"
+        _selectedJobID = 0
     End Sub
 
     Private Async Sub btnAssignJob_Click(sender As Object, e As EventArgs) Handles btnAssignJob.Click
@@ -337,4 +415,27 @@ Public Class newUcDashboard
         End Try
     End Sub
 
+    ' --- EMPTY HANDLERS (Kept so Designer doesn't crash) ---
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    End Sub
+    Private Sub SplitContainer1_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel2.Paint
+    End Sub
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+    End Sub
+    Private Sub flpCalendar_Paint(sender As Object, e As PaintEventArgs) Handles flpCalendar1.Paint
+    End Sub
+    Private Sub lblSelectedJob_Click(sender As Object, e As EventArgs)
+    End Sub
+    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+    End Sub
+    Private Sub lblDetailTech_Click(sender As Object, e As EventArgs) Handles lblDetailTech.Click
+    End Sub
+    Private Sub lblDetailVisit_Click(sender As Object, e As EventArgs) Handles lblDetailVisit.Click
+    End Sub
+    Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
+    End Sub
+    Private Sub lblDetailClient_Click(sender As Object, e As EventArgs) Handles lblDetailClient.Click
+    End Sub
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+    End Sub
 End Class
