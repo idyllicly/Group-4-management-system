@@ -30,6 +30,8 @@ Partial Class newUcContractManager
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.tabDetails = New System.Windows.Forms.TabControl()
         Me.tpOverview = New System.Windows.Forms.TabPage()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.lblService = New System.Windows.Forms.Label()
         Me.lblTotalAmount = New System.Windows.Forms.Label()
         Me.lblBalance = New System.Windows.Forms.Label()
         Me.lblClientName = New System.Windows.Forms.Label()
@@ -39,8 +41,6 @@ Partial Class newUcContractManager
         Me.dgvJobHistory = New System.Windows.Forms.DataGridView()
         Me.tpPayments = New System.Windows.Forms.TabPage()
         Me.dgvPayments = New System.Windows.Forms.DataGridView()
-        Me.lblService = New System.Windows.Forms.Label()
-        Me.lblStatus = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -156,15 +156,32 @@ Partial Class newUcContractManager
         Me.tpOverview.Text = "Overview"
         Me.tpOverview.UseVisualStyleBackColor = True
         '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus.Location = New System.Drawing.Point(20, 152)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(0, 25)
+        Me.lblStatus.TabIndex = 5
+        '
+        'lblService
+        '
+        Me.lblService.AutoSize = True
+        Me.lblService.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblService.Location = New System.Drawing.Point(20, 46)
+        Me.lblService.Name = "lblService"
+        Me.lblService.Size = New System.Drawing.Size(0, 25)
+        Me.lblService.TabIndex = 4
+        '
         'lblTotalAmount
         '
         Me.lblTotalAmount.AutoSize = True
         Me.lblTotalAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalAmount.Location = New System.Drawing.Point(20, 80)
         Me.lblTotalAmount.Name = "lblTotalAmount"
-        Me.lblTotalAmount.Size = New System.Drawing.Size(71, 25)
+        Me.lblTotalAmount.Size = New System.Drawing.Size(0, 25)
         Me.lblTotalAmount.TabIndex = 2
-        Me.lblTotalAmount.Text = "Label1"
         '
         'lblBalance
         '
@@ -172,9 +189,8 @@ Partial Class newUcContractManager
         Me.lblBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBalance.Location = New System.Drawing.Point(20, 116)
         Me.lblBalance.Name = "lblBalance"
-        Me.lblBalance.Size = New System.Drawing.Size(71, 25)
+        Me.lblBalance.Size = New System.Drawing.Size(0, 25)
         Me.lblBalance.TabIndex = 1
-        Me.lblBalance.Text = "Label1"
         '
         'lblClientName
         '
@@ -182,9 +198,8 @@ Partial Class newUcContractManager
         Me.lblClientName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblClientName.Location = New System.Drawing.Point(20, 17)
         Me.lblClientName.Name = "lblClientName"
-        Me.lblClientName.Size = New System.Drawing.Size(71, 25)
+        Me.lblClientName.Size = New System.Drawing.Size(0, 25)
         Me.lblClientName.TabIndex = 0
-        Me.lblClientName.Text = "Label1"
         '
         'tpSchedule
         '
@@ -261,26 +276,6 @@ Partial Class newUcContractManager
         Me.dgvPayments.RowTemplate.Height = 28
         Me.dgvPayments.Size = New System.Drawing.Size(970, 423)
         Me.dgvPayments.TabIndex = 0
-        '
-        'lblService
-        '
-        Me.lblService.AutoSize = True
-        Me.lblService.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblService.Location = New System.Drawing.Point(20, 46)
-        Me.lblService.Name = "lblService"
-        Me.lblService.Size = New System.Drawing.Size(71, 25)
-        Me.lblService.TabIndex = 4
-        Me.lblService.Text = "Label1"
-        '
-        'lblStatus
-        '
-        Me.lblStatus.AutoSize = True
-        Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(20, 152)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(71, 25)
-        Me.lblStatus.TabIndex = 5
-        Me.lblStatus.Text = "Label1"
         '
         'newUcContractManager
         '

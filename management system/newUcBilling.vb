@@ -4,7 +4,6 @@ Imports System.Drawing
 Public Class newUcBilling
 
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-
     ' Variables to track selection
     Private _selectedContractID As Integer = 0
     Private _selectedScheduleID As Integer = 0
@@ -24,8 +23,7 @@ Public Class newUcBilling
     Private Sub LoadBillingData(search As String)
         Dim previouslySelectedID As Integer = _selectedContractID
 
-        ' [FIX 1] Handle Placeholder Text logic for the Query
-        ' If the text sent to this function is the placeholder, we treat it as empty
+        ' Handle Placeholder Text logic for the Query
         If search.Trim() = "Search Client..." Then
             search = ""
         End If
@@ -49,10 +47,19 @@ Public Class newUcBilling
 
                 dgvBilling.DataSource = dt
 
-                If dgvBilling.Columns("ContractID") IsNot Nothing Then dgvBilling.Columns("ContractID").Visible = False
+                ' --- FIX: Safety Checks Added Here ---
+                If dgvBilling.Columns("ContractID") IsNot Nothing Then
+                    dgvBilling.Columns("ContractID").Visible = False
+                End If
 
-                dgvBilling.Columns("BalanceRemaining").DefaultCellStyle.Format = "N2"
-                dgvBilling.Columns("NextVisitDate").DefaultCellStyle.Format = "MMM dd, yyyy"
+                If dgvBilling.Columns("BalanceRemaining") IsNot Nothing Then
+                    dgvBilling.Columns("BalanceRemaining").DefaultCellStyle.Format = "N2"
+                End If
+
+                If dgvBilling.Columns("NextVisitDate") IsNot Nothing Then
+                    dgvBilling.Columns("NextVisitDate").DefaultCellStyle.Format = "MMM dd, yyyy"
+                End If
+                ' -------------------------------------
 
                 ' --- RESTORE SELECTION (SAFE LOOP) ---
                 If previouslySelectedID > 0 Then
@@ -64,7 +71,10 @@ Public Class newUcBilling
                         If cellVal IsNot Nothing AndAlso IsNumeric(cellVal) Then
                             If Convert.ToInt32(cellVal) = previouslySelectedID Then
                                 row.Selected = True
-                                dgvBilling.CurrentCell = row.Cells(1)
+                                ' Safety check to prevent crash if cell 1 doesn't exist
+                                If row.Cells.Count > 1 Then
+                                    dgvBilling.CurrentCell = row.Cells(1)
+                                End If
                                 SelectContract(row)
                                 found = True
                                 Exit For
@@ -84,8 +94,14 @@ Public Class newUcBilling
     ' 2. HELPER: SELECT CONTRACT & UPDATE UI
     ' ==========================================
     Private Sub SelectContract(row As DataGridViewRow)
-        _selectedContractID = Convert.ToInt32(row.Cells("ContractID").Value)
-        _currentBalance = Convert.ToDecimal(row.Cells("BalanceRemaining").Value)
+        ' Safety check for value existence
+        If row.Cells("ContractID").Value IsNot Nothing Then
+            _selectedContractID = Convert.ToInt32(row.Cells("ContractID").Value)
+        End If
+
+        If row.Cells("BalanceRemaining").Value IsNot Nothing Then
+            _currentBalance = Convert.ToDecimal(row.Cells("BalanceRemaining").Value)
+        End If
 
         ' Update Labels
         lblContractInfo.Text = row.Cells("ClientName").Value.ToString()
@@ -216,10 +232,20 @@ Public Class newUcBilling
             da.Fill(dt)
 
             dgvSchedule.DataSource = dt
-            If dgvSchedule.Columns("ScheduleID") IsNot Nothing Then dgvSchedule.Columns("ScheduleID").Visible = False
 
-            dgvSchedule.Columns("DueDate").DefaultCellStyle.Format = "MMM dd, yyyy"
-            dgvSchedule.Columns("AmountDue").DefaultCellStyle.Format = "N2"
+            ' --- FIX: Safety Checks Added Here ---
+            If dgvSchedule.Columns("ScheduleID") IsNot Nothing Then
+                dgvSchedule.Columns("ScheduleID").Visible = False
+            End If
+
+            If dgvSchedule.Columns("DueDate") IsNot Nothing Then
+                dgvSchedule.Columns("DueDate").DefaultCellStyle.Format = "MMM dd, yyyy"
+            End If
+
+            If dgvSchedule.Columns("AmountDue") IsNot Nothing Then
+                dgvSchedule.Columns("AmountDue").DefaultCellStyle.Format = "N2"
+            End If
+            ' -------------------------------------
 
             ColorScheduleRows()
         End Using
@@ -233,15 +259,18 @@ Public Class newUcBilling
         For Each row As DataGridViewRow In dgvBilling.Rows
             If row.IsNewRow Then Continue For
 
-            Dim cellVal As Object = row.Cells("BalanceRemaining").Value
-            If cellVal IsNot Nothing AndAlso IsNumeric(cellVal) Then
-                Dim bal As Decimal = Convert.ToDecimal(cellVal)
-                If bal > 0 Then
-                    row.DefaultCellStyle.BackColor = Color.MistyRose
-                    row.DefaultCellStyle.SelectionBackColor = Color.Red
-                Else
-                    row.DefaultCellStyle.BackColor = Color.LightGreen
-                    row.DefaultCellStyle.SelectionBackColor = Color.Green
+            ' Safety check to ensure column exists before accessing it
+            If dgvBilling.Columns.Contains("BalanceRemaining") Then
+                Dim cellVal As Object = row.Cells("BalanceRemaining").Value
+                If cellVal IsNot Nothing AndAlso IsNumeric(cellVal) Then
+                    Dim bal As Decimal = Convert.ToDecimal(cellVal)
+                    If bal > 0 Then
+                        row.DefaultCellStyle.BackColor = Color.MistyRose
+                        row.DefaultCellStyle.SelectionBackColor = Color.Red
+                    Else
+                        row.DefaultCellStyle.BackColor = Color.LightGreen
+                        row.DefaultCellStyle.SelectionBackColor = Color.Green
+                    End If
                 End If
             End If
         Next
@@ -249,13 +278,16 @@ Public Class newUcBilling
 
     Private Sub ColorScheduleRows()
         For Each row As DataGridViewRow In dgvSchedule.Rows
-            Dim status As String = row.Cells("Status").Value.ToString()
-            Dim dueDate As Date = Convert.ToDateTime(row.Cells("DueDate").Value)
+            ' Safety check to ensure columns exist
+            If dgvSchedule.Columns.Contains("Status") AndAlso dgvSchedule.Columns.Contains("DueDate") Then
+                Dim status As String = row.Cells("Status").Value.ToString()
+                Dim dueDate As Date = Convert.ToDateTime(row.Cells("DueDate").Value)
 
-            If status = "Paid" Then
-                row.DefaultCellStyle.BackColor = Color.LightGreen
-            ElseIf dueDate < DateTime.Now And status = "Pending" Then
-                row.DefaultCellStyle.BackColor = Color.LightSalmon
+                If status = "Paid" Then
+                    row.DefaultCellStyle.BackColor = Color.LightGreen
+                ElseIf dueDate < DateTime.Now And status = "Pending" Then
+                    row.DefaultCellStyle.BackColor = Color.LightSalmon
+                End If
             End If
         Next
     End Sub

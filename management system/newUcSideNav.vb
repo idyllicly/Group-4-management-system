@@ -66,22 +66,22 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        NavigateTo(New newUcInquiryManager(), "inquiry")
+        NavigateTo(New newUcInquiryManager(), "Inquiry")
     End Sub
 
     Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
-        NavigateTo(New newUcAccountManager(), "accounts")
+        NavigateTo(New newUcAccountManager(), "Accounts")
     End Sub
 
     Private Sub btnNavCalendar_Click(sender As Object, e As EventArgs) Handles btnNavCalendar.Click
-        NavigateTo(New newUcQuoteManager(), "Quotes")
+        NavigateTo(New newUcQuoteManager(), "Oculars")
     End Sub
 
     Private Sub btnNavTechs_Click(sender As Object, e As EventArgs) Handles btnNavTechs.Click
-        NavigateTo(New newUcTechMonitor(), "Quotes")
+        NavigateTo(New newUcTechMonitor(), "Technicians")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        NavigateTo(New newUcContractManager(), "Quotes")
+        NavigateTo(New newUcContractManager(), "Contracts")
     End Sub
 End Class
