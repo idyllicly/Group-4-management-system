@@ -14,22 +14,25 @@ Public Class newUcContractManager
     End Sub
 
     ' 2. Function to Load the Master List
+    ' UPDATED: Now joins 'view_contract_details' to get the calculated Balance
     Private Sub LoadContractList(searchTerm As String)
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' We JOIN tables to get readable names instead of just IDs
+
+                ' NEW QUERY: We join the VIEW to get the calculated Balance and Payment Status
                 Dim sql As String = "SELECT " &
                                     "   Con.ContractID, " &
                                     "   Cl.ClientName, " &
                                     "   S.ServiceName, " &
-                                    "   Con.ContractStatus, " &
+                                    "   V.PaymentStatus, " &    ' From View
                                     "   Con.StartDate, " &
                                     "   Con.TotalAmount, " &
-                                    "   Con.BalanceRemaining " &
+                                    "   V.BalanceRemaining " &  ' From View
                                     "FROM tbl_contracts Con " &
                                     "LEFT JOIN tbl_clients Cl ON Con.ClientID = Cl.ClientID " &
                                     "LEFT JOIN tbl_services S ON Con.ServiceID = S.ServiceID " &
+                                    "LEFT JOIN view_contract_details V ON Con.ContractID = V.ContractID " & ' The Link to Calculations
                                     "WHERE Cl.ClientName LIKE @search " &
                                     "ORDER BY Con.ContractID DESC"
 
@@ -42,7 +45,7 @@ Public Class newUcContractManager
 
                 dgvContracts.DataSource = dt
 
-                ' Hide ID column (optional) but keep it for logic
+                ' Hide ID column 
                 If dgvContracts.Columns("ContractID") IsNot Nothing Then
                     dgvContracts.Columns("ContractID").Visible = False
                 End If
@@ -75,20 +78,20 @@ Public Class newUcContractManager
     ' === DETAIL LOADING SUBS ===
 
     Private Sub LoadOverview(row As DataGridViewRow)
-        ' Assuming you added these labels to tpOverview
-        ' You might need to make these public or friend in designer if they aren't accessible
-        ' For this example, ensure you have Labels named accordingly on the Overview tab
-
+        ' Matches the columns selected in LoadContractList
         lblClientName.Text = "Client: " & row.Cells("ClientName").Value.ToString()
         lblService.Text = "Service: " & row.Cells("ServiceName").Value.ToString()
-        lblStatus.Text = "Status: " & row.Cells("ContractStatus").Value.ToString()
+        lblStatus.Text = "Status: " & row.Cells("PaymentStatus").Value.ToString() ' Using the View's status
         lblTotalAmount.Text = "Total: " & row.Cells("TotalAmount").Value.ToString()
         lblBalance.Text = "Balance: " & row.Cells("BalanceRemaining").Value.ToString()
     End Sub
 
     Private Sub LoadSchedule(contractID As Integer)
         Using conn As New MySqlConnection(connString)
-            Dim sql As String = "SELECT DueDate, AmountDue, Status, InstallmentNumber FROM tbl_paymentschedule WHERE ContractID = @id ORDER BY DueDate ASC"
+            ' UPDATED: Removed 'Status' from query because we deleted that column in normalization
+            ' We only show Date, Amount, and Installment #
+            Dim sql As String = "SELECT InstallmentNumber, DueDate, AmountDue FROM tbl_paymentschedule WHERE ContractID = @id ORDER BY DueDate ASC"
+
             Dim cmd As New MySqlCommand(sql, conn)
             cmd.Parameters.AddWithValue("@id", contractID)
             Dim da As New MySqlDataAdapter(cmd)
@@ -100,10 +103,11 @@ Public Class newUcContractManager
 
     Private Sub LoadJobHistory(contractID As Integer)
         Using conn As New MySqlConnection(connString)
-            ' CORRECTED SQL: Changed "Status" to "J.Status" to avoid ambiguity
-            Dim sql As String = "SELECT VisitNumber, ScheduledDate, J.Status, CONCAT(T.FirstName, ' ', T.LastName) as Tech " &
+            ' UPDATED: Now joins 'tbl_users' instead of 'tbl_technicians'
+            ' UPDATED: Uses 'T.FullName' instead of First/Last name
+            Dim sql As String = "SELECT VisitNumber, ScheduledDate, J.Status, T.FullName as Tech " &
                                 "FROM tbl_joborders J " &
-                                "LEFT JOIN tbl_technicians T ON J.TechnicianID = T.TechnicianID " &
+                                "LEFT JOIN tbl_users T ON J.TechnicianID = T.UserID " &
                                 "WHERE J.ContractID = @id ORDER BY VisitNumber ASC"
 
             Dim cmd As New MySqlCommand(sql, conn)
@@ -130,21 +134,14 @@ Public Class newUcContractManager
 
     ' 5. Create New Contract Button
     Private Sub btnNewContract_Click(sender As Object, e As EventArgs) Handles btnNewContract.Click
-        ' This uses your existing Helper function in the parent form to switch pages
-        ' We assume the parent is frm_Main
-        Dim parentForm As frm_Main = TryCast(Me.ParentForm.ParentForm, frm_Main)
-        ' Note: ParentForm might need to be accessed via Me.Parent depending on nesting. 
-        ' Since this UC is inside pnlContent, the immediate parent is pnlContent, its parent is TableLayout, then Form.
-
-        ' Easier way provided in your newUcSideNav logic:
+        ' Switch to the entry form
         Dim main As frm_Main = CType(Application.OpenForms("frm_Main"), frm_Main)
         If main IsNot Nothing Then
-            ' Load your EXISTING creation control
             main.LoadPage(New uc_NewContractEntry(), "Create New Contract")
         End If
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
+        ' Paint logic if needed
     End Sub
 End Class

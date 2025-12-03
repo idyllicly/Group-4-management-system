@@ -11,61 +11,44 @@ Public Class newUcDashboard
     Private _currentYear As Integer = DateTime.Now.Year
 
     ' ---------------------------------------------------------
-    ' 1. RESIZING LOGIC (Handles Both Calendars)
+    ' 1. RESIZING LOGIC
     ' ---------------------------------------------------------
     Private Sub ResizeCalendarItems()
-        ' Resize Left Panel
         ResizeSinglePanel(flpCalendar1)
-        ' Resize Right Panel
         ResizeSinglePanel(flpCalendar2)
     End Sub
 
     Private Sub ResizeSinglePanel(panel As FlowLayoutPanel)
-        ' Guard clause
         If panel.Controls.Count = 0 Then Return
 
         panel.SuspendLayout()
-
-        ' 1. Calculate Width (Standard for all items)
         Dim newWidth As Integer = CInt((panel.ClientSize.Width - 25) / 7)
-
-        ' 2. Calculate Height dynamically
         Dim headerHeight As Integer = 30
-        Dim totalDaySlots As Integer = panel.Controls.Count - 7 ' Subtract 7 headers
-
-        ' Calculate rows needed
+        Dim totalDaySlots As Integer = panel.Controls.Count - 7
         Dim numRows As Integer = Math.Ceiling(totalDaySlots / 7)
         If numRows < 1 Then numRows = 1
-
         Dim availableHeight As Integer = panel.ClientSize.Height - headerHeight - 10
         Dim newTileHeight As Integer = CInt(availableHeight / numRows)
 
-        ' 3. Apply sizes
         For i As Integer = 0 To panel.Controls.Count - 1
             Dim ctrl As Control = panel.Controls(i)
-
             If i < 7 Then
-                ' Header
                 ctrl.Size = New Size(newWidth, headerHeight)
                 ctrl.Margin = New Padding(1, 0, 1, 0)
             Else
-                ' Day Tile
                 ctrl.Size = New Size(newWidth, newTileHeight)
                 ctrl.Margin = New Padding(1)
             End If
         Next
-
         panel.ResumeLayout()
     End Sub
 
-    ' Event to trigger resize when window/panel changes size
-    ' MAKE SURE BOTH flpCalendar1 AND flpCalendar2 use this event in Designer!
     Private Sub flpCalendar_Resize(sender As Object, e As EventArgs) Handles flpCalendar1.Resize, flpCalendar2.Resize
         ResizeCalendarItems()
     End Sub
 
     ' ---------------------------------------------------------
-    ' 2. VISUAL UPDATE LOGIC (The Flicker Fix)
+    ' 2. VISUAL UPDATE LOGIC
     ' ---------------------------------------------------------
     Private Sub UpdateSelectionVisuals()
         UpdatePanelVisuals(flpCalendar1)
@@ -76,43 +59,25 @@ Public Class newUcDashboard
         For Each ctrl As Control In panel.Controls
             If TypeOf ctrl Is ucCalendarDay Then
                 Dim tile As ucCalendarDay = CType(ctrl, ucCalendarDay)
-
-                ' Reset to default White
                 tile.BackColor = Color.White
-
-                ' Check if it is TODAY
-                If tile.DayDate.Date = DateTime.Now.Date Then
-                    tile.BackColor = Color.LightBlue
-                End If
-
-                ' Check if it is SELECTED
-                If tile.DayDate.Date = dtpViewDate.Value.Date Then
-                    tile.BackColor = Color.LightGray
-                End If
+                If tile.DayDate.Date = DateTime.Now.Date Then tile.BackColor = Color.LightBlue
+                If tile.DayDate.Date = dtpViewDate.Value.Date Then tile.BackColor = Color.LightGray
             End If
         Next
     End Sub
 
     ' ---------------------------------------------------------
-    ' 3. CALENDAR GENERATION (Dual View)
+    ' 3. CALENDAR GENERATION
     ' ---------------------------------------------------------
     Private Sub LoadCalendars()
-        ' 1. Load Left Calendar (Current Month)
         GenerateSingleCalendar(flpCalendar1, lblMonthYear1, _currentMonth, _currentYear)
-
-        ' 2. Calculate Right Calendar (Next Month)
         Dim nextMonth As Integer = _currentMonth + 1
         Dim nextYear As Integer = _currentYear
-
         If nextMonth > 12 Then
             nextMonth = 1
             nextYear += 1
         End If
-
-        ' 3. Load Right Calendar
         GenerateSingleCalendar(flpCalendar2, lblMonthYear2, nextMonth, nextYear)
-
-        ' 4. Resize immediately
         ResizeCalendarItems()
     End Sub
 
@@ -120,11 +85,9 @@ Public Class newUcDashboard
         targetPanel.Controls.Clear()
         targetPanel.SuspendLayout()
 
-        ' A. Update Header Label
         Dim strMonth As String = MonthName(m)
         targetLabel.Text = $"{strMonth.ToUpper()} {y}"
 
-        ' B. Add Headers (Sun, Mon...)
         Dim dayNames As String() = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
         For Each dayName As String In dayNames
             Dim lbl As New Label()
@@ -137,23 +100,20 @@ Public Class newUcDashboard
             targetPanel.Controls.Add(lbl)
         Next
 
-        ' C. Get Jobs for this specific month
         Dim jobDays As New List(Of Integer)
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            Dim sql As String = "SELECT DISTINCT DAY(ScheduledDate) FROM tbl_JobOrders " &
+            Dim sql As String = "SELECT DISTINCT DAY(ScheduledDate) FROM tbl_joborders " &
                                 "WHERE MONTH(ScheduledDate) = @m AND YEAR(ScheduledDate) = @y"
             Dim cmd As New MySqlCommand(sql, conn)
             cmd.Parameters.AddWithValue("@m", m)
             cmd.Parameters.AddWithValue("@y", y)
-
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
             While dr.Read()
                 jobDays.Add(dr.GetInt32(0))
             End While
         End Using
 
-        ' D. Generate Empty Slots
         Dim startOfMonth As New DateTime(y, m, 1)
         Dim daysInMonth As Integer = DateTime.DaysInMonth(y, m)
         Dim startDayOfWeek As Integer = CInt(startOfMonth.DayOfWeek)
@@ -164,23 +124,14 @@ Public Class newUcDashboard
             targetPanel.Controls.Add(emptyPanel)
         Next
 
-        ' E. Generate Days
         For day As Integer = 1 To daysInMonth
             Dim dayTile As New ucCalendarDay()
             Dim currentDate As New DateTime(y, m, day)
-
             Dim hasJob As Boolean = jobDays.Contains(day)
             dayTile.SetDay(day, currentDate, hasJob)
 
-            ' Highlight Today
-            If currentDate.Date = DateTime.Now.Date Then
-                dayTile.BackColor = Color.LightBlue
-            End If
-
-            ' Highlight Selected
-            If currentDate.Date = dtpViewDate.Value.Date Then
-                dayTile.BackColor = Color.LightGray
-            End If
+            If currentDate.Date = DateTime.Now.Date Then dayTile.BackColor = Color.LightBlue
+            If currentDate.Date = dtpViewDate.Value.Date Then dayTile.BackColor = Color.LightGray
 
             AddHandler dayTile.DayClicked, AddressOf OnDayTileClicked
             targetPanel.Controls.Add(dayTile)
@@ -208,29 +159,22 @@ Public Class newUcDashboard
     End Sub
 
     Private Sub OnDayTileClicked(selectedDate As Date)
-        ' 1. Update the DateTimePicker (triggers grid refresh)
         dtpViewDate.Value = selectedDate
-        ' 2. Update visuals
         UpdateSelectionVisuals()
     End Sub
 
     ' ---------------------------------------------------------
-    ' 4. MAIN FORM LOGIC (Your Table & Details)
+    ' 4. MAIN FORM LOGIC
     ' ---------------------------------------------------------
     Private Sub newUcDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Initialize Firebase Connection
         FirebaseManager.Initialize()
-
-        ' Load Data
         LoadTechnicians()
         LoadJobs(DateTime.Now)
 
-        ' Initialize Calendar
         _currentMonth = DateTime.Now.Month
         _currentYear = DateTime.Now.Year
-        LoadCalendars() ' <--- CHANGED TO PLURAL
+        LoadCalendars()
 
-        ' Start Real-time Listener
         FirebaseManager.ListenForJobUpdates()
         AddHandler FirebaseManager.JobStatusUpdated, AddressOf OnJobStatusUpdate
     End Sub
@@ -245,13 +189,14 @@ Public Class newUcDashboard
 
     Private Sub LoadTechnicians()
         Using conn As New MySqlConnection(connString)
-            Dim cmd As New MySqlCommand("SELECT TechnicianID, CONCAT(FirstName, ' ', LastName) AS FullName, FirebaseUID FROM tbl_Technicians WHERE Status='Active'", conn)
+            Dim cmd As New MySqlCommand("SELECT UserID, FullName, FirebaseUID FROM tbl_users WHERE Role='Technician' AND Status='Active'", conn)
             Dim da As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable()
             da.Fill(dt)
+
             cmbTechnician.DataSource = dt
             cmbTechnician.DisplayMember = "FullName"
-            cmbTechnician.ValueMember = "TechnicianID"
+            cmbTechnician.ValueMember = "UserID"
         End Using
     End Sub
 
@@ -259,21 +204,25 @@ Public Class newUcDashboard
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
+                ' UPDATED SQL:
+                ' 1. Use CONCAT_WS for Address
+                ' 2. Use COALESCE(S.ServiceName, S_Job.ServiceName) to find the service name
+                '    from either the Contract OR the Job (for inspections).
                 Dim sql As String = "SELECT " &
                                     "   J.JobID, " &
                                     "   C.ClientName, " &
-                                    "   C.Address, " &
-                                    "   S.ServiceName, " &
-                                    "   S.ServiceID, " &
+                                    "   CONCAT_WS(', ', C.StreetAddress, C.Barangay, C.City) AS Address, " &
+                                    "   COALESCE(S.ServiceName, S_Job.ServiceName) AS ServiceName, " &
                                     "   J.JobType, " &
                                     "   J.VisitNumber, " &
                                     "   J.Status, " &
-                                    "   CONCAT(T.FirstName, ' ', T.LastName) AS AssignedTech " &
-                                    "FROM tbl_JobOrders J " &
-                                    "LEFT JOIN tbl_Contracts Con ON J.ContractID = Con.ContractID " &
-                                    "LEFT JOIN tbl_Clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
-                                    "LEFT JOIN tbl_Services S ON Con.ServiceID = S.ServiceID " &
-                                    "LEFT JOIN tbl_Technicians T ON J.TechnicianID = T.TechnicianID " &
+                                    "   T.FullName AS AssignedTech " &
+                                    "FROM tbl_joborders J " &
+                                    "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
+                                    "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
+                                    "LEFT JOIN tbl_services S ON Con.ServiceID = S.ServiceID " &
+                                    "LEFT JOIN tbl_services S_Job ON J.ServiceID = S_Job.ServiceID " &
+                                    "LEFT JOIN tbl_users T ON J.TechnicianID = T.UserID " &
                                     "WHERE J.ScheduledDate = @date"
 
                 Dim cmd As New MySqlCommand(sql, conn)
@@ -284,25 +233,20 @@ Public Class newUcDashboard
                 da.Fill(dt)
 
                 dgvDailyJobs.DataSource = dt
-
-                ' --- COLUMN VISIBILITY & SETTINGS ---
-                dgvDailyJobs.RowHeadersVisible = False ' Hide the left arrow bar
+                dgvDailyJobs.RowHeadersVisible = False
                 dgvDailyJobs.DefaultCellStyle.WrapMode = DataGridViewTriState.True
 
-                ' Hide IDs and Details moved to GroupBox
-                Dim colsToHide() As String = {"JobID", "ServiceID", "Address", "ServiceName", "VisitNumber", "AssignedTech"}
+                Dim colsToHide() As String = {"JobID", "Address", "ServiceName", "VisitNumber", "AssignedTech"}
                 For Each colName As String In colsToHide
                     If dgvDailyJobs.Columns(colName) IsNot Nothing Then
                         dgvDailyJobs.Columns(colName).Visible = False
                     End If
                 Next
 
-                ' Adjust widths for the visible ones
                 If dgvDailyJobs.Columns("ClientName") IsNot Nothing Then dgvDailyJobs.Columns("ClientName").Width = 150
                 If dgvDailyJobs.Columns("JobType") IsNot Nothing Then dgvDailyJobs.Columns("JobType").Width = 100
                 If dgvDailyJobs.Columns("Status") IsNot Nothing Then dgvDailyJobs.Columns("Status").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
-                ' Reset details
                 ClearDetails()
                 ColorCodeRows()
 
@@ -342,14 +286,24 @@ Public Class newUcDashboard
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvDailyJobs.Rows(e.RowIndex)
 
-            ' 1. Job ID for assignment
             _selectedJobID = Convert.ToInt32(row.Cells("JobID").Value)
 
-            ' 2. FILL DETAILS GROUP BOX
             lblDetailClient.Text = row.Cells("ClientName").Value.ToString()
             lblDetailAddress.Text = row.Cells("Address").Value.ToString()
-            lblDetailService.Text = row.Cells("ServiceName").Value.ToString()
-            lblDetailTech.Text = row.Cells("AssignedTech").Value.ToString()
+
+            ' Now shows "General Pest Control" even for Inspections
+            If IsDBNull(row.Cells("ServiceName").Value) Then
+                lblDetailService.Text = "Not Specified"
+            Else
+                lblDetailService.Text = row.Cells("ServiceName").Value.ToString()
+            End If
+
+            If IsDBNull(row.Cells("AssignedTech").Value) Then
+                lblDetailTech.Text = "Unassigned"
+            Else
+                lblDetailTech.Text = row.Cells("AssignedTech").Value.ToString()
+            End If
+
             lblDetailVisit.Text = row.Cells("VisitNumber").Value.ToString()
         End If
     End Sub
@@ -371,19 +325,25 @@ Public Class newUcDashboard
 
         Dim techID As Integer = Convert.ToInt32(cmbTechnician.SelectedValue)
         Dim drv As DataRowView = CType(cmbTechnician.SelectedItem, DataRowView)
-        Dim techFirebaseUID As String = drv("FirebaseUID").ToString()
+
+        Dim techFirebaseUID As String = ""
+        If Not IsDBNull(drv("FirebaseUID")) Then
+            techFirebaseUID = drv("FirebaseUID").ToString()
+        End If
 
         Dim selectedRow As DataGridViewRow = dgvDailyJobs.CurrentRow
         Dim clientName As String = selectedRow.Cells("ClientName").Value.ToString()
         Dim address As String = selectedRow.Cells("Address").Value.ToString()
-        Dim serviceName As String = selectedRow.Cells("ServiceName").Value.ToString()
+
+        ' Use the visible label instead of hidden column to ensure we get the data
+        Dim serviceName As String = lblDetailService.Text
+
         Dim visitDate As Date = dtpViewDate.Value
         Dim jobType As String = selectedRow.Cells("JobType").Value.ToString()
 
+        ' We don't have ServiceID directly in the grid for Inspections easily, 
+        ' but that's okay, mobile only strictly needs the Name for display.
         Dim serviceID As Integer = 0
-        If Not IsDBNull(selectedRow.Cells("ServiceID").Value) Then
-            serviceID = Convert.ToInt32(selectedRow.Cells("ServiceID").Value)
-        End If
 
         btnAssignJob.Enabled = False
         btnAssignJob.Text = "Syncing..."
@@ -391,7 +351,7 @@ Public Class newUcDashboard
         Try
             Using conn As New MySqlConnection(connString)
                 conn.Open()
-                Dim sql As String = "UPDATE tbl_JobOrders SET TechnicianID = @tid, Status = 'Assigned' WHERE JobID = @jid"
+                Dim sql As String = "UPDATE tbl_joborders SET TechnicianID = @tid, Status = 'Assigned' WHERE JobID = @jid"
                 Dim cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@tid", techID)
                 cmd.Parameters.AddWithValue("@jid", _selectedJobID)
@@ -401,7 +361,7 @@ Public Class newUcDashboard
             If techFirebaseUID <> "" Then
                 Await FirebaseManager.DispatchJobToMobile(_selectedJobID, clientName, address, serviceName, visitDate, techFirebaseUID, jobType, serviceID)
             Else
-                MessageBox.Show("Warning: Technician has no Mobile Account.")
+                MessageBox.Show("Warning: Technician assigned but they have no Mobile Account.")
             End If
 
             MessageBox.Show("Job Dispatched Successfully!")
@@ -415,7 +375,7 @@ Public Class newUcDashboard
         End Try
     End Sub
 
-    ' --- EMPTY HANDLERS (Kept so Designer doesn't crash) ---
+    ' --- EMPTY HANDLERS ---
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
     End Sub
     Private Sub SplitContainer1_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel2.Paint
@@ -423,8 +383,6 @@ Public Class newUcDashboard
     Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
     End Sub
     Private Sub flpCalendar_Paint(sender As Object, e As PaintEventArgs) Handles flpCalendar1.Paint
-    End Sub
-    Private Sub lblSelectedJob_Click(sender As Object, e As EventArgs)
     End Sub
     Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
     End Sub

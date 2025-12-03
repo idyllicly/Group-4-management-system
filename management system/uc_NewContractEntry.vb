@@ -2,6 +2,7 @@
 
 Public Class uc_NewContractEntry
 
+    ' Connection String
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
     ' Variables to hold data passed from the Quotation Manager
@@ -37,7 +38,7 @@ Public Class uc_NewContractEntry
             Try
                 conn.Open()
                 ' Clients
-                Dim daC As New MySqlDataAdapter("SELECT ClientID, ClientName FROM tbl_Clients", conn)
+                Dim daC As New MySqlDataAdapter("SELECT ClientID, ClientName FROM tbl_clients", conn)
                 Dim dtC As New DataTable()
                 daC.Fill(dtC)
                 cmbClient.DataSource = dtC
@@ -45,7 +46,7 @@ Public Class uc_NewContractEntry
                 cmbClient.ValueMember = "ClientID"
 
                 ' Services
-                Dim daS As New MySqlDataAdapter("SELECT ServiceID, ServiceName FROM tbl_Services", conn)
+                Dim daS As New MySqlDataAdapter("SELECT ServiceID, ServiceName FROM tbl_services", conn)
                 Dim dtS As New DataTable()
                 daS.Fill(dtS)
                 cmbService.DataSource = dtS
@@ -100,13 +101,12 @@ Public Class uc_NewContractEntry
         Dim serviceID As Integer = Convert.ToInt32(cmbService.SelectedValue)
         Dim startDate As Date = dtpStart.Value
         Dim duration As Integer = Convert.ToInt32(numDuration.Value)
-        Dim endDate As Date = startDate.AddMonths(duration)
 
         Dim totalAmt As Decimal = Convert.ToDecimal(txtAmount.Text)
         Dim freq As String = cmbFrequency.Text
         Dim terms As String = cmbPaymentTerms.Text
 
-        ' Determine Days Interval
+        ' Determine Days Interval for Visits
         Dim dayInterval As Integer = 30
         If freq = "Monthly" Then dayInterval = 30
         If freq = "Quarterly" Then dayInterval = 90
@@ -119,10 +119,11 @@ Public Class uc_NewContractEntry
 
             Try
                 ' A. INSERT CONTRACT
-                Dim sqlCon As String = "INSERT INTO tbl_Contracts " &
-                                       "(ClientID, ServiceID, StartDate, DurationMonths, TotalAmount, " &
-                                       "ServiceFrequency, PaymentStatus, PaymentTerms, BalanceRemaining, VisitsCompleted, NextVisitDate) " &
-                                       "VALUES (@cid, @sid, @start, @dur, @amt, @freq, 'With Balance', @term, @amt, 0, @start); " &
+                ' UPDATED SQL: Removed 'PaymentStatus', 'BalanceRemaining', 'VisitsCompleted', 'NextVisitDate'
+                ' We only insert the raw contract data now.
+                Dim sqlCon As String = "INSERT INTO tbl_contracts " &
+                                       "(ClientID, ServiceID, StartDate, DurationMonths, TotalAmount, ServiceFrequency, PaymentTerms, ContractStatus) " &
+                                       "VALUES (@cid, @sid, @start, @dur, @amt, @freq, @term, 'Active');" &
                                        "SELECT LAST_INSERT_ID();"
 
                 Dim cmdCon As New MySqlCommand(sqlCon, conn, trans)
@@ -136,7 +137,7 @@ Public Class uc_NewContractEntry
 
                 Dim newContractID As Integer = Convert.ToInt32(cmdCon.ExecuteScalar())
 
-                ' B. GENERATE SCHEDULE LOOP
+                ' B. GENERATE JOB ORDERS (Visits)
                 Dim nextDate As Date = startDate
                 Dim visitCount As Integer = 0
 
@@ -151,7 +152,7 @@ Public Class uc_NewContractEntry
                 End If
 
                 For i As Integer = 1 To visitCount
-                    Dim sqlJob As String = "INSERT INTO tbl_JobOrders (ContractID, VisitNumber, ScheduledDate, Status, JobType) " &
+                    Dim sqlJob As String = "INSERT INTO tbl_joborders (ContractID, VisitNumber, ScheduledDate, Status, JobType) " &
                                            "VALUES (@conID, @visNum, @sDate, 'Pending', 'Service')"
 
                     Dim cmdJob As New MySqlCommand(sqlJob, conn, trans)
@@ -185,8 +186,9 @@ Public Class uc_NewContractEntry
                 Dim nextPayDate As Date = dtpFirstPayment.Value
 
                 For p As Integer = 1 To payCount
-                    Dim sqlPaySched As String = "INSERT INTO tbl_PaymentSchedule (ContractID, DueDate, AmountDue, Status, InstallmentNumber) " &
-                                                "VALUES (@cid, @due, @amt, 'Pending', @num)"
+                    ' UPDATED SQL: Removed 'Status' (It is calculated dynamically now)
+                    Dim sqlPaySched As String = "INSERT INTO tbl_paymentschedule (ContractID, DueDate, AmountDue, InstallmentNumber) " &
+                                                "VALUES (@cid, @due, @amt, @num)"
 
                     Dim cmdPay As New MySqlCommand(sqlPaySched, conn, trans)
                     cmdPay.Parameters.AddWithValue("@cid", newContractID)
@@ -210,8 +212,8 @@ Public Class uc_NewContractEntry
                 trans.Commit()
                 MessageBox.Show("Contract Created Successfully!" & vbCrLf & "Generated " & visitCount & " visits and " & payCount & " payment schedules.")
 
-                ' Optional: Navigate back to Dashboard or clear form
-                ' ...
+                ' Optional: Close the control or reset
+                ' Me.ParentForm.Close() (Depends on your navigation)
 
             Catch ex As Exception
                 trans.Rollback()

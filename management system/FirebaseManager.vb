@@ -1,6 +1,6 @@
 ﻿Imports FirebaseAdmin
 Imports FirebaseAdmin.Auth
-Imports FirebaseAdmin.Messaging ' Added for Notifications
+Imports FirebaseAdmin.Messaging
 Imports Google.Cloud.Firestore
 Imports Google.Apis.Auth.OAuth2
 Imports MySql.Data.MySqlClient
@@ -10,8 +10,11 @@ Imports System.IO
 Public Class FirebaseManager
 
     Private Shared _db As FirestoreDb
-    ' ⚠️ CHECK YOUR CONNECTION STRING
+    ' Database Connection String
     Private Shared connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
+
+    ' 🔒 LOCKING LIST: Prevents processing the same Job ID twice at the same time
+    Private Shared _processingLocks As New HashSet(Of Integer)()
 
     ' ==========================================
     ' 1. INITIALIZE (Call this once at app start)
@@ -38,7 +41,7 @@ Public Class FirebaseManager
     End Sub
 
     ' ==========================================
-    ' 2. DISPATCH JOB (Updated with Notification)
+    ' 2. DISPATCH JOB (Send to Mobile)
     ' ==========================================
     Public Shared Async Function DispatchJobToMobile(jobID As Integer, clientName As String, address As String, serviceName As String, dateScheduled As Date, techFirebaseUID As String, jobType As String, Optional serviceID As Integer = 0) As Task(Of Boolean)
         Try
@@ -54,7 +57,7 @@ Public Class FirebaseManager
                 {"scheduleDate", dateScheduled.ToString("yyyy-MM-dd")},
                 {"status", "Pending"},
                 {"technician_uid", techFirebaseUID},
-                {"syncedToSQL", True}, ' Set to TRUE initially (Office created it)
+                {"syncedToSQL", True},
                 {"timestamp", DateTime.UtcNow}
             }
 
@@ -62,9 +65,7 @@ Public Class FirebaseManager
             Dim docRef As DocumentReference = _db.Collection("assigned_jobs").Document(jobID.ToString())
             Await docRef.SetAsync(jobData)
 
-            ' 2. Send Notification (New Feature)
-            ' We call the helper function here. We don't want to fail the whole process 
-            ' if the notification fails, so we catch errors inside the helper.
+            ' 2. Send Notification
             Await SendNotificationToTech(techFirebaseUID, jobID, clientName, jobType)
 
             Return True
@@ -76,37 +77,20 @@ Public Class FirebaseManager
     End Function
 
     ' ==========================================
-    ' HELPER: SEND NOTIFICATION (DEBUG VERSION)
+    ' HELPER: SEND NOTIFICATION
     ' ==========================================
     Private Shared Async Function SendNotificationToTech(techUID As String, jobID As Integer, clientName As String, jobType As String) As Task
         Try
-            ' DEBUG 1: Check if UID is valid
-            If String.IsNullOrEmpty(techUID) Then
-                MessageBox.Show("Notification Failed: Technician UID is Empty!")
-                Return
-            End If
+            If String.IsNullOrEmpty(techUID) Then Return
 
             ' Get the Technician's Token from Firestore
             Dim doc As DocumentSnapshot = Await _db.Collection("technicians").Document(techUID).GetSnapshotAsync()
 
-            ' DEBUG 2: Check if User Exists in DB
-            If Not doc.Exists Then
-                MessageBox.Show($"Notification Failed: Technician ID '{techUID}' not found in Firebase!")
-                Return
-            End If
-
-            ' DEBUG 3: Check for Token
-            If Not doc.ContainsField("fcmToken") Then
-                MessageBox.Show($"Notification Failed: Technician '{doc.GetValue(Of String)("name")}' has no Mobile Token. (They must login to the app first)")
-                Return
-            End If
+            If Not doc.Exists Then Return
+            If Not doc.ContainsField("fcmToken") Then Return
 
             Dim token As String = doc.GetValue(Of String)("fcmToken")
-
-            If String.IsNullOrEmpty(token) Then
-                MessageBox.Show("Notification Failed: Token field exists but is empty!")
-                Return
-            End If
+            If String.IsNullOrEmpty(token) Then Return
 
             ' Construct the Message
             Dim message = New FirebaseAdmin.Messaging.Message() With {
@@ -124,12 +108,8 @@ Public Class FirebaseManager
             ' Send via Firebase Admin SDK
             Dim response As String = Await FirebaseMessaging.DefaultInstance.SendAsync(message)
 
-            ' DEBUG 4: Success Message (You can remove this later)
-            MessageBox.Show("Notification Sent Successfully! ID: " & response)
-
         Catch ex As Exception
-            ' DEBUG 5: Show actual error
-            MessageBox.Show("FIREBASE ERROR: " & ex.Message)
+            Console.WriteLine("Notification Error: " & ex.Message)
         End Try
     End Function
 
@@ -142,7 +122,7 @@ Public Class FirebaseManager
         Try
             If _db Is Nothing Then Return
 
-            ' LISTEN FOR ANY JOB where syncedToSQL is FALSE
+            ' LISTEN FOR ANY JOB where syncedToSQL is FALSE (Meaning mobile updated it)
             Dim query As Query = _db.Collection("assigned_jobs").WhereEqualTo("syncedToSQL", False)
 
             Dim listener As FirestoreChangeListener = query.Listen(Async Sub(snapshot)
@@ -162,14 +142,24 @@ Public Class FirebaseManager
     ' 4. PROCESS JOB UPDATE (Route based on Status)
     ' ==========================================
     Private Shared Async Function ProcessJobUpdate(doc As DocumentSnapshot) As Task
-        Try
-            Dim jobID As Integer = 0
-            If doc.ContainsField("sql_job_id") Then
-                jobID = Convert.ToInt32(doc.GetValue(Of Object)("sql_job_id"))
-            Else
-                Integer.TryParse(doc.Id, jobID)
-            End If
+        Dim jobID As Integer = 0
 
+        ' 1. Extract ID Safely
+        If doc.ContainsField("sql_job_id") Then
+            jobID = Convert.ToInt32(doc.GetValue(Of Object)("sql_job_id"))
+        Else
+            Integer.TryParse(doc.Id, jobID)
+        End If
+
+        If jobID = 0 Then Return
+
+        ' 🔒 LOCK CHECK: If this Job ID is already running in another thread, STOP.
+        SyncLock _processingLocks
+            If _processingLocks.Contains(jobID) Then Return
+            _processingLocks.Add(jobID)
+        End SyncLock
+
+        Try
             Dim status As String = doc.GetValue(Of String)("status")
             Dim jobType As String = ""
             If doc.ContainsField("jobType") Then jobType = doc.GetValue(Of String)("jobType")
@@ -187,14 +177,10 @@ Public Class FirebaseManager
                     Using cmd As New MySqlCommand(updateSql, conn)
                         Dim sqlStatus As String = "Pending"
                         Select Case status.ToLower()
-                            Case "accepted"
-                                sqlStatus = "Accepted"
-                            Case "in_progress"
-                                sqlStatus = "In Progress"
-                            Case "completed"
-                                sqlStatus = "Completed"
-                            Case Else
-                                sqlStatus = status
+                            Case "accepted" : sqlStatus = "Accepted"
+                            Case "in_progress" : sqlStatus = "In Progress"
+                            Case "completed" : sqlStatus = "Completed"
+                            Case Else : sqlStatus = status
                         End Select
 
                         cmd.Parameters.AddWithValue("@stat", sqlStatus)
@@ -213,11 +199,17 @@ Public Class FirebaseManager
 
         Catch ex As Exception
             Console.WriteLine("Sync Error: " & ex.Message)
+        Finally
+            ' 🔓 UNLOCK: Allow this Job ID to be processed again in the future if needed
+            SyncLock _processingLocks
+                _processingLocks.Remove(jobID)
+            End SyncLock
         End Try
     End Function
 
     ' Extracted Inspection logic helper
     Private Shared Async Function ProcessInspectionData(doc As DocumentSnapshot, conn As MySqlConnection, jobID As Integer) As Task
+        ' DOUBLE CHECK: DB Level Duplicate Check
         Dim checkSql As String = "SELECT COUNT(*) FROM tbl_quotations WHERE InspectionJobID = @jid"
         Using cmdCheck As New MySqlCommand(checkSql, conn)
             cmdCheck.Parameters.AddWithValue("@jid", jobID)
@@ -241,14 +233,16 @@ Public Class FirebaseManager
         Try : proposedServiceID = Convert.ToInt32(doc.GetValue(Of Object)("serviceID")) : Catch : End Try
 
         Dim finalClientID As Integer = 0
-        Dim findClientSql As String = "SELECT COALESCE(Con.ClientID, J.ClientID_TempLink) AS RealClientID FROM tbl_JobOrders J LEFT JOIN tbl_Contracts Con ON J.ContractID = Con.ContractID WHERE J.JobID = @jid"
+        Dim findClientSql As String = "SELECT COALESCE(Con.ClientID, J.ClientID_TempLink) AS RealClientID FROM tbl_joborders J LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID WHERE J.JobID = @jid"
         Using findCmd As New MySqlCommand(findClientSql, conn)
             findCmd.Parameters.AddWithValue("@jid", jobID)
             Dim result = findCmd.ExecuteScalar()
             If result IsNot Nothing AndAlso Not IsDBNull(result) Then finalClientID = Convert.ToInt32(result)
         End Using
 
-        Dim sql As String = "INSERT IGNORE INTO tbl_quotations (ClientID, InspectionJobID, ProposedService, AreaSize_Sqm, InfestationLevel, QuotedPrice, Remarks, Status, DateCreated) VALUES (@cid, @jobID, @svcID, @area, @level, @price, @remarks, 'Pending', NOW())"
+        ' UPDATED SQL: Changed ProposedService to ProposedServiceID
+        Dim sql As String = "INSERT IGNORE INTO tbl_quotations (ClientID, InspectionJobID, ProposedServiceID, AreaSize_Sqm, InfestationLevel, QuotedPrice, Remarks, Status, DateCreated) VALUES (@cid, @jobID, @svcID, @area, @level, @price, @remarks, 'Pending', NOW())"
+
         Using cmd As New MySqlCommand(sql, conn)
             cmd.Parameters.AddWithValue("@cid", If(finalClientID > 0, finalClientID, DBNull.Value))
             cmd.Parameters.AddWithValue("@jobID", jobID)
@@ -268,7 +262,7 @@ Public Class FirebaseManager
     End Function
 
     ' ==========================================
-    ' 5. USER MANAGEMENT
+    ' 5. USER MANAGEMENT (Updated for new table structure)
     ' ==========================================
     Public Shared Async Function CreateTechnicianAccount(email As String, password As String, fullName As String, role As String) As Task(Of String)
         Try

@@ -3,8 +3,14 @@ Imports MySql.Data.MySqlClient
 Imports System.Drawing.Drawing2D
 
 Public Class log_in
+
+    ' GLOBAL VARIABLE: To store who is currently logged in
+    ' You can access this from other forms using: log_in.CurrentUserID or log_in.CurrentUserRole
+    Public Shared CurrentUserID As Integer = 0
+    Public Shared CurrentUserRole As String = ""
+
     Dim bgImage As Image
-    ' Connection string based on your local settings
+    ' Connection string (Ensure database name matches your PHPMyAdmin)
     Private Const MyConnectionString As String = "Server=localhost;Database=db_rrcms;Uid=root;Pwd=;"
 
     Private Sub OvalButton1_Click(sender As Object, e As EventArgs) Handles OvalButton1.Click
@@ -23,10 +29,10 @@ Public Class log_in
             Return
         End If
 
-        Dim userRole As String = String.Empty
-
-        ' 2. Corrected Query to match your tbl_account columns
-        Dim query As String = "SELECT Role FROM tbl_account WHERE Username = @user AND Password = @pass"
+        ' 2. Database Login Logic
+        ' UPDATED: Targeting 'tbl_users' instead of 'tbl_account'
+        ' UPDATED: We also fetch UserID to track who is logged in
+        Dim query As String = "SELECT UserID, Role, FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
 
         Try
             Using con As New MySqlConnection(MyConnectionString)
@@ -35,41 +41,62 @@ Public Class log_in
                     cmd.Parameters.AddWithValue("@user", username)
                     cmd.Parameters.AddWithValue("@pass", password)
 
-                    Dim result = cmd.ExecuteScalar()
+                    ' Use ExecuteReader to get multiple columns (ID and Role)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            ' --- LOGIN SUCCESS ---
 
-                    If result IsNot Nothing Then
-                        userRole = result.ToString()
-                    End If
+                            ' 1. Save Session Data (So we know who is using the app)
+                            CurrentUserID = Convert.ToInt32(reader("UserID"))
+                            CurrentUserRole = reader("Role").ToString()
+                            Dim fullName As String = reader("FullName").ToString()
+
+                            ' 2. Routing based on Role
+                            If CurrentUserRole = "Admin" Then
+                                MessageBox.Show("Welcome back, Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                                ' Hide Login and Show Main Dashboard
+                                Me.Hide()
+                                Dim mainForm As New frm_Main()
+                                mainForm.Show()
+
+                            ElseIf CurrentUserRole = "Technician" Then
+                                ' OPTIONAL: If Technicians have a different form, put it here.
+                                ' For now, we allow them into the Main form or show a restriction message.
+                                MessageBox.Show("Welcome Technician " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                                Me.Hide()
+                                Dim mainForm As New frm_Main()
+                                mainForm.Show()
+                            Else
+                                MessageBox.Show("Role not recognized.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            End If
+
+                        Else
+                            ' --- LOGIN FAILED ---
+                            MessageBox.Show("Invalid Username, Password, or Account is Inactive.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
+                    End Using
                 End Using
             End Using
 
         Catch ex As MySqlException
             MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
         Catch ex As Exception
             MessageBox.Show("Unexpected Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
         End Try
 
-        ' 3. Login Success Logic
-        If Not String.IsNullOrEmpty(userRole) Then
-            ' Hide Login Form
-            Me.Hide()
-
-            ' Open Main Form
-            Dim mainForm As New frm_Main()
-            mainForm.Show()
-        Else
-            MessageBox.Show("Invalid Username or Password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
     End Sub
 
-    ' Keep your existing Load and Focus logic
+    ' =========================================================
+    ' UI AND DESIGN LOGIC (Kept exactly as you had it)
+    ' =========================================================
+
     Private Sub log_in_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.DoubleBuffered = True
 
         ' SETTINGS: Your Blue Color
-        Dim myBlue As Color = Color.FromArgb(255, 0, 0, 100) ' Adjust this blue to match your logo
+        Dim myBlue As Color = Color.FromArgb(255, 0, 0, 100)
         If OvalButton1 IsNot Nothing Then
             Me.AcceptButton = OvalButton1
         End If
@@ -86,7 +113,6 @@ Public Class log_in
         If UserText IsNot Nothing Then UserText.Focus()
     End Sub
 
-    ' 2. Use the Paint Event to draw the custom background
     Private Sub LoginForm_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim g As Graphics = e.Graphics
 
@@ -109,7 +135,6 @@ Public Class log_in
 
         ' 4. THE GRADIENT OVERLAY (White -> Transparent White)
         Dim colorStart As Color = myBaseColor
-        ' Create a transparent version of White (0 alpha, 255 red, 255 green, 255 blue)
         Dim colorEnd As Color = Color.FromArgb(0, 255, 255, 255)
 
         Using brush As New LinearGradientBrush(Me.ClientRectangle, colorStart, colorEnd, LinearGradientMode.Horizontal)
@@ -119,7 +144,6 @@ Public Class log_in
             blend.Positions = New Single() {0.0F, 0.4F, 1.0F}
 
             ' FACTORS: 0.0 = Solid Color, 1.0 = Fully Transparent
-            ' This keeps the Left side Solid White, and fades to Clear on the Right
             blend.Factors = New Single() {0.0F, 0.0F, 1.0F}
 
             brush.Blend = blend
@@ -127,7 +151,6 @@ Public Class log_in
         End Using
     End Sub
 
-    ' Clean up memory when form closes
     Private Sub LoginForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         If bgImage IsNot Nothing Then bgImage.Dispose()
     End Sub

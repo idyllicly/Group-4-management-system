@@ -4,6 +4,7 @@ Imports System.Drawing
 Public Class newUcBilling
 
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
+
     ' Variables to track selection
     Private _selectedContractID As Integer = 0
     Private _selectedScheduleID As Integer = 0
@@ -18,26 +19,34 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 1. MASTER LIST (Safe Version)
+    ' 1. MASTER LIST (Updated for Normalized DB)
     ' ==========================================
     Private Sub LoadBillingData(search As String)
         Dim previouslySelectedID As Integer = _selectedContractID
 
-        ' Handle Placeholder Text logic for the Query
-        If search.Trim() = "Search Client..." Then
-            search = ""
-        End If
+        ' Handle Placeholder Text
+        If search.Trim() = "Search Client..." Then search = ""
 
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' SQL joins Contracts with Clients to allow searching by ClientName
-                Dim sql As String = "SELECT Con.ContractID, Cli.ClientName, Ser.ServiceName, Con.ServiceFrequency, " &
-                                    "Con.PaymentStatus, Con.BalanceRemaining, Con.NextVisitDate " &
-                                    "FROM tbl_Contracts Con " &
-                                    "JOIN tbl_Clients Cli ON Con.ClientID = Cli.ClientID " &
-                                    "JOIN tbl_Services Ser ON Con.ServiceID = Ser.ServiceID " &
-                                    "WHERE Cli.ClientName LIKE @s ORDER BY Con.NextVisitDate ASC"
+
+                ' UPDATED SQL:
+                ' 1. Removed NextVisitDate (It's not in the contract table anymore).
+                ' 2. Joined 'view_contract_details' (V) to get Balance and Status.
+                Dim sql As String = "SELECT " &
+                                    "   Con.ContractID, " &
+                                    "   Cli.ClientName, " &
+                                    "   Ser.ServiceName, " &
+                                    "   Con.ServiceFrequency, " &
+                                    "   V.PaymentStatus, " &
+                                    "   V.BalanceRemaining " &
+                                    "FROM tbl_contracts Con " &
+                                    "LEFT JOIN tbl_clients Cli ON Con.ClientID = Cli.ClientID " &
+                                    "LEFT JOIN tbl_services Ser ON Con.ServiceID = Ser.ServiceID " &
+                                    "LEFT JOIN view_contract_details V ON Con.ContractID = V.ContractID " &
+                                    "WHERE Cli.ClientName LIKE @s " &
+                                    "ORDER BY Con.ContractID DESC"
 
                 Dim cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@s", "%" & search & "%")
@@ -47,7 +56,7 @@ Public Class newUcBilling
 
                 dgvBilling.DataSource = dt
 
-                ' --- FIX: Safety Checks Added Here ---
+                ' --- UI CLEANUP ---
                 If dgvBilling.Columns("ContractID") IsNot Nothing Then
                     dgvBilling.Columns("ContractID").Visible = False
                 End If
@@ -55,33 +64,17 @@ Public Class newUcBilling
                 If dgvBilling.Columns("BalanceRemaining") IsNot Nothing Then
                     dgvBilling.Columns("BalanceRemaining").DefaultCellStyle.Format = "N2"
                 End If
+                ' ------------------
 
-                If dgvBilling.Columns("NextVisitDate") IsNot Nothing Then
-                    dgvBilling.Columns("NextVisitDate").DefaultCellStyle.Format = "MMM dd, yyyy"
-                End If
-                ' -------------------------------------
-
-                ' --- RESTORE SELECTION (SAFE LOOP) ---
+                ' --- RESTORE SELECTION ---
                 If previouslySelectedID > 0 Then
-                    Dim found As Boolean = False
                     For Each row As DataGridViewRow In dgvBilling.Rows
-                        If row.IsNewRow Then Continue For
-
-                        Dim cellVal As Object = row.Cells("ContractID").Value
-                        If cellVal IsNot Nothing AndAlso IsNumeric(cellVal) Then
-                            If Convert.ToInt32(cellVal) = previouslySelectedID Then
-                                row.Selected = True
-                                ' Safety check to prevent crash if cell 1 doesn't exist
-                                If row.Cells.Count > 1 Then
-                                    dgvBilling.CurrentCell = row.Cells(1)
-                                End If
-                                SelectContract(row)
-                                found = True
-                                Exit For
-                            End If
+                        If row.Cells("ContractID").Value IsNot Nothing AndAlso Convert.ToInt32(row.Cells("ContractID").Value) = previouslySelectedID Then
+                            row.Selected = True
+                            SelectContract(row)
+                            Exit For
                         End If
                     Next
-                    If Not found Then ClearRightPanel()
                 End If
 
             Catch ex As Exception
@@ -91,27 +84,24 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 2. HELPER: SELECT CONTRACT & UPDATE UI
+    ' 2. HELPER: SELECT CONTRACT
     ' ==========================================
     Private Sub SelectContract(row As DataGridViewRow)
-        ' Safety check for value existence
         If row.Cells("ContractID").Value IsNot Nothing Then
             _selectedContractID = Convert.ToInt32(row.Cells("ContractID").Value)
         End If
 
+        ' Get Balance from the VIEW column
         If row.Cells("BalanceRemaining").Value IsNot Nothing Then
             _currentBalance = Convert.ToDecimal(row.Cells("BalanceRemaining").Value)
         End If
 
-        ' Update Labels
         lblContractInfo.Text = row.Cells("ClientName").Value.ToString()
         lblBalance.Text = _currentBalance.ToString("N2")
 
-        ' Clear previous payment inputs
         txtPayAmount.Clear()
         _selectedScheduleID = 0
 
-        ' Load the Schedule Grid
         LoadPaymentSchedule(_selectedContractID)
     End Sub
 
@@ -127,8 +117,7 @@ Public Class newUcBilling
     ' ==========================================
     Private Sub dgvBilling_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvBilling.CellClick
         If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = dgvBilling.Rows(e.RowIndex)
-            SelectContract(row)
+            SelectContract(dgvBilling.Rows(e.RowIndex))
         End If
     End Sub
 
@@ -136,6 +125,7 @@ Public Class newUcBilling
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvSchedule.Rows(e.RowIndex)
 
+            ' Prevent paying already paid items
             If row.Cells("Status").Value.ToString() = "Paid" Then
                 MessageBox.Show("This installment is already paid.")
                 txtPayAmount.Clear()
@@ -150,7 +140,7 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 4. SAVE PAYMENT
+    ' 4. SAVE PAYMENT (Simplified for Logic)
     ' ==========================================
     Private Sub btnSavePayment_Click(sender As Object, e As EventArgs) Handles btnSavePayment.Click
         If _selectedContractID = 0 Then
@@ -164,57 +154,45 @@ Public Class newUcBilling
             Exit Sub
         End If
 
-        ' Save current search text to use for refresh later
         Dim currentSearchTerm As String = txtSearchBilling.Text
 
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            Dim trans As MySqlTransaction = conn.BeginTransaction()
-
+            ' We don't need a transaction for just one insert anymore
             Try
-                ' A. Record Payment
-                Dim sqlPay As String = "INSERT INTO tbl_Payments (ContractID, AmountPaid, PaymentDate) VALUES (@cid, @amt, @date)"
-                Dim cmdPay As New MySqlCommand(sqlPay, conn, trans)
-                cmdPay.Parameters.AddWithValue("@cid", _selectedContractID)
-                cmdPay.Parameters.AddWithValue("@amt", amountPay)
-                cmdPay.Parameters.AddWithValue("@date", DateTime.Now)
-                cmdPay.ExecuteNonQuery()
+                ' UPDATED SQL:
+                ' 1. Insert Payment linked to the ScheduleID
+                ' 2. We DO NOT update tbl_contracts (Balance is auto-calculated).
+                ' 3. We DO NOT update tbl_paymentschedule status (It's auto-calculated).
 
-                ' B. Update Schedule Status
+                Dim sqlPay As String = "INSERT INTO tbl_payments (ContractID, ScheduleID, AmountPaid, PaymentDate) VALUES (@cid, @sid, @amt, @date)"
+
+                Dim cmdPay As New MySqlCommand(sqlPay, conn)
+                cmdPay.Parameters.AddWithValue("@cid", _selectedContractID)
+
+                ' Handle cases where no specific schedule is selected (General Payment)
                 If _selectedScheduleID > 0 Then
-                    Dim sqlSched As String = "UPDATE tbl_PaymentSchedule SET Status = 'Paid' WHERE ScheduleID = @sid"
-                    Dim cmdSched As New MySqlCommand(sqlSched, conn, trans)
-                    cmdSched.Parameters.AddWithValue("@sid", _selectedScheduleID)
-                    cmdSched.ExecuteNonQuery()
+                    cmdPay.Parameters.AddWithValue("@sid", _selectedScheduleID)
+                Else
+                    cmdPay.Parameters.AddWithValue("@sid", DBNull.Value)
                 End If
 
-                ' C. Update Parent Contract
-                Dim sqlBal As String = "SELECT (TotalAmount - (SELECT COALESCE(SUM(AmountPaid),0) FROM tbl_Payments WHERE ContractID = @cid)) FROM tbl_Contracts WHERE ContractID = @cid"
-                Dim cmdBal As New MySqlCommand(sqlBal, conn, trans)
-                cmdBal.Parameters.AddWithValue("@cid", _selectedContractID)
-                Dim newBalance As Decimal = Convert.ToDecimal(cmdBal.ExecuteScalar())
+                cmdPay.Parameters.AddWithValue("@amt", amountPay)
+                cmdPay.Parameters.AddWithValue("@date", DateTime.Now)
 
-                Dim newStatus As String = If(newBalance <= 0, "Fully Paid", "With Balance")
+                cmdPay.ExecuteNonQuery()
 
-                Dim sqlUp As String = "UPDATE tbl_Contracts SET BalanceRemaining = @bal, PaymentStatus = @stat WHERE ContractID = @cid"
-                Dim cmdUp As New MySqlCommand(sqlUp, conn, trans)
-                cmdUp.Parameters.AddWithValue("@bal", newBalance)
-                cmdUp.Parameters.AddWithValue("@stat", newStatus)
-                cmdUp.Parameters.AddWithValue("@cid", _selectedContractID)
-                cmdUp.ExecuteNonQuery()
+                MessageBox.Show("Payment Saved Successfully!")
 
-                trans.Commit()
-                MessageBox.Show("Payment Success!")
+                ' Refresh Data
+                LoadBillingData(currentSearchTerm)
+                ' Reload Schedule to show the new "Paid" status
+                LoadPaymentSchedule(_selectedContractID)
 
             Catch ex As Exception
-                trans.Rollback()
                 MessageBox.Show("Error: " & ex.Message)
-                Exit Sub ' Stop here if error, do not reload grid
             End Try
         End Using
-
-        ' D. REFRESH EVERYTHING
-        LoadBillingData(currentSearchTerm)
     End Sub
 
     ' ==========================================
@@ -222,8 +200,25 @@ Public Class newUcBilling
     ' ==========================================
     Private Sub LoadPaymentSchedule(contractID As Integer)
         Using conn As New MySqlConnection(connString)
-            Dim sql As String = "SELECT ScheduleID, InstallmentNumber AS 'Give #', DueDate, AmountDue, Status " &
-                                "FROM tbl_PaymentSchedule WHERE ContractID = @cid ORDER BY DueDate ASC"
+            ' UPDATED SQL:
+            ' We removed the 'Status' column from the table.
+            ' We now CALCULATE 'Status' by checking if a Payment exists for that ScheduleID.
+
+            Dim sql As String = "SELECT " &
+                                "   S.ScheduleID, " &
+                                "   S.InstallmentNumber AS 'Inst #', " &
+                                "   S.DueDate, " &
+                                "   S.AmountDue, " &
+                                "   CASE " &
+                                "       WHEN SUM(P.AmountPaid) >= S.AmountDue THEN 'Paid' " &
+                                "       ELSE 'Pending' " &
+                                "   END AS Status " &
+                                "FROM tbl_paymentschedule S " &
+                                "LEFT JOIN tbl_payments P ON S.ScheduleID = P.ScheduleID " &
+                                "WHERE S.ContractID = @cid " &
+                                "GROUP BY S.ScheduleID " &
+                                "ORDER BY S.DueDate ASC"
+
             Dim cmd As New MySqlCommand(sql, conn)
             cmd.Parameters.AddWithValue("@cid", contractID)
 
@@ -233,19 +228,16 @@ Public Class newUcBilling
 
             dgvSchedule.DataSource = dt
 
-            ' --- FIX: Safety Checks Added Here ---
+            ' Formatting
             If dgvSchedule.Columns("ScheduleID") IsNot Nothing Then
                 dgvSchedule.Columns("ScheduleID").Visible = False
             End If
-
             If dgvSchedule.Columns("DueDate") IsNot Nothing Then
                 dgvSchedule.Columns("DueDate").DefaultCellStyle.Format = "MMM dd, yyyy"
             End If
-
             If dgvSchedule.Columns("AmountDue") IsNot Nothing Then
                 dgvSchedule.Columns("AmountDue").DefaultCellStyle.Format = "N2"
             End If
-            ' -------------------------------------
 
             ColorScheduleRows()
         End Using
@@ -259,7 +251,6 @@ Public Class newUcBilling
         For Each row As DataGridViewRow In dgvBilling.Rows
             If row.IsNewRow Then Continue For
 
-            ' Safety check to ensure column exists before accessing it
             If dgvBilling.Columns.Contains("BalanceRemaining") Then
                 Dim cellVal As Object = row.Cells("BalanceRemaining").Value
                 If cellVal IsNot Nothing AndAlso IsNumeric(cellVal) Then
@@ -278,10 +269,13 @@ Public Class newUcBilling
 
     Private Sub ColorScheduleRows()
         For Each row As DataGridViewRow In dgvSchedule.Rows
-            ' Safety check to ensure columns exist
             If dgvSchedule.Columns.Contains("Status") AndAlso dgvSchedule.Columns.Contains("DueDate") Then
                 Dim status As String = row.Cells("Status").Value.ToString()
-                Dim dueDate As Date = Convert.ToDateTime(row.Cells("DueDate").Value)
+                ' Handle DBNull safely
+                Dim dueDate As Date = DateTime.Now
+                If Not IsDBNull(row.Cells("DueDate").Value) Then
+                    dueDate = Convert.ToDateTime(row.Cells("DueDate").Value)
+                End If
 
                 If status = "Paid" Then
                     row.DefaultCellStyle.BackColor = Color.LightGreen
@@ -293,15 +287,12 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 6. SEARCH & PLACEHOLDER LOGIC (NEW)
+    ' 6. SEARCH & PLACEHOLDER LOGIC
     ' ==========================================
-
-    ' Trigger Live Search when typing
     Private Sub txtSearchBilling_TextChanged(sender As Object, e As EventArgs) Handles txtSearchBilling.TextChanged
         LoadBillingData(txtSearchBilling.Text)
     End Sub
 
-    ' Remove placeholder when user clicks inside
     Private Sub txtSearchBilling_Enter(sender As Object, e As EventArgs) Handles txtSearchBilling.Enter
         If txtSearchBilling.Text = "Search Client..." Then
             txtSearchBilling.Text = ""
@@ -309,7 +300,6 @@ Public Class newUcBilling
         End If
     End Sub
 
-    ' Restore placeholder if user leaves it empty
     Private Sub txtSearchBilling_Leave(sender As Object, e As EventArgs) Handles txtSearchBilling.Leave
         If String.IsNullOrWhiteSpace(txtSearchBilling.Text) Then
             txtSearchBilling.Text = "Search Client..."

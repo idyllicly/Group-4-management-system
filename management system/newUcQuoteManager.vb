@@ -2,9 +2,7 @@
 
 Public Class newUcQuoteManager
 
-    ' ⚠️ CHECK YOUR CONNECTION STRING
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-
     Private _selectedQuoteID As Integer = 0
 
     Private Sub newUcQuoteManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -35,14 +33,13 @@ Public Class newUcQuoteManager
     End Sub
 
     ' ==========================================
-    ' 1. LOAD DATA
+    ' 1. LOAD DATA (Updated Column Name)
     ' ==========================================
     Private Sub LoadQuotations()
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
 
-                ' JOIN: Get Client Name and Service Name for display
                 Dim sql As String = "SELECT " &
                                     "   Q.QuoteID, " &
                                     "   Q.DateCreated, " &
@@ -55,7 +52,7 @@ Public Class newUcQuoteManager
                                     "   Q.Status " &
                                     "FROM tbl_quotations Q " &
                                     "LEFT JOIN tbl_clients C ON Q.ClientID = C.ClientID " &
-                                    "LEFT JOIN tbl_services S ON Q.ProposedService = S.ServiceID " &
+                                    "LEFT JOIN tbl_services S ON Q.ProposedServiceID = S.ServiceID " &
                                     "ORDER BY Q.DateCreated DESC"
 
                 Dim da As New MySqlDataAdapter(sql, conn)
@@ -125,7 +122,7 @@ Public Class newUcQuoteManager
             Using conn As New MySqlConnection(connString)
                 Try
                     conn.Open()
-                    Dim sqlGet As String = "SELECT ClientID, ProposedService, QuotedPrice FROM tbl_quotations WHERE QuoteID = @qid"
+                    Dim sqlGet As String = "SELECT ClientID, ProposedServiceID, QuotedPrice FROM tbl_quotations WHERE QuoteID = @qid"
                     Dim cmdGet As New MySqlCommand(sqlGet, conn)
                     cmdGet.Parameters.AddWithValue("@qid", _selectedQuoteID)
 
@@ -136,7 +133,8 @@ Public Class newUcQuoteManager
                     If dt.Rows.Count > 0 Then
                         Dim row As DataRow = dt.Rows(0)
                         clientID = If(IsDBNull(row("ClientID")), 0, Convert.ToInt32(row("ClientID")))
-                        serviceID = If(IsDBNull(row("ProposedService")), 0, Convert.ToInt32(row("ProposedService")))
+                        ' UPDATED Column Name here too
+                        serviceID = If(IsDBNull(row("ProposedServiceID")), 0, Convert.ToInt32(row("ProposedServiceID")))
                         price = Convert.ToDecimal(row("QuotedPrice"))
                     End If
                 Catch ex As Exception
@@ -146,7 +144,8 @@ Public Class newUcQuoteManager
             End Using
 
             ' B. NAVIGATE TO CONTRACT ENTRY
-            Dim mainForm As frm_Main = TryCast(Me.ParentForm, frm_Main)
+            ' Note: Ensure frm_Main is the actual name of your parent form class
+            Dim mainForm As frm_Main = TryCast(Application.OpenForms("frm_Main"), frm_Main)
 
             If mainForm IsNot Nothing Then
                 Dim newContractPage As New uc_NewContractEntry()

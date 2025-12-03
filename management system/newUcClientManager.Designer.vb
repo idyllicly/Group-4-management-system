@@ -22,7 +22,7 @@ Partial Class newUcClientManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvClientList = New System.Windows.Forms.DataGridView()
@@ -32,7 +32,6 @@ Partial Class newUcClientManager
         Me.btnAddClient = New System.Windows.Forms.Button()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtAddress = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtPhone = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -40,6 +39,11 @@ Partial Class newUcClientManager
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtStreet = New System.Windows.Forms.TextBox()
+        Me.txtBarangay = New System.Windows.Forms.TextBox()
+        Me.txtCity = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDetails.SuspendLayout()
         Me.SuspendLayout()
@@ -70,14 +74,14 @@ Partial Class newUcClientManager
         Me.dgvClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvClientList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvClientList.Location = New System.Drawing.Point(62, 144)
         Me.dgvClientList.Name = "dgvClientList"
         Me.dgvClientList.ReadOnly = True
@@ -90,12 +94,16 @@ Partial Class newUcClientManager
         'grpDetails
         '
         Me.grpDetails.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpDetails.Controls.Add(Me.Label7)
+        Me.grpDetails.Controls.Add(Me.Label6)
+        Me.grpDetails.Controls.Add(Me.txtCity)
+        Me.grpDetails.Controls.Add(Me.txtBarangay)
+        Me.grpDetails.Controls.Add(Me.txtStreet)
         Me.grpDetails.Controls.Add(Me.btnClear)
         Me.grpDetails.Controls.Add(Me.btnUpdateClient)
         Me.grpDetails.Controls.Add(Me.btnAddClient)
         Me.grpDetails.Controls.Add(Me.txtEmail)
         Me.grpDetails.Controls.Add(Me.Label5)
-        Me.grpDetails.Controls.Add(Me.txtAddress)
         Me.grpDetails.Controls.Add(Me.Label4)
         Me.grpDetails.Controls.Add(Me.txtPhone)
         Me.grpDetails.Controls.Add(Me.Label3)
@@ -147,28 +155,20 @@ Partial Class newUcClientManager
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(31, 238)
+        Me.Label5.Location = New System.Drawing.Point(36, 238)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(52, 20)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Email:"
-        '
-        'txtAddress
-        '
-        Me.txtAddress.Location = New System.Drawing.Point(207, 153)
-        Me.txtAddress.Multiline = True
-        Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.Size = New System.Drawing.Size(100, 78)
-        Me.txtAddress.TabIndex = 7
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(31, 158)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(118, 20)
+        Me.Label4.Size = New System.Drawing.Size(128, 20)
         Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Address / Area:"
+        Me.Label4.Text = "House No/Street"
         '
         'txtPhone
         '
@@ -218,6 +218,45 @@ Partial Class newUcClientManager
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Name (or Company):"
         '
+        'txtStreet
+        '
+        Me.txtStreet.Location = New System.Drawing.Point(207, 151)
+        Me.txtStreet.Name = "txtStreet"
+        Me.txtStreet.Size = New System.Drawing.Size(100, 26)
+        Me.txtStreet.TabIndex = 13
+        '
+        'txtBarangay
+        '
+        Me.txtBarangay.Location = New System.Drawing.Point(207, 183)
+        Me.txtBarangay.Name = "txtBarangay"
+        Me.txtBarangay.Size = New System.Drawing.Size(100, 26)
+        Me.txtBarangay.TabIndex = 14
+        '
+        'txtCity
+        '
+        Me.txtCity.Location = New System.Drawing.Point(207, 206)
+        Me.txtCity.Name = "txtCity"
+        Me.txtCity.Size = New System.Drawing.Size(100, 26)
+        Me.txtCity.TabIndex = 15
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(36, 183)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(77, 20)
+        Me.Label6.TabIndex = 16
+        Me.Label6.Text = "Barangay"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(36, 209)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(120, 20)
+        Me.Label7.TabIndex = 17
+        Me.Label7.Text = "City/Municipality"
+        '
         'newUcClientManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -252,5 +291,9 @@ Partial Class newUcClientManager
     Friend WithEvents btnAddClient As Button
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents txtAddress As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents txtCity As TextBox
+    Friend WithEvents txtBarangay As TextBox
+    Friend WithEvents txtStreet As TextBox
+    Friend WithEvents Label7 As Label
 End Class

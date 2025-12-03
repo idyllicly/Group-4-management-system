@@ -2,10 +2,9 @@
 
 Public Class newUcTechMonitor
 
-    ' CONNECTION STRING (Same as your Dashboard)
+    ' CONNECTION STRING
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-
-    ' Variable to hold the ID of the currently selected technician
+    ' Variable to hold the ID of the currently selected technician (UserID)
     Private _currentTechID As Integer = 0
 
     Private Sub newUcTechMonitor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -20,8 +19,8 @@ Public Class newUcTechMonitor
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' We get ID and Name. We concatenate First and Last name for display.
-                Dim sql As String = "SELECT TechnicianID, CONCAT(FirstName, ' ', LastName) AS FullName FROM tbl_Technicians"
+                ' UPDATED SQL: Query tbl_users where Role is Technician
+                Dim sql As String = "SELECT UserID, FullName FROM tbl_users WHERE Role = 'Technician'"
                 Dim cmd As New MySqlCommand(sql, conn)
                 Dim da As New MySqlDataAdapter(cmd)
                 Dim dt As New DataTable()
@@ -30,9 +29,9 @@ Public Class newUcTechMonitor
                 ' Bind to the ListBox
                 lstTechnicians.DataSource = dt
                 lstTechnicians.DisplayMember = "FullName"
-                lstTechnicians.ValueMember = "TechnicianID"
+                lstTechnicians.ValueMember = "UserID" ' This is now the UserID
 
-                ' Clear selection initially so the user is forced to click one
+                ' Clear selection initially
                 lstTechnicians.ClearSelected()
             Catch ex As Exception
                 MessageBox.Show("Error loading techs: " & ex.Message)
@@ -47,7 +46,8 @@ Public Class newUcTechMonitor
         If lstTechnicians.SelectedIndex <> -1 Then
             Try
                 Dim drv As DataRowView = CType(lstTechnicians.SelectedItem, DataRowView)
-                _currentTechID = Convert.ToInt32(drv("TechnicianID"))
+                ' Get UserID instead of TechnicianID
+                _currentTechID = Convert.ToInt32(drv("UserID"))
 
                 ' Load Profile
                 LoadTechProfile(_currentTechID)
@@ -58,8 +58,8 @@ Public Class newUcTechMonitor
                 ' Load History (Default to ALL TIME when switching users)
                 LoadTechHistory(_currentTechID)
 
-                ' Optional: Reset the DatePickers to today visually
-                dtpStart.Value = DateTime.Now.AddMonths(-1) ' Default to last month
+                ' Reset the DatePickers visually
+                dtpStart.Value = DateTime.Now.AddMonths(-1)
                 dtpEnd.Value = DateTime.Now
 
             Catch ex As Exception
@@ -74,18 +74,26 @@ Public Class newUcTechMonitor
     Private Sub LoadTechProfile(techID As Integer)
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            ' 1. Get Basic Info
-            Dim sqlInfo As String = "SELECT * FROM tbl_Technicians WHERE TechnicianID = @id"
+            ' 1. Get Basic Info from tbl_users
+            Dim sqlInfo As String = "SELECT FullName, ContactNo, Status FROM tbl_users WHERE UserID = @id"
             Dim cmd As New MySqlCommand(sqlInfo, conn)
             cmd.Parameters.AddWithValue("@id", techID)
 
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.Read() Then
-                    lblTechName.Text = reader("FirstName").ToString() & " " & reader("LastName").ToString()
-                    lblContact.Text = "Contact: " & reader("ContactNo").ToString()
+                    ' UPDATED: Use FullName directly
+                    lblTechName.Text = reader("FullName").ToString()
+
+                    ' Handle Null ContactNo
+                    If IsDBNull(reader("ContactNo")) Then
+                        lblContact.Text = "Contact: N/A"
+                    Else
+                        lblContact.Text = "Contact: " & reader("ContactNo").ToString()
+                    End If
+
                     lblStatus.Text = "Status: " & reader("Status").ToString()
 
-                    ' Visual touch: Green text if active
+                    ' Visual touch
                     If lblStatus.Text.Contains("Active") Then
                         lblStatus.ForeColor = Color.Green
                     Else
@@ -95,10 +103,10 @@ Public Class newUcTechMonitor
             End Using
 
             ' 2. Get Performance Stats (Count of Pending vs Completed)
-            ' This is useful for monitoring workload balance
+            ' Note: tbl_JobOrders still uses 'TechnicianID' column, but it holds UserIDs now.
             Dim sqlStats As String = "SELECT " &
-                                     "(SELECT COUNT(*) FROM tbl_JobOrders WHERE TechnicianID = @id AND Status IN ('Pending', 'Assigned')) AS PendingCount, " &
-                                     "(SELECT COUNT(*) FROM tbl_JobOrders WHERE TechnicianID = @id AND Status = 'Completed') AS CompletedCount"
+                                     "(SELECT COUNT(*) FROM tbl_joborders WHERE TechnicianID = @id AND Status IN ('Pending', 'Assigned')) AS PendingCount, " &
+                                     "(SELECT COUNT(*) FROM tbl_joborders WHERE TechnicianID = @id AND Status = 'Completed') AS CompletedCount"
 
             Dim cmdStats As New MySqlCommand(sqlStats, conn)
             cmdStats.Parameters.AddWithValue("@id", techID)
@@ -117,17 +125,17 @@ Public Class newUcTechMonitor
     ' ==========================================
     Private Sub LoadTechAssignments(techID As Integer)
         Using conn As New MySqlConnection(connString)
-            ' We show jobs that are NOT completed yet (Assigned, Accepted, In Progress)
+            ' UPDATED SQL: Concatenate Address parts for display
             Dim sql As String = "SELECT " &
                                 "   J.JobID, " &
                                 "   J.ScheduledDate, " &
                                 "   J.JobType, " &
                                 "   C.ClientName, " &
-                                "   C.Address, " &
+                                "   CONCAT(C.StreetAddress, ', ', C.City) AS Address, " & ' Concatenated Address
                                 "   J.Status " &
-                                "FROM tbl_JobOrders J " &
-                                "LEFT JOIN tbl_Contracts Con ON J.ContractID = Con.ContractID " &
-                                "LEFT JOIN tbl_Clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
+                                "FROM tbl_joborders J " &
+                                "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
+                                "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
                                 "WHERE J.TechnicianID = @id AND J.Status != 'Completed' " &
                                 "ORDER BY J.ScheduledDate ASC"
 
@@ -139,33 +147,28 @@ Public Class newUcTechMonitor
 
             dgvAssignments.DataSource = dt
 
-            ' Hide ID column for cleaner look
+            ' Hide ID column
             If dgvAssignments.Columns("JobID") IsNot Nothing Then dgvAssignments.Columns("JobID").Visible = False
         End Using
     End Sub
 
     ' ==========================================
-    ' PART E: LOAD JOB HISTORY (COMPLETED)
+    ' PART E: LOAD JOB HISTORY (WITH FILTER)
     ' ==========================================
-    ' ==========================================
-    ' PART E: LOAD JOB HISTORY (UPDATED WITH FILTER)
-    ' ==========================================
-    ' We make startDate and endDate Optional. If not provided, we show everything.
     Private Sub LoadTechHistory(techID As Integer, Optional startDate As Date? = Nothing, Optional endDate As Date? = Nothing)
         Using conn As New MySqlConnection(connString)
             conn.Open()
 
-            ' Base SQL: Get completed jobs for this tech
-            ' We rely on J.ScheduledDate from tbl_joborders 
+            ' UPDATED SQL: Concatenate Address parts
             Dim sql As String = "SELECT " &
                                 "   J.ScheduledDate, " &
                                 "   J.JobType, " &
                                 "   C.ClientName, " &
                                 "   J.StartTime, " &
                                 "   J.EndTime " &
-                                "FROM tbl_JobOrders J " &
-                                "LEFT JOIN tbl_Contracts Con ON J.ContractID = Con.ContractID " &
-                                "LEFT JOIN tbl_Clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
+                                "FROM tbl_joborders J " &
+                                "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
+                                "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
                                 "WHERE J.TechnicianID = @id AND J.Status = 'Completed' "
 
             ' DYNAMIC SQL: If dates are provided, add the filter
@@ -173,7 +176,7 @@ Public Class newUcTechMonitor
                 sql &= " AND J.ScheduledDate BETWEEN @start AND @end "
             End If
 
-            ' Always order by newest first
+            ' Order by newest first
             sql &= " ORDER BY J.ScheduledDate DESC"
 
             Dim cmd As New MySqlCommand(sql, conn)
@@ -196,7 +199,6 @@ Public Class newUcTechMonitor
     ' ==========================================
     ' PART F: BUTTON EVENTS
     ' ==========================================
-
     Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
         If _currentTechID = 0 Then
             MessageBox.Show("Please select a technician first.")
@@ -226,6 +228,5 @@ Public Class newUcTechMonitor
     End Sub
 
     Private Sub SplitContainer1_Panel1_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel1.Paint
-
     End Sub
 End Class
