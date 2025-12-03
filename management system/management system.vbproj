@@ -1410,6 +1410,10 @@
     <Content Include="packages\System.ValueTuple.4.6.1\lib\net462\System.ValueTuple.xml" />
     <Content Include="packages\System.ValueTuple.4.6.1\lib\net47\System.ValueTuple.dll" />
     <Content Include="packages\System.ValueTuple.4.6.1\lib\net47\System.ValueTuple.xml" />
+    <None Include="Resources\worker.bmp" />
+    <None Include="Resources\Image1.jpg" />
+    <None Include="Resources\rrc_worker.jpeg" />
+    <Content Include="rrc_worker.jpeg" />
     <Content Include="UpgradeLog2.htm" />
     <None Include="Resources\RRCLogo.png" />
     <None Include="Resources\contact-us-icon-png-21.jpg" />
