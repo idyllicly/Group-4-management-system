@@ -168,6 +168,8 @@ Public Class newUcDashboard
     ' ---------------------------------------------------------
     Private Sub newUcDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FirebaseManager.Initialize()
+
+        ' --- FIXED: This function caused the crash ---
         LoadTechnicians()
 
         ' --- VISUAL TWEAK FOR BORDER SELECTION ---
@@ -196,25 +198,32 @@ Public Class newUcDashboard
         End If
     End Sub
 
+    ' --- FIX #1: UPDATED SQL FOR TECHNICIANS ---
     Private Sub LoadTechnicians()
         Using conn As New MySqlConnection(connString)
-            Dim cmd As New MySqlCommand("SELECT UserID, FullName, FirebaseUID FROM tbl_users WHERE Role='Technician' AND Status='Active'", conn)
-            Dim da As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable()
-            da.Fill(dt)
+            Try
+                ' Replaced FullName with CONCAT(FirstName, ' ', LastName)
+                Dim sql As String = "SELECT UserID, CONCAT(FirstName, ' ', LastName) AS FullName, FirebaseUID FROM tbl_users WHERE Role='Technician' AND Status='Active'"
+                Dim cmd As New MySqlCommand(sql, conn)
+                Dim da As New MySqlDataAdapter(cmd)
+                Dim dt As New DataTable()
+                da.Fill(dt)
 
-            cmbTechnician.DataSource = dt
-            cmbTechnician.DisplayMember = "FullName"
-            cmbTechnician.ValueMember = "UserID"
+                cmbTechnician.DataSource = dt
+                cmbTechnician.DisplayMember = "FullName"
+                cmbTechnician.ValueMember = "UserID"
+            Catch ex As Exception
+                MessageBox.Show("Error loading technicians: " & ex.Message)
+            End Try
         End Using
     End Sub
 
-    ' --- UPDATED LOADJOBS WITH AUTO-SELECT LOGIC ---
+    ' --- FIX #2: UPDATED SQL FOR JOBS ---
     Private Sub LoadJobs(viewDate As Date)
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' UPDATED: Concatenate Client Name from new columns
+                ' UPDATED: Uses CONCAT for ClientName and AssignedTech (T.FullName removed)
                 Dim sql As String = "SELECT " &
                                     "   J.JobID, " &
                                     "   CONCAT(C.ClientFirstName, ' ', C.ClientLastName) AS ClientName, " &
@@ -226,9 +235,9 @@ Public Class newUcDashboard
                                     "   DATE_FORMAT(J.StartTime, '%h:%i %p') AS 'Start Time', " &
                                     "   DATE_FORMAT(J.EndTime, '%h:%i %p') AS 'End Time', " &
                                     "   TIMEDIFF(J.EndTime, J.StartTime) AS Duration, " &
-                                    "   T.FullName AS AssignedTech " &
+                                    "   CONCAT(T.FirstName, ' ', T.LastName) AS AssignedTech " &
                                     "FROM tbl_joborders J " &
-                                    "INNER JOIN tbl_clients C ON J.ClientID = C.ClientID " & ' Direct Link
+                                    "INNER JOIN tbl_clients C ON J.ClientID = C.ClientID " &
                                     "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
                                     "LEFT JOIN tbl_services S ON Con.ServiceID = S.ServiceID " &
                                     "LEFT JOIN tbl_services S_Job ON J.ServiceID = S_Job.ServiceID " &
@@ -266,9 +275,7 @@ Public Class newUcDashboard
 
                 ' 2. Check if we have data to select
                 If dgvDailyJobs.Rows.Count > 0 Then
-                    ' Select the first row
                     dgvDailyJobs.Rows(0).Selected = True
-                    ' Populate the side panel
                     PopulateJobDetails(dgvDailyJobs.Rows(0))
                 End If
 
@@ -412,7 +419,6 @@ Public Class newUcDashboard
             Using conn As New MySqlConnection(connString)
                 conn.Open()
                 Dim sql As String = "UPDATE tbl_joborders SET TechnicianID = @tid, Status = 'Assigned' WHERE JobID = @jid"
-
                 Dim cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@tid", techID)
                 cmd.Parameters.AddWithValue("@jid", _selectedJobID)

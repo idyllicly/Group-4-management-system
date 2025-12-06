@@ -3,26 +3,60 @@
 Public Class NotificationService
     Private Shared connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
-    ' 1. ADD NOTIFICATION (Used by Firebase and System Checks)
-    Public Shared Sub AddNotification(title As String, message As String, category As String, relatedID As Integer)
+    ' 1. ADD NOTIFICATION 
+    ' FIXED: Changed 'relatedID' to specific optional IDs to match database columns [cite: 41, 42]
+    Public Shared Sub AddNotification(title As String, message As String, category As String, Optional jobID As Integer = 0, Optional contractID As Integer = 0, Optional paymentID As Integer = 0)
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            ' Prevent duplicates for system alerts (don't alert twice today for the same thing)
-            Dim checkSql As String = "SELECT COUNT(*) FROM tbl_notifications WHERE RelatedID=@rid AND Category=@cat AND DATE(DateCreated) = CURDATE()"
+
+            ' A. PREVENT DUPLICATES (Don't alert twice in one day for the same item)
+            ' We build the query dynamically based on which ID is provided
+            Dim checkSql As String = "SELECT COUNT(*) FROM tbl_notifications WHERE Category=@cat AND DATE(DateCreated) = CURDATE() "
+
+            If jobID > 0 Then
+                checkSql &= " AND JobID = @id"
+            ElseIf contractID > 0 Then
+                checkSql &= " AND ContractID = @id"
+            ElseIf paymentID > 0 Then
+                checkSql &= " AND PaymentID = @id"
+            Else
+                ' If no ID is provided, just check title/message to prevent spam
+                checkSql &= " AND Title = @title"
+            End If
+
             Using cmdCheck As New MySqlCommand(checkSql, conn)
-                cmdCheck.Parameters.AddWithValue("@rid", relatedID)
                 cmdCheck.Parameters.AddWithValue("@cat", category)
+                ' Use the relevant ID for the check
+                Dim checkID As Integer = 0
+                If jobID > 0 Then checkID = jobID
+                If contractID > 0 Then checkID = contractID
+                If paymentID > 0 Then checkID = paymentID
+
+                If checkID > 0 Then
+                    cmdCheck.Parameters.AddWithValue("@id", checkID)
+                Else
+                    cmdCheck.Parameters.AddWithValue("@title", title)
+                End If
+
                 Dim count As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
                 If count > 0 Then Exit Sub ' Already notified today
             End Using
 
-            ' Insert New Notification
-            Dim sql As String = "INSERT INTO tbl_notifications (Title, Message, Category, RelatedID, IsRead, DateCreated) VALUES (@t, @m, @c, @rid, 0, NOW())"
+            ' B. INSERT NEW NOTIFICATION
+            ' FIXED: Insert into specific columns (JobID, ContractID, PaymentID) instead of RelatedID [cite: 44]
+            Dim sql As String = "INSERT INTO tbl_notifications (Title, Message, Category, JobID, ContractID, PaymentID, IsRead, DateCreated) " &
+                                "VALUES (@t, @m, @c, @jid, @cid, @pid, 0, NOW())"
+
             Using cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@t", title)
                 cmd.Parameters.AddWithValue("@m", message)
                 cmd.Parameters.AddWithValue("@c", category)
-                cmd.Parameters.AddWithValue("@rid", relatedID)
+
+                ' Handle Nullables for Database
+                cmd.Parameters.AddWithValue("@jid", If(jobID > 0, jobID, DBNull.Value))
+                cmd.Parameters.AddWithValue("@cid", If(contractID > 0, contractID, DBNull.Value))
+                cmd.Parameters.AddWithValue("@pid", If(paymentID > 0, paymentID, DBNull.Value))
+
                 cmd.ExecuteNonQuery()
             End Using
         End Using
@@ -33,24 +67,32 @@ Public Class NotificationService
         Using conn As New MySqlConnection(connString)
             conn.Open()
 
-            ' A. Check Expiring Contracts (7 Days warning)
-            ' UPDATED: Concatenate Name
-            Dim sqlContract As String = "SELECT ContractID, ClientName, EndDate " &
-                                        "FROM (SELECT c.ContractID, CONCAT(cl.ClientFirstName, ' ', cl.ClientLastName) as ClientName, DATE_ADD(c.StartDate, INTERVAL c.DurationMonths MONTH) as EndDate " &
-                                        "      FROM tbl_contracts c JOIN tbl_clients cl ON c.ClientID = cl.ClientID) as T " &
-                                        "WHERE EndDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)"
+            ' ---------------------------------------------------------
+            ' A. CHECK EXPIRING CONTRACTS (7 Days warning)
+            ' ---------------------------------------------------------
+            ' FIXED: Uses ClientFirstName/LastName and DurationMonths calculation [cite: 46, 47]
+            Dim sqlContract As String = "SELECT c.ContractID, CONCAT(cl.ClientFirstName, ' ', cl.ClientLastName) as ClientName, " &
+                                        "DATE_ADD(c.StartDate, INTERVAL c.DurationMonths MONTH) as EndDate " &
+                                        "FROM tbl_contracts c " &
+                                        "JOIN tbl_clients cl ON c.ClientID = cl.ClientID " &
+                                        "WHERE DATE_ADD(c.StartDate, INTERVAL c.DurationMonths MONTH) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)"
 
             Using cmd As New MySqlCommand(sqlContract, conn)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     While reader.Read()
-                        Dim msg As String = $"Contract for {reader("ClientName")} expires on {Convert.ToDateTime(reader("EndDate")).ToString("MMM dd")}."
-                        AddNotification("Contract Expiring", msg, "Contract", Convert.ToInt32(reader("ContractID")))
+                        Dim endDate As DateTime = Convert.ToDateTime(reader("EndDate"))
+                        Dim msg As String = $"Contract for {reader("ClientName")} expires on {endDate:MMM dd}."
+
+                        ' FIXED: Pass to contractID parameter
+                        AddNotification("Contract Expiring", msg, "Contract", contractID:=Convert.ToInt32(reader("ContractID")))
                     End While
                 End Using
             End Using
 
-            ' B. Check Payments Due (3 Days warning)
-            ' UPDATED: Concatenate Name
+            ' ---------------------------------------------------------
+            ' B. CHECK PAYMENTS DUE (3 Days warning)
+            ' ---------------------------------------------------------
+            ' FIXED: Links to tbl_paymentschedule and notifies based on ContractID [cite: 51, 52]
             Dim sqlPayment As String = "SELECT S.ScheduleID, S.ContractID, CONCAT(CL.ClientFirstName, ' ', CL.ClientLastName) AS ClientName, S.DueDate, S.AmountDue " &
                                        "FROM tbl_paymentschedule S " &
                                        "JOIN tbl_contracts C ON S.ContractID = C.ContractID " &
@@ -60,15 +102,20 @@ Public Class NotificationService
             Using cmdP As New MySqlCommand(sqlPayment, conn)
                 Using reader As MySqlDataReader = cmdP.ExecuteReader()
                     While reader.Read()
-                        Dim msg As String = $"Payment of {reader("AmountDue")} for {reader("ClientName")} is due on {Convert.ToDateTime(reader("DueDate")).ToString("MMM dd")}."
-                        ' We link to ContractID so clicking takes you to the contract
-                        AddNotification("Payment Due", msg, "Billing", Convert.ToInt32(reader("ContractID")))
+                        Dim dDate As DateTime = Convert.ToDateTime(reader("DueDate"))
+                        Dim amt As Decimal = Convert.ToDecimal(reader("AmountDue"))
+                        Dim msg As String = $"Payment of {amt:N2} for {reader("ClientName")} is due on {dDate:MMM dd}."
+
+                        ' FIXED: Link to ContractID so the user can view the contract details
+                        AddNotification("Payment Due", msg, "Billing", contractID:=Convert.ToInt32(reader("ContractID")))
                     End While
                 End Using
             End Using
 
+            ' ---------------------------------------------------------
             ' C. CHECK UPCOMING JOBS (Next 7 Days)
-            ' UPDATED: Removed ClientID_TempLink, used direct join to tbl_clients via J.ClientID
+            ' ---------------------------------------------------------
+            ' FIXED: Joins tbl_joborders to tbl_clients [cite: 55, 56]
             Dim sqlJobs As String = "SELECT J.JobID, J.ScheduledDate, J.JobType, " &
                                     "CONCAT(Cl.ClientFirstName, ' ', Cl.ClientLastName) AS ClientName " &
                                     "FROM tbl_joborders J " &
@@ -98,8 +145,8 @@ Public Class NotificationService
 
                         Dim msg As String = $"Upcoming {type}: {client} {timeMsg}"
 
-                        ' We use 'Job Update' category so clicking it takes you to the Calendar
-                        AddNotification("Upcoming Service", msg, "Job Update", jid)
+                        ' FIXED: Pass to jobID parameter
+                        AddNotification("Upcoming Service", msg, "Job Update", jobID:=jid)
                     End While
                 End Using
             End Using
@@ -122,7 +169,13 @@ Public Class NotificationService
         Using conn As New MySqlConnection(connString)
             conn.Open()
             Dim cmd As New MySqlCommand("SELECT COUNT(*) FROM tbl_notifications WHERE IsRead = 0", conn)
-            Return Convert.ToInt32(cmd.ExecuteScalar())
+            Dim result = cmd.ExecuteScalar()
+            If result IsNot Nothing AndAlso IsNumeric(result) Then
+                Return Convert.ToInt32(result)
+            Else
+                Return 0
+            End If
         End Using
     End Function
+
 End Class

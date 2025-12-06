@@ -10,7 +10,7 @@ Public Class newUcDataSync
     ' Database Connection
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
-    ' UI Controls
+    ' UI Controls (Declared here so Logic can access them)
     Private WithEvents tcMain As TabControl
     Private tabImport As TabPage
     Private tabExport As TabPage
@@ -34,71 +34,195 @@ Public Class newUcDataSync
     Private grpExportOptions As GroupBox
 
     Public Sub New()
+        ' Initialize the new UI Layout
         SetupUI()
     End Sub
 
+    ' =========================================================================
+    ' NEW UI SETUP (Responsive Design)
+    ' =========================================================================
     Private Sub SetupUI()
+        ' 1. Main UserControl Settings
         Me.Size = New Size(1000, 700)
         Me.BackColor = Color.White
+        Me.Font = New Font("Segoe UI", 10)
 
-        tcMain = New TabControl() With {.Dock = DockStyle.Fill, .Font = New Font("Segoe UI", 10), .ItemSize = New Size(120, 30)}
-        tabImport = New TabPage("Import Data")
-        tabExport = New TabPage("Export Database")
-
-        ' --- IMPORT TAB LAYOUT ---
-        Dim pnlImportHeader As New Panel With {.Dock = DockStyle.Top, .Height = 120, .BackColor = Color.WhiteSmoke}
-
-        ' 1. File Selection
-        Dim lblFile As New Label With {.Text = "1. Select Excel File:", .Location = New Point(20, 20), .AutoSize = True, .Font = New Font("Segoe UI", 10, FontStyle.Bold)}
-        txtFilePath = New TextBox With {.Location = New Point(20, 45), .Width = 350, .ReadOnly = True, .BackColor = Color.White}
-        btnLoadFile = New Button With {.Text = "Browse...", .Location = New Point(380, 43), .Width = 90, .BackColor = Color.DodgerBlue, .ForeColor = Color.White, .FlatStyle = FlatStyle.Flat}
-
-        ' 2. Service Mapping
-        Dim lblServiceType As New Label With {.Text = "2. Select Service Type (For Mapping):", .Location = New Point(500, 20), .AutoSize = True, .Font = New Font("Segoe UI", 10, FontStyle.Bold)}
-        cboServiceType = New ComboBox With {.Location = New Point(500, 45), .Width = 200, .DropDownStyle = ComboBoxStyle.DropDownList}
-        cboServiceType.Items.Add("Termite Control / Soil Poisoning")
-        cboServiceType.Items.Add("Baiting System")
-        cboServiceType.Items.Add("General Pest Control")
-        cboServiceType.SelectedIndex = 0
-
-        ' 3. Process Button
-        btnProcessImport = New Button With {
-            .Text = "START IMPORT",
-            .Location = New Point(720, 43),
-            .Width = 150,
-            .Height = 35,
-            .BackColor = Color.SeaGreen,
-            .ForeColor = Color.White,
-            .FlatStyle = FlatStyle.Flat,
-            .Enabled = False
+        ' 2. Initialize Tab Control
+        tcMain = New TabControl() With {
+            .Dock = DockStyle.Fill,
+            .ItemSize = New Size(120, 30),
+            .SizeMode = TabSizeMode.Fixed
         }
 
-        lblStatus = New Label With {.Text = "Ready...", .Location = New Point(20, 80), .AutoSize = True, .ForeColor = Color.DimGray}
+        tabImport = New TabPage("Import Data") With {.BackColor = Color.White}
+        tabExport = New TabPage("Export Database") With {.BackColor = Color.WhiteSmoke}
 
-        pnlImportHeader.Controls.AddRange({lblFile, txtFilePath, btnLoadFile, lblServiceType, cboServiceType, btnProcessImport, lblStatus})
+        ' --- IMPORT TAB LAYOUT ---
+        Dim pnlImportContainer As New TableLayoutPanel() With {
+            .Dock = DockStyle.Fill,
+            .RowCount = 2,
+            .ColumnCount = 1
+        }
 
-        dgvPreview = New DataGridView With {.Dock = DockStyle.Fill, .BackgroundColor = Color.White, .BorderStyle = BorderStyle.None, .ReadOnly = True, .ColumnHeadersHeight = 35}
+        pnlImportContainer.RowStyles.Add(New RowStyle(SizeType.AutoSize))
+        pnlImportContainer.RowStyles.Add(New RowStyle(SizeType.Percent, 100))
 
-        tabImport.Controls.Add(dgvPreview)
-        tabImport.Controls.Add(pnlImportHeader)
+        ' Header GroupBox
+        Dim grpHeader As New GroupBox() With {
+            .Text = "Import Configuration",
+            .Dock = DockStyle.Fill,
+            .Margin = New Padding(10),
+            .AutoSize = True
+        }
+
+        ' Grid inside header
+        Dim tlpHeader As New TableLayoutPanel() With {
+            .Dock = DockStyle.Fill,
+            .RowCount = 3,
+            .ColumnCount = 2,
+            .Padding = New Padding(10),
+            .AutoSize = True
+        }
+        tlpHeader.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 60))
+        tlpHeader.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40))
+
+        tlpHeader.RowStyles.Add(New RowStyle(SizeType.AutoSize)) ' Row 1: Labels
+        tlpHeader.RowStyles.Add(New RowStyle(SizeType.AutoSize)) ' Row 2: Inputs
+        tlpHeader.RowStyles.Add(New RowStyle(SizeType.AutoSize)) ' Row 3: Status
+
+        ' Labels
+        Dim lblFile As New Label With {
+            .Text = "1. Select Excel File:", .AutoSize = True,
+            .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+            .Margin = New Padding(0, 0, 0, 5)
+        }
+        Dim lblServiceType As New Label With {
+            .Text = "2. Select Service Type (Mapping):", .AutoSize = True,
+            .Font = New Font("Segoe UI", 9, FontStyle.Bold),
+            .Margin = New Padding(0, 0, 0, 5)
+        }
+
+        ' Input Panels
+        Dim pnlFile As New TableLayoutPanel() With {
+            .Dock = DockStyle.Fill, .RowCount = 1, .ColumnCount = 2,
+            .Margin = New Padding(0, 0, 0, 15),
+            .AutoSize = True
+        }
+        pnlFile.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100))
+        pnlFile.ColumnStyles.Add(New ColumnStyle(SizeType.AutoSize))
+
+        Dim pnlService As New TableLayoutPanel() With {
+            .Dock = DockStyle.Fill, .RowCount = 1, .ColumnCount = 2,
+            .Margin = New Padding(0, 0, 0, 15),
+            .AutoSize = True
+        }
+        pnlService.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100))
+        pnlService.ColumnStyles.Add(New ColumnStyle(SizeType.AutoSize))
+
+        ' Controls
+        txtFilePath = New TextBox With {
+            .Dock = DockStyle.Fill, .ReadOnly = True, .BackColor = Color.WhiteSmoke,
+            .Font = New Font("Segoe UI", 11)
+        }
+        btnLoadFile = New Button With {
+            .Text = "Browse...",
+            .Width = 100,
+            .Height = 38,
+            .BackColor = Color.DodgerBlue, .ForeColor = Color.White,
+            .FlatStyle = FlatStyle.Flat, .Cursor = Cursors.Hand,
+            .Margin = New Padding(5, 0, 0, 0)
+        }
+
+        ' --- FIXED COMBOBOX INITIALIZATION ---
+        cboServiceType = New ComboBox With {
+            .Dock = DockStyle.Fill, .DropDownStyle = ComboBoxStyle.DropDownList,
+            .Font = New Font("Segoe UI", 11)
+        }
+        ' Added these lines back:
+        cboServiceType.Items.AddRange({"Termite Control / Soil Poisoning", "Baiting System", "General Pest Control"})
+        cboServiceType.SelectedIndex = 0
+        ' -------------------------------------
+
+        btnProcessImport = New Button With {
+            .Text = "START IMPORT",
+            .Width = 140,
+            .Height = 38,
+            .BackColor = Color.SeaGreen, .ForeColor = Color.White,
+            .FlatStyle = FlatStyle.Flat, .Enabled = False, .Cursor = Cursors.Hand,
+            .Margin = New Padding(5, 0, 0, 0)
+        }
+
+        ' Add to Panels
+        pnlFile.Controls.Add(txtFilePath, 0, 0)
+        pnlFile.Controls.Add(btnLoadFile, 1, 0)
+        pnlService.Controls.Add(cboServiceType, 0, 0)
+        pnlService.Controls.Add(btnProcessImport, 1, 0)
+
+        ' Status Label
+        lblStatus = New Label With {
+            .Text = "Ready...", .AutoSize = True, .ForeColor = Color.DimGray,
+            .Margin = New Padding(0, 5, 0, 0)
+        }
+
+        ' Add to Header Grid
+        tlpHeader.Controls.Add(lblFile, 0, 0)
+        tlpHeader.Controls.Add(lblServiceType, 1, 0)
+        tlpHeader.Controls.Add(pnlFile, 0, 1)
+        tlpHeader.Controls.Add(pnlService, 1, 1)
+        tlpHeader.Controls.Add(lblStatus, 0, 2)
+        tlpHeader.SetColumnSpan(lblStatus, 2)
+
+        grpHeader.Controls.Add(tlpHeader)
+
+        ' DataGridView
+        dgvPreview = New DataGridView With {
+            .Dock = DockStyle.Fill, .BackgroundColor = Color.White, .BorderStyle = BorderStyle.None,
+            .ReadOnly = True, .ColumnHeadersHeight = 35, .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        }
+
+        pnlImportContainer.Controls.Add(grpHeader, 0, 0)
+        pnlImportContainer.Controls.Add(dgvPreview, 0, 1)
+        tabImport.Controls.Add(pnlImportContainer)
 
         ' --- EXPORT TAB LAYOUT ---
-        tabExport.BackColor = Color.WhiteSmoke
-        grpExportOptions = New GroupBox With {.Text = "Export Configuration", .Location = New Point(50, 50), .Size = New Size(500, 350), .Font = New Font("Segoe UI", 11, FontStyle.Bold), .BackColor = Color.White}
+        Dim tlpExport As New TableLayoutPanel() With {.Dock = DockStyle.Fill, .RowCount = 3, .ColumnCount = 3}
+        tlpExport.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50))
+        tlpExport.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 550))
+        tlpExport.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50))
+        tlpExport.RowStyles.Add(New RowStyle(SizeType.Percent, 50))
+        tlpExport.RowStyles.Add(New RowStyle(SizeType.Absolute, 450))
+        tlpExport.RowStyles.Add(New RowStyle(SizeType.Percent, 50))
 
-        chkExportClients = New CheckBox With {.Text = "Client Master List", .Location = New Point(30, 40), .AutoSize = True, .Checked = True}
-        chkExportContracts = New CheckBox With {.Text = "Active Contracts", .Location = New Point(30, 80), .AutoSize = True}
-        chkExportJobs = New CheckBox With {.Text = "Job Schedules (Dates)", .Location = New Point(30, 120), .AutoSize = True}
+        grpExportOptions = New GroupBox With {
+            .Text = "Export Configuration", .Dock = DockStyle.Fill,
+            .Font = New Font("Segoe UI", 11, FontStyle.Bold), .BackColor = Color.White, .Padding = New Padding(20)
+        }
 
-        Dim lblRange As New Label With {.Text = "Date Range (for Schedules):", .Location = New Point(30, 160), .AutoSize = True, .Font = New Font("Segoe UI", 9)}
-        dtpFrom = New DateTimePicker With {.Location = New Point(30, 185), .Format = DateTimePickerFormat.Short, .Width = 120, .Font = New Font("Segoe UI", 9)}
-        Dim lblTo As New Label With {.Text = "to", .Location = New Point(160, 190), .AutoSize = True}
-        dtpTo = New DateTimePicker With {.Location = New Point(190, 185), .Format = DateTimePickerFormat.Short, .Width = 120, .Font = New Font("Segoe UI", 9)}
+        Dim flpExportItems As New FlowLayoutPanel() With {
+            .Dock = DockStyle.Fill, .FlowDirection = FlowDirection.TopDown, .WrapContents = False, .AutoScroll = True
+        }
 
-        btnExport = New Button With {.Text = "EXPORT DATA", .Location = New Point(30, 260), .Width = 200, .Height = 45, .BackColor = Color.Teal, .ForeColor = Color.White, .FlatStyle = FlatStyle.Flat}
+        chkExportClients = New CheckBox With {.Text = "Client Master List", .AutoSize = True, .Checked = True, .Margin = New Padding(0, 0, 0, 15)}
+        chkExportContracts = New CheckBox With {.Text = "Active Contracts", .AutoSize = True, .Margin = New Padding(0, 0, 0, 15)}
+        chkExportJobs = New CheckBox With {.Text = "Job Schedules (Dates)", .AutoSize = True, .Margin = New Padding(0, 0, 0, 5)}
 
-        grpExportOptions.Controls.AddRange({chkExportClients, chkExportContracts, chkExportJobs, lblRange, dtpFrom, lblTo, dtpTo, btnExport})
-        tabExport.Controls.Add(grpExportOptions)
+        Dim pnlDateRange As New FlowLayoutPanel() With {.AutoSize = True, .FlowDirection = FlowDirection.LeftToRight}
+        Dim lblRange As New Label With {.Text = "Date Range:", .AutoSize = True, .Font = New Font("Segoe UI", 9), .Margin = New Padding(0, 5, 10, 0)}
+        dtpFrom = New DateTimePicker With {.Format = DateTimePickerFormat.Short, .Width = 120, .Font = New Font("Segoe UI", 9)}
+        Dim lblTo As New Label With {.Text = " to ", .AutoSize = True, .Margin = New Padding(5, 5, 5, 0)}
+        dtpTo = New DateTimePicker With {.Format = DateTimePickerFormat.Short, .Width = 120, .Font = New Font("Segoe UI", 9)}
+
+        pnlDateRange.Controls.AddRange({lblRange, dtpFrom, lblTo, dtpTo})
+
+        btnExport = New Button With {
+            .Text = "EXPORT DATA", .Height = 50, .Width = 250, .BackColor = Color.Teal,
+            .ForeColor = Color.White, .FlatStyle = FlatStyle.Flat, .Cursor = Cursors.Hand, .Margin = New Padding(0, 30, 0, 0)
+        }
+
+        flpExportItems.Controls.AddRange({chkExportClients, chkExportContracts, chkExportJobs, pnlDateRange, btnExport})
+        grpExportOptions.Controls.Add(flpExportItems)
+        tlpExport.Controls.Add(grpExportOptions, 1, 1)
+        tabExport.Controls.Add(tlpExport)
 
         tcMain.TabPages.Add(tabImport)
         tcMain.TabPages.Add(tabExport)
@@ -106,7 +230,7 @@ Public Class newUcDataSync
     End Sub
 
     ' =========================================================================
-    ' IMPORT LOGIC
+    ' IMPORT LOGIC (Preserved from Original)
     ' =========================================================================
 
     Private Sub btnLoadFile_Click(sender As Object, e As EventArgs) Handles btnLoadFile.Click
@@ -205,7 +329,6 @@ Public Class newUcDataSync
                                         Dim visitDate As DateTime
                                         If DateTime.TryParse(dateVal, visitDate) Then
                                             Dim visitNum As Integer = ExtractVisitNumber(header)
-                                            ' FIXED: Added clientID to call
                                             InsertJobOrder(conn, clientID, contractID, visitDate, "Inspection", visitNum)
                                         End If
                                     End If
@@ -218,7 +341,6 @@ Public Class newUcDataSync
                             If Not String.IsNullOrWhiteSpace(nextService) Then
                                 Dim schedDate As DateTime
                                 If DateTime.TryParse(nextService, schedDate) Then
-                                    ' FIXED: Added clientID to call
                                     InsertJobOrder(conn, clientID, contractID, schedDate, "Service", 1)
                                 End If
                             End If
@@ -313,7 +435,6 @@ Public Class newUcDataSync
         Return 0
     End Function
 
-    ' FIXED: Added clientId to parameters and SQL Query
     Private Sub InsertJobOrder(conn As MySqlConnection, clientId As Integer, contractId As Integer, schedDate As Date, type As String, visitNum As Integer)
         ' Prevent Duplicate Job Orders
         Dim checkSql As String = "SELECT JobID FROM tbl_joborders WHERE ContractID = @cid AND ScheduledDate = @date"
@@ -324,7 +445,7 @@ Public Class newUcDataSync
         If cmd.ExecuteScalar() Is Nothing Then
             Dim insSql As String = "INSERT INTO tbl_joborders (ClientID, ContractID, ScheduledDate, JobType, Status, VisitNumber) VALUES (@uid, @cid, @date, @type, 'Pending', @vis)"
             Dim insCmd As New MySqlCommand(insSql, conn)
-            insCmd.Parameters.AddWithValue("@uid", clientId) ' New parameter for Normalized DB
+            insCmd.Parameters.AddWithValue("@uid", clientId)
             insCmd.Parameters.AddWithValue("@cid", contractId)
             insCmd.Parameters.AddWithValue("@date", schedDate)
             insCmd.Parameters.AddWithValue("@type", type)
@@ -334,7 +455,7 @@ Public Class newUcDataSync
     End Sub
 
     ' =========================================================================
-    ' EXPORT LOGIC
+    ' EXPORT LOGIC (Preserved from Original)
     ' =========================================================================
 
     Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click

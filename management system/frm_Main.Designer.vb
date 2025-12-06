@@ -69,7 +69,7 @@ Partial Class frm_Main
         '
         'pnlSideMenu
         '
-        Me.pnlSideMenu.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.pnlSideMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(1, Byte), Integer), CType(CType(6, Byte), Integer), CType(CType(184, Byte), Integer))
         Me.pnlSideMenu.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlSideMenu.Location = New System.Drawing.Point(0, 0)
         Me.pnlSideMenu.Name = "pnlSideMenu"

@@ -1475,6 +1475,7 @@
     <None Include="Resources\worker.bmp" />
     <None Include="Resources\Image1.jpg" />
     <None Include="Resources\rrc_worker.jpeg" />
+    <None Include="Resources\bellBLue.png" />
     <Content Include="rrc_worker.jpeg" />
     <Content Include="UpgradeLog2.htm" />
     <None Include="Resources\RRCLogo.png" />

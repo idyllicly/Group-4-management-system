@@ -14,25 +14,27 @@ Public Class newUcAccountManager
         LoadAccounts("All")
         ' Initialize Firebase (Keep this for Technicians)
         FirebaseManager.Initialize()
+        ClearForm()
     End Sub
 
     ' ==========================================
-    ' 1. MASTER LOADER (Now fetches from tbl_users)
+    ' 1. MASTER LOADER (Updated for Split Names)
     ' ==========================================
     Private Sub LoadAccounts(roleFilter As String)
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
 
-                Dim sql As String = "SELECT UserID, FullName, Role, Username, ContactNo, FirebaseUID FROM tbl_users"
+                ' UPDATED SQL: Select individual name parts
+                Dim sql As String = "SELECT UserID, LastName, FirstName, MiddleName, Role, Username, ContactNo, FirebaseUID FROM tbl_users"
 
                 ' Apply Filter
                 If roleFilter <> "All" Then
                     sql &= " WHERE Role = @role"
                 End If
 
-                ' Order by ID
-                sql &= " ORDER BY UserID DESC"
+                ' Order by LastName, then FirstName
+                sql &= " ORDER BY LastName ASC, FirstName ASC"
 
                 Dim cmd As New MySqlCommand(sql, conn)
                 If roleFilter <> "All" Then
@@ -60,18 +62,19 @@ Public Class newUcAccountManager
     End Sub
 
     ' ==========================================
-    ' 2. SAVE ACCOUNT (Create New)
+    ' 2. SAVE ACCOUNT (Create New) - UPDATED
     ' ==========================================
     Private Async Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        ' Validation
-        If txtName.Text = "" Or txtEmail.Text = "" Or txtPassword.Text = "" Or cmbRole.Text = "" Then
-            MessageBox.Show("Please fill in all fields.")
+        ' Validation: Check if new Name fields are filled
+        If txtLastName.Text = "" Or txtFirstName.Text = "" Or txtEmail.Text = "" Or txtPassword.Text = "" Or cmbRole.Text = "" Then
+            MessageBox.Show("Please fill in all required fields (Last Name, First Name, Email, Password, Role).")
             Exit Sub
         End If
 
         Dim role As String = cmbRole.Text
         Dim firebaseID As String = ""
+        Dim fullNameForFirebase As String = txtFirstName.Text & " " & txtLastName.Text
 
         btnSave.Enabled = False
         btnSave.Text = "Processing..."
@@ -86,8 +89,8 @@ Public Class newUcAccountManager
                 End If
 
                 btnSave.Text = "Syncing to Cloud..."
-                ' Create in Firebase
-                firebaseID = Await FirebaseManager.CreateTechnicianAccount(txtEmail.Text, txtPassword.Text, txtName.Text, "Technician")
+                ' Create in Firebase using the combined name
+                firebaseID = Await FirebaseManager.CreateTechnicianAccount(txtEmail.Text, txtPassword.Text, fullNameForFirebase, "Technician")
 
                 If firebaseID.StartsWith("Error") Then
                     MessageBox.Show(firebaseID)
@@ -96,19 +99,20 @@ Public Class newUcAccountManager
                 End If
             End If
 
-            ' === STEP B: DATABASE INSERT (One Table Rule) ===
+            ' === STEP B: DATABASE INSERT (Updated columns) ===
             Using conn As New MySqlConnection(connString)
                 conn.Open()
 
-
-                Dim sql As String = "INSERT INTO tbl_users (FullName, Role, Username, Password, ContactNo, FirebaseUID, Status) " &
-                                    "VALUES (@name, @role, @user, @pass, @phone, @uid, 'Active')"
+                Dim sql As String = "INSERT INTO tbl_users (FirstName, MiddleName, LastName, Role, Username, Password, ContactNo, FirebaseUID, Status) " &
+                                    "VALUES (@fname, @mname, @lname, @role, @user, @pass, @phone, @uid, 'Active')"
 
                 Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@name", txtName.Text)
+                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text)
+                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text) ' Can be empty
+                cmd.Parameters.AddWithValue("@lname", txtLastName.Text)
                 cmd.Parameters.AddWithValue("@role", role)
                 cmd.Parameters.AddWithValue("@user", txtEmail.Text)
-                cmd.Parameters.AddWithValue("@pass", txtPassword.Text) ' Ideally, hash this!
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text)
                 cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
 
                 ' Handle Null UID for Admins
@@ -134,7 +138,7 @@ Public Class newUcAccountManager
     End Sub
 
     ' ==========================================
-    ' 3. UPDATE ACCOUNT
+    ' 3. UPDATE ACCOUNT - UPDATED
     ' ==========================================
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If _selectedID = 0 Then Exit Sub
@@ -142,10 +146,9 @@ Public Class newUcAccountManager
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' We only update basic info. Password updates usually require a separate flow for security, 
-                ' but for this example, we update it if the box isn't empty.
 
-                Dim sql As String = "UPDATE tbl_users SET FullName=@name, Username=@user, ContactNo=@phone, Role=@role"
+                ' UPDATED SQL: Update split name columns
+                Dim sql As String = "UPDATE tbl_users SET FirstName=@fname, MiddleName=@mname, LastName=@lname, Username=@user, ContactNo=@phone, Role=@role"
 
                 If txtPassword.Text <> "" Then
                     sql &= ", Password=@pass"
@@ -154,7 +157,9 @@ Public Class newUcAccountManager
                 sql &= " WHERE UserID=@id"
 
                 Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@name", txtName.Text)
+                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text)
+                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text)
+                cmd.Parameters.AddWithValue("@lname", txtLastName.Text)
                 cmd.Parameters.AddWithValue("@user", txtEmail.Text)
                 cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
                 cmd.Parameters.AddWithValue("@role", cmbRole.Text)
@@ -176,7 +181,7 @@ Public Class newUcAccountManager
     End Sub
 
     ' ==========================================
-    ' 4. DELETE LOGIC
+    ' 4. DELETE LOGIC (Unchanged)
     ' ==========================================
     Private Async Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If _selectedID = 0 Then Exit Sub
@@ -208,7 +213,7 @@ Public Class newUcAccountManager
     End Sub
 
     ' ==========================================
-    ' 5. SELECT FROM GRID
+    ' 5. SELECT FROM GRID - UPDATED
     ' ==========================================
     Private Sub dgvAccounts_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvAccounts.CellClick
         If e.RowIndex >= 0 Then
@@ -224,7 +229,16 @@ Public Class newUcAccountManager
                 _selectedFirebaseUID = row.Cells("FirebaseUID").Value.ToString()
             End If
 
-            txtName.Text = row.Cells("FullName").Value.ToString()
+            ' UPDATED: Load split names into their respective textboxes
+            txtLastName.Text = row.Cells("LastName").Value.ToString()
+            txtFirstName.Text = row.Cells("FirstName").Value.ToString()
+
+            If IsDBNull(row.Cells("MiddleName").Value) Then
+                txtMiddleName.Text = ""
+            Else
+                txtMiddleName.Text = row.Cells("MiddleName").Value.ToString()
+            End If
+
             txtEmail.Text = row.Cells("Username").Value.ToString()
 
             ' Handle Null ContactNo safely
@@ -243,21 +257,23 @@ Public Class newUcAccountManager
         End If
     End Sub
 
+    ' UPDATED CLEAR FORM
     Private Sub ClearForm()
-        txtName.Clear()
+        txtLastName.Clear()
+        txtFirstName.Clear()
+        txtMiddleName.Clear()
         txtEmail.Clear()
         txtPassword.Clear()
         txtPhone.Clear()
+        cmbRole.SelectedIndex = -1 ' Clear selection
 
         _selectedID = 0
         _selectedFirebaseUID = ""
+        _selectedRole = ""
 
         btnSave.Enabled = True
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
     End Sub
 
-    Private Sub grpDetails_Enter(sender As Object, e As EventArgs) Handles grpDetails.Enter
-
-    End Sub
 End Class

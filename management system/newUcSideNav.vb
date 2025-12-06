@@ -89,29 +89,7 @@
         NavigateTo(New newUcDataSync(), "Contracts")
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        ' 1. Job Alert
-        NotificationService.AddNotification(
-            "Job Completed",
-            "Technician Vince has completed the termite inspection.",
-            "Job Update",
-            1)
-
-        ' 2. Billing Alert
-        NotificationService.AddNotification(
-            "Payment Overdue",
-            "Urgent: Payment for Contract #105 is overdue.",
-            "Billing",
-            1)
-
-        ' 3. Contract Alert
-        NotificationService.AddNotification(
-            "Contract Expiring",
-            "Heads up! The service contract for Brgy Commonwealth is expiring.",
-            "Contract",
-            1)
-
-        MessageBox.Show("Test data added! Refreshing list...", "Simulation")
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
     End Sub
 End Class

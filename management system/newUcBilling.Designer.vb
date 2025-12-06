@@ -81,12 +81,14 @@ Partial Class newUcBilling
         Me.dgvBilling.ReadOnly = True
         Me.dgvBilling.RowHeadersWidth = 62
         Me.dgvBilling.RowTemplate.Height = 28
-        Me.dgvBilling.Size = New System.Drawing.Size(411, 513)
+        Me.dgvBilling.Size = New System.Drawing.Size(827, 228)
         Me.dgvBilling.TabIndex = 2
         '
         'grpPayment
         '
-        Me.grpPayment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpPayment.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpPayment.Controls.Add(Me.Label3)
         Me.grpPayment.Controls.Add(Me.dgvSchedule)
         Me.grpPayment.Controls.Add(Me.btnSavePayment)
@@ -95,9 +97,9 @@ Partial Class newUcBilling
         Me.grpPayment.Controls.Add(Me.lblBalance)
         Me.grpPayment.Controls.Add(Me.Label1)
         Me.grpPayment.Controls.Add(Me.lblContractInfo)
-        Me.grpPayment.Location = New System.Drawing.Point(487, 100)
+        Me.grpPayment.Location = New System.Drawing.Point(36, 366)
         Me.grpPayment.Name = "grpPayment"
-        Me.grpPayment.Size = New System.Drawing.Size(395, 513)
+        Me.grpPayment.Size = New System.Drawing.Size(837, 327)
         Me.grpPayment.TabIndex = 3
         Me.grpPayment.TabStop = False
         Me.grpPayment.Text = "Receive Payment"
@@ -105,7 +107,7 @@ Partial Class newUcBilling
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(23, 171)
+        Me.Label3.Location = New System.Drawing.Point(294, 41)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(244, 20)
         Me.Label3.TabIndex = 7
@@ -114,6 +116,11 @@ Partial Class newUcBilling
         'dgvSchedule
         '
         Me.dgvSchedule.AllowUserToAddRows = False
+        Me.dgvSchedule.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvSchedule.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvSchedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
@@ -123,19 +130,19 @@ Partial Class newUcBilling
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvSchedule.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvSchedule.Location = New System.Drawing.Point(27, 194)
+        Me.dgvSchedule.Location = New System.Drawing.Point(298, 79)
         Me.dgvSchedule.Name = "dgvSchedule"
         Me.dgvSchedule.ReadOnly = True
         Me.dgvSchedule.RowHeadersVisible = False
         Me.dgvSchedule.RowHeadersWidth = 62
         Me.dgvSchedule.RowTemplate.Height = 28
         Me.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSchedule.Size = New System.Drawing.Size(349, 219)
+        Me.dgvSchedule.Size = New System.Drawing.Size(516, 216)
         Me.dgvSchedule.TabIndex = 6
         '
         'btnSavePayment
         '
-        Me.btnSavePayment.Location = New System.Drawing.Point(169, 451)
+        Me.btnSavePayment.Location = New System.Drawing.Point(27, 238)
         Me.btnSavePayment.Name = "btnSavePayment"
         Me.btnSavePayment.Size = New System.Drawing.Size(219, 46)
         Me.btnSavePayment.TabIndex = 5
@@ -144,7 +151,7 @@ Partial Class newUcBilling
         '
         'txtPayAmount
         '
-        Me.txtPayAmount.Location = New System.Drawing.Point(169, 419)
+        Me.txtPayAmount.Location = New System.Drawing.Point(27, 206)
         Me.txtPayAmount.Name = "txtPayAmount"
         Me.txtPayAmount.Size = New System.Drawing.Size(219, 26)
         Me.txtPayAmount.TabIndex = 4
@@ -152,7 +159,7 @@ Partial Class newUcBilling
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 419)
+        Me.Label2.Location = New System.Drawing.Point(23, 174)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(135, 20)
         Me.Label2.TabIndex = 3

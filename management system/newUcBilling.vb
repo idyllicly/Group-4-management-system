@@ -4,6 +4,7 @@ Imports System.Drawing
 Public Class newUcBilling
     Public Property PresetContractID As Integer = 0
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
+
     ' Variables to track selection
     Private _selectedContractID As Integer = 0
     Private _selectedScheduleID As Integer = 0
@@ -29,7 +30,7 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 1. MASTER LIST (Updated for Normalized DB)
+    ' 1. MASTER LIST (FIXED: Removed View Dependency)
     ' ==========================================
     Private Sub LoadBillingData(search As String)
         Dim previouslySelectedID As Integer = _selectedContractID
@@ -41,20 +42,22 @@ Public Class newUcBilling
             Try
                 conn.Open()
 
-                ' UPDATED SQL:
-                ' 1. Concatenate Client Name
-                ' 2. Joined 'view_contract_details' (V) to get Balance and Status.
+                ' UPDATED SQL: Calculates Balance and Status directly using Subqueries
+                ' instead of relying on 'view_contract_details'
                 Dim sql As String = "SELECT " &
                                     "   Con.ContractID, " &
                                     "   CONCAT(Cli.ClientFirstName, ' ', Cli.ClientLastName) AS ClientName, " &
                                     "   Ser.ServiceName, " &
                                     "   Con.ServiceFrequency, " &
-                                    "   V.PaymentStatus, " &
-                                    "   V.BalanceRemaining " &
+                                    "   Con.TotalAmount, " &
+                                    "   (Con.TotalAmount - COALESCE((SELECT SUM(AmountPaid) FROM tbl_payments WHERE ContractID = Con.ContractID), 0)) AS BalanceRemaining, " &
+                                    "   CASE " &
+                                    "       WHEN (Con.TotalAmount - COALESCE((SELECT SUM(AmountPaid) FROM tbl_payments WHERE ContractID = Con.ContractID), 0)) <= 0 THEN 'Paid' " &
+                                    "       ELSE 'Pending' " &
+                                    "   END AS PaymentStatus " &
                                     "FROM tbl_contracts Con " &
                                     "LEFT JOIN tbl_clients Cli ON Con.ClientID = Cli.ClientID " &
                                     "LEFT JOIN tbl_services Ser ON Con.ServiceID = Ser.ServiceID " &
-                                    "LEFT JOIN view_contract_details V ON Con.ContractID = V.ContractID " &
                                     "WHERE (Cli.ClientFirstName LIKE @s OR Cli.ClientLastName LIKE @s) " &
                                     "ORDER BY Con.ContractID DESC"
 
@@ -73,6 +76,9 @@ Public Class newUcBilling
 
                 If dgvBilling.Columns("BalanceRemaining") IsNot Nothing Then
                     dgvBilling.Columns("BalanceRemaining").DefaultCellStyle.Format = "N2"
+                End If
+                If dgvBilling.Columns("TotalAmount") IsNot Nothing Then
+                    dgvBilling.Columns("TotalAmount").DefaultCellStyle.Format = "N2"
                 End If
                 ' ------------------
 
@@ -101,7 +107,7 @@ Public Class newUcBilling
             _selectedContractID = Convert.ToInt32(row.Cells("ContractID").Value)
         End If
 
-        ' Get Balance from the VIEW column
+        ' Get Balance from the calculated column
         If row.Cells("BalanceRemaining").Value IsNot Nothing Then
             _currentBalance = Convert.ToDecimal(row.Cells("BalanceRemaining").Value)
         End If
@@ -150,7 +156,7 @@ Public Class newUcBilling
     End Sub
 
     ' ==========================================
-    ' 4. SAVE PAYMENT (Simplified for Logic)
+    ' 4. SAVE PAYMENT
     ' ==========================================
     Private Sub btnSavePayment_Click(sender As Object, e As EventArgs) Handles btnSavePayment.Click
         If _selectedContractID = 0 Then
@@ -168,12 +174,8 @@ Public Class newUcBilling
 
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            ' We don't need a transaction for just one insert anymore
             Try
-                ' UPDATED SQL:
-                ' 1. Insert Payment linked to the ScheduleID
-                ' 2. We DO NOT update tbl_contracts (Balance is auto-calculated).
-                ' 3. We DO NOT update tbl_paymentschedule status (It's auto-calculated).
+                ' Insert Payment linked to the Contract (and ScheduleID if selected)
                 Dim sqlPay As String = "INSERT INTO tbl_payments (ContractID, ScheduleID, AmountPaid, PaymentDate) VALUES (@cid, @sid, @amt, @date)"
 
                 Dim cmdPay As New MySqlCommand(sqlPay, conn)
@@ -209,9 +211,7 @@ Public Class newUcBilling
     ' ==========================================
     Private Sub LoadPaymentSchedule(contractID As Integer)
         Using conn As New MySqlConnection(connString)
-            ' UPDATED SQL:
-            ' We removed the 'Status' column from the table.
-            ' We now CALCULATE 'Status' by checking if a Payment exists for that ScheduleID.
+            ' This query looks fine as it uses tables, not views
             Dim sql As String = "SELECT " &
                                 "   S.ScheduleID, " &
                                 "   S.InstallmentNumber AS 'Inst #', " &
@@ -279,7 +279,7 @@ Public Class newUcBilling
         For Each row As DataGridViewRow In dgvSchedule.Rows
             If dgvSchedule.Columns.Contains("Status") AndAlso dgvSchedule.Columns.Contains("DueDate") Then
                 Dim status As String = row.Cells("Status").Value.ToString()
-                ' Handle DBNull safely
+
                 Dim dueDate As Date = DateTime.Now
                 If Not IsDBNull(row.Cells("DueDate").Value) Then
                     dueDate = Convert.ToDateTime(row.Cells("DueDate").Value)

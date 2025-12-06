@@ -74,4 +74,7 @@
         RaiseEvent DismissClicked(Me, EventArgs.Empty)
     End Sub
 
+    Private Sub ucNotificationItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

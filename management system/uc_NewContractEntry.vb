@@ -38,7 +38,6 @@ Public Class uc_NewContractEntry
                 conn.Open()
 
                 ' --- CLIENTS ---
-                ' UPDATED SQL: Concatenate the split names so the ComboBox still sees "ClientName"
                 Dim sqlClients As String = "SELECT ClientID, CONCAT(ClientFirstName, ' ', ClientLastName) AS ClientName FROM tbl_clients"
                 Dim daC As New MySqlDataAdapter(sqlClients, conn)
                 Dim dtC As New DataTable()
@@ -120,15 +119,24 @@ Public Class uc_NewContractEntry
             Dim trans As MySqlTransaction = conn.BeginTransaction()
 
             Try
-                ' A. INSERT CONTRACT
+                ' A. INSERT CONTRACT (UPDATED: Added QuoteID)
+                ' We must include QuoteID in the INSERT because your DB requires it.
                 Dim sqlCon As String = "INSERT INTO tbl_contracts " &
-                                       "(ClientID, ServiceID, StartDate, DurationMonths, TotalAmount, ServiceFrequency, PaymentTerms, ContractStatus) " &
-                                       "VALUES (@cid, @sid, @start, @dur, @amt, @freq, @term, 'Active');" &
+                                       "(ClientID, ServiceID, QuoteID, StartDate, DurationMonths, TotalAmount, ServiceFrequency, PaymentTerms, ContractStatus) " &
+                                       "VALUES (@cid, @sid, @qid, @start, @dur, @amt, @freq, @term, 'Active');" &
                                        "SELECT LAST_INSERT_ID();"
 
                 Dim cmdCon As New MySqlCommand(sqlCon, conn, trans)
                 cmdCon.Parameters.AddWithValue("@cid", clientID)
                 cmdCon.Parameters.AddWithValue("@sid", serviceID)
+
+                ' LOGIC: If _pfQuoteID > 0 (came from quote), save it. Else, save NULL.
+                If _pfQuoteID > 0 Then
+                    cmdCon.Parameters.AddWithValue("@qid", _pfQuoteID)
+                Else
+                    cmdCon.Parameters.AddWithValue("@qid", DBNull.Value)
+                End If
+
                 cmdCon.Parameters.AddWithValue("@start", startDate)
                 cmdCon.Parameters.AddWithValue("@dur", duration)
                 cmdCon.Parameters.AddWithValue("@amt", totalAmt)
@@ -152,7 +160,6 @@ Public Class uc_NewContractEntry
                 End If
 
                 For i As Integer = 1 To visitCount
-                    ' UPDATED: Uses proper ClientID column now
                     Dim sqlJob As String = "INSERT INTO tbl_joborders (ClientID, ContractID, VisitNumber, ScheduledDate, Status, JobType) " &
                                            "VALUES (@cid, @conID, @visNum, @sDate, 'Pending', 'Service')"
 
@@ -212,6 +219,9 @@ Public Class uc_NewContractEntry
 
                 trans.Commit()
                 MessageBox.Show("Contract Created Successfully!" & vbCrLf & "Generated " & visitCount & " visits and " & payCount & " payment schedules.")
+
+                ' Optional: Close after save
+                ' Me.ParentForm.Close() 
 
             Catch ex As Exception
                 trans.Rollback()

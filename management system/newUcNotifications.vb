@@ -3,7 +3,7 @@
 Public Class newUcNotifications
 
     ' Database Connection
-    Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
+    Private connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
 
     ' ==========================================
     ' 1. INITIALIZATION & LOAD
@@ -24,62 +24,81 @@ Public Class newUcNotifications
     ' ==========================================
     ' 2. MAIN LOADER FUNCTION
     ' ==========================================
-    Private Sub LoadNotifications()
+    Public Sub LoadNotifications()
         ' 1. Clear existing items to prevent duplicates
-        flowPanel.Controls.Clear()
+        If flowPanel IsNot Nothing Then flowPanel.Controls.Clear()
 
         Using conn As New MySqlConnection(connString)
-            conn.Open()
+            Try
+                conn.Open()
 
-            ' 2. Determine Logic: Inbox (Unread) vs History (Read)
-            Dim sql As String = ""
+                ' 2. Determine Logic: Inbox (Unread) vs History (Read)
+                ' FIXED SQL: Explicitly selecting columns including the new ID columns (JobID, ContractID, PaymentID)
+                Dim baseSql As String = "SELECT NotifID, Title, Message, Category, IsRead, DateCreated, JobID, ContractID, PaymentID FROM tbl_notifications "
+                Dim whereClause As String = ""
 
-            If chkShowHistory.Checked Then
-                ' HISTORY MODE: Show Read items (IsRead = 1)
-                sql = "SELECT * FROM tbl_notifications WHERE IsRead = 1 ORDER BY DateCreated DESC LIMIT 50"
-            Else
-                ' INBOX MODE: Show Unread items (IsRead = 0)
-                sql = "SELECT * FROM tbl_notifications WHERE IsRead = 0 ORDER BY DateCreated DESC LIMIT 50"
-            End If
+                If chkShowHistory.Checked Then
+                    ' HISTORY MODE: Show Read items (IsRead = 1)
+                    whereClause = "WHERE IsRead = 1 "
+                Else
+                    ' INBOX MODE: Show Unread items (IsRead = 0)
+                    whereClause = "WHERE IsRead = 0 "
+                End If
 
-            Dim cmd As New MySqlCommand(sql, conn)
-            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                Dim sql As String = baseSql & whereClause & "ORDER BY DateCreated DESC LIMIT 50"
 
-            ' 3. Handle Empty State
-            If Not reader.HasRows Then
-                Dim lbl As New Label()
-                lbl.Text = If(chkShowHistory.Checked, "No history found.", "You're all caught up!" & vbCrLf & "No new notifications.")
-                lbl.Font = New Font("Segoe UI", 12)
-                lbl.ForeColor = Color.Gray
-                lbl.AutoSize = True
-                lbl.Margin = New Padding(20)
-                flowPanel.Controls.Add(lbl)
-            End If
+                Dim cmd As New MySqlCommand(sql, conn)
+                Dim reader As MySqlDataReader = cmd.ExecuteReader()
 
-            ' 4. Loop through database rows and create cards
-            While reader.Read()
-                Dim id As Integer = Convert.ToInt32(reader("NotifID"))
-                Dim title As String = reader("Title").ToString()
-                Dim msg As String = reader("Message").ToString()
-                Dim cat As String = reader("Category").ToString()
-                Dim related As Integer = Convert.ToInt32(reader("RelatedID"))
-                Dim d As Date = Convert.ToDateTime(reader("DateCreated"))
-                Dim read As Boolean = Convert.ToBoolean(reader("IsRead"))
+                ' 3. Handle Empty State
+                If Not reader.HasRows Then
+                    Dim lbl As New Label()
+                    lbl.Text = If(chkShowHistory.Checked, "No history found.", "You're all caught up!" & vbCrLf & "No new notifications.")
+                    lbl.Font = New Font("Segoe UI", 12)
+                    lbl.ForeColor = Color.Gray
+                    lbl.AutoSize = True
+                    lbl.Margin = New Padding(20)
+                    If flowPanel IsNot Nothing Then flowPanel.Controls.Add(lbl)
+                End If
 
-                ' Create the User Control (The Card)
-                Dim card As New ucNotificationItem(id, title, msg, cat, related, d, read)
+                ' 4. Loop through database rows and create cards
+                While reader.Read()
+                    Dim id As Integer = Convert.ToInt32(reader("NotifID"))
+                    Dim title As String = reader("Title").ToString()
+                    Dim msg As String = reader("Message").ToString()
+                    Dim cat As String = reader("Category").ToString()
+                    Dim d As Date = Convert.ToDateTime(reader("DateCreated"))
+                    Dim read As Boolean = Convert.ToBoolean(reader("IsRead"))
 
-                ' Set Width dynamically (Panel Width - Scrollbar - Margin)
-                Dim scrollWidth As Integer = SystemInformation.VerticalScrollBarWidth
-                card.Width = flowPanel.ClientSize.Width - scrollWidth - 10
-                card.Margin = New Padding(0, 0, 0, 5)
+                    ' FIXED: Intelligent ID Selection
+                    ' Since 'RelatedID' column is gone, we check which specific ID is not null
+                    Dim related As Integer = 0
 
-                ' WIRE UP EVENTS (This fixes the Freeze/Crash issue)
-                AddHandler card.NotificationSelected, AddressOf OnNotificationClicked
-                AddHandler card.DismissClicked, AddressOf OnDismissClicked
+                    If Not IsDBNull(reader("JobID")) Then
+                        related = Convert.ToInt32(reader("JobID"))
+                    ElseIf Not IsDBNull(reader("ContractID")) Then
+                        related = Convert.ToInt32(reader("ContractID"))
+                    End If
+                    ' Note: If it's a Payment notification, it usually has a ContractID attached too.
 
-                flowPanel.Controls.Add(card)
-            End While
+                    ' Create the User Control (The Card)
+                    Dim card As New ucNotificationItem(id, title, msg, cat, related, d, read)
+
+                    ' Set Width dynamically (Panel Width - Scrollbar - Margin)
+                    Dim scrollWidth As Integer = SystemInformation.VerticalScrollBarWidth
+                    card.Width = flowPanel.ClientSize.Width - scrollWidth - 10
+                    card.Margin = New Padding(0, 0, 0, 5)
+
+                    ' WIRE UP EVENTS (This fixes the Freeze/Crash issue)
+                    AddHandler card.NotificationSelected, AddressOf OnNotificationClicked
+                    AddHandler card.DismissClicked, AddressOf OnDismissClicked
+
+                    flowPanel.Controls.Add(card)
+                End While
+
+            Catch ex As Exception
+                MessageBox.Show("Error loading notifications: " & ex.Message)
+            End Try
         End Using
     End Sub
 
@@ -93,7 +112,7 @@ Public Class newUcNotifications
         If mainForm Is Nothing Then Return
 
         ' A. Mark as Read in Database
-        NotificationService.MarkAsRead(card.NotifID)
+        MarkAsRead(card.NotifID)
 
         ' B. If in Inbox mode, remove it immediately (since it's now read)
         If chkShowHistory.Checked = False Then
@@ -102,36 +121,43 @@ Public Class newUcNotifications
         End If
 
         ' C. Intelligent Navigation (Deep Linking)
-        Select Case card.Category
+        Try
+            Select Case card.Category
 
-            Case "Job Update"
-                ' Logic: Find the date of the job -> Open Dashboard -> Go to that date
-                Dim jobDate As Date = DateTime.Now
-                Using conn As New MySqlConnection(connString)
-                    conn.Open()
-                    Dim cmd As New MySqlCommand("SELECT ScheduledDate FROM tbl_joborders WHERE JobID = @jid", conn)
-                    cmd.Parameters.AddWithValue("@jid", card.RelatedID)
-                    Dim res = cmd.ExecuteScalar()
-                    If res IsNot Nothing Then jobDate = Convert.ToDateTime(res)
-                End Using
+                Case "Job Update"
+                    ' Logic: Find the date of the job -> Open Dashboard -> Go to that date
+                    Dim jobDate As Date = DateTime.Now
+                    Using conn As New MySqlConnection(connString)
+                        conn.Open()
+                        Dim cmd As New MySqlCommand("SELECT ScheduledDate FROM tbl_joborders WHERE JobID = @jid", conn)
+                        cmd.Parameters.AddWithValue("@jid", card.RelatedID)
+                        Dim res = cmd.ExecuteScalar()
+                        If res IsNot Nothing AndAlso Not IsDBNull(res) Then
+                            jobDate = Convert.ToDateTime(res)
+                        End If
+                    End Using
 
-                Dim dash As New newUcDashboard()
-                dash.PresetDate = jobDate
-                mainForm.LoadPage(dash, "Daily Operations Dashboard")
+                    Dim dash As New newUcDashboard()
+                    dash.PresetDate = jobDate
+                    mainForm.LoadPage(dash, "Daily Operations Dashboard")
 
-            Case "Billing"
-                ' Logic: Open Billing -> Select the Contract
-                Dim billPage As New newUcBilling()
-                billPage.PresetContractID = card.RelatedID
-                mainForm.LoadPage(billPage, "Billing & Collections")
+                Case "Billing", "Payment Due"
+                    ' Logic: Open Contracts -> Search for the Contract
+                    ' (Billing notifications are now linked to ContractID in the database)
+                    Dim conPage As New newUcContractManager()
+                    conPage.PresetSearchID = card.RelatedID
+                    mainForm.LoadPage(conPage, "Contract Manager")
 
-            Case "Contract"
-                ' Logic: Open Contracts -> Search for the Contract
-                Dim conPage As New newUcContractManager()
-                conPage.PresetSearchID = card.RelatedID
-                mainForm.LoadPage(conPage, "Contract Manager")
+                Case "Contract", "Contract Expiring"
+                    ' Logic: Open Contracts -> Search for the Contract
+                    Dim conPage As New newUcContractManager()
+                    conPage.PresetSearchID = card.RelatedID
+                    mainForm.LoadPage(conPage, "Contract Manager")
 
-        End Select
+            End Select
+        Catch ex As Exception
+            MessageBox.Show("Could not open details: " & ex.Message)
+        End Try
     End Sub
 
     ' ==========================================
@@ -141,7 +167,7 @@ Public Class newUcNotifications
         Dim card As ucNotificationItem = CType(sender, ucNotificationItem)
 
         ' A. Mark as Read in Database
-        NotificationService.MarkAsRead(card.NotifID)
+        MarkAsRead(card.NotifID)
 
         ' B. Remove from screen visually
         flowPanel.Controls.Remove(card)
@@ -149,9 +175,27 @@ Public Class newUcNotifications
     End Sub
 
     ' ==========================================
-    ' 5. AUTO-RESIZE LOGIC (Responsive UI)
+    ' 5. HELPER: Mark as Read (Local Version)
+    ' ==========================================
+    Private Sub MarkAsRead(id As Integer)
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+                Dim cmd As New MySqlCommand("UPDATE tbl_notifications SET IsRead = 1 WHERE NotifID = @id", conn)
+                cmd.Parameters.AddWithValue("@id", id)
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+                ' Silent fail is okay for reading marks
+            End Try
+        End Using
+    End Sub
+
+    ' ==========================================
+    ' 6. AUTO-RESIZE LOGIC (Responsive UI)
     ' ==========================================
     Private Sub newUcNotifications_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        If flowPanel Is Nothing Then Return
+
         ' Calculate new width (Container width minus scrollbar)
         Dim newWidth As Integer = flowPanel.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 10
 
