@@ -53,6 +53,29 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property FailCount() As Integer
+            Get
+                Return CType(Me("FailCount"),Integer)
+            End Get
+            Set
+                Me("FailCount") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property LockoutEnd() As Date
+            Get
+                Return CType(Me("LockoutEnd"),Date)
+            End Get
+            Set
+                Me("LockoutEnd") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

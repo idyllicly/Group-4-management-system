@@ -61,7 +61,7 @@ Partial Class FormJobDetails
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(420, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1126, 1148)
+        Me.Panel1.Size = New System.Drawing.Size(1126, 902)
         Me.Panel1.TabIndex = 0
         '
         'lblStatus
@@ -83,7 +83,7 @@ Partial Class FormJobDetails
         Me.Panel2.Controls.Add(Me.btnEdit)
         Me.Panel2.Controls.Add(Me.btnDelete)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 1048)
+        Me.Panel2.Location = New System.Drawing.Point(0, 802)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1126, 100)
         Me.Panel2.TabIndex = 12
@@ -241,7 +241,7 @@ Partial Class FormJobDetails
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1549, 1154)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1549, 908)
         Me.TableLayoutPanel1.TabIndex = 3
         '
         'SideNavControl1
@@ -251,7 +251,7 @@ Partial Class FormJobDetails
         Me.SideNavControl1.Location = New System.Drawing.Point(3, 4)
         Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SideNavControl1.Name = "SideNavControl1"
-        Me.SideNavControl1.Size = New System.Drawing.Size(411, 1146)
+        Me.SideNavControl1.Size = New System.Drawing.Size(411, 900)
         Me.SideNavControl1.TabIndex = 1
         '
         'PageLabel1
@@ -268,7 +268,7 @@ Partial Class FormJobDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1549, 1296)
+        Me.ClientSize = New System.Drawing.Size(1549, 1050)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.PageLabel1)
         Me.Name = "FormJobDetails"

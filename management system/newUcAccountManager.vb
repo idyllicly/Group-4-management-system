@@ -257,4 +257,7 @@ Public Class newUcAccountManager
         btnDelete.Enabled = False
     End Sub
 
+    Private Sub grpDetails_Enter(sender As Object, e As EventArgs) Handles grpDetails.Enter
+
+    End Sub
 End Class

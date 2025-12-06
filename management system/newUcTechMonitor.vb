@@ -125,17 +125,18 @@ Public Class newUcTechMonitor
     ' ==========================================
     Private Sub LoadTechAssignments(techID As Integer)
         Using conn As New MySqlConnection(connString)
-            ' UPDATED SQL: Concatenate Address parts for display
+            ' UPDATED SQL: 
+            ' 1. Concatenate Client Name
+            ' 2. Direct Join J.ClientID = C.ClientID
             Dim sql As String = "SELECT " &
                                 "   J.JobID, " &
                                 "   J.ScheduledDate, " &
                                 "   J.JobType, " &
-                                "   C.ClientName, " &
-                                "   CONCAT(C.StreetAddress, ', ', C.City) AS Address, " & ' Concatenated Address
+                                "   CONCAT(C.ClientFirstName, ' ', C.ClientLastName) AS ClientName, " &
+                                "   CONCAT(C.StreetAddress, ', ', C.City) AS Address, " &
                                 "   J.Status " &
                                 "FROM tbl_joborders J " &
-                                "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
-                                "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
+                                "INNER JOIN tbl_clients C ON J.ClientID = C.ClientID " &
                                 "WHERE J.TechnicianID = @id AND J.Status != 'Completed' " &
                                 "ORDER BY J.ScheduledDate ASC"
 
@@ -159,16 +160,15 @@ Public Class newUcTechMonitor
         Using conn As New MySqlConnection(connString)
             conn.Open()
 
-            ' UPDATED SQL: Concatenate Address parts
+            ' UPDATED SQL: Concatenate Client Name
             Dim sql As String = "SELECT " &
                                 "   J.ScheduledDate, " &
                                 "   J.JobType, " &
-                                "   C.ClientName, " &
+                                "   CONCAT(C.ClientFirstName, ' ', C.ClientLastName) AS ClientName, " &
                                 "   J.StartTime, " &
                                 "   J.EndTime " &
                                 "FROM tbl_joborders J " &
-                                "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
-                                "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
+                                "INNER JOIN tbl_clients C ON J.ClientID = C.ClientID " &
                                 "WHERE J.TechnicianID = @id AND J.Status = 'Completed' "
 
             ' DYNAMIC SQL: If dates are provided, add the filter

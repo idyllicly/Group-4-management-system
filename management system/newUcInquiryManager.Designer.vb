@@ -26,18 +26,19 @@ Partial Class newUcInquiryManager
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvClients = New System.Windows.Forms.DataGridView()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.lblClientName = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmbInspector = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.dtpInspectDate = New System.Windows.Forms.DateTimePicker()
-        Me.btnDispatch = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cmbService = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.pnlAllInfo = New System.Windows.Forms.GroupBox()
+        Me.lblFullName = New System.Windows.Forms.Label()
+        Me.lblFullAddress = New System.Windows.Forms.Label()
+        Me.lblContactInfo = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblStats = New System.Windows.Forms.Label()
+        Me.lblRecentActivity = New System.Windows.Forms.Label()
+        Me.btnAddClient = New System.Windows.Forms.Button()
+        Me.btnEditClient = New System.Windows.Forms.Button()
+        Me.btnCreateInquiry = New System.Windows.Forms.Button()
+        Me.btnRefresh = New System.Windows.Forms.Button()
         CType(Me.dgvClients, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
+        Me.pnlAllInfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -79,123 +80,131 @@ Partial Class newUcInquiryManager
         Me.dgvClients.ReadOnly = True
         Me.dgvClients.RowHeadersWidth = 62
         Me.dgvClients.RowTemplate.Height = 28
-        Me.dgvClients.Size = New System.Drawing.Size(339, 392)
+        Me.dgvClients.Size = New System.Drawing.Size(990, 403)
         Me.dgvClients.TabIndex = 2
         '
-        'Label2
+        'pnlAllInfo
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 38)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(120, 20)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Selected Client:"
+        Me.pnlAllInfo.Controls.Add(Me.lblRecentActivity)
+        Me.pnlAllInfo.Controls.Add(Me.lblStats)
+        Me.pnlAllInfo.Controls.Add(Me.lblEmail)
+        Me.pnlAllInfo.Controls.Add(Me.lblContactInfo)
+        Me.pnlAllInfo.Controls.Add(Me.lblFullAddress)
+        Me.pnlAllInfo.Controls.Add(Me.lblFullName)
+        Me.pnlAllInfo.Location = New System.Drawing.Point(27, 558)
+        Me.pnlAllInfo.Name = "pnlAllInfo"
+        Me.pnlAllInfo.Size = New System.Drawing.Size(764, 229)
+        Me.pnlAllInfo.TabIndex = 3
+        Me.pnlAllInfo.TabStop = False
+        Me.pnlAllInfo.Text = "All info"
         '
-        'lblClientName
+        'lblFullName
         '
-        Me.lblClientName.AutoSize = True
-        Me.lblClientName.BackColor = System.Drawing.Color.Transparent
-        Me.lblClientName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClientName.ForeColor = System.Drawing.Color.Green
-        Me.lblClientName.Location = New System.Drawing.Point(139, 38)
-        Me.lblClientName.Name = "lblClientName"
-        Me.lblClientName.Size = New System.Drawing.Size(27, 20)
-        Me.lblClientName.TabIndex = 4
-        Me.lblClientName.Text = "---"
+        Me.lblFullName.AutoSize = True
+        Me.lblFullName.Location = New System.Drawing.Point(7, 26)
+        Me.lblFullName.Name = "lblFullName"
+        Me.lblFullName.Size = New System.Drawing.Size(57, 20)
+        Me.lblFullName.TabIndex = 0
+        Me.lblFullName.Text = "Label2"
         '
-        'Label3
+        'lblFullAddress
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(17, 75)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(189, 20)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Select Inspector (Owner):"
+        Me.lblFullAddress.AutoSize = True
+        Me.lblFullAddress.Location = New System.Drawing.Point(7, 50)
+        Me.lblFullAddress.Name = "lblFullAddress"
+        Me.lblFullAddress.Size = New System.Drawing.Size(57, 20)
+        Me.lblFullAddress.TabIndex = 1
+        Me.lblFullAddress.Text = "Label3"
         '
-        'cmbInspector
+        'lblContactInfo
         '
-        Me.cmbInspector.FormattingEnabled = True
-        Me.cmbInspector.Location = New System.Drawing.Point(213, 75)
-        Me.cmbInspector.Name = "cmbInspector"
-        Me.cmbInspector.Size = New System.Drawing.Size(121, 28)
-        Me.cmbInspector.TabIndex = 6
+        Me.lblContactInfo.AutoSize = True
+        Me.lblContactInfo.Location = New System.Drawing.Point(7, 70)
+        Me.lblContactInfo.Name = "lblContactInfo"
+        Me.lblContactInfo.Size = New System.Drawing.Size(57, 20)
+        Me.lblContactInfo.TabIndex = 2
+        Me.lblContactInfo.Text = "Label4"
         '
-        'Label4
+        'lblEmail
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 216)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(126, 20)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "Inspection Date:"
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(7, 90)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(57, 20)
+        Me.lblEmail.TabIndex = 3
+        Me.lblEmail.Text = "Label5"
         '
-        'dtpInspectDate
+        'lblStats
         '
-        Me.dtpInspectDate.CustomFormat = "MM/dd/yyyy hh:mm tt"
-        Me.dtpInspectDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpInspectDate.Location = New System.Drawing.Point(152, 216)
-        Me.dtpInspectDate.Name = "dtpInspectDate"
-        Me.dtpInspectDate.Size = New System.Drawing.Size(182, 26)
-        Me.dtpInspectDate.TabIndex = 8
+        Me.lblStats.AutoSize = True
+        Me.lblStats.Location = New System.Drawing.Point(7, 110)
+        Me.lblStats.Name = "lblStats"
+        Me.lblStats.Size = New System.Drawing.Size(57, 20)
+        Me.lblStats.TabIndex = 4
+        Me.lblStats.Text = "Label6"
         '
-        'btnDispatch
+        'lblRecentActivity
         '
-        Me.btnDispatch.Location = New System.Drawing.Point(185, 268)
-        Me.btnDispatch.Name = "btnDispatch"
-        Me.btnDispatch.Size = New System.Drawing.Size(174, 108)
-        Me.btnDispatch.TabIndex = 9
-        Me.btnDispatch.Text = "SCHEDULE OCULAR"
-        Me.btnDispatch.UseVisualStyleBackColor = True
+        Me.lblRecentActivity.AutoSize = True
+        Me.lblRecentActivity.Location = New System.Drawing.Point(7, 130)
+        Me.lblRecentActivity.Name = "lblRecentActivity"
+        Me.lblRecentActivity.Size = New System.Drawing.Size(57, 20)
+        Me.lblRecentActivity.TabIndex = 5
+        Me.lblRecentActivity.Text = "Label7"
         '
-        'GroupBox1
+        'btnAddClient
         '
-        Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.cmbService)
-        Me.GroupBox1.Controls.Add(Me.dtpInspectDate)
-        Me.GroupBox1.Controls.Add(Me.btnDispatch)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.lblClientName)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.cmbInspector)
-        Me.GroupBox1.Location = New System.Drawing.Point(401, 133)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(376, 392)
-        Me.GroupBox1.TabIndex = 10
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Schedule Inspection"
+        Me.btnAddClient.Location = New System.Drawing.Point(864, 576)
+        Me.btnAddClient.Name = "btnAddClient"
+        Me.btnAddClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnAddClient.TabIndex = 4
+        Me.btnAddClient.Text = "CREATE"
+        Me.btnAddClient.UseVisualStyleBackColor = True
         '
-        'cmbService
+        'btnEditClient
         '
-        Me.cmbService.FormattingEnabled = True
-        Me.cmbService.Location = New System.Drawing.Point(213, 118)
-        Me.cmbService.Name = "cmbService"
-        Me.cmbService.Size = New System.Drawing.Size(121, 28)
-        Me.cmbService.TabIndex = 10
+        Me.btnEditClient.Location = New System.Drawing.Point(864, 648)
+        Me.btnEditClient.Name = "btnEditClient"
+        Me.btnEditClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnEditClient.TabIndex = 5
+        Me.btnEditClient.Text = "EDIT"
+        Me.btnEditClient.UseVisualStyleBackColor = True
         '
-        'Label5
+        'btnCreateInquiry
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(21, 125)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 20)
-        Me.Label5.TabIndex = 11
-        Me.Label5.Text = "Service:"
+        Me.btnCreateInquiry.Location = New System.Drawing.Point(864, 724)
+        Me.btnCreateInquiry.Name = "btnCreateInquiry"
+        Me.btnCreateInquiry.Size = New System.Drawing.Size(132, 51)
+        Me.btnCreateInquiry.TabIndex = 6
+        Me.btnCreateInquiry.Text = "NEW INQUIRY"
+        Me.btnCreateInquiry.UseVisualStyleBackColor = True
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.Location = New System.Drawing.Point(921, 104)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.TabIndex = 7
+        Me.btnRefresh.Text = "Button4"
+        Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'newUcInquiryManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.btnRefresh)
+        Me.Controls.Add(Me.btnCreateInquiry)
+        Me.Controls.Add(Me.btnEditClient)
+        Me.Controls.Add(Me.btnAddClient)
+        Me.Controls.Add(Me.pnlAllInfo)
         Me.Controls.Add(Me.dgvClients)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.Label1)
         Me.Name = "newUcInquiryManager"
-        Me.Size = New System.Drawing.Size(793, 567)
+        Me.Size = New System.Drawing.Size(1056, 831)
         CType(Me.dgvClients, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.pnlAllInfo.ResumeLayout(False)
+        Me.pnlAllInfo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -204,14 +213,15 @@ Partial Class newUcInquiryManager
     Friend WithEvents Label1 As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents dgvClients As DataGridView
-    Friend WithEvents Label2 As Label
-    Friend WithEvents lblClientName As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents cmbInspector As ComboBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents dtpInspectDate As DateTimePicker
-    Friend WithEvents btnDispatch As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents cmbService As ComboBox
+    Friend WithEvents pnlAllInfo As GroupBox
+    Friend WithEvents lblFullAddress As Label
+    Friend WithEvents lblFullName As Label
+    Friend WithEvents lblRecentActivity As Label
+    Friend WithEvents lblStats As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblContactInfo As Label
+    Friend WithEvents btnAddClient As Button
+    Friend WithEvents btnEditClient As Button
+    Friend WithEvents btnCreateInquiry As Button
+    Friend WithEvents btnRefresh As Button
 End Class

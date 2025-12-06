@@ -173,7 +173,9 @@ Public Class FirebaseManager
                     Await ProcessInspectionData(doc, conn, jobID)
                 Else
                     ' *** STANDARD LOGIC FOR SERVICES ***
-                    Dim updateSql As String = "UPDATE tbl_joborders SET Status=@stat WHERE JobID=@jid"
+                    ' We only save StartTime and EndTime. Duration is calculated by SQL later.
+                    Dim updateSql As String = "UPDATE tbl_joborders SET Status=@stat, StartTime=@start, EndTime=@end WHERE JobID=@jid"
+
                     Using cmd As New MySqlCommand(updateSql, conn)
                         Dim sqlStatus As String = "Pending"
                         Select Case status.ToLower()
@@ -183,8 +185,34 @@ Public Class FirebaseManager
                             Case Else : sqlStatus = status
                         End Select
 
+                        ' --- EXTRACT TIMES FROM FIRESTORE ---
+                        Dim startTimeStr As Object = DBNull.Value
+                        Dim endTimeStr As Object = DBNull.Value
+
+                        Try
+                            ' 1. Get Start Time
+                            If doc.ContainsField("startTime") Then
+                                Dim ts As Google.Cloud.Firestore.Timestamp = doc.GetValue(Of Google.Cloud.Firestore.Timestamp)("startTime")
+                                ' Convert to MySQL Time Format (HH:mm:ss)
+                                startTimeStr = ts.ToDateTime().ToLocalTime().ToString("HH:mm:ss")
+                            End If
+
+                            ' 2. Get End Time
+                            If doc.ContainsField("endTime") Then
+                                Dim ts As Google.Cloud.Firestore.Timestamp = doc.GetValue(Of Google.Cloud.Firestore.Timestamp)("endTime")
+                                ' Convert to MySQL Time Format (HH:mm:ss)
+                                endTimeStr = ts.ToDateTime().ToLocalTime().ToString("HH:mm:ss")
+                            End If
+                        Catch ex As Exception
+                            Console.WriteLine("Time Parse Error: " & ex.Message)
+                        End Try
+                        ' ------------------------------------
+
                         cmd.Parameters.AddWithValue("@stat", sqlStatus)
+                        cmd.Parameters.AddWithValue("@start", startTimeStr)
+                        cmd.Parameters.AddWithValue("@end", endTimeStr)
                         cmd.Parameters.AddWithValue("@jid", jobID)
+
                         cmd.ExecuteNonQuery()
                     End Using
                 End If
@@ -196,6 +224,9 @@ Public Class FirebaseManager
 
             ' --- NOTIFY UI ---
             RaiseEvent JobStatusUpdated(jobID, status)
+
+            ' ADD Notification TO DB
+            NotificationService.AddNotification("Job Update", "Job #" & jobID & " is now " & status, "Job Update", jobID)
 
         Catch ex As Exception
             Console.WriteLine("Sync Error: " & ex.Message)
@@ -233,7 +264,8 @@ Public Class FirebaseManager
         Try : proposedServiceID = Convert.ToInt32(doc.GetValue(Of Object)("serviceID")) : Catch : End Try
 
         Dim finalClientID As Integer = 0
-        Dim findClientSql As String = "SELECT COALESCE(Con.ClientID, J.ClientID_TempLink) AS RealClientID FROM tbl_joborders J LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID WHERE J.JobID = @jid"
+        ' UPDATED: Direct select from JobOrders
+        Dim findClientSql As String = "SELECT ClientID FROM tbl_joborders WHERE JobID = @jid"
         Using findCmd As New MySqlCommand(findClientSql, conn)
             findCmd.Parameters.AddWithValue("@jid", jobID)
             Dim result = findCmd.ExecuteScalar()

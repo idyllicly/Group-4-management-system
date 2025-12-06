@@ -4,23 +4,21 @@ Imports System.Drawing.Drawing2D
 
 Public Class log_in
 
-    ' GLOBAL VARIABLE: To store who is currently logged in
-    ' You can access this from other forms using: log_in.CurrentUserID or log_in.CurrentUserRole
+    ' GLOBAL VARIABLES
     Public Shared CurrentUserID As Integer = 0
     Public Shared CurrentUserRole As String = ""
 
     Dim bgImage As Image
-    ' Connection string (Ensure database name matches your PHPMyAdmin)
+    ' Connection string
     Private Const MyConnectionString As String = "Server=localhost;Database=db_rrcms;Uid=root;Pwd=;"
 
+    ' =========================================================
+    ' LOGIN BUTTON LOGIC
+    ' =========================================================
     Private Sub OvalButton1_Click(sender As Object, e As EventArgs) Handles OvalButton1.Click
 
-        ' 1. Validation
-        If UserText Is Nothing OrElse PassText Is Nothing Then
-            MessageBox.Show("Internal Error: Textboxes not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
+        ' 1. Input Validation
+        If UserText Is Nothing OrElse PassText Is Nothing Then Return
         Dim username As String = UserText.Text.Trim()
         Dim password As String = PassText.Text.Trim()
 
@@ -29,9 +27,25 @@ Public Class log_in
             Return
         End If
 
-        ' 2. Database Login Logic
-        ' UPDATED: Targeting 'tbl_users' instead of 'tbl_account'
-        ' UPDATED: We also fetch UserID to track who is logged in
+        ' 2. CHECK LOCK STATUS (Before checking Database)
+        ' If the LockoutEnd time is in the future, the user is blocked.
+        If My.Settings.LockoutEnd > DateTime.Now Then
+            Dim timeLeft As TimeSpan = My.Settings.LockoutEnd - DateTime.Now
+
+            Dim msg As String
+            If timeLeft.TotalMinutes >= 1 Then
+                msg = "System is temporarily locked due to too many failed attempts." & vbCrLf &
+                      "Please wait " & Math.Ceiling(timeLeft.TotalMinutes) & " minutes."
+            Else
+                msg = "System is temporarily locked." & vbCrLf &
+                      "Please wait " & Math.Ceiling(timeLeft.TotalSeconds) & " seconds."
+            End If
+
+            MessageBox.Show(msg, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return ' STOP HERE. Do not allow login attempt.
+        End If
+
+        ' 3. DATABASE LOGIN LOGIC
         Dim query As String = "SELECT UserID, Role, FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
 
         Try
@@ -41,40 +55,39 @@ Public Class log_in
                     cmd.Parameters.AddWithValue("@user", username)
                     cmd.Parameters.AddWithValue("@pass", password)
 
-                    ' Use ExecuteReader to get multiple columns (ID and Role)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
                             ' --- LOGIN SUCCESS ---
 
-                            ' 1. Save Session Data (So we know who is using the app)
+                            ' A. RESET THE LOCKS (User proved they are valid)
+                            ' This ensures next time they fail, it starts at count 1 again.
+                            My.Settings.FailCount = 0
+                            My.Settings.LockoutEnd = DateTime.Now.AddYears(-1) ' Set timer to the past
+                            My.Settings.Save()
+
+                            ' B. Store Session Data
                             CurrentUserID = Convert.ToInt32(reader("UserID"))
                             CurrentUserRole = reader("Role").ToString()
                             Dim fullName As String = reader("FullName").ToString()
 
-                            ' 2. Routing based on Role
-                            If CurrentUserRole = "Admin" Then
-                                MessageBox.Show("Welcome back, Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                                ' Hide Login and Show Main Dashboard
-                                Me.Hide()
-                                Dim mainForm As New frm_Main()
-                                mainForm.Show()
-
-                            ElseIf CurrentUserRole = "Technician" Then
-                                ' OPTIONAL: If Technicians have a different form, put it here.
-                                ' For now, we allow them into the Main form or show a restriction message.
-                                MessageBox.Show("Welcome Technician " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                                Me.Hide()
-                                Dim mainForm As New frm_Main()
-                                mainForm.Show()
+                            ' C. Routing
+                            If CurrentUserRole = "Super Admin" Then
+                                MessageBox.Show("Welcome back, Super Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            ElseIf CurrentUserRole = "Admin" Then
+                                MessageBox.Show("Welcome Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                             Else
                                 MessageBox.Show("Role not recognized.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
                             End If
+
+                            ' D. Show Main Dashboard
+                            Me.Hide()
+                            Dim mainForm As New frm_Main()
+                            mainForm.Show()
 
                         Else
                             ' --- LOGIN FAILED ---
-                            MessageBox.Show("Invalid Username, Password, or Account is Inactive.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            HandleLoginFailure()
                         End If
                     End Using
                 End Using
@@ -89,13 +102,49 @@ Public Class log_in
     End Sub
 
     ' =========================================================
-    ' UI AND DESIGN LOGIC (Kept exactly as you had it)
+    ' HELPER SUB: HANDLES THE PENALTY MATH
+    ' =========================================================
+    Private Sub HandleLoginFailure()
+        ' 1. Increase Fail Count locally
+        My.Settings.FailCount += 1
+
+        Dim attempts As Integer = My.Settings.FailCount
+        Dim msg As String = "Invalid Username or Password."
+
+        ' 2. Apply Penalty based on rules
+        Select Case attempts
+            Case 1, 2
+                msg &= vbCrLf & "You have " & (6 - attempts) & " attempts remaining."
+            Case 3
+                ' 30 Seconds Lock
+                My.Settings.LockoutEnd = DateTime.Now.AddSeconds(30)
+                msg &= vbCrLf & "System locked for 30 seconds."
+            Case 4
+                ' 1 Minute Lock
+                My.Settings.LockoutEnd = DateTime.Now.AddMinutes(1)
+                msg &= vbCrLf & "System locked for 1 minute."
+            Case 5
+                ' 30 Minutes Lock
+                My.Settings.LockoutEnd = DateTime.Now.AddMinutes(30)
+                msg &= vbCrLf & "System locked for 30 minutes."
+            Case Is >= 6
+                ' 1 HOUR Lock
+                My.Settings.LockoutEnd = DateTime.Now.AddHours(1)
+                msg &= vbCrLf & "System locked for 1 HOUR."
+        End Select
+
+        ' 3. Save Settings permanently so closing the app doesn't reset it
+        My.Settings.Save()
+
+        MessageBox.Show(msg, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    End Sub
+
+    ' =========================================================
+    ' UI AND DESIGN LOGIC (Existing code)
     ' =========================================================
 
     Private Sub log_in_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.DoubleBuffered = True
-
-        ' SETTINGS: Your Blue Color
         Dim myBlue As Color = Color.FromArgb(255, 0, 0, 100)
         If OvalButton1 IsNot Nothing Then
             Me.AcceptButton = OvalButton1
@@ -104,7 +153,6 @@ Public Class log_in
         Try
             bgImage = Image.FromFile("rrc_worker.jpg")
         Catch ex As Exception
-            ' Fallback if image is missing, just to prevent crash
             bgImage = New Bitmap(1, 1)
         End Try
     End Sub
@@ -115,37 +163,23 @@ Public Class log_in
 
     Private Sub LoginForm_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim g As Graphics = e.Graphics
-
-        ' 1. SETTINGS: Change Color to White
         Dim myBaseColor As Color = Color.White
-
-        ' 2. Clear the whole background with White first
         g.Clear(myBaseColor)
 
-        ' 3. Draw the Image on the RIGHT side
         If My.Resources.rrc_worker IsNot Nothing Then
             Dim bgImage As Image = My.Resources.rrc_worker
-
-            ' Draw image on the RIGHT side (60% width)
             Dim imgWidth As Integer = Me.Width * 0.6
             Dim imgRect As New Rectangle(Me.Width - imgWidth, 0, imgWidth, Me.Height)
-
             g.DrawImage(bgImage, imgRect)
         End If
 
-        ' 4. THE GRADIENT OVERLAY (White -> Transparent White)
         Dim colorStart As Color = myBaseColor
         Dim colorEnd As Color = Color.FromArgb(0, 255, 255, 255)
 
         Using brush As New LinearGradientBrush(Me.ClientRectangle, colorStart, colorEnd, LinearGradientMode.Horizontal)
             Dim blend As New Blend()
-
-            ' POSITIONS: 0.0 (Left), 0.4 (Middle), 1.0 (Right)
             blend.Positions = New Single() {0.0F, 0.4F, 1.0F}
-
-            ' FACTORS: 0.0 = Solid Color, 1.0 = Fully Transparent
             blend.Factors = New Single() {0.0F, 0.0F, 1.0F}
-
             brush.Blend = blend
             g.FillRectangle(brush, Me.ClientRectangle)
         End Using

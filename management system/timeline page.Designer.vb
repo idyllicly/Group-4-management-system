@@ -36,7 +36,7 @@ Partial Class timeline_page
         Me.MainTimelinePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.MainTimelinePanel.Location = New System.Drawing.Point(420, 3)
         Me.MainTimelinePanel.Name = "MainTimelinePanel"
-        Me.MainTimelinePanel.Size = New System.Drawing.Size(1343, 1121)
+        Me.MainTimelinePanel.Size = New System.Drawing.Size(1343, 902)
         Me.MainTimelinePanel.TabIndex = 0
         Me.MainTimelinePanel.WrapContents = False
         '
@@ -62,7 +62,7 @@ Partial Class timeline_page
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1766, 1127)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1766, 908)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'SideNavControl1
@@ -72,14 +72,14 @@ Partial Class timeline_page
         Me.SideNavControl1.Location = New System.Drawing.Point(3, 4)
         Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SideNavControl1.Name = "SideNavControl1"
-        Me.SideNavControl1.Size = New System.Drawing.Size(411, 1119)
+        Me.SideNavControl1.Size = New System.Drawing.Size(411, 900)
         Me.SideNavControl1.TabIndex = 1
         '
         'timeline_page
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1766, 1269)
+        Me.ClientSize = New System.Drawing.Size(1766, 1050)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.PageLabel1)
         Me.Name = "timeline_page"

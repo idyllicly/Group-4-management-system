@@ -1,26 +1,52 @@
 ﻿Imports MySql.Data.MySqlClient
 
+' ==========================================
+' UI REQUIREMENT NOTES:
+' 1. dgvClientList: The main DataGridView.
+' 2. pnlAllInfo: A Panel/GroupBox for the "Connected Info" area.
+'    Inside pnlAllInfo, add these Labels:
+'      - lblFullName (Large Font)
+'      - lblFullAddress
+'      - lblContactInfo
+'      - lblEmail
+'      - lblStats (For "Active Contracts", "Total Spent", etc.)
+'      - lblRecentActivity (For "Last Job", "Pending Job")
+' 3. Buttons:
+'      - btnAddClient
+'      - btnEditClient
+'      - btnCreateInquiry (The new popup trigger)
+'      - btnRefresh
+'      - txtSearch (TextBox)
+' ==========================================
+
 Public Class newUcClientManager
 
-    ' Connection string
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
     Private _selectedID As Integer = 0
+    Private _selectedName As String = ""
+    Private _selectedAddress As String = ""
 
     Private Sub newUcClientManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadClients("")
+        ClearConnectedInfo()
     End Sub
 
-    ' === 1. LOAD LIST (Updated for New Address Columns) ===
+    ' === 1. LOAD IMPORTANT INFO ONLY ===
     Private Sub LoadClients(searchText As String)
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' We now select from the new structure
-                Dim sql As String = "SELECT * FROM tbl_clients"
+                ' UPDATED SQL: Concatenate First/Last names for display in the grid
+                ' We use COALESCE to ensure we don't get errors if a middle name is missing
+                Dim sql As String = "SELECT ClientID, " &
+                                    "CONCAT(ClientFirstName, ' ', ClientLastName) AS ClientName, " &
+                                    "CONCAT(ContactFirstName, ' ', ContactLastName) AS ContactPerson, " &
+                                    "ContactNumber, City, Barangay " &
+                                    "FROM tbl_clients"
 
-                ' Updated Search: Searches Name, City, or Barangay
                 If searchText <> "" Then
-                    sql &= " WHERE ClientName LIKE @s OR City LIKE @s OR Barangay LIKE @s"
+                    ' Search across new name fields
+                    sql &= " WHERE ClientFirstName LIKE @s OR ClientLastName LIKE @s OR City LIKE @s OR Barangay LIKE @s"
                 End If
 
                 Dim da As New MySqlDataAdapter(sql, conn)
@@ -30,17 +56,16 @@ Public Class newUcClientManager
 
                 Dim dt As New DataTable()
                 da.Fill(dt)
+
                 dgvClientList.DataSource = dt
 
-                ' Hide ID for cleaner look
+                ' Hide ID, but keep it for logic
                 If dgvClientList.Columns("ClientID") IsNot Nothing Then
                     dgvClientList.Columns("ClientID").Visible = False
                 End If
 
-                ' Optional: Hide coordinates if you don't want to see them in the grid
-                If dgvClientList.Columns("Coordinates") IsNot Nothing Then
-                    dgvClientList.Columns("Coordinates").Visible = False
-                End If
+                ' Styling the Grid to look cleaner
+                dgvClientList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
             Catch ex As Exception
                 MessageBox.Show("Error loading clients: " & ex.Message)
@@ -52,129 +77,150 @@ Public Class newUcClientManager
         LoadClients(txtSearch.Text)
     End Sub
 
-    ' === 2. ADD NEW CLIENT (Splitting Address) ===
-    Private Sub btnAddClient_Click(sender As Object, e As EventArgs) Handles btnAddClient.Click
-
-        ' Basic validation
-        If txtName.Text = "" Or txtStreet.Text = "" Or txtCity.Text = "" Then
-            MessageBox.Show("Name, Street Address, and City are required.")
-            Exit Sub
-        End If
-
-        Using conn As New MySqlConnection(connString)
-            conn.Open()
-            Try
-                ' UPDATED SQL: Inserting into the 3 separate address columns
-                Dim sql As String = "INSERT INTO tbl_clients (ClientName, ContactPerson, ContactNumber, StreetAddress, Barangay, City, Email) " &
-                                    "VALUES (@name, @person, @phone, @street, @brgy, @city, @email)"
-
-                Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@name", txtName.Text)
-                cmd.Parameters.AddWithValue("@person", txtContactPerson.Text)
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
-
-                ' New Address Parameters
-                cmd.Parameters.AddWithValue("@street", txtStreet.Text)
-                cmd.Parameters.AddWithValue("@brgy", txtBarangay.Text)
-                cmd.Parameters.AddWithValue("@city", txtCity.Text)
-
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text)
-
-                cmd.ExecuteNonQuery()
-                MessageBox.Show("Client Added Successfully!")
-
-                ClearForm()
-                LoadClients("") ' Refresh list
-
-            Catch ex As Exception
-                MessageBox.Show("Error adding client: " & ex.Message)
-            End Try
-        End Using
-    End Sub
-
-    ' === 3. SELECT CLIENT TO EDIT (Reading Split Address) ===
+    ' === 2. THE "ALL INFO CONNECTED" SCANNER ===
     Private Sub dgvClientList_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientList.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvClientList.Rows(e.RowIndex)
-
             _selectedID = Convert.ToInt32(row.Cells("ClientID").Value)
-            txtName.Text = row.Cells("ClientName").Value.ToString()
+            _selectedName = row.Cells("ClientName").Value.ToString()
 
-            ' Handle potential DBNulls safely
-            txtContactPerson.Text = If(IsDBNull(row.Cells("ContactPerson").Value), "", row.Cells("ContactPerson").Value.ToString())
-            txtPhone.Text = If(IsDBNull(row.Cells("ContactNumber").Value), "", row.Cells("ContactNumber").Value.ToString())
-            txtEmail.Text = If(IsDBNull(row.Cells("Email").Value), "", row.Cells("Email").Value.ToString())
+            ' Enable buttons
+            btnEditClient.Enabled = True
+            btnCreateInquiry.Enabled = True
 
-            ' --- NEW ADDRESS LOGIC ---
-            ' We must load the data into the 3 separate textboxes
-            txtStreet.Text = If(IsDBNull(row.Cells("StreetAddress").Value), "", row.Cells("StreetAddress").Value.ToString())
-            txtBarangay.Text = If(IsDBNull(row.Cells("Barangay").Value), "", row.Cells("Barangay").Value.ToString())
-            txtCity.Text = If(IsDBNull(row.Cells("City").Value), "", row.Cells("City").Value.ToString())
-
-            btnAddClient.Enabled = False ' Disable Add mode
-            btnUpdateClient.Enabled = True ' Enable Update mode
+            ' Trigger the deep scan of connected info
+            LoadConnectedInfo(_selectedID)
         End If
     End Sub
 
-    ' === 4. UPDATE CLIENT (Saving Split Address) ===
-    Private Sub btnUpdateClient_Click(sender As Object, e As EventArgs) Handles btnUpdateClient.Click
-        If _selectedID = 0 Then Exit Sub
-
+    Private Sub LoadConnectedInfo(clientId As Integer)
         Using conn As New MySqlConnection(connString)
-            conn.Open()
             Try
-                ' UPDATED SQL: Updating the 3 separate address columns
-                Dim sql As String = "UPDATE tbl_clients SET " &
-                                    "ClientName=@name, ContactPerson=@person, ContactNumber=@phone, " &
-                                    "StreetAddress=@street, Barangay=@brgy, City=@city, Email=@email " &
-                                    "WHERE ClientID=@id"
+                conn.Open()
 
-                Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@name", txtName.Text)
-                cmd.Parameters.AddWithValue("@person", txtContactPerson.Text)
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
+                ' -- A. GET FULL DETAILS (Address, Email) --
+                Dim sqlClient As String = "SELECT * FROM tbl_clients WHERE ClientID = @id"
+                Dim cmdClient As New MySqlCommand(sqlClient, conn)
+                cmdClient.Parameters.AddWithValue("@id", clientId)
+                Dim reader As MySqlDataReader = cmdClient.ExecuteReader()
 
-                ' New Address Parameters
-                cmd.Parameters.AddWithValue("@street", txtStreet.Text)
-                cmd.Parameters.AddWithValue("@brgy", txtBarangay.Text)
-                cmd.Parameters.AddWithValue("@city", txtCity.Text)
+                If reader.Read() Then
+                    ' UPDATED: Construct names from split columns
+                    Dim cName As String = reader("ClientFirstName").ToString() & " " & reader("ClientLastName").ToString()
+                    Dim contactName As String = reader("ContactFirstName").ToString() & " " & reader("ContactLastName").ToString()
 
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text)
-                cmd.Parameters.AddWithValue("@id", _selectedID)
+                    lblFullName.Text = cName
+                    lblContactInfo.Text = "Person: " & contactName & " | Ph: " & reader("ContactNumber").ToString()
+                    lblEmail.Text = "Email: " & reader("Email").ToString()
 
-                cmd.ExecuteNonQuery()
-                MessageBox.Show("Client Updated!")
+                    ' Build Full Address
+                    Dim street As String = reader("StreetAddress").ToString()
+                    Dim brgy As String = reader("Barangay").ToString()
+                    Dim city As String = reader("City").ToString()
+                    _selectedAddress = street & ", " & brgy & ", " & city
+                    lblFullAddress.Text = _selectedAddress
+                End If
+                reader.Close()
 
-                ClearForm()
-                LoadClients("")
+                ' -- B. SCAN CONTRACTS (Active Count & Balance) --
+                ' Using the view 'view_contract_details' if available, or raw table
+                Dim sqlContracts As String = "SELECT COUNT(*) as ActiveCount, SUM(BalanceRemaining) as TotalBalance " &
+                                             "FROM view_contract_details WHERE ClientID = @id AND BalanceRemaining > 0"
+
+                Dim cmdCon As New MySqlCommand(sqlContracts, conn)
+                cmdCon.Parameters.AddWithValue("@id", clientId)
+                Dim rCon As MySqlDataReader = cmdCon.ExecuteReader()
+
+                Dim activeCount As Integer = 0
+                Dim totalBalance As Decimal = 0
+
+                If rCon.Read() Then
+                    If Not IsDBNull(rCon("ActiveCount")) Then activeCount = Convert.ToInt32(rCon("ActiveCount"))
+                    If Not IsDBNull(rCon("TotalBalance")) Then totalBalance = Convert.ToDecimal(rCon("TotalBalance"))
+                End If
+                rCon.Close()
+
+                ' -- C. SCAN JOBS (Last Visit & Next Scheduled) --
+                ' UPDATED: Removed ClientID_TempLink. Uses proper ClientID or Contract linkage.
+                Dim sqlJobs As String = "SELECT ScheduledDate, Status, JobType FROM tbl_joborders " &
+                                        "WHERE ClientID = @id OR ContractID IN (SELECT ContractID FROM tbl_contracts WHERE ClientID = @id) " &
+                                        "ORDER BY ScheduledDate DESC LIMIT 1"
+
+                Dim cmdJob As New MySqlCommand(sqlJobs, conn)
+                cmdJob.Parameters.AddWithValue("@id", clientId)
+                Dim rJob As MySqlDataReader = cmdJob.ExecuteReader()
+
+                If rJob.Read() Then
+                    Dim jobDate As Date = Convert.ToDateTime(rJob("ScheduledDate"))
+                    Dim status As String = rJob("Status").ToString()
+                    Dim type As String = rJob("JobType").ToString()
+                    lblRecentActivity.Text = "Latest Activity: " & type & " on " & jobDate.ToShortDateString() & " [" & status & "]"
+                Else
+                    lblRecentActivity.Text = "No Job History found."
+                End If
+                rJob.Close()
+
             Catch ex As Exception
-                MessageBox.Show("Error updating client: " & ex.Message)
+                lblStats.Text = "Error loading details."
             End Try
         End Using
     End Sub
 
-    ' === HELPER: CLEAR FORM ===
-    Private Sub ClearForm()
-        txtName.Clear()
-        txtContactPerson.Clear()
-        txtPhone.Clear()
-        txtEmail.Clear()
-
-        ' Clear the 3 new boxes
-        txtStreet.Clear()
-        txtBarangay.Clear()
-        txtCity.Clear()
-
-        _selectedID = 0
-        btnAddClient.Enabled = True
-        btnUpdateClient.Enabled = False
+    Private Sub ClearConnectedInfo()
+        lblFullName.Text = "Select a Client"
+        lblFullAddress.Text = "---"
+        lblContactInfo.Text = "---"
+        lblEmail.Text = "---"
+        lblStats.Text = "---"
+        lblRecentActivity.Text = "---"
+        btnEditClient.Enabled = False
+        btnCreateInquiry.Enabled = False
     End Sub
 
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ClearForm()
+    ' === 3. BUTTONS & POP-UPS ===
+
+    Private Sub btnAddClient_Click(sender As Object, e As EventArgs) Handles btnAddClient.Click
+        ' Open the Entry Form in ADD mode (ID=0)
+        Dim frm As New frmClientEntry()
+        frm.ClientID = 0
+        If frm.ShowDialog() = DialogResult.OK Then
+            LoadClients(txtSearch.Text) ' Refresh list
+        End If
     End Sub
 
-    Private Sub dgvClientList_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientList.CellContentClick
-        ' Usually empty unless using buttons inside the grid
+    Private Sub btnEditClient_Click(sender As Object, e As EventArgs) Handles btnEditClient.Click
+        If _selectedID = 0 Then Exit Sub
+
+        ' Open the Entry Form in EDIT mode
+        Dim frm As New frmClientEntry()
+        frm.ClientID = _selectedID
+        If frm.ShowDialog() = DialogResult.OK Then
+            LoadClients(txtSearch.Text)
+            LoadConnectedInfo(_selectedID) ' Refresh details panel
+        End If
     End Sub
+
+    Private Sub btnCreateInquiry_Click(sender As Object, e As EventArgs) Handles btnCreateInquiry.Click
+        If _selectedID = 0 Then
+            MessageBox.Show("Please select a client from the list first.")
+            Exit Sub
+        End If
+
+        ' Open the Inquiry Popup with pre-filled data
+        Dim frm As New frmInquiryPopup()
+        frm.TargetClientID = _selectedID
+        frm.TargetClientName = _selectedName
+        frm.TargetClientAddress = _selectedAddress
+
+        If frm.ShowDialog() = DialogResult.OK Then
+            ' Maybe refresh recent activity to show the new Pending Inspection?
+            LoadConnectedInfo(_selectedID)
+        End If
+    End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        LoadClients("")
+        ClearConnectedInfo()
+    End Sub
+
 End Class

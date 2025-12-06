@@ -4,7 +4,6 @@ Public Class uc_NewContractEntry
 
     ' Connection String
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-
     ' Variables to hold data passed from the Quotation Manager
     Private _pfClientID As Integer = 0
     Private _pfServiceID As Integer = 0
@@ -37,15 +36,18 @@ Public Class uc_NewContractEntry
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' Clients
-                Dim daC As New MySqlDataAdapter("SELECT ClientID, ClientName FROM tbl_clients", conn)
+
+                ' --- CLIENTS ---
+                ' UPDATED SQL: Concatenate the split names so the ComboBox still sees "ClientName"
+                Dim sqlClients As String = "SELECT ClientID, CONCAT(ClientFirstName, ' ', ClientLastName) AS ClientName FROM tbl_clients"
+                Dim daC As New MySqlDataAdapter(sqlClients, conn)
                 Dim dtC As New DataTable()
                 daC.Fill(dtC)
                 cmbClient.DataSource = dtC
                 cmbClient.DisplayMember = "ClientName"
                 cmbClient.ValueMember = "ClientID"
 
-                ' Services
+                ' --- SERVICES ---
                 Dim daS As New MySqlDataAdapter("SELECT ServiceID, ServiceName FROM tbl_services", conn)
                 Dim dtS As New DataTable()
                 daS.Fill(dtS)
@@ -53,13 +55,13 @@ Public Class uc_NewContractEntry
                 cmbService.DisplayMember = "ServiceName"
                 cmbService.ValueMember = "ServiceID"
 
-                ' Payment Terms
+                ' --- PAYMENT TERMS ---
                 cmbPaymentTerms.Items.Clear()
                 cmbPaymentTerms.Items.Add("Full Payment")
                 cmbPaymentTerms.Items.Add("Installment")
                 cmbPaymentTerms.SelectedIndex = 0
 
-                ' Pay Intervals
+                ' --- INTERVALS ---
                 cmbPayInterval.Items.Clear()
                 cmbPayInterval.Items.AddRange(New Object() {"Weekly", "Bi-Weekly", "Monthly", "Quarterly"})
                 cmbPayInterval.SelectedIndex = 2
@@ -119,8 +121,6 @@ Public Class uc_NewContractEntry
 
             Try
                 ' A. INSERT CONTRACT
-                ' UPDATED SQL: Removed 'PaymentStatus', 'BalanceRemaining', 'VisitsCompleted', 'NextVisitDate'
-                ' We only insert the raw contract data now.
                 Dim sqlCon As String = "INSERT INTO tbl_contracts " &
                                        "(ClientID, ServiceID, StartDate, DurationMonths, TotalAmount, ServiceFrequency, PaymentTerms, ContractStatus) " &
                                        "VALUES (@cid, @sid, @start, @dur, @amt, @freq, @term, 'Active');" &
@@ -152,10 +152,12 @@ Public Class uc_NewContractEntry
                 End If
 
                 For i As Integer = 1 To visitCount
-                    Dim sqlJob As String = "INSERT INTO tbl_joborders (ContractID, VisitNumber, ScheduledDate, Status, JobType) " &
-                                           "VALUES (@conID, @visNum, @sDate, 'Pending', 'Service')"
+                    ' UPDATED: Uses proper ClientID column now
+                    Dim sqlJob As String = "INSERT INTO tbl_joborders (ClientID, ContractID, VisitNumber, ScheduledDate, Status, JobType) " &
+                                           "VALUES (@cid, @conID, @visNum, @sDate, 'Pending', 'Service')"
 
                     Dim cmdJob As New MySqlCommand(sqlJob, conn, trans)
+                    cmdJob.Parameters.AddWithValue("@cid", clientID)
                     cmdJob.Parameters.AddWithValue("@conID", newContractID)
                     cmdJob.Parameters.AddWithValue("@visNum", i)
                     cmdJob.Parameters.AddWithValue("@sDate", nextDate)
@@ -186,7 +188,6 @@ Public Class uc_NewContractEntry
                 Dim nextPayDate As Date = dtpFirstPayment.Value
 
                 For p As Integer = 1 To payCount
-                    ' UPDATED SQL: Removed 'Status' (It is calculated dynamically now)
                     Dim sqlPaySched As String = "INSERT INTO tbl_paymentschedule (ContractID, DueDate, AmountDue, InstallmentNumber) " &
                                                 "VALUES (@cid, @due, @amt, @num)"
 
@@ -211,9 +212,6 @@ Public Class uc_NewContractEntry
 
                 trans.Commit()
                 MessageBox.Show("Contract Created Successfully!" & vbCrLf & "Generated " & visitCount & " visits and " & payCount & " payment schedules.")
-
-                ' Optional: Close the control or reset
-                ' Me.ParentForm.Close() (Depends on your navigation)
 
             Catch ex As Exception
                 trans.Rollback()

@@ -22,30 +22,23 @@ Partial Class newUcClientManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvClientList = New System.Windows.Forms.DataGridView()
-        Me.grpDetails = New System.Windows.Forms.GroupBox()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnUpdateClient = New System.Windows.Forms.Button()
+        Me.btnCreateInquiry = New System.Windows.Forms.Button()
+        Me.btnEditClient = New System.Windows.Forms.Button()
         Me.btnAddClient = New System.Windows.Forms.Button()
-        Me.txtEmail = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtPhone = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtContactPerson = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtName = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtStreet = New System.Windows.Forms.TextBox()
-        Me.txtBarangay = New System.Windows.Forms.TextBox()
-        Me.txtCity = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.pnlAllInfo = New System.Windows.Forms.GroupBox()
+        Me.lblRecentActivity = New System.Windows.Forms.Label()
+        Me.lblStats = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.lblContactInfo = New System.Windows.Forms.Label()
+        Me.lblFullAddress = New System.Windows.Forms.Label()
+        Me.lblFullName = New System.Windows.Forms.Label()
+        Me.btnRefresh = New System.Windows.Forms.Button()
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grpDetails.SuspendLayout()
+        Me.pnlAllInfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -74,202 +67,145 @@ Partial Class newUcClientManager
         Me.dgvClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvClientList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvClientList.Location = New System.Drawing.Point(62, 144)
         Me.dgvClientList.Name = "dgvClientList"
         Me.dgvClientList.ReadOnly = True
         Me.dgvClientList.RowHeadersWidth = 62
         Me.dgvClientList.RowTemplate.Height = 28
         Me.dgvClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvClientList.Size = New System.Drawing.Size(364, 495)
+        Me.dgvClientList.Size = New System.Drawing.Size(1030, 251)
         Me.dgvClientList.TabIndex = 2
         '
-        'grpDetails
+        'btnCreateInquiry
         '
-        Me.grpDetails.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grpDetails.Controls.Add(Me.Label7)
-        Me.grpDetails.Controls.Add(Me.Label6)
-        Me.grpDetails.Controls.Add(Me.txtCity)
-        Me.grpDetails.Controls.Add(Me.txtBarangay)
-        Me.grpDetails.Controls.Add(Me.txtStreet)
-        Me.grpDetails.Controls.Add(Me.btnClear)
-        Me.grpDetails.Controls.Add(Me.btnUpdateClient)
-        Me.grpDetails.Controls.Add(Me.btnAddClient)
-        Me.grpDetails.Controls.Add(Me.txtEmail)
-        Me.grpDetails.Controls.Add(Me.Label5)
-        Me.grpDetails.Controls.Add(Me.Label4)
-        Me.grpDetails.Controls.Add(Me.txtPhone)
-        Me.grpDetails.Controls.Add(Me.Label3)
-        Me.grpDetails.Controls.Add(Me.txtContactPerson)
-        Me.grpDetails.Controls.Add(Me.Label2)
-        Me.grpDetails.Controls.Add(Me.txtName)
-        Me.grpDetails.Controls.Add(Me.Label1)
-        Me.grpDetails.Location = New System.Drawing.Point(462, 139)
-        Me.grpDetails.Name = "grpDetails"
-        Me.grpDetails.Size = New System.Drawing.Size(362, 495)
-        Me.grpDetails.TabIndex = 3
-        Me.grpDetails.TabStop = False
-        Me.grpDetails.Text = "Client Details"
+        Me.btnCreateInquiry.Location = New System.Drawing.Point(919, 646)
+        Me.btnCreateInquiry.Name = "btnCreateInquiry"
+        Me.btnCreateInquiry.Size = New System.Drawing.Size(132, 51)
+        Me.btnCreateInquiry.TabIndex = 10
+        Me.btnCreateInquiry.Text = "NEW INQUIRY"
+        Me.btnCreateInquiry.UseVisualStyleBackColor = True
         '
-        'btnClear
+        'btnEditClient
         '
-        Me.btnClear.Location = New System.Drawing.Point(21, 282)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(306, 30)
-        Me.btnClear.TabIndex = 12
-        Me.btnClear.Text = "CLEAR"
-        Me.btnClear.UseVisualStyleBackColor = True
-        '
-        'btnUpdateClient
-        '
-        Me.btnUpdateClient.Location = New System.Drawing.Point(21, 374)
-        Me.btnUpdateClient.Name = "btnUpdateClient"
-        Me.btnUpdateClient.Size = New System.Drawing.Size(306, 29)
-        Me.btnUpdateClient.TabIndex = 11
-        Me.btnUpdateClient.Text = "UPDATE SELECTED"
-        Me.btnUpdateClient.UseVisualStyleBackColor = True
+        Me.btnEditClient.Location = New System.Drawing.Point(919, 570)
+        Me.btnEditClient.Name = "btnEditClient"
+        Me.btnEditClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnEditClient.TabIndex = 9
+        Me.btnEditClient.Text = "EDIT"
+        Me.btnEditClient.UseVisualStyleBackColor = True
         '
         'btnAddClient
         '
-        Me.btnAddClient.Location = New System.Drawing.Point(21, 330)
+        Me.btnAddClient.Location = New System.Drawing.Point(919, 498)
         Me.btnAddClient.Name = "btnAddClient"
-        Me.btnAddClient.Size = New System.Drawing.Size(306, 28)
-        Me.btnAddClient.TabIndex = 10
-        Me.btnAddClient.Text = "ADD NEW CLIENT"
+        Me.btnAddClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnAddClient.TabIndex = 8
+        Me.btnAddClient.Text = "CREATE"
         Me.btnAddClient.UseVisualStyleBackColor = True
         '
-        'txtEmail
+        'pnlAllInfo
         '
-        Me.txtEmail.Location = New System.Drawing.Point(207, 238)
-        Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(100, 26)
-        Me.txtEmail.TabIndex = 9
+        Me.pnlAllInfo.Controls.Add(Me.lblRecentActivity)
+        Me.pnlAllInfo.Controls.Add(Me.lblStats)
+        Me.pnlAllInfo.Controls.Add(Me.lblEmail)
+        Me.pnlAllInfo.Controls.Add(Me.lblContactInfo)
+        Me.pnlAllInfo.Controls.Add(Me.lblFullAddress)
+        Me.pnlAllInfo.Controls.Add(Me.lblFullName)
+        Me.pnlAllInfo.Location = New System.Drawing.Point(82, 480)
+        Me.pnlAllInfo.Name = "pnlAllInfo"
+        Me.pnlAllInfo.Size = New System.Drawing.Size(764, 229)
+        Me.pnlAllInfo.TabIndex = 7
+        Me.pnlAllInfo.TabStop = False
+        Me.pnlAllInfo.Text = "All info"
         '
-        'Label5
+        'lblRecentActivity
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(36, 238)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(52, 20)
-        Me.Label5.TabIndex = 8
-        Me.Label5.Text = "Email:"
+        Me.lblRecentActivity.AutoSize = True
+        Me.lblRecentActivity.Location = New System.Drawing.Point(7, 130)
+        Me.lblRecentActivity.Name = "lblRecentActivity"
+        Me.lblRecentActivity.Size = New System.Drawing.Size(57, 20)
+        Me.lblRecentActivity.TabIndex = 5
+        Me.lblRecentActivity.Text = "Label7"
         '
-        'Label4
+        'lblStats
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(31, 158)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(128, 20)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "House No/Street"
+        Me.lblStats.AutoSize = True
+        Me.lblStats.Location = New System.Drawing.Point(7, 110)
+        Me.lblStats.Name = "lblStats"
+        Me.lblStats.Size = New System.Drawing.Size(57, 20)
+        Me.lblStats.TabIndex = 4
+        Me.lblStats.Text = "Label6"
         '
-        'txtPhone
+        'lblEmail
         '
-        Me.txtPhone.Location = New System.Drawing.Point(207, 120)
-        Me.txtPhone.Name = "txtPhone"
-        Me.txtPhone.Size = New System.Drawing.Size(100, 26)
-        Me.txtPhone.TabIndex = 5
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(7, 90)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(57, 20)
+        Me.lblEmail.TabIndex = 3
+        Me.lblEmail.Text = "Label5"
         '
-        'Label3
+        'lblContactInfo
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(31, 123)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 20)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Contact #:"
+        Me.lblContactInfo.AutoSize = True
+        Me.lblContactInfo.Location = New System.Drawing.Point(7, 70)
+        Me.lblContactInfo.Name = "lblContactInfo"
+        Me.lblContactInfo.Size = New System.Drawing.Size(57, 20)
+        Me.lblContactInfo.TabIndex = 2
+        Me.lblContactInfo.Text = "Label4"
         '
-        'txtContactPerson
+        'lblFullAddress
         '
-        Me.txtContactPerson.Location = New System.Drawing.Point(207, 86)
-        Me.txtContactPerson.Name = "txtContactPerson"
-        Me.txtContactPerson.Size = New System.Drawing.Size(100, 26)
-        Me.txtContactPerson.TabIndex = 3
+        Me.lblFullAddress.AutoSize = True
+        Me.lblFullAddress.Location = New System.Drawing.Point(7, 50)
+        Me.lblFullAddress.Name = "lblFullAddress"
+        Me.lblFullAddress.Size = New System.Drawing.Size(57, 20)
+        Me.lblFullAddress.TabIndex = 1
+        Me.lblFullAddress.Text = "Label3"
         '
-        'Label2
+        'lblFullName
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(31, 86)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(123, 20)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Contact Person:"
+        Me.lblFullName.AutoSize = True
+        Me.lblFullName.Location = New System.Drawing.Point(7, 26)
+        Me.lblFullName.Name = "lblFullName"
+        Me.lblFullName.Size = New System.Drawing.Size(57, 20)
+        Me.lblFullName.TabIndex = 0
+        Me.lblFullName.Text = "Label2"
         '
-        'txtName
+        'btnRefresh
         '
-        Me.txtName.Location = New System.Drawing.Point(207, 44)
-        Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(100, 26)
-        Me.txtName.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(27, 44)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(154, 20)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Name (or Company):"
-        '
-        'txtStreet
-        '
-        Me.txtStreet.Location = New System.Drawing.Point(207, 151)
-        Me.txtStreet.Name = "txtStreet"
-        Me.txtStreet.Size = New System.Drawing.Size(100, 26)
-        Me.txtStreet.TabIndex = 13
-        '
-        'txtBarangay
-        '
-        Me.txtBarangay.Location = New System.Drawing.Point(207, 183)
-        Me.txtBarangay.Name = "txtBarangay"
-        Me.txtBarangay.Size = New System.Drawing.Size(100, 26)
-        Me.txtBarangay.TabIndex = 14
-        '
-        'txtCity
-        '
-        Me.txtCity.Location = New System.Drawing.Point(207, 206)
-        Me.txtCity.Name = "txtCity"
-        Me.txtCity.Size = New System.Drawing.Size(100, 26)
-        Me.txtCity.TabIndex = 15
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(36, 183)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(77, 20)
-        Me.Label6.TabIndex = 16
-        Me.Label6.Text = "Barangay"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(36, 209)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(120, 20)
-        Me.Label7.TabIndex = 17
-        Me.Label7.Text = "City/Municipality"
+        Me.btnRefresh.Location = New System.Drawing.Point(960, 108)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(132, 30)
+        Me.btnRefresh.TabIndex = 11
+        Me.btnRefresh.Text = "REFRESH"
+        Me.btnRefresh.UseVisualStyleBackColor = True
         '
         'newUcClientManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.grpDetails)
+        Me.Controls.Add(Me.btnRefresh)
+        Me.Controls.Add(Me.btnCreateInquiry)
+        Me.Controls.Add(Me.btnEditClient)
+        Me.Controls.Add(Me.btnAddClient)
+        Me.Controls.Add(Me.pnlAllInfo)
         Me.Controls.Add(Me.dgvClientList)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblTitle)
         Me.Name = "newUcClientManager"
-        Me.Size = New System.Drawing.Size(852, 748)
+        Me.Size = New System.Drawing.Size(1165, 766)
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grpDetails.ResumeLayout(False)
-        Me.grpDetails.PerformLayout()
+        Me.pnlAllInfo.ResumeLayout(False)
+        Me.pnlAllInfo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -278,22 +214,15 @@ Partial Class newUcClientManager
     Friend WithEvents lblTitle As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents dgvClientList As DataGridView
-    Friend WithEvents grpDetails As GroupBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txtPhone As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents txtContactPerson As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents txtName As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnUpdateClient As Button
+    Friend WithEvents btnCreateInquiry As Button
+    Friend WithEvents btnEditClient As Button
     Friend WithEvents btnAddClient As Button
-    Friend WithEvents txtEmail As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents txtCity As TextBox
-    Friend WithEvents txtBarangay As TextBox
-    Friend WithEvents txtStreet As TextBox
-    Friend WithEvents Label7 As Label
+    Friend WithEvents pnlAllInfo As GroupBox
+    Friend WithEvents lblRecentActivity As Label
+    Friend WithEvents lblStats As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblContactInfo As Label
+    Friend WithEvents lblFullAddress As Label
+    Friend WithEvents lblFullName As Label
+    Friend WithEvents btnRefresh As Button
 End Class

@@ -65,8 +65,8 @@
         NavigateTo(New newUcBilling(), "Payments")
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        NavigateTo(New newUcInquiryManager(), "Inquiry")
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
@@ -83,5 +83,35 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         NavigateTo(New newUcContractManager(), "Contracts")
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        NavigateTo(New newUcDataSync(), "Contracts")
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        ' 1. Job Alert
+        NotificationService.AddNotification(
+            "Job Completed",
+            "Technician Vince has completed the termite inspection.",
+            "Job Update",
+            1)
+
+        ' 2. Billing Alert
+        NotificationService.AddNotification(
+            "Payment Overdue",
+            "Urgent: Payment for Contract #105 is overdue.",
+            "Billing",
+            1)
+
+        ' 3. Contract Alert
+        NotificationService.AddNotification(
+            "Contract Expiring",
+            "Heads up! The service contract for Brgy Commonwealth is expiring.",
+            "Contract",
+            1)
+
+        MessageBox.Show("Test data added! Refreshing list...", "Simulation")
+
     End Sub
 End Class

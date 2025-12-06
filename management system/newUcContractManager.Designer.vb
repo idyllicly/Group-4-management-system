@@ -25,6 +25,15 @@ Partial Class newUcContractManager
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.dgvContracts = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.dtpTo = New System.Windows.Forms.DateTimePicker()
+        Me.dtpFrom = New System.Windows.Forms.DateTimePicker()
+        Me.chkDateFilter = New System.Windows.Forms.CheckBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboSortOrder = New System.Windows.Forms.ComboBox()
+        Me.cboServiceFilter = New System.Windows.Forms.ComboBox()
         Me.btnNewContract = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -73,7 +82,7 @@ Partial Class newUcContractManager
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.tabDetails)
         Me.SplitContainer1.Size = New System.Drawing.Size(984, 732)
-        Me.SplitContainer1.SplitterDistance = 266
+        Me.SplitContainer1.SplitterDistance = 443
         Me.SplitContainer1.TabIndex = 0
         '
         'dgvContracts
@@ -83,28 +92,119 @@ Partial Class newUcContractManager
         Me.dgvContracts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvContracts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvContracts.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvContracts.Location = New System.Drawing.Point(0, 62)
+        Me.dgvContracts.Location = New System.Drawing.Point(0, 131)
         Me.dgvContracts.Name = "dgvContracts"
         Me.dgvContracts.ReadOnly = True
         Me.dgvContracts.RowHeadersWidth = 62
         Me.dgvContracts.RowTemplate.Height = 28
         Me.dgvContracts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvContracts.Size = New System.Drawing.Size(984, 204)
+        Me.dgvContracts.Size = New System.Drawing.Size(984, 312)
         Me.dgvContracts.TabIndex = 1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.dtpTo)
+        Me.Panel1.Controls.Add(Me.dtpFrom)
+        Me.Panel1.Controls.Add(Me.chkDateFilter)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.cboSortOrder)
+        Me.Panel1.Controls.Add(Me.cboServiceFilter)
         Me.Panel1.Controls.Add(Me.btnNewContract)
         Me.Panel1.Controls.Add(Me.btnSearch)
         Me.Panel1.Controls.Add(Me.txtSearch)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(984, 62)
+        Me.Panel1.Size = New System.Drawing.Size(984, 131)
         Me.Panel1.TabIndex = 0
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(719, 97)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(27, 20)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "To"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(719, 66)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(46, 20)
+        Me.Label3.TabIndex = 10
+        Me.Label3.Text = "From"
+        '
+        'dtpTo
+        '
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpTo.Location = New System.Drawing.Point(771, 61)
+        Me.dtpTo.Name = "dtpTo"
+        Me.dtpTo.Size = New System.Drawing.Size(200, 26)
+        Me.dtpTo.TabIndex = 9
+        '
+        'dtpFrom
+        '
+        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFrom.Location = New System.Drawing.Point(771, 94)
+        Me.dtpFrom.Name = "dtpFrom"
+        Me.dtpFrom.Size = New System.Drawing.Size(200, 26)
+        Me.dtpFrom.TabIndex = 8
+        '
+        'chkDateFilter
+        '
+        Me.chkDateFilter.AutoSize = True
+        Me.chkDateFilter.Location = New System.Drawing.Point(584, 99)
+        Me.chkDateFilter.Name = "chkDateFilter"
+        Me.chkDateFilter.Size = New System.Drawing.Size(129, 24)
+        Me.chkDateFilter.TabIndex = 7
+        Me.chkDateFilter.Text = "Filter by Date"
+        Me.chkDateFilter.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(250, 101)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(120, 20)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Filter by Service"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(0, 103)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(83, 20)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Sort Order"
+        '
+        'cboSortOrder
+        '
+        Me.cboSortOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboSortOrder.FormattingEnabled = True
+        Me.cboSortOrder.Items.AddRange(New Object() {"Newest Contracts First", "Oldest Contracts First", "Client Name (A-Z)"})
+        Me.cboSortOrder.Location = New System.Drawing.Point(89, 97)
+        Me.cboSortOrder.Name = "cboSortOrder"
+        Me.cboSortOrder.Size = New System.Drawing.Size(155, 28)
+        Me.cboSortOrder.TabIndex = 4
+        '
+        'cboServiceFilter
+        '
+        Me.cboServiceFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboServiceFilter.FormattingEnabled = True
+        Me.cboServiceFilter.Location = New System.Drawing.Point(376, 95)
+        Me.cboServiceFilter.Name = "cboServiceFilter"
+        Me.cboServiceFilter.Size = New System.Drawing.Size(202, 28)
+        Me.cboServiceFilter.TabIndex = 3
         '
         'btnNewContract
         '
+        Me.btnNewContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNewContract.Location = New System.Drawing.Point(784, 8)
         Me.btnNewContract.Name = "btnNewContract"
         Me.btnNewContract.Size = New System.Drawing.Size(187, 47)
@@ -138,7 +238,7 @@ Partial Class newUcContractManager
         Me.tabDetails.Location = New System.Drawing.Point(0, 0)
         Me.tabDetails.Name = "tabDetails"
         Me.tabDetails.SelectedIndex = 0
-        Me.tabDetails.Size = New System.Drawing.Size(984, 462)
+        Me.tabDetails.Size = New System.Drawing.Size(984, 285)
         Me.tabDetails.TabIndex = 0
         '
         'tpOverview
@@ -151,7 +251,7 @@ Partial Class newUcContractManager
         Me.tpOverview.Location = New System.Drawing.Point(4, 29)
         Me.tpOverview.Name = "tpOverview"
         Me.tpOverview.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpOverview.Size = New System.Drawing.Size(976, 429)
+        Me.tpOverview.Size = New System.Drawing.Size(976, 252)
         Me.tpOverview.TabIndex = 0
         Me.tpOverview.Text = "Overview"
         Me.tpOverview.UseVisualStyleBackColor = True
@@ -207,7 +307,7 @@ Partial Class newUcContractManager
         Me.tpSchedule.Location = New System.Drawing.Point(4, 29)
         Me.tpSchedule.Name = "tpSchedule"
         Me.tpSchedule.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpSchedule.Size = New System.Drawing.Size(976, 429)
+        Me.tpSchedule.Size = New System.Drawing.Size(976, 252)
         Me.tpSchedule.TabIndex = 1
         Me.tpSchedule.Text = "Payment Schedule"
         Me.tpSchedule.UseVisualStyleBackColor = True
@@ -223,7 +323,7 @@ Partial Class newUcContractManager
         Me.dgvSchedule.Name = "dgvSchedule"
         Me.dgvSchedule.RowHeadersWidth = 62
         Me.dgvSchedule.RowTemplate.Height = 28
-        Me.dgvSchedule.Size = New System.Drawing.Size(970, 423)
+        Me.dgvSchedule.Size = New System.Drawing.Size(970, 246)
         Me.dgvSchedule.TabIndex = 0
         '
         'tpJobs
@@ -232,7 +332,7 @@ Partial Class newUcContractManager
         Me.tpJobs.Location = New System.Drawing.Point(4, 29)
         Me.tpJobs.Name = "tpJobs"
         Me.tpJobs.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpJobs.Size = New System.Drawing.Size(976, 429)
+        Me.tpJobs.Size = New System.Drawing.Size(976, 252)
         Me.tpJobs.TabIndex = 2
         Me.tpJobs.Text = "Job Visits"
         Me.tpJobs.UseVisualStyleBackColor = True
@@ -249,7 +349,7 @@ Partial Class newUcContractManager
         Me.dgvJobHistory.ReadOnly = True
         Me.dgvJobHistory.RowHeadersWidth = 62
         Me.dgvJobHistory.RowTemplate.Height = 28
-        Me.dgvJobHistory.Size = New System.Drawing.Size(970, 423)
+        Me.dgvJobHistory.Size = New System.Drawing.Size(970, 246)
         Me.dgvJobHistory.TabIndex = 0
         '
         'tpPayments
@@ -258,7 +358,7 @@ Partial Class newUcContractManager
         Me.tpPayments.Location = New System.Drawing.Point(4, 29)
         Me.tpPayments.Name = "tpPayments"
         Me.tpPayments.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpPayments.Size = New System.Drawing.Size(976, 429)
+        Me.tpPayments.Size = New System.Drawing.Size(976, 252)
         Me.tpPayments.TabIndex = 3
         Me.tpPayments.Text = "Payments Made"
         Me.tpPayments.UseVisualStyleBackColor = True
@@ -274,7 +374,7 @@ Partial Class newUcContractManager
         Me.dgvPayments.Name = "dgvPayments"
         Me.dgvPayments.RowHeadersWidth = 62
         Me.dgvPayments.RowTemplate.Height = 28
-        Me.dgvPayments.Size = New System.Drawing.Size(970, 423)
+        Me.dgvPayments.Size = New System.Drawing.Size(970, 246)
         Me.dgvPayments.TabIndex = 0
         '
         'newUcContractManager
@@ -323,4 +423,13 @@ Partial Class newUcContractManager
     Friend WithEvents btnNewContract As Button
     Friend WithEvents lblStatus As Label
     Friend WithEvents lblService As Label
+    Friend WithEvents cboSortOrder As ComboBox
+    Friend WithEvents cboServiceFilter As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents dtpTo As DateTimePicker
+    Friend WithEvents dtpFrom As DateTimePicker
+    Friend WithEvents chkDateFilter As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label3 As Label
 End Class

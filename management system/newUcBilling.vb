@@ -2,9 +2,8 @@
 Imports System.Drawing
 
 Public Class newUcBilling
-
+    Public Property PresetContractID As Integer = 0
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-
     ' Variables to track selection
     Private _selectedContractID As Integer = 0
     Private _selectedScheduleID As Integer = 0
@@ -16,6 +15,17 @@ Public Class newUcBilling
         txtSearchBilling.ForeColor = Color.Gray
 
         LoadBillingData("")
+
+        If PresetContractID > 0 Then
+            For Each row As DataGridViewRow In dgvBilling.Rows
+                If row.Cells("ContractID").Value IsNot Nothing AndAlso Convert.ToInt32(row.Cells("ContractID").Value) = PresetContractID Then
+                    row.Selected = True
+                    SelectContract(row)
+                    dgvBilling.FirstDisplayedScrollingRowIndex = row.Index
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 
     ' ==========================================
@@ -32,11 +42,11 @@ Public Class newUcBilling
                 conn.Open()
 
                 ' UPDATED SQL:
-                ' 1. Removed NextVisitDate (It's not in the contract table anymore).
+                ' 1. Concatenate Client Name
                 ' 2. Joined 'view_contract_details' (V) to get Balance and Status.
                 Dim sql As String = "SELECT " &
                                     "   Con.ContractID, " &
-                                    "   Cli.ClientName, " &
+                                    "   CONCAT(Cli.ClientFirstName, ' ', Cli.ClientLastName) AS ClientName, " &
                                     "   Ser.ServiceName, " &
                                     "   Con.ServiceFrequency, " &
                                     "   V.PaymentStatus, " &
@@ -45,7 +55,7 @@ Public Class newUcBilling
                                     "LEFT JOIN tbl_clients Cli ON Con.ClientID = Cli.ClientID " &
                                     "LEFT JOIN tbl_services Ser ON Con.ServiceID = Ser.ServiceID " &
                                     "LEFT JOIN view_contract_details V ON Con.ContractID = V.ContractID " &
-                                    "WHERE Cli.ClientName LIKE @s " &
+                                    "WHERE (Cli.ClientFirstName LIKE @s OR Cli.ClientLastName LIKE @s) " &
                                     "ORDER BY Con.ContractID DESC"
 
                 Dim cmd As New MySqlCommand(sql, conn)
@@ -164,7 +174,6 @@ Public Class newUcBilling
                 ' 1. Insert Payment linked to the ScheduleID
                 ' 2. We DO NOT update tbl_contracts (Balance is auto-calculated).
                 ' 3. We DO NOT update tbl_paymentschedule status (It's auto-calculated).
-
                 Dim sqlPay As String = "INSERT INTO tbl_payments (ContractID, ScheduleID, AmountPaid, PaymentDate) VALUES (@cid, @sid, @amt, @date)"
 
                 Dim cmdPay As New MySqlCommand(sqlPay, conn)
@@ -203,7 +212,6 @@ Public Class newUcBilling
             ' UPDATED SQL:
             ' We removed the 'Status' column from the table.
             ' We now CALCULATE 'Status' by checking if a Payment exists for that ScheduleID.
-
             Dim sql As String = "SELECT " &
                                 "   S.ScheduleID, " &
                                 "   S.InstallmentNumber AS 'Inst #', " &

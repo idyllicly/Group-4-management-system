@@ -22,7 +22,7 @@ Partial Class newUcDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpViewDate = New System.Windows.Forms.DateTimePicker()
@@ -52,6 +52,12 @@ Partial Class newUcDashboard
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblDetailClient = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lblDetailStart = New System.Windows.Forms.Label()
+        Me.lblDetailEnd = New System.Windows.Forms.Label()
+        Me.lblDetailDuration = New System.Windows.Forms.Label()
         CType(Me.dgvDailyJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,7 +84,7 @@ Partial Class newUcDashboard
         '
         'Label2
         '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(19, 52)
         Me.Label2.Name = "Label2"
@@ -88,7 +94,7 @@ Partial Class newUcDashboard
         '
         'dtpViewDate
         '
-        Me.dtpViewDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtpViewDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpViewDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpViewDate.Location = New System.Drawing.Point(228, 46)
         Me.dtpViewDate.Name = "dtpViewDate"
@@ -115,14 +121,14 @@ Partial Class newUcDashboard
         Me.dgvDailyJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDailyJobs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvDailyJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvDailyJobs.EnableHeadersVisualStyles = False
         Me.dgvDailyJobs.Location = New System.Drawing.Point(19, 72)
         Me.dgvDailyJobs.Name = "dgvDailyJobs"
@@ -141,9 +147,9 @@ Partial Class newUcDashboard
         Me.GroupBox1.Controls.Add(Me.btnAssignJob)
         Me.GroupBox1.Controls.Add(Me.cmbTechnician)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Location = New System.Drawing.Point(31, 596)
+        Me.GroupBox1.Location = New System.Drawing.Point(31, 610)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(393, 163)
+        Me.GroupBox1.Size = New System.Drawing.Size(393, 149)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Dispatch Job"
@@ -289,6 +295,12 @@ Partial Class newUcDashboard
         '
         Me.grpJobDetails.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailDuration)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailEnd)
+        Me.grpJobDetails.Controls.Add(Me.lblDetailStart)
+        Me.grpJobDetails.Controls.Add(Me.Label11)
+        Me.grpJobDetails.Controls.Add(Me.Label10)
+        Me.grpJobDetails.Controls.Add(Me.Label9)
         Me.grpJobDetails.Controls.Add(Me.lblDetailVisit)
         Me.grpJobDetails.Controls.Add(Me.Label8)
         Me.grpJobDetails.Controls.Add(Me.lblDetailTech)
@@ -299,9 +311,9 @@ Partial Class newUcDashboard
         Me.grpJobDetails.Controls.Add(Me.Label5)
         Me.grpJobDetails.Controls.Add(Me.lblDetailClient)
         Me.grpJobDetails.Controls.Add(Me.Label4)
-        Me.grpJobDetails.Location = New System.Drawing.Point(31, 389)
+        Me.grpJobDetails.Location = New System.Drawing.Point(23, 373)
         Me.grpJobDetails.Name = "grpJobDetails"
-        Me.grpJobDetails.Size = New System.Drawing.Size(393, 173)
+        Me.grpJobDetails.Size = New System.Drawing.Size(393, 241)
         Me.grpJobDetails.TabIndex = 6
         Me.grpJobDetails.TabStop = False
         Me.grpJobDetails.Text = "Job Details"
@@ -401,6 +413,60 @@ Partial Class newUcDashboard
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Client Name:"
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(21, 169)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(48, 20)
+        Me.Label9.TabIndex = 10
+        Me.Label9.Text = "Start:"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(25, 189)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(42, 20)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "End:"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(25, 214)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(74, 20)
+        Me.Label11.TabIndex = 12
+        Me.Label11.Text = "Duration:"
+        '
+        'lblDetailStart
+        '
+        Me.lblDetailStart.AutoSize = True
+        Me.lblDetailStart.Location = New System.Drawing.Point(121, 169)
+        Me.lblDetailStart.Name = "lblDetailStart"
+        Me.lblDetailStart.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailStart.TabIndex = 13
+        Me.lblDetailStart.Text = "..."
+        '
+        'lblDetailEnd
+        '
+        Me.lblDetailEnd.AutoSize = True
+        Me.lblDetailEnd.Location = New System.Drawing.Point(121, 189)
+        Me.lblDetailEnd.Name = "lblDetailEnd"
+        Me.lblDetailEnd.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailEnd.TabIndex = 14
+        Me.lblDetailEnd.Text = "..."
+        '
+        'lblDetailDuration
+        '
+        Me.lblDetailDuration.AutoSize = True
+        Me.lblDetailDuration.Location = New System.Drawing.Point(121, 214)
+        Me.lblDetailDuration.Name = "lblDetailDuration"
+        Me.lblDetailDuration.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailDuration.TabIndex = 15
+        Me.lblDetailDuration.Text = "..."
+        '
         'newUcDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -455,4 +521,10 @@ Partial Class newUcDashboard
     Friend WithEvents lblDetailService As Label
     Friend WithEvents flpCalendar2 As FlowLayoutPanel
     Friend WithEvents lblMonthYear2 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents lblDetailStart As Label
+    Friend WithEvents lblDetailDuration As Label
+    Friend WithEvents lblDetailEnd As Label
 End Class

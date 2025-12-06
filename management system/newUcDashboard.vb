@@ -2,7 +2,7 @@
 Imports System.Globalization
 
 Public Class newUcDashboard
-
+    Public Property PresetDate As Date = DateTime.MinValue
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
     Private _selectedJobID As Integer = 0
 
@@ -169,7 +169,16 @@ Public Class newUcDashboard
     Private Sub newUcDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FirebaseManager.Initialize()
         LoadTechnicians()
-        LoadJobs(DateTime.Now)
+
+        ' --- VISUAL TWEAK FOR BORDER SELECTION ---
+        dgvDailyJobs.DefaultCellStyle.SelectionBackColor = Color.White
+        dgvDailyJobs.DefaultCellStyle.SelectionForeColor = Color.Black
+
+        If PresetDate <> DateTime.MinValue Then
+            dtpViewDate.Value = PresetDate
+        Else
+            dtpViewDate.Value = DateTime.Now
+        End If
 
         _currentMonth = DateTime.Now.Month
         _currentYear = DateTime.Now.Year
@@ -200,26 +209,27 @@ Public Class newUcDashboard
         End Using
     End Sub
 
+    ' --- UPDATED LOADJOBS WITH AUTO-SELECT LOGIC ---
     Private Sub LoadJobs(viewDate As Date)
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' UPDATED SQL:
-                ' 1. Use CONCAT_WS for Address
-                ' 2. Use COALESCE(S.ServiceName, S_Job.ServiceName) to find the service name
-                '    from either the Contract OR the Job (for inspections).
+                ' UPDATED: Concatenate Client Name from new columns
                 Dim sql As String = "SELECT " &
                                     "   J.JobID, " &
-                                    "   C.ClientName, " &
+                                    "   CONCAT(C.ClientFirstName, ' ', C.ClientLastName) AS ClientName, " &
                                     "   CONCAT_WS(', ', C.StreetAddress, C.Barangay, C.City) AS Address, " &
                                     "   COALESCE(S.ServiceName, S_Job.ServiceName) AS ServiceName, " &
                                     "   J.JobType, " &
                                     "   J.VisitNumber, " &
                                     "   J.Status, " &
+                                    "   DATE_FORMAT(J.StartTime, '%h:%i %p') AS 'Start Time', " &
+                                    "   DATE_FORMAT(J.EndTime, '%h:%i %p') AS 'End Time', " &
+                                    "   TIMEDIFF(J.EndTime, J.StartTime) AS Duration, " &
                                     "   T.FullName AS AssignedTech " &
                                     "FROM tbl_joborders J " &
+                                    "INNER JOIN tbl_clients C ON J.ClientID = C.ClientID " & ' Direct Link
                                     "LEFT JOIN tbl_contracts Con ON J.ContractID = Con.ContractID " &
-                                    "LEFT JOIN tbl_clients C ON (Con.ClientID = C.ClientID OR J.ClientID_TempLink = C.ClientID) " &
                                     "LEFT JOIN tbl_services S ON Con.ServiceID = S.ServiceID " &
                                     "LEFT JOIN tbl_services S_Job ON J.ServiceID = S_Job.ServiceID " &
                                     "LEFT JOIN tbl_users T ON J.TechnicianID = T.UserID " &
@@ -236,19 +246,31 @@ Public Class newUcDashboard
                 dgvDailyJobs.RowHeadersVisible = False
                 dgvDailyJobs.DefaultCellStyle.WrapMode = DataGridViewTriState.True
 
-                Dim colsToHide() As String = {"JobID", "Address", "ServiceName", "VisitNumber", "AssignedTech"}
+                ' Hide IDs and raw columns
+                Dim colsToHide() As String = {"JobID", "Address", "ServiceName", "VisitNumber", "AssignedTech", "Start Time", "End Time", "Duration"}
+
                 For Each colName As String In colsToHide
                     If dgvDailyJobs.Columns(colName) IsNot Nothing Then
                         dgvDailyJobs.Columns(colName).Visible = False
                     End If
                 Next
 
-                If dgvDailyJobs.Columns("ClientName") IsNot Nothing Then dgvDailyJobs.Columns("ClientName").Width = 150
-                If dgvDailyJobs.Columns("JobType") IsNot Nothing Then dgvDailyJobs.Columns("JobType").Width = 100
-                If dgvDailyJobs.Columns("Status") IsNot Nothing Then dgvDailyJobs.Columns("Status").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                ' Format the visible columns
+                If dgvDailyJobs.Columns("Start Time") IsNot Nothing Then dgvDailyJobs.Columns("Start Time").Width = 90
+                If dgvDailyJobs.Columns("End Time") IsNot Nothing Then dgvDailyJobs.Columns("End Time").Width = 90
+                If dgvDailyJobs.Columns("Duration") IsNot Nothing Then dgvDailyJobs.Columns("Duration").Width = 80
 
+                ' 1. Clear details first
                 ClearDetails()
                 ColorCodeRows()
+
+                ' 2. Check if we have data to select
+                If dgvDailyJobs.Rows.Count > 0 Then
+                    ' Select the first row
+                    dgvDailyJobs.Rows(0).Selected = True
+                    ' Populate the side panel
+                    PopulateJobDetails(dgvDailyJobs.Rows(0))
+                End If
 
             Catch ex As Exception
                 MessageBox.Show("Error loading jobs: " & ex.Message)
@@ -274,7 +296,31 @@ Public Class newUcDashboard
     End Sub
 
     Private Sub dtpViewDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpViewDate.ValueChanged
-        LoadJobs(dtpViewDate.Value)
+        Dim selDate As Date = dtpViewDate.Value
+
+        ' ---------------------------------------------------------
+        ' SMART REFRESH LOGIC
+        ' ---------------------------------------------------------
+        Dim m1 As Integer = _currentMonth
+        Dim y1 As Integer = _currentYear
+
+        Dim m2 As Integer = _currentMonth + 1
+        Dim y2 As Integer = _currentYear
+        If m2 > 12 Then
+            m2 = 1
+            y2 += 1
+        End If
+
+        Dim isVisibleInPanel1 As Boolean = (selDate.Month = m1 AndAlso selDate.Year = y1)
+        Dim isVisibleInPanel2 As Boolean = (selDate.Month = m2 AndAlso selDate.Year = y2)
+
+        If Not (isVisibleInPanel1 OrElse isVisibleInPanel2) Then
+            _currentMonth = selDate.Month
+            _currentYear = selDate.Year
+            LoadCalendars()
+        End If
+
+        LoadJobs(selDate)
         UpdateSelectionVisuals()
     End Sub
 
@@ -282,29 +328,42 @@ Public Class newUcDashboard
         LoadJobs(dtpViewDate.Value)
     End Sub
 
+    ' --- HELPER TO FILL DETAILS PANEL ---
+    Private Sub PopulateJobDetails(row As DataGridViewRow)
+        _selectedJobID = Convert.ToInt32(row.Cells("JobID").Value)
+
+        ' --- Basic Details ---
+        lblDetailClient.Text = row.Cells("ClientName").Value.ToString()
+        lblDetailAddress.Text = row.Cells("Address").Value.ToString()
+
+        If IsDBNull(row.Cells("ServiceName").Value) Then
+            lblDetailService.Text = "Not Specified"
+        Else
+            lblDetailService.Text = row.Cells("ServiceName").Value.ToString()
+        End If
+
+        If IsDBNull(row.Cells("AssignedTech").Value) Then
+            lblDetailTech.Text = "Unassigned"
+        Else
+            lblDetailTech.Text = row.Cells("AssignedTech").Value.ToString()
+        End If
+
+        lblDetailVisit.Text = row.Cells("VisitNumber").Value.ToString()
+
+        ' --- Time & Duration Details ---
+        lblDetailStart.Text = row.Cells("Start Time").Value.ToString()
+        lblDetailEnd.Text = row.Cells("End Time").Value.ToString()
+        lblDetailDuration.Text = row.Cells("Duration").Value.ToString()
+
+        ' Handle empty strings
+        If lblDetailStart.Text = "" Then lblDetailStart.Text = "---"
+        If lblDetailEnd.Text = "" Then lblDetailEnd.Text = "---"
+        If lblDetailDuration.Text = "" Then lblDetailDuration.Text = "---"
+    End Sub
+
     Private Sub dgvDailyJobs_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailyJobs.CellClick
         If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = dgvDailyJobs.Rows(e.RowIndex)
-
-            _selectedJobID = Convert.ToInt32(row.Cells("JobID").Value)
-
-            lblDetailClient.Text = row.Cells("ClientName").Value.ToString()
-            lblDetailAddress.Text = row.Cells("Address").Value.ToString()
-
-            ' Now shows "General Pest Control" even for Inspections
-            If IsDBNull(row.Cells("ServiceName").Value) Then
-                lblDetailService.Text = "Not Specified"
-            Else
-                lblDetailService.Text = row.Cells("ServiceName").Value.ToString()
-            End If
-
-            If IsDBNull(row.Cells("AssignedTech").Value) Then
-                lblDetailTech.Text = "Unassigned"
-            Else
-                lblDetailTech.Text = row.Cells("AssignedTech").Value.ToString()
-            End If
-
-            lblDetailVisit.Text = row.Cells("VisitNumber").Value.ToString()
+            PopulateJobDetails(dgvDailyJobs.Rows(e.RowIndex))
         End If
     End Sub
 
@@ -314,6 +373,11 @@ Public Class newUcDashboard
         lblDetailService.Text = "---"
         lblDetailTech.Text = "---"
         lblDetailVisit.Text = "---"
+
+        lblDetailStart.Text = "---"
+        lblDetailEnd.Text = "---"
+        lblDetailDuration.Text = "---"
+
         _selectedJobID = 0
     End Sub
 
@@ -335,14 +399,10 @@ Public Class newUcDashboard
         Dim clientName As String = selectedRow.Cells("ClientName").Value.ToString()
         Dim address As String = selectedRow.Cells("Address").Value.ToString()
 
-        ' Use the visible label instead of hidden column to ensure we get the data
         Dim serviceName As String = lblDetailService.Text
 
         Dim visitDate As Date = dtpViewDate.Value
         Dim jobType As String = selectedRow.Cells("JobType").Value.ToString()
-
-        ' We don't have ServiceID directly in the grid for Inspections easily, 
-        ' but that's okay, mobile only strictly needs the Name for display.
         Dim serviceID As Integer = 0
 
         btnAssignJob.Enabled = False
@@ -352,6 +412,7 @@ Public Class newUcDashboard
             Using conn As New MySqlConnection(connString)
                 conn.Open()
                 Dim sql As String = "UPDATE tbl_joborders SET TechnicianID = @tid, Status = 'Assigned' WHERE JobID = @jid"
+
                 Dim cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@tid", techID)
                 cmd.Parameters.AddWithValue("@jid", _selectedJobID)
@@ -375,7 +436,17 @@ Public Class newUcDashboard
         End Try
     End Sub
 
-    ' --- EMPTY HANDLERS ---
+    ' --- BORDER DRAWING LOGIC ---
+    Private Sub dgvDailyJobs_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles dgvDailyJobs.RowPostPaint
+        If dgvDailyJobs.Rows(e.RowIndex).Selected Then
+            Using borderPen As New Pen(Color.Red, 2)
+                Dim rowBounds As Rectangle = e.RowBounds
+                Dim rect As New Rectangle(rowBounds.Left, rowBounds.Top, rowBounds.Width - 1, rowBounds.Height - 1)
+                e.Graphics.DrawRectangle(borderPen, rect)
+            End Using
+        End If
+    End Sub
+
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
     End Sub
     Private Sub SplitContainer1_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel2.Paint
@@ -395,5 +466,9 @@ Public Class newUcDashboard
     Private Sub lblDetailClient_Click(sender As Object, e As EventArgs) Handles lblDetailClient.Click
     End Sub
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+    End Sub
+    Private Sub Label12_Click(sender As Object, e As EventArgs) Handles lblDetailStart.Click
+    End Sub
+    Private Sub dgvDailyJobs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailyJobs.CellContentClick
     End Sub
 End Class

@@ -1,42 +1,34 @@
 ﻿Imports MySql.Data.MySqlClient
 
-Public Class newUcInquiryManager
+' ==========================================
+' FORM SETUP INSTRUCTIONS:
+' 1. Create a new Form named "frmInquiryPopup"
+' 2. Add Label: lblSelectedClient (to show who we are scheduling for)
+' 3. Add ComboBoxes: cmbInspector, cmbService
+' 4. Add DatePicker: dtpInspectDate
+' 5. Add Button: btnDispatch
+' 6. NOTE: This form assumes the Client is PASSED to it, so no search grid is needed here.
+' ==========================================
+
+Public Class frmInquiryPopup
+
+    ' Properties to accept data from the main manager
+    Public Property TargetClientID As Integer = 0
+    Public Property TargetClientName As String = ""
+    Public Property TargetClientAddress As String = ""
 
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
-    Private _selectedClientID As Integer = 0
-    Private _selectedClientName As String = ""
-    Private _selectedClientAddress As String = ""
 
-    Private Sub newUcInquiryManager_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmInquiryPopup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Initialize Firebase (ensure your project has the FirebaseManager module)
         FirebaseManager.Initialize()
-        LoadClients("")
+
         LoadInspectors()
         LoadServices()
-        FirebaseManager.ListenForJobUpdates()
-    End Sub
 
-    ' === LOAD CLIENTS ===
-    Private Sub LoadClients(search As String)
-        Using conn As New MySqlConnection(connString)
-            conn.Open()
-            Dim sql As String = "SELECT ClientID, ClientName, " &
-                                "CONCAT_WS(', ', StreetAddress, Barangay, City) AS FullAddress, " &
-                                "ContactNumber FROM tbl_clients"
-
-            If search <> "" Then
-                sql &= " WHERE ClientName LIKE @s OR City LIKE @s OR Barangay LIKE @s"
-            End If
-
-            Dim cmd As New MySqlCommand(sql, conn)
-            If search <> "" Then cmd.Parameters.AddWithValue("@s", "%" & search & "%")
-
-            Dim da As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable()
-            da.Fill(dt)
-
-            dgvClients.DataSource = dt
-            If dgvClients.Columns("ClientID") IsNot Nothing Then dgvClients.Columns("ClientID").Visible = False
-        End Using
+        ' Display the client we are working on
+        lblSelectedClient.Text = "Scheduling for: " & TargetClientName & vbCrLf & TargetClientAddress
+        lblSelectedClient.ForeColor = Color.DarkBlue
     End Sub
 
     ' === LOAD INSPECTORS ===
@@ -67,27 +59,14 @@ Public Class newUcInquiryManager
         End Using
     End Sub
 
-    ' === GRID CLICK ===
-    Private Sub dgvClients_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClients.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = dgvClients.Rows(e.RowIndex)
-            _selectedClientID = Convert.ToInt32(row.Cells("ClientID").Value)
-            _selectedClientName = row.Cells("ClientName").Value.ToString()
-            _selectedClientAddress = row.Cells("FullAddress").Value.ToString()
-
-            lblClientName.Text = _selectedClientName
-            lblClientName.ForeColor = Color.DarkGreen
-        End If
-    End Sub
-
-    ' === DISPATCH BUTTON (Updated to Save ServiceID) ===
-    Private Async Sub btnDispatch_Click(sender As Object, e As EventArgs)
-        If _selectedClientID = 0 Or cmbInspector.SelectedIndex = -1 Then
-            MessageBox.Show("Please select client and inspector.")
+    ' === DISPATCH LOGIC (Migrated from your Inquiry UC) ===
+    Private Async Sub btnDispatch_Click(sender As Object, e As EventArgs) Handles btnDispatch.Click
+        If TargetClientID = 0 Then
+            MessageBox.Show("No client selected.")
             Exit Sub
         End If
-        If cmbService.SelectedIndex = -1 Then
-            MessageBox.Show("Please select a Target Service Package.")
+        If cmbInspector.SelectedIndex = -1 Or cmbService.SelectedIndex = -1 Then
+            MessageBox.Show("Please select an Inspector and a Service.")
             Exit Sub
         End If
 
@@ -103,21 +82,21 @@ Public Class newUcInquiryManager
         Dim visitTime As TimeSpan = dtpInspectDate.Value.TimeOfDay
 
         btnDispatch.Enabled = False
-        btnDispatch.Text = "Scheduling..."
+        btnDispatch.Text = "Sending..."
 
         Using conn As New MySqlConnection(connString)
             conn.Open()
             Dim trans As MySqlTransaction = conn.BeginTransaction()
 
             Try
-                ' UPDATED SQL: Now inserts @svcID into the new ServiceID column
+                ' Create Job Order
                 Dim sql As String = "INSERT INTO tbl_joborders " &
                                     "(ContractID, ClientID_TempLink, TechnicianID, ServiceID, VisitNumber, ScheduledDate, StartTime, Status, JobType) " &
                                     "VALUES (NULL, @clientID, @techID, @svcID, 1, @date, @time, 'Assigned', 'Inspection');" &
                                     "SELECT LAST_INSERT_ID();"
 
                 Dim cmd As New MySqlCommand(sql, conn, trans)
-                cmd.Parameters.AddWithValue("@clientID", _selectedClientID)
+                cmd.Parameters.AddWithValue("@clientID", TargetClientID)
                 cmd.Parameters.AddWithValue("@techID", inspectorID)
                 cmd.Parameters.AddWithValue("@svcID", serviceID)
                 cmd.Parameters.AddWithValue("@date", visitDate)
@@ -125,32 +104,22 @@ Public Class newUcInquiryManager
 
                 Dim newJobID As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
+                ' Firebase Dispatch
                 If inspectorFirebaseUID <> "" Then
-                    Await FirebaseManager.DispatchJobToMobile(newJobID, _selectedClientName, _selectedClientAddress, serviceName, visitDate, inspectorFirebaseUID, "Inspection", serviceID)
+                    Await FirebaseManager.DispatchJobToMobile(newJobID, TargetClientName, TargetClientAddress, serviceName, visitDate, inspectorFirebaseUID, "Inspection", serviceID)
                 End If
 
                 trans.Commit()
-                MessageBox.Show("Ocular Inspection Scheduled!")
-
-                lblClientName.Text = "---"
-                _selectedClientID = 0
-                btnDispatch.Enabled = True
-                btnDispatch.Text = "SCHEDULE OCULAR"
+                MessageBox.Show("Success! Inspection Scheduled.")
+                Me.DialogResult = DialogResult.OK
+                Me.Close()
 
             Catch ex As Exception
                 trans.Rollback()
                 MessageBox.Show("Error: " & ex.Message)
                 btnDispatch.Enabled = True
-                btnDispatch.Text = "SCHEDULE OCULAR"
+                btnDispatch.Text = "Confirm Dispatch"
             End Try
         End Using
-    End Sub
-
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        LoadClients(txtSearch.Text)
-    End Sub
-
-    Private Sub dgvClients_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClients.CellContentClick
-
     End Sub
 End Class
