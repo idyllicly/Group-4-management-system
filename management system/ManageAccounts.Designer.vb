@@ -42,9 +42,10 @@ Partial Class ManageAccounts
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.MediumPurple
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(368, 114)
+        Me.Panel1.Location = New System.Drawing.Point(414, 142)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1164, 1156)
+        Me.Panel1.Size = New System.Drawing.Size(1310, 1445)
         Me.Panel1.TabIndex = 17
         '
         'Panel2
@@ -57,9 +58,10 @@ Partial Class ManageAccounts
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.AccCard1)
         Me.Panel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Panel2.Location = New System.Drawing.Point(40, 92)
+        Me.Panel2.Location = New System.Drawing.Point(45, 115)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1165, 816)
+        Me.Panel2.Size = New System.Drawing.Size(1311, 1020)
         Me.Panel2.TabIndex = 18
         '
         'Button1
@@ -67,19 +69,20 @@ Partial Class ManageAccounts
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.White
         Me.Button1.Image = Global.management_system.My.Resources.Resources.buton123456
-        Me.Button1.Location = New System.Drawing.Point(1102, 755)
+        Me.Button1.Location = New System.Drawing.Point(1240, 944)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(51, 45)
+        Me.Button1.Size = New System.Drawing.Size(57, 56)
         Me.Button1.TabIndex = 0
         Me.Button1.UseVisualStyleBackColor = False
         '
         'AccCard1
         '
         Me.AccCard1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.AccCard1.Location = New System.Drawing.Point(58, 30)
-        Me.AccCard1.Margin = New System.Windows.Forms.Padding(4)
+        Me.AccCard1.Location = New System.Drawing.Point(65, 38)
+        Me.AccCard1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AccCard1.Name = "AccCard1"
-        Me.AccCard1.Size = New System.Drawing.Size(980, 260)
+        Me.AccCard1.Size = New System.Drawing.Size(1102, 324)
         Me.AccCard1.TabIndex = 18
         Me.AccCard1.UserID = 0
         Me.AccCard1.UserImage = Nothing
@@ -91,28 +94,29 @@ Partial Class ManageAccounts
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Location = New System.Drawing.Point(408, 114)
+        Me.Panel3.Location = New System.Drawing.Point(459, 142)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1107, 100)
+        Me.Panel3.Size = New System.Drawing.Size(1245, 124)
         Me.Panel3.TabIndex = 16
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(50, 36)
+        Me.Label1.Location = New System.Drawing.Point(56, 45)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(180, 36)
+        Me.Label1.Size = New System.Drawing.Size(213, 40)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Account List" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'SideNavControl1
         '
         Me.SideNavControl1.BackColor = System.Drawing.Color.White
-        Me.SideNavControl1.Location = New System.Drawing.Point(0, 114)
-        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.SideNavControl1.Location = New System.Drawing.Point(0, 142)
+        Me.SideNavControl1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.SideNavControl1.Name = "SideNavControl1"
-        Me.SideNavControl1.Size = New System.Drawing.Size(371, 987)
+        Me.SideNavControl1.Size = New System.Drawing.Size(417, 1234)
         Me.SideNavControl1.TabIndex = 34
         '
         'PageLabel1
@@ -120,20 +124,21 @@ Partial Class ManageAccounts
         Me.PageLabel1.BackColor = System.Drawing.Color.MediumPurple
         Me.PageLabel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PageLabel1.Location = New System.Drawing.Point(0, 0)
-        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PageLabel1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.PageLabel1.Name = "PageLabel1"
-        Me.PageLabel1.Size = New System.Drawing.Size(1515, 114)
+        Me.PageLabel1.Size = New System.Drawing.Size(1704, 142)
         Me.PageLabel1.TabIndex = 33
         '
         'ManageAccounts
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1515, 1055)
+        Me.ClientSize = New System.Drawing.Size(1704, 1050)
         Me.Controls.Add(Me.SideNavControl1)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PageLabel1)
         Me.Controls.Add(Me.Panel1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ManageAccounts"
         Me.Text = "ManageAccounts"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

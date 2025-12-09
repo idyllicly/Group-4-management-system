@@ -2,32 +2,62 @@
     Public Property DayDate As Date
     Public Event DayClicked(selectedDate As Date)
 
+    ' 1. IN THE "New()" SUB: Change the border style
     Public Sub New()
         InitializeComponent()
-        ' Hide the dot by default
-        lblDot.Visible = False
-
-        ' Correct way to make the label round (Circular Region)
-        Dim path As New System.Drawing.Drawing2D.GraphicsPath()
-        path.AddEllipse(0, 0, 10, 10) ' x, y, width, height (must match label size)
-
-        lblDot.Region = New System.Drawing.Region(path)
+        ' Remove the default black border if it's set in properties
+        Me.BackColor = Color.White
+        Me.Padding = New Padding(1) ' Creates a small gap for the background to show through as a border
     End Sub
 
-    Public Sub SetDay(d As Integer, fullDate As Date, hasJob As Boolean)
+    Public Sub ClearData()
+        lblDayNumber.Text = ""
+        If flpContent IsNot Nothing Then flpContent.Controls.Clear()
+        Me.BackColor = Color.White
+    End Sub
+
+    Public Sub AddJobSummary(count As Integer, jobType As String)
+        If flpContent Is Nothing Then Return
+
+        Dim lbl As New Label()
+        lbl.Text = $"{count} {jobType}"
+        lbl.AutoSize = False
+        lbl.Width = Me.Width - 4
+        lbl.Height = 16
+        lbl.Font = New Font("Segoe UI", 7, FontStyle.Regular)
+        lbl.TextAlign = ContentAlignment.MiddleLeft
+        lbl.Margin = New Padding(1)
+        lbl.Cursor = Cursors.Hand
+
+        ' Color coding
+        ' 2. IN "AddJobSummary": Update Pill Colors to match the Blue Theme
+        Select Case jobType.ToLower()
+            Case "service"
+                ' Soft Blue Pill
+                lbl.BackColor = Color.FromArgb(219, 234, 254)
+                lbl.ForeColor = Color.FromArgb(30, 64, 175)
+            Case "inspection"
+                ' Soft Gold Pill (Complementary to Blue)
+                lbl.BackColor = Color.FromArgb(254, 249, 195)
+                lbl.ForeColor = Color.FromArgb(161, 98, 7)
+            Case Else
+                ' Soft Gray
+                lbl.BackColor = Color.FromArgb(241, 245, 249)
+                lbl.ForeColor = Color.FromArgb(71, 85, 105)
+        End Select
+
+        ' FIX: Ensure the label triggers the click event too
+        AddHandler lbl.Click, AddressOf Element_Click
+        flpContent.Controls.Add(lbl)
+    End Sub
+
+    Public Sub SetDay(d As Integer, fullDate As Date)
         lblDayNumber.Text = d.ToString()
         DayDate = fullDate
-
-        If hasJob Then
-            lblDot.Visible = True
-            lblDot.BackColor = Color.Orange ' Change color based on job type if you want
-        Else
-            lblDot.Visible = False
-        End If
     End Sub
 
-    ' Forward clicks to the main dashboard
-    Private Sub ucCalendarDay_Click(sender As Object, e As EventArgs) Handles MyBase.Click, lblDayNumber.Click, lblDot.Click
+    ' FIX: Handle clicks from ALL sources (Base, Label, Panel)
+    Private Sub Element_Click(sender As Object, e As EventArgs) Handles MyBase.Click, lblDayNumber.Click
         RaiseEvent DayClicked(DayDate)
     End Sub
 End Class

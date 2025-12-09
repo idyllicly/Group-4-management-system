@@ -23,7 +23,7 @@ Partial Class ucCalendarDay
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.lblDayNumber = New System.Windows.Forms.Label()
-        Me.lblDot = New System.Windows.Forms.Label()
+        Me.flpContent = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'lblDayNumber
@@ -31,17 +31,20 @@ Partial Class ucCalendarDay
         Me.lblDayNumber.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblDayNumber.Location = New System.Drawing.Point(0, 0)
         Me.lblDayNumber.Name = "lblDayNumber"
-        Me.lblDayNumber.Size = New System.Drawing.Size(78, 23)
+        Me.lblDayNumber.Size = New System.Drawing.Size(192, 23)
         Me.lblDayNumber.TabIndex = 0
         Me.lblDayNumber.Text = "day"
         '
-        'lblDot
+        'flpContent
         '
-        Me.lblDot.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblDot.Location = New System.Drawing.Point(18, 32)
-        Me.lblDot.Name = "lblDot"
-        Me.lblDot.Size = New System.Drawing.Size(10, 10)
-        Me.lblDot.TabIndex = 1
+        Me.flpContent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpContent.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.flpContent.Location = New System.Drawing.Point(0, 23)
+        Me.flpContent.Name = "flpContent"
+        Me.flpContent.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
+        Me.flpContent.Size = New System.Drawing.Size(192, 100)
+        Me.flpContent.TabIndex = 1
+        Me.flpContent.WrapContents = False
         '
         'ucCalendarDay
         '
@@ -49,14 +52,16 @@ Partial Class ucCalendarDay
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Controls.Add(Me.lblDot)
+        Me.Controls.Add(Me.flpContent)
         Me.Controls.Add(Me.lblDayNumber)
+        Me.Margin = New System.Windows.Forms.Padding(0)
         Me.Name = "ucCalendarDay"
-        Me.Size = New System.Drawing.Size(78, 58)
+        Me.Padding = New System.Windows.Forms.Padding(0, 0, 10, 0)
+        Me.Size = New System.Drawing.Size(202, 123)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents lblDayNumber As Label
-    Friend WithEvents lblDot As Label
+    Friend WithEvents flpContent As FlowLayoutPanel
 End Class

@@ -27,8 +27,7 @@ Public Class log_in
             Return
         End If
 
-        ' 2. CHECK LOCK STATUS (Before checking Database)
-        ' If the LockoutEnd time is in the future, the user is blocked.
+        ' 2. CHECK LOCK STATUS
         If My.Settings.LockoutEnd > DateTime.Now Then
             Dim timeLeft As TimeSpan = My.Settings.LockoutEnd - DateTime.Now
 
@@ -42,27 +41,31 @@ Public Class log_in
             End If
 
             MessageBox.Show(msg, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return ' STOP HERE. Do not allow login attempt.
+            Return
         End If
 
         ' 3. DATABASE LOGIN LOGIC
-        Dim query As String = "SELECT UserID, Role, FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
+        ' --- FIX IS HERE ---
+        ' We use CONCAT_WS to join FirstName and LastName with a space, and call it 'FullName'
+        ' This allows the rest of your code (reader("FullName")) to work without changes.
+        Dim query As String = "SELECT UserID, Role, CONCAT_WS(' ', FirstName, LastName) AS FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
 
         Try
             Using con As New MySqlConnection(MyConnectionString)
                 con.Open()
+
                 Using cmd As New MySqlCommand(query, con)
                     cmd.Parameters.AddWithValue("@user", username)
                     cmd.Parameters.AddWithValue("@pass", password)
 
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
+
                         If reader.Read() Then
                             ' --- LOGIN SUCCESS ---
 
-                            ' A. RESET THE LOCKS (User proved they are valid)
-                            ' This ensures next time they fail, it starts at count 1 again.
+                            ' A. RESET THE LOCKS
                             My.Settings.FailCount = 0
-                            My.Settings.LockoutEnd = DateTime.Now.AddYears(-1) ' Set timer to the past
+                            My.Settings.LockoutEnd = DateTime.Now.AddYears(-1)
                             My.Settings.Save()
 
                             ' B. Store Session Data
@@ -71,12 +74,17 @@ Public Class log_in
                             Dim fullName As String = reader("FullName").ToString()
 
                             ' C. Routing
+                            ' Note: Based on your database data, Roles are "Super Admin", "Admin", and "Technician".
+                            ' Your current code blocks Technicians. If this is intentional, keep it.
                             If CurrentUserRole = "Super Admin" Then
                                 MessageBox.Show("Welcome back, Super Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
                             ElseIf CurrentUserRole = "Admin" Then
                                 MessageBox.Show("Welcome Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
                             Else
-                                MessageBox.Show("Role not recognized.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                ' Technicians will fall here
+                                MessageBox.Show("Role not recognized or authorized for desktop access.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                                 Return
                             End If
 

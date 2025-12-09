@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class newUcQuoteManager
-
+    Public Property PresetClientID As Integer = 0
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
     Private _selectedQuoteID As Integer = 0
 
@@ -98,7 +98,9 @@ Public Class newUcQuoteManager
                                     "LEFT JOIN tbl_clients C ON Q.ClientID = C.ClientID " &
                                     "LEFT JOIN tbl_services S ON Q.ProposedServiceID = S.ServiceID " &
                                     "WHERE 1=1 " ' Dummy clause to make appending easier
-
+                If PresetClientID > 0 Then
+                    sql &= " AND Q.ClientID = @presetClientID "
+                End If
                 ' --- FILTER 1: SERVICE ---
                 If cboServiceFilter.SelectedValue IsNot Nothing AndAlso IsNumeric(cboServiceFilter.SelectedValue) Then
                     If Convert.ToInt32(cboServiceFilter.SelectedValue) > 0 Then
@@ -126,6 +128,11 @@ Public Class newUcQuoteManager
                 End Select
 
                 Dim cmd As New MySqlCommand(sql, conn)
+
+
+                If PresetClientID > 0 Then
+                    cmd.Parameters.AddWithValue("@presetClientID", PresetClientID)
+                End If
 
                 ' --- PARAMETERS ---
                 ' Service

@@ -22,7 +22,7 @@ Partial Class newUcAccountManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.cmbFilterRole = New System.Windows.Forms.ComboBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -85,14 +85,14 @@ Partial Class newUcAccountManager
         Me.dgvAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAccounts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvAccounts.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvAccounts.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvAccounts.Location = New System.Drawing.Point(65, 555)
         Me.dgvAccounts.Name = "dgvAccounts"
         Me.dgvAccounts.ReadOnly = True
@@ -124,6 +124,7 @@ Partial Class newUcAccountManager
         Me.grpDetails.Controls.Add(Me.Label2)
         Me.grpDetails.Controls.Add(Me.txtLastName)
         Me.grpDetails.Controls.Add(Me.Label1)
+        Me.grpDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpDetails.Location = New System.Drawing.Point(65, 155)
         Me.grpDetails.Name = "grpDetails"
         Me.grpDetails.Size = New System.Drawing.Size(969, 365)
@@ -134,6 +135,7 @@ Partial Class newUcAccountManager
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(78, 164)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(101, 20)
@@ -150,6 +152,7 @@ Partial Class newUcAccountManager
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(78, 119)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(86, 20)
@@ -166,6 +169,7 @@ Partial Class newUcAccountManager
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(78, 75)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 20)

@@ -4,6 +4,7 @@ Public Class newUcTechMonitor
 
     ' CONNECTION STRING
     Dim connString As String = "server=localhost;user id=root;password=;database=db_rrcms;"
+
     ' Variable to hold the ID of the currently selected technician (UserID)
     Private _currentTechID As Integer = 0
 
@@ -19,8 +20,11 @@ Public Class newUcTechMonitor
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' UPDATED SQL: Query tbl_users where Role is Technician
-                Dim sql As String = "SELECT UserID, FullName FROM tbl_users WHERE Role = 'Technician'"
+
+                ' FIX: Database uses separate FirstName/LastName columns, not 'FullName'.
+                ' We Concatenate them here for the ListBox display.
+                Dim sql As String = "SELECT UserID, CONCAT(FirstName, ' ', LastName) AS FullName FROM tbl_users WHERE Role = 'Technician' AND Status = 'Active'"
+
                 Dim cmd As New MySqlCommand(sql, conn)
                 Dim da As New MySqlDataAdapter(cmd)
                 Dim dt As New DataTable()
@@ -29,7 +33,7 @@ Public Class newUcTechMonitor
                 ' Bind to the ListBox
                 lstTechnicians.DataSource = dt
                 lstTechnicians.DisplayMember = "FullName"
-                lstTechnicians.ValueMember = "UserID" ' This is now the UserID
+                lstTechnicians.ValueMember = "UserID"
 
                 ' Clear selection initially
                 lstTechnicians.ClearSelected()
@@ -46,7 +50,7 @@ Public Class newUcTechMonitor
         If lstTechnicians.SelectedIndex <> -1 Then
             Try
                 Dim drv As DataRowView = CType(lstTechnicians.SelectedItem, DataRowView)
-                ' Get UserID instead of TechnicianID
+                ' Get UserID 
                 _currentTechID = Convert.ToInt32(drv("UserID"))
 
                 ' Load Profile
@@ -55,7 +59,7 @@ Public Class newUcTechMonitor
                 ' Load Active Assignments
                 LoadTechAssignments(_currentTechID)
 
-                ' Load History (Default to ALL TIME when switching users)
+                ' Load History (Default to ALL TIME)
                 LoadTechHistory(_currentTechID)
 
                 ' Reset the DatePickers visually
@@ -74,14 +78,14 @@ Public Class newUcTechMonitor
     Private Sub LoadTechProfile(techID As Integer)
         Using conn As New MySqlConnection(connString)
             conn.Open()
-            ' 1. Get Basic Info from tbl_users
-            Dim sqlInfo As String = "SELECT FullName, ContactNo, Status FROM tbl_users WHERE UserID = @id"
+
+            ' 1. Get Basic Info (FIX: Concatenate Name)
+            Dim sqlInfo As String = "SELECT CONCAT(FirstName, ' ', LastName) AS FullName, ContactNo, Status FROM tbl_users WHERE UserID = @id"
             Dim cmd As New MySqlCommand(sqlInfo, conn)
             cmd.Parameters.AddWithValue("@id", techID)
 
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.Read() Then
-                    ' UPDATED: Use FullName directly
                     lblTechName.Text = reader("FullName").ToString()
 
                     ' Handle Null ContactNo
@@ -102,8 +106,7 @@ Public Class newUcTechMonitor
                 End If
             End Using
 
-            ' 2. Get Performance Stats (Count of Pending vs Completed)
-            ' Note: tbl_JobOrders still uses 'TechnicianID' column, but it holds UserIDs now.
+            ' 2. Get Performance Stats (Pending vs Completed)
             Dim sqlStats As String = "SELECT " &
                                      "(SELECT COUNT(*) FROM tbl_joborders WHERE TechnicianID = @id AND Status IN ('Pending', 'Assigned')) AS PendingCount, " &
                                      "(SELECT COUNT(*) FROM tbl_joborders WHERE TechnicianID = @id AND Status = 'Completed') AS CompletedCount"
@@ -125,9 +128,7 @@ Public Class newUcTechMonitor
     ' ==========================================
     Private Sub LoadTechAssignments(techID As Integer)
         Using conn As New MySqlConnection(connString)
-            ' UPDATED SQL: 
-            ' 1. Concatenate Client Name
-            ' 2. Direct Join J.ClientID = C.ClientID
+            ' FIX: Concatenate Client Name and Address components
             Dim sql As String = "SELECT " &
                                 "   J.JobID, " &
                                 "   J.ScheduledDate, " &
@@ -142,6 +143,7 @@ Public Class newUcTechMonitor
 
             Dim cmd As New MySqlCommand(sql, conn)
             cmd.Parameters.AddWithValue("@id", techID)
+
             Dim da As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable()
             da.Fill(dt)
@@ -160,7 +162,7 @@ Public Class newUcTechMonitor
         Using conn As New MySqlConnection(connString)
             conn.Open()
 
-            ' UPDATED SQL: Concatenate Client Name
+            ' FIX: Concatenate Client Name
             Dim sql As String = "SELECT " &
                                 "   J.ScheduledDate, " &
                                 "   J.JobType, " &

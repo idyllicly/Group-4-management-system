@@ -1,95 +1,193 @@
-﻿Public Class newUcSideNav
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports System.Windows.Forms
 
-    ' This variable holds the reference to the main skeleton (Optional now, but good to keep)
+Public Class newUcSideNav
+
+    ' =========================================================
+    '                 1. SETUP & COLORS
+    ' =========================================================
     Private _mainForm As frm_Main
 
-    ' 1. The Constructor
+    ' --- TEAMMATE REQUEST: LIGHTER BACKGROUND ---
+    ' Old Dark Navy was: (17, 16, 29)
+    ' New Lighter Blue: (30, 40, 75) -> A professional mid-tone blue
+    Private Color_Background As Color = Color.FromArgb(30, 40, 75)
+
+    ' --- HOVER COLOR ---
+    ' Since background is lighter, we make hover even brighter (Cornflower/Royal Blue)
+    Private Color_Hover As Color = Color.FromArgb(60, 80, 150)
+
+    ' --- TEXT COLORS ---
+    Private Color_TextIdle As Color = Color.White
+    Private Color_TextHover As Color = Color.White
+
     Public Sub New(mainForm As frm_Main)
         InitializeComponent()
         _mainForm = mainForm
     End Sub
 
-    ' Default constructor (Required by Visual Studio)
     Public Sub New()
         InitializeComponent()
     End Sub
 
-    ' ==========================================
-    '      NAVIGATION BUTTON EVENTS
-    ' ==========================================
+    ' =========================================================
+    '                 2. AUTO-STYLE & ROUNDING
+    ' =========================================================
 
-    ' 1. DASHBOARD (Daily Operations)
-    Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
-        ' Replaces the center screen with the Dashboard
-        NavigateTo(New newUcDashboard(), "Daily Operations Dashboard")
-    End Sub
+    Private Sub newUcSideNav_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.BackColor = Color_Background
 
-    ' 2. CONTRACTS (New Contract Entry)
-    Private Sub btnNavContracts_Click(sender As Object, e As EventArgs) Handles btnNavContracts.Click
-        ' Replaces center screen with Contract Form
-        NavigateTo(New uc_NewContractEntry(), "Create New Contract")
-    End Sub
+        ' Find the TableLayoutPanel
+        Dim tlp As TableLayoutPanel = Me.Controls.OfType(Of TableLayoutPanel)().FirstOrDefault()
 
-    ' 3. CLIENTS / INQUIRY (Inquiry & Inspection Dispatch)
-    Private Sub btnNavClients_Click(sender As Object, e As EventArgs) Handles btnNavClients.Click
-        NavigateTo(New newUcClientManager(), "Client Management Database")
-    End Sub
+        If tlp IsNot Nothing Then
+            tlp.BackColor = Color_Background
 
-    ' 4. (Optional) Add other buttons here as we build more forms...
-    ' Private Sub btnNavBilling_Click... 
+            ' IMPORTANT: Remove gaps so the two rounded halves touch perfectly
+            tlp.Padding = New Padding(0)
 
+            For Each ctrl As Control In tlp.Controls
 
-    ' ==========================================
-    '      HELPER FUNCTION (Cleaner Code)
-    ' ==========================================
-    ' This sub handles the finding of the parent form safely.
-    ' You just call NavigateTo(NewPage, "Title")
-    Private Sub NavigateTo(ByVal page As UserControl, ByVal title As String)
-        ' 1. Try to find the Main Form dynamically
-        Dim parentForm As frm_Main = TryCast(Me.ParentForm, frm_Main)
+                ' --- BUTTONS (Right Side of the Pill) ---
+                If TypeOf ctrl Is Button Then
+                    Dim btn As Button = CType(ctrl, Button)
 
-        ' 2. Only navigate if we actually found it
-        If parentForm IsNot Nothing Then
-            parentForm.LoadPage(page, title)
-        Else
-            ' This helps you debug if something is wrong
-            MessageBox.Show("Error: The Side Navigation is not inside frm_Main, so it cannot switch pages.")
+                    ' Style
+                    btn.FlatStyle = FlatStyle.Flat
+                    btn.FlatAppearance.BorderSize = 0
+                    btn.FlatAppearance.MouseDownBackColor = Color_Hover
+                    btn.FlatAppearance.MouseOverBackColor = Color_Hover
+                    btn.BackColor = Color_Background
+                    btn.ForeColor = Color_TextIdle
+                    btn.TextAlign = ContentAlignment.MiddleLeft
+
+                    ' Events
+                    AddHandler btn.MouseEnter, AddressOf OnButtonEnter
+                    AddHandler btn.MouseLeave, AddressOf OnButtonLeave
+
+                    ' ROUNDING: Round ONLY the Right side
+                    ApplyRounding(btn, 25, False, True)
+                    AddHandler btn.SizeChanged, Sub(s, ev) ApplyRounding(CType(s, Control), 25, False, True)
+                End If
+
+                ' --- ICONS (Left Side of the Pill) ---
+                If TypeOf ctrl Is PictureBox Then
+                    Dim pic As PictureBox = CType(ctrl, PictureBox)
+                    pic.BackColor = Color_Background
+
+                    ' ROUNDING: Round ONLY the Left side
+                    ApplyRounding(pic, 25, True, False)
+                    AddHandler pic.SizeChanged, Sub(s, ev) ApplyRounding(CType(s, Control), 25, True, False)
+                End If
+            Next
         End If
     End Sub
 
-    Private Sub newUcSideNav_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Optional: Set default button styles here if needed
+    ' --- HELPER: CUT THE CORNERS ---
+    Private Sub ApplyRounding(c As Control, radius As Integer, roundLeft As Boolean, roundRight As Boolean)
+        Dim path As New GraphicsPath()
+        Dim l As Integer = 0
+        Dim t As Integer = 0
+        Dim w As Integer = c.Width
+        Dim h As Integer = c.Height
+        Dim r As Integer = radius
+
+        ' Top-Left Corner
+        If roundLeft Then path.AddArc(l, t, r, r, 180, 90) Else path.AddLine(l, t, l, t)
+
+        ' Top-Right Corner
+        If roundRight Then path.AddArc(w - r, t, r, r, 270, 90) Else path.AddLine(w, t, w, t)
+
+        ' Bottom-Right Corner
+        If roundRight Then path.AddArc(w - r, h - r, r, r, 0, 90) Else path.AddLine(w, h, w, h)
+
+        ' Bottom-Left Corner
+        If roundLeft Then path.AddArc(l, h - r, r, r, 90, 90) Else path.AddLine(l, h, l, h)
+
+        path.CloseFigure()
+        c.Region = New Region(path)
     End Sub
 
-    Private Sub btnNavBilling_Click(sender As Object, e As EventArgs) Handles btnNavBilling.Click
-        NavigateTo(New newUcBilling(), "Payments")
+    ' =========================================================
+    '                 3. HOVER LOGIC
+    ' =========================================================
+
+    Private Sub OnButtonEnter(sender As Object, e As EventArgs)
+        Dim btn As Button = CType(sender, Button)
+        btn.BackColor = Color_Hover
+        btn.ForeColor = Color_TextHover
+
+        Dim icon As PictureBox = FindSiblingIcon(btn)
+        If icon IsNot Nothing Then icon.BackColor = Color_Hover
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
+    Private Sub OnButtonLeave(sender As Object, e As EventArgs)
+        Dim btn As Button = CType(sender, Button)
+        btn.BackColor = Color_Background
+        btn.ForeColor = Color_TextIdle
 
+        Dim icon As PictureBox = FindSiblingIcon(btn)
+        If icon IsNot Nothing Then icon.BackColor = Color_Background
     End Sub
 
-    Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
-        NavigateTo(New newUcAccountManager(), "Accounts")
+    Private Function FindSiblingIcon(btn As Button) As PictureBox
+        Dim tlp As TableLayoutPanel = TryCast(btn.Parent, TableLayoutPanel)
+        If tlp IsNot Nothing Then
+            Dim row As Integer = tlp.GetRow(btn)
+            Dim ctrl As Control = tlp.GetControlFromPosition(0, row)
+            If TypeOf ctrl Is PictureBox Then Return CType(ctrl, PictureBox)
+        End If
+        Return Nothing
+    End Function
+
+    ' =========================================================
+    '                 4. NAVIGATION
+    ' =========================================================
+
+    Private Sub NavigateTo(ByVal page As UserControl, ByVal title As String)
+        If _mainForm Is Nothing Then _mainForm = TryCast(Me.ParentForm, frm_Main)
+        If _mainForm IsNot Nothing Then
+            _mainForm.LoadPage(page, title)
+        End If
+    End Sub
+
+    ' --- BUTTON CLICKS (Unchanged) ---
+
+    Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
+        NavigateTo(New newUcDashboard(), "Daily Operations Dashboard")
+    End Sub
+
+    Private Sub btnNavContracts_Click(sender As Object, e As EventArgs) Handles btnNavContracts.Click
+        NavigateTo(New uc_NewContractEntry(), "Create New Contract")
     End Sub
 
     Private Sub btnNavCalendar_Click(sender As Object, e As EventArgs) Handles btnNavCalendar.Click
         NavigateTo(New newUcQuoteManager(), "Oculars")
     End Sub
 
-    Private Sub btnNavTechs_Click(sender As Object, e As EventArgs) Handles btnNavTechs.Click
-        NavigateTo(New newUcTechMonitor(), "Technicians")
+    Private Sub btnNavClients_Click(sender As Object, e As EventArgs) Handles btnNavClients.Click
+        NavigateTo(New newUcClientManager(), "Client Management")
+    End Sub
+
+    Private Sub btnNavBilling_Click(sender As Object, e As EventArgs) Handles btnNavBilling.Click
+        NavigateTo(New newUcBilling(), "Payments & Billing")
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        NavigateTo(New newUcContractManager(), "Contracts")
+        NavigateTo(New newUcContractManager(), "Contracts Database")
+    End Sub
+
+    Private Sub btnNavTechs_Click(sender As Object, e As EventArgs) Handles btnNavTechs.Click
+        NavigateTo(New newUcTechMonitor(), "Technician Monitor")
+    End Sub
+
+    Private Sub btnManageAccounts_Click(sender As Object, e As EventArgs) Handles btnManageAccounts.Click
+        NavigateTo(New newUcAccountManager(), "Account Settings")
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        NavigateTo(New newUcDataSync(), "Contracts")
+        NavigateTo(New newUcDataSync(), "Data Management")
     End Sub
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
-    End Sub
 End Class

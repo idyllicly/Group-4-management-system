@@ -66,11 +66,9 @@ Public Class newUcAccountManager
     ' ==========================================
     Private Async Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        ' Validation: Check if new Name fields are filled
-        If txtLastName.Text = "" Or txtFirstName.Text = "" Or txtEmail.Text = "" Or txtPassword.Text = "" Or cmbRole.Text = "" Then
-            MessageBox.Show("Please fill in all required fields (Last Name, First Name, Email, Password, Role).")
-            Exit Sub
-        End If
+        ' --- NEW VALIDATION CALL ---
+        If ValidateInputs() = False Then Exit Sub
+        ' ---------------------------
 
         Dim role As String = cmbRole.Text
         Dim firebaseID As String = ""
@@ -82,15 +80,11 @@ Public Class newUcAccountManager
         Try
             ' === STEP A: FIREBASE (Only if Technician) ===
             If role = "Technician" Then
-                If Not txtEmail.Text.Contains("@") Then
-                    MessageBox.Show("Technicians require a valid email address.")
-                    btnSave.Enabled = True
-                    Exit Sub
-                End If
-
+                ' Email format is already checked in ValidateInputs, so we just proceed
                 btnSave.Text = "Syncing to Cloud..."
-                ' Create in Firebase using the combined name
-                firebaseID = Await FirebaseManager.CreateTechnicianAccount(txtEmail.Text, txtPassword.Text, fullNameForFirebase, "Technician")
+
+                ' Create in Firebase using the combined name [cite: 12]
+                firebaseID = Await FirebaseManager.CreateTechnicianAccount(txtEmail.Text.Trim(), txtPassword.Text, fullNameForFirebase, "Technician")
 
                 If firebaseID.StartsWith("Error") Then
                     MessageBox.Show(firebaseID)
@@ -99,21 +93,21 @@ Public Class newUcAccountManager
                 End If
             End If
 
-            ' === STEP B: DATABASE INSERT (Updated columns) ===
+            ' === STEP B: DATABASE INSERT ===
             Using conn As New MySqlConnection(connString)
                 conn.Open()
 
                 Dim sql As String = "INSERT INTO tbl_users (FirstName, MiddleName, LastName, Role, Username, Password, ContactNo, FirebaseUID, Status) " &
-                                    "VALUES (@fname, @mname, @lname, @role, @user, @pass, @phone, @uid, 'Active')"
+                                "VALUES (@fname, @mname, @lname, @role, @user, @pass, @phone, @uid, 'Active')"
 
                 Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text)
-                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text) ' Can be empty
-                cmd.Parameters.AddWithValue("@lname", txtLastName.Text)
+                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text.Trim())
+                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text.Trim())
+                cmd.Parameters.AddWithValue("@lname", txtLastName.Text.Trim())
                 cmd.Parameters.AddWithValue("@role", role)
-                cmd.Parameters.AddWithValue("@user", txtEmail.Text)
-                cmd.Parameters.AddWithValue("@pass", txtPassword.Text)
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
+                cmd.Parameters.AddWithValue("@user", txtEmail.Text.Trim())
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text) ' Password usually isn't trimmed to allow spaces if intended
+                cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim())
 
                 ' Handle Null UID for Admins
                 If firebaseID = "" Then
@@ -143,11 +137,15 @@ Public Class newUcAccountManager
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If _selectedID = 0 Then Exit Sub
 
+        ' --- NEW VALIDATION CALL ---
+        If ValidateInputs() = False Then Exit Sub
+        ' ---------------------------
+
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
 
-                ' UPDATED SQL: Update split name columns
+                ' SQL Update String [cite: 20]
                 Dim sql As String = "UPDATE tbl_users SET FirstName=@fname, MiddleName=@mname, LastName=@lname, Username=@user, ContactNo=@phone, Role=@role"
 
                 If txtPassword.Text <> "" Then
@@ -157,11 +155,11 @@ Public Class newUcAccountManager
                 sql &= " WHERE UserID=@id"
 
                 Dim cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text)
-                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text)
-                cmd.Parameters.AddWithValue("@lname", txtLastName.Text)
-                cmd.Parameters.AddWithValue("@user", txtEmail.Text)
-                cmd.Parameters.AddWithValue("@phone", txtPhone.Text)
+                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text.Trim())
+                cmd.Parameters.AddWithValue("@mname", txtMiddleName.Text.Trim())
+                cmd.Parameters.AddWithValue("@lname", txtLastName.Text.Trim())
+                cmd.Parameters.AddWithValue("@user", txtEmail.Text.Trim())
+                cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim())
                 cmd.Parameters.AddWithValue("@role", cmbRole.Text)
                 cmd.Parameters.AddWithValue("@id", _selectedID)
 
@@ -275,5 +273,52 @@ Public Class newUcAccountManager
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
     End Sub
+
+    ' ==========================================
+    ' HELPER: INPUT VALIDATION
+    ' ==========================================
+    Private Function ValidateInputs() As Boolean
+        ' 1. Basic Empty Field Check
+        If txtLastName.Text.Trim() = "" Or txtFirstName.Text.Trim() = "" Or txtEmail.Text.Trim() = "" Or cmbRole.Text.Trim() = "" Then
+            MessageBox.Show("Please fill in all required fields (Last Name, First Name, Email, Role).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+
+        ' 2. Email Validation (Regex)
+        Dim emailPattern As String = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        If Not System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text.Trim(), emailPattern) Then
+            MessageBox.Show("Invalid Email format. Please enter a valid email address (e.g., user@example.com).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtEmail.Focus()
+            Return False
+        End If
+
+        ' 3. Phone Number Validation
+        Dim phone As String = txtPhone.Text.Trim()
+
+        ' Check if it contains only numbers (if not empty)
+        If phone <> "" AndAlso Not IsNumeric(phone) Then
+            MessageBox.Show("Contact number must contain numbers only.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtPhone.Focus()
+            Return False
+        End If
+
+        ' Specific Rule: If it starts with "09", it MUST be 11 digits
+        If phone.StartsWith("09") Then
+            If phone.Length <> 11 Then
+                MessageBox.Show("Mobile numbers starting with '09' must be exactly 11 digits.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtPhone.Focus()
+                Return False
+            End If
+        End If
+        ' Note: If it does not start with 09 (e.g., Landline 028...), we ignore the length check as requested.
+
+        ' 4. Password Check (Only required for NEW accounts, optional for updates if left blank)
+        If _selectedID = 0 AndAlso txtPassword.Text.Trim() = "" Then
+            MessageBox.Show("Password is required for new accounts.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+
+        Return True
+    End Function
 
 End Class

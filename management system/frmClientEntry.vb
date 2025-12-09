@@ -20,22 +20,23 @@ Public Class frmClientEntry
         Using conn As New MySqlConnection(connString)
             Try
                 conn.Open()
-                ' We select * so we get all the new name columns
+                ' Using * to ensure we get all columns including the name fields
                 Dim cmd As New MySqlCommand("SELECT * FROM tbl_clients WHERE ClientID = @id", conn)
                 cmd.Parameters.AddWithValue("@id", ClientID)
                 Dim reader As MySqlDataReader = cmd.ExecuteReader()
 
                 If reader.Read() Then
-                    ' --- NEW NAME FIELDS ---
+                    ' --- CLIENT NAME FIELDS ---
                     txtClientFirst.Text = If(IsDBNull(reader("ClientFirstName")), "", reader("ClientFirstName").ToString())
                     txtClientMiddle.Text = If(IsDBNull(reader("ClientMiddleName")), "", reader("ClientMiddleName").ToString())
                     txtClientLast.Text = If(IsDBNull(reader("ClientLastName")), "", reader("ClientLastName").ToString())
 
+                    ' --- CONTACT PERSON FIELDS ---
                     txtContactFirst.Text = If(IsDBNull(reader("ContactFirstName")), "", reader("ContactFirstName").ToString())
                     txtContactMiddle.Text = If(IsDBNull(reader("ContactMiddleName")), "", reader("ContactMiddleName").ToString())
                     txtContactLast.Text = If(IsDBNull(reader("ContactLastName")), "", reader("ContactLastName").ToString())
 
-                    ' --- EXISTING FIELDS ---
+                    ' --- CONTACT INFO & ADDRESS ---
                     txtPhone.Text = If(IsDBNull(reader("ContactNumber")), "", reader("ContactNumber").ToString())
                     txtEmail.Text = If(IsDBNull(reader("Email")), "", reader("Email").ToString())
                     txtStreet.Text = If(IsDBNull(reader("StreetAddress")), "", reader("StreetAddress").ToString())
@@ -50,11 +51,9 @@ Public Class frmClientEntry
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        ' Validation: Ensure at least the Main Client Name and City are there
-        If txtClientFirst.Text = "" Or txtClientLast.Text = "" Or txtCity.Text = "" Then
-            MessageBox.Show("Client First Name, Last Name, and City are required.")
-            Exit Sub
-        End If
+        ' --- NEW VALIDATION CALL ---
+        If ValidateInputs() = False Then Exit Sub
+        ' ---------------------------
 
         Using conn As New MySqlConnection(connString)
             conn.Open()
@@ -63,22 +62,22 @@ Public Class frmClientEntry
             cmd.Connection = conn
 
             If ClientID = 0 Then
-                ' INSERT NEW RECORD (Using the 6 new name columns)
+                ' INSERT NEW RECORD
                 sql = "INSERT INTO tbl_clients " &
-                      "(ClientFirstName, ClientMiddleName, ClientLastName, " &
-                      "ContactFirstName, ContactMiddleName, ContactLastName, " &
-                      "ContactNumber, Email, StreetAddress, Barangay, City) " &
-                      "VALUES " &
-                      "(@cFirst, @cMid, @cLast, " &
-                      "(@conFirst, @conMid, @conLast, " &
-                      "@phone, @email, @street, @brgy, @city)"
+                  "(ClientFirstName, ClientMiddleName, ClientLastName, " &
+                  "ContactFirstName, ContactMiddleName, ContactLastName, " &
+                  "ContactNumber, Email, StreetAddress, Barangay, City) " &
+                  "VALUES " &
+                  "(@cFirst, @cMid, @cLast, " &
+                  "@conFirst, @conMid, @conLast, " &
+                  "@phone, @email, @street, @brgy, @city)"
             Else
                 ' UPDATE EXISTING RECORD
                 sql = "UPDATE tbl_clients SET " &
-                      "ClientFirstName=@cFirst, ClientMiddleName=@cMid, ClientLastName=@cLast, " &
-                      "ContactFirstName=@conFirst, ContactMiddleName=@conMid, ContactLastName=@conLast, " &
-                      "ContactNumber=@phone, Email=@email, StreetAddress=@street, Barangay=@brgy, City=@city " &
-                      "WHERE ClientID=@id"
+                  "ClientFirstName=@cFirst, ClientMiddleName=@cMid, ClientLastName=@cLast, " &
+                  "ContactFirstName=@conFirst, ContactMiddleName=@conMid, ContactLastName=@conLast, " &
+                  "ContactNumber=@phone, Email=@email, StreetAddress=@street, Barangay=@brgy, City=@city " &
+                  "WHERE ClientID=@id"
                 cmd.Parameters.AddWithValue("@id", ClientID)
             End If
 
@@ -117,5 +116,50 @@ Public Class frmClientEntry
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
+
+    ' ==========================================
+    ' HELPER: INPUT VALIDATION
+    ' ==========================================
+    Private Function ValidateInputs() As Boolean
+        ' 1. Check Required Fields
+        ' Added Phone to required fields since a client usually needs contact info
+        If txtClientFirst.Text.Trim() = "" Or txtClientLast.Text.Trim() = "" Or txtCity.Text.Trim() = "" Or txtPhone.Text.Trim() = "" Then
+            MessageBox.Show("Please fill in all required fields: First Name, Last Name, City, and Contact Number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+
+        ' 2. Email Validation (Regex)
+        ' We only check format if the email field is NOT empty
+        If txtEmail.Text.Trim() <> "" Then
+            Dim emailPattern As String = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            If Not System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text.Trim(), emailPattern) Then
+                MessageBox.Show("Invalid Email format. Please enter a valid email address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtEmail.Focus()
+                Return False
+            End If
+        End If
+
+        ' 3. Phone Number Validation
+        Dim phone As String = txtPhone.Text.Trim()
+
+        ' Check if it contains only numbers
+        If Not IsNumeric(phone) Then
+            MessageBox.Show("Contact number must contain numbers only.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtPhone.Focus()
+            Return False
+        End If
+
+        ' Specific Rule: If it starts with "09", it MUST be 11 digits
+        If phone.StartsWith("09") Then
+            If phone.Length <> 11 Then
+                MessageBox.Show("Mobile numbers starting with '09' must be exactly 11 digits.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtPhone.Focus()
+                Return False
+            End If
+        End If
+        ' If it's a landline (doesn't start with 09), we ignore the length check.
+
+        Return True
+    End Function
 
 End Class

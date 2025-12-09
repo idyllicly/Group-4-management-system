@@ -70,7 +70,7 @@ Partial Class newUcPageHeader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.DarkBlue
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.Controls.Add(Me.lblBadge)
         Me.Controls.Add(Me.btnBell)
         Me.Controls.Add(Me.lblPageTitle)

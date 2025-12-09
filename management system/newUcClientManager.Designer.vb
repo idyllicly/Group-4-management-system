@@ -30,15 +30,23 @@ Partial Class newUcClientManager
         Me.btnEditClient = New System.Windows.Forms.Button()
         Me.btnAddClient = New System.Windows.Forms.Button()
         Me.pnlAllInfo = New System.Windows.Forms.GroupBox()
-        Me.lblRecentActivity = New System.Windows.Forms.Label()
-        Me.lblStats = New System.Windows.Forms.Label()
-        Me.lblEmail = New System.Windows.Forms.Label()
-        Me.lblContactInfo = New System.Windows.Forms.Label()
-        Me.lblFullAddress = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.lblFullName = New System.Windows.Forms.Label()
+        Me.lblFullAddress = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblContactInfo = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblStats = New System.Windows.Forms.Label()
+        Me.lblRecentActivity = New System.Windows.Forms.Label()
         Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.btnGoContracts = New System.Windows.Forms.Button()
+        Me.btnGoBilling = New System.Windows.Forms.Button()
+        Me.btnGoOculars = New System.Windows.Forms.Button()
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlAllInfo.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -53,7 +61,7 @@ Partial Class newUcClientManager
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(62, 91)
+        Me.txtSearch.Location = New System.Drawing.Point(62, 112)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(217, 26)
         Me.txtSearch.TabIndex = 1
@@ -62,7 +70,8 @@ Partial Class newUcClientManager
         'dgvClientList
         '
         Me.dgvClientList.AllowUserToAddRows = False
-        Me.dgvClientList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.dgvClientList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvClientList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -81,30 +90,33 @@ Partial Class newUcClientManager
         Me.dgvClientList.RowHeadersWidth = 62
         Me.dgvClientList.RowTemplate.Height = 28
         Me.dgvClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvClientList.Size = New System.Drawing.Size(1030, 251)
+        Me.dgvClientList.Size = New System.Drawing.Size(1030, 445)
         Me.dgvClientList.TabIndex = 2
         '
         'btnCreateInquiry
         '
-        Me.btnCreateInquiry.Location = New System.Drawing.Point(919, 646)
+        Me.btnCreateInquiry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCreateInquiry.Location = New System.Drawing.Point(500, 624)
         Me.btnCreateInquiry.Name = "btnCreateInquiry"
-        Me.btnCreateInquiry.Size = New System.Drawing.Size(132, 51)
+        Me.btnCreateInquiry.Size = New System.Drawing.Size(167, 43)
         Me.btnCreateInquiry.TabIndex = 10
         Me.btnCreateInquiry.Text = "NEW INQUIRY"
         Me.btnCreateInquiry.UseVisualStyleBackColor = True
         '
         'btnEditClient
         '
-        Me.btnEditClient.Location = New System.Drawing.Point(919, 570)
+        Me.btnEditClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEditClient.Location = New System.Drawing.Point(500, 680)
         Me.btnEditClient.Name = "btnEditClient"
-        Me.btnEditClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnEditClient.Size = New System.Drawing.Size(167, 43)
         Me.btnEditClient.TabIndex = 9
         Me.btnEditClient.Text = "EDIT"
         Me.btnEditClient.UseVisualStyleBackColor = True
         '
         'btnAddClient
         '
-        Me.btnAddClient.Location = New System.Drawing.Point(919, 498)
+        Me.btnAddClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddClient.Location = New System.Drawing.Point(960, 68)
         Me.btnAddClient.Name = "btnAddClient"
         Me.btnAddClient.Size = New System.Drawing.Size(132, 72)
         Me.btnAddClient.TabIndex = 8
@@ -113,86 +125,170 @@ Partial Class newUcClientManager
         '
         'pnlAllInfo
         '
-        Me.pnlAllInfo.Controls.Add(Me.lblRecentActivity)
-        Me.pnlAllInfo.Controls.Add(Me.lblStats)
-        Me.pnlAllInfo.Controls.Add(Me.lblEmail)
-        Me.pnlAllInfo.Controls.Add(Me.lblContactInfo)
-        Me.pnlAllInfo.Controls.Add(Me.lblFullAddress)
-        Me.pnlAllInfo.Controls.Add(Me.lblFullName)
-        Me.pnlAllInfo.Location = New System.Drawing.Point(82, 480)
+        Me.pnlAllInfo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlAllInfo.Controls.Add(Me.FlowLayoutPanel1)
+        Me.pnlAllInfo.Location = New System.Drawing.Point(62, 606)
         Me.pnlAllInfo.Name = "pnlAllInfo"
-        Me.pnlAllInfo.Size = New System.Drawing.Size(764, 229)
+        Me.pnlAllInfo.Size = New System.Drawing.Size(432, 136)
         Me.pnlAllInfo.TabIndex = 7
         Me.pnlAllInfo.TabStop = False
-        Me.pnlAllInfo.Text = "All info"
+        Me.pnlAllInfo.Text = "Client Profile"
         '
-        'lblRecentActivity
+        'FlowLayoutPanel1
         '
-        Me.lblRecentActivity.AutoSize = True
-        Me.lblRecentActivity.Location = New System.Drawing.Point(7, 130)
-        Me.lblRecentActivity.Name = "lblRecentActivity"
-        Me.lblRecentActivity.Size = New System.Drawing.Size(57, 20)
-        Me.lblRecentActivity.TabIndex = 5
-        Me.lblRecentActivity.Text = "Label7"
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label2)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblFullName)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblFullAddress)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label1)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblContactInfo)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblEmail)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label3)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblStats)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblRecentActivity)
+        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 22)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(426, 111)
+        Me.FlowLayoutPanel1.TabIndex = 0
         '
-        'lblStats
+        'Label2
         '
-        Me.lblStats.AutoSize = True
-        Me.lblStats.Location = New System.Drawing.Point(7, 110)
-        Me.lblStats.Name = "lblStats"
-        Me.lblStats.Size = New System.Drawing.Size(57, 20)
-        Me.lblStats.TabIndex = 4
-        Me.lblStats.Text = "Label6"
-        '
-        'lblEmail
-        '
-        Me.lblEmail.AutoSize = True
-        Me.lblEmail.Location = New System.Drawing.Point(7, 90)
-        Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(57, 20)
-        Me.lblEmail.TabIndex = 3
-        Me.lblEmail.Text = "Label5"
-        '
-        'lblContactInfo
-        '
-        Me.lblContactInfo.AutoSize = True
-        Me.lblContactInfo.Location = New System.Drawing.Point(7, 70)
-        Me.lblContactInfo.Name = "lblContactInfo"
-        Me.lblContactInfo.Size = New System.Drawing.Size(57, 20)
-        Me.lblContactInfo.TabIndex = 2
-        Me.lblContactInfo.Text = "Label4"
-        '
-        'lblFullAddress
-        '
-        Me.lblFullAddress.AutoSize = True
-        Me.lblFullAddress.Location = New System.Drawing.Point(7, 50)
-        Me.lblFullAddress.Name = "lblFullAddress"
-        Me.lblFullAddress.Size = New System.Drawing.Size(57, 20)
-        Me.lblFullAddress.TabIndex = 1
-        Me.lblFullAddress.Text = "Label3"
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(3, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(64, 20)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "NAME:"
         '
         'lblFullName
         '
         Me.lblFullName.AutoSize = True
-        Me.lblFullName.Location = New System.Drawing.Point(7, 26)
+        Me.lblFullName.Location = New System.Drawing.Point(0, 23)
+        Me.lblFullName.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
         Me.lblFullName.Name = "lblFullName"
-        Me.lblFullName.Size = New System.Drawing.Size(57, 20)
+        Me.lblFullName.Size = New System.Drawing.Size(78, 20)
         Me.lblFullName.TabIndex = 0
-        Me.lblFullName.Text = "Label2"
+        Me.lblFullName.Text = "Full name"
+        '
+        'lblFullAddress
+        '
+        Me.lblFullAddress.AutoSize = True
+        Me.lblFullAddress.Location = New System.Drawing.Point(0, 56)
+        Me.lblFullAddress.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
+        Me.lblFullAddress.Name = "lblFullAddress"
+        Me.lblFullAddress.Size = New System.Drawing.Size(68, 20)
+        Me.lblFullAddress.TabIndex = 1
+        Me.lblFullAddress.Text = "Address"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(3, 86)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(102, 20)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "CONTACTS"
+        '
+        'lblContactInfo
+        '
+        Me.lblContactInfo.AutoSize = True
+        Me.lblContactInfo.Location = New System.Drawing.Point(108, 3)
+        Me.lblContactInfo.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
+        Me.lblContactInfo.Name = "lblContactInfo"
+        Me.lblContactInfo.Size = New System.Drawing.Size(119, 20)
+        Me.lblContactInfo.TabIndex = 2
+        Me.lblContactInfo.Text = "Contact Person"
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.Location = New System.Drawing.Point(108, 36)
+        Me.lblEmail.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(137, 20)
+        Me.lblEmail.TabIndex = 3
+        Me.lblEmail.Text = "Email and number"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(111, 66)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(105, 20)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "----------------"
+        '
+        'lblStats
+        '
+        Me.lblStats.AutoSize = True
+        Me.lblStats.Location = New System.Drawing.Point(245, 3)
+        Me.lblStats.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
+        Me.lblStats.Name = "lblStats"
+        Me.lblStats.Size = New System.Drawing.Size(47, 20)
+        Me.lblStats.TabIndex = 4
+        Me.lblStats.Text = "Stats"
+        '
+        'lblRecentActivity
+        '
+        Me.lblRecentActivity.AutoSize = True
+        Me.lblRecentActivity.Location = New System.Drawing.Point(245, 36)
+        Me.lblRecentActivity.Margin = New System.Windows.Forms.Padding(0, 3, 0, 10)
+        Me.lblRecentActivity.Name = "lblRecentActivity"
+        Me.lblRecentActivity.Size = New System.Drawing.Size(71, 20)
+        Me.lblRecentActivity.TabIndex = 5
+        Me.lblRecentActivity.Text = "Activities"
         '
         'btnRefresh
         '
-        Me.btnRefresh.Location = New System.Drawing.Point(960, 108)
+        Me.btnRefresh.Location = New System.Drawing.Point(285, 110)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(132, 30)
         Me.btnRefresh.TabIndex = 11
         Me.btnRefresh.Text = "REFRESH"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
+        'btnGoContracts
+        '
+        Me.btnGoContracts.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnGoContracts.Location = New System.Drawing.Point(899, 683)
+        Me.btnGoContracts.Name = "btnGoContracts"
+        Me.btnGoContracts.Size = New System.Drawing.Size(167, 42)
+        Me.btnGoContracts.TabIndex = 12
+        Me.btnGoContracts.Text = "View Contract"
+        Me.btnGoContracts.UseVisualStyleBackColor = True
+        '
+        'btnGoBilling
+        '
+        Me.btnGoBilling.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnGoBilling.Location = New System.Drawing.Point(703, 624)
+        Me.btnGoBilling.Name = "btnGoBilling"
+        Me.btnGoBilling.Size = New System.Drawing.Size(167, 43)
+        Me.btnGoBilling.TabIndex = 13
+        Me.btnGoBilling.Text = "Go to Billing"
+        Me.btnGoBilling.UseVisualStyleBackColor = True
+        '
+        'btnGoOculars
+        '
+        Me.btnGoOculars.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnGoOculars.Location = New System.Drawing.Point(703, 680)
+        Me.btnGoOculars.Name = "btnGoOculars"
+        Me.btnGoOculars.Size = New System.Drawing.Size(167, 45)
+        Me.btnGoOculars.TabIndex = 14
+        Me.btnGoOculars.Text = "View Oculars/Quotes"
+        Me.btnGoOculars.UseVisualStyleBackColor = True
+        '
         'newUcClientManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.btnGoOculars)
+        Me.Controls.Add(Me.btnGoBilling)
+        Me.Controls.Add(Me.btnGoContracts)
         Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.btnCreateInquiry)
         Me.Controls.Add(Me.btnEditClient)
@@ -205,7 +301,8 @@ Partial Class newUcClientManager
         Me.Size = New System.Drawing.Size(1165, 766)
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlAllInfo.ResumeLayout(False)
-        Me.pnlAllInfo.PerformLayout()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -225,4 +322,11 @@ Partial Class newUcClientManager
     Friend WithEvents lblFullAddress As Label
     Friend WithEvents lblFullName As Label
     Friend WithEvents btnRefresh As Button
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents btnGoContracts As Button
+    Friend WithEvents btnGoBilling As Button
+    Friend WithEvents btnGoOculars As Button
 End Class

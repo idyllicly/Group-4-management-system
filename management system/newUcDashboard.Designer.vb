@@ -22,7 +22,7 @@ Partial Class newUcDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpViewDate = New System.Windows.Forms.DateTimePicker()
@@ -42,6 +42,12 @@ Partial Class newUcDashboard
         Me.flpCalendar2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpJobDetails = New System.Windows.Forms.GroupBox()
+        Me.lblDetailDuration = New System.Windows.Forms.Label()
+        Me.lblDetailEnd = New System.Windows.Forms.Label()
+        Me.lblDetailStart = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.lblDetailVisit = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblDetailTech = New System.Windows.Forms.Label()
@@ -52,12 +58,6 @@ Partial Class newUcDashboard
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblDetailClient = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.lblDetailStart = New System.Windows.Forms.Label()
-        Me.lblDetailEnd = New System.Windows.Forms.Label()
-        Me.lblDetailDuration = New System.Windows.Forms.Label()
         CType(Me.dgvDailyJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +76,7 @@ Partial Class newUcDashboard
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(14, 22)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(162, 25)
@@ -86,6 +87,7 @@ Partial Class newUcDashboard
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(19, 52)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(157, 20)
@@ -95,6 +97,11 @@ Partial Class newUcDashboard
         'dtpViewDate
         '
         Me.dtpViewDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dtpViewDate.CalendarForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.dtpViewDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.dtpViewDate.CalendarTitleBackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.dtpViewDate.CalendarTitleForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.dtpViewDate.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.dtpViewDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpViewDate.Location = New System.Drawing.Point(228, 46)
         Me.dtpViewDate.Name = "dtpViewDate"
@@ -103,11 +110,11 @@ Partial Class newUcDashboard
         '
         'btnRefresh
         '
-        Me.btnRefresh.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRefresh.Location = New System.Drawing.Point(521, 636)
+        Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.btnRefresh.Location = New System.Drawing.Point(333, 11)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(0, 29)
+        Me.btnRefresh.Size = New System.Drawing.Size(91, 29)
         Me.btnRefresh.TabIndex = 3
         Me.btnRefresh.Text = "Refresh List"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -121,14 +128,14 @@ Partial Class newUcDashboard
         Me.dgvDailyJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDailyJobs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvDailyJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvDailyJobs.EnableHeadersVisualStyles = False
         Me.dgvDailyJobs.Location = New System.Drawing.Point(19, 72)
         Me.dgvDailyJobs.Name = "dgvDailyJobs"
@@ -147,9 +154,10 @@ Partial Class newUcDashboard
         Me.GroupBox1.Controls.Add(Me.btnAssignJob)
         Me.GroupBox1.Controls.Add(Me.cmbTechnician)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Location = New System.Drawing.Point(31, 610)
+        Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.GroupBox1.Location = New System.Drawing.Point(19, 613)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(393, 149)
+        Me.GroupBox1.Size = New System.Drawing.Size(405, 129)
         Me.GroupBox1.TabIndex = 5
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Dispatch Job"
@@ -158,27 +166,33 @@ Partial Class newUcDashboard
         '
         Me.btnAssignJob.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAssignJob.Location = New System.Drawing.Point(17, 113)
+        Me.btnAssignJob.BackColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnAssignJob.FlatAppearance.BorderSize = 0
+        Me.btnAssignJob.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAssignJob.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAssignJob.ForeColor = System.Drawing.Color.White
+        Me.btnAssignJob.Location = New System.Drawing.Point(17, 79)
         Me.btnAssignJob.Name = "btnAssignJob"
-        Me.btnAssignJob.Size = New System.Drawing.Size(359, 39)
+        Me.btnAssignJob.Size = New System.Drawing.Size(371, 39)
         Me.btnAssignJob.TabIndex = 3
         Me.btnAssignJob.Text = "ASSIGN TECH"
-        Me.btnAssignJob.UseVisualStyleBackColor = True
+        Me.btnAssignJob.UseVisualStyleBackColor = False
         '
         'cmbTechnician
         '
         Me.cmbTechnician.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbTechnician.FormattingEnabled = True
-        Me.cmbTechnician.Location = New System.Drawing.Point(17, 79)
+        Me.cmbTechnician.Location = New System.Drawing.Point(17, 45)
         Me.cmbTechnician.Name = "cmbTechnician"
-        Me.cmbTechnician.Size = New System.Drawing.Size(359, 28)
+        Me.cmbTechnician.Size = New System.Drawing.Size(371, 28)
         Me.cmbTechnician.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 42)
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(13, 22)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(141, 20)
         Me.Label3.TabIndex = 1
@@ -208,6 +222,7 @@ Partial Class newUcDashboard
         Me.lblMonthYear1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.lblMonthYear1.AutoSize = True
         Me.lblMonthYear1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.lblMonthYear1.Location = New System.Drawing.Point(222, 27)
         Me.lblMonthYear1.Name = "lblMonthYear1"
         Me.lblMonthYear1.Size = New System.Drawing.Size(172, 25)
@@ -251,6 +266,7 @@ Partial Class newUcDashboard
         '
         'Panel2
         '
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.Panel2.Controls.Add(Me.lblMonthYear2)
         Me.Panel2.Controls.Add(Me.flpCalendar2)
         Me.Panel2.Controls.Add(Me.flpCalendar1)
@@ -265,6 +281,7 @@ Partial Class newUcDashboard
         Me.lblMonthYear2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.lblMonthYear2.AutoSize = True
         Me.lblMonthYear2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.lblMonthYear2.Location = New System.Drawing.Point(222, 301)
         Me.lblMonthYear2.Name = "lblMonthYear2"
         Me.lblMonthYear2.Size = New System.Drawing.Size(172, 25)
@@ -282,6 +299,7 @@ Partial Class newUcDashboard
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.Panel1.Controls.Add(Me.lblMonthYear1)
         Me.Panel1.Controls.Add(Me.btnNextMonth)
         Me.Panel1.Controls.Add(Me.btnPrevMonth)
@@ -311,17 +329,79 @@ Partial Class newUcDashboard
         Me.grpJobDetails.Controls.Add(Me.Label5)
         Me.grpJobDetails.Controls.Add(Me.lblDetailClient)
         Me.grpJobDetails.Controls.Add(Me.Label4)
-        Me.grpJobDetails.Location = New System.Drawing.Point(23, 373)
+        Me.grpJobDetails.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.grpJobDetails.Location = New System.Drawing.Point(19, 356)
         Me.grpJobDetails.Name = "grpJobDetails"
-        Me.grpJobDetails.Size = New System.Drawing.Size(393, 241)
+        Me.grpJobDetails.Size = New System.Drawing.Size(405, 241)
         Me.grpJobDetails.TabIndex = 6
         Me.grpJobDetails.TabStop = False
         Me.grpJobDetails.Text = "Job Details"
+        '
+        'lblDetailDuration
+        '
+        Me.lblDetailDuration.AutoSize = True
+        Me.lblDetailDuration.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblDetailDuration.Location = New System.Drawing.Point(121, 214)
+        Me.lblDetailDuration.Name = "lblDetailDuration"
+        Me.lblDetailDuration.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailDuration.TabIndex = 15
+        Me.lblDetailDuration.Text = "..."
+        '
+        'lblDetailEnd
+        '
+        Me.lblDetailEnd.AutoSize = True
+        Me.lblDetailEnd.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblDetailEnd.Location = New System.Drawing.Point(121, 189)
+        Me.lblDetailEnd.Name = "lblDetailEnd"
+        Me.lblDetailEnd.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailEnd.TabIndex = 14
+        Me.lblDetailEnd.Text = "..."
+        '
+        'lblDetailStart
+        '
+        Me.lblDetailStart.AutoSize = True
+        Me.lblDetailStart.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.lblDetailStart.Location = New System.Drawing.Point(121, 169)
+        Me.lblDetailStart.Name = "lblDetailStart"
+        Me.lblDetailStart.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailStart.TabIndex = 13
+        Me.lblDetailStart.Text = "..."
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.Label11.Location = New System.Drawing.Point(25, 214)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(74, 20)
+        Me.Label11.TabIndex = 12
+        Me.Label11.Text = "Duration:"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(25, 189)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(42, 20)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "End:"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.Label9.Location = New System.Drawing.Point(21, 169)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(48, 20)
+        Me.Label9.TabIndex = 10
+        Me.Label9.Text = "Start:"
         '
         'lblDetailVisit
         '
         Me.lblDetailVisit.AutoSize = True
         Me.lblDetailVisit.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailVisit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblDetailVisit.Location = New System.Drawing.Point(121, 137)
         Me.lblDetailVisit.Name = "lblDetailVisit"
         Me.lblDetailVisit.Size = New System.Drawing.Size(24, 20)
@@ -331,6 +411,7 @@ Partial Class newUcDashboard
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(17, 137)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(56, 20)
@@ -341,6 +422,7 @@ Partial Class newUcDashboard
         '
         Me.lblDetailTech.AutoSize = True
         Me.lblDetailTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailTech.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblDetailTech.Location = New System.Drawing.Point(121, 107)
         Me.lblDetailTech.Name = "lblDetailTech"
         Me.lblDetailTech.Size = New System.Drawing.Size(24, 20)
@@ -350,6 +432,7 @@ Partial Class newUcDashboard
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label7.Location = New System.Drawing.Point(17, 107)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(89, 20)
@@ -360,6 +443,7 @@ Partial Class newUcDashboard
         '
         Me.lblDetailService.AutoSize = True
         Me.lblDetailService.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailService.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblDetailService.Location = New System.Drawing.Point(121, 79)
         Me.lblDetailService.Name = "lblDetailService"
         Me.lblDetailService.Size = New System.Drawing.Size(24, 20)
@@ -369,6 +453,7 @@ Partial Class newUcDashboard
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label6.Location = New System.Drawing.Point(17, 79)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(65, 20)
@@ -379,6 +464,7 @@ Partial Class newUcDashboard
         '
         Me.lblDetailAddress.AutoSize = True
         Me.lblDetailAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblDetailAddress.Location = New System.Drawing.Point(121, 50)
         Me.lblDetailAddress.Name = "lblDetailAddress"
         Me.lblDetailAddress.Size = New System.Drawing.Size(24, 20)
@@ -388,6 +474,7 @@ Partial Class newUcDashboard
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label5.Location = New System.Drawing.Point(17, 50)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(72, 20)
@@ -398,6 +485,7 @@ Partial Class newUcDashboard
         '
         Me.lblDetailClient.AutoSize = True
         Me.lblDetailClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailClient.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.lblDetailClient.Location = New System.Drawing.Point(121, 26)
         Me.lblDetailClient.Name = "lblDetailClient"
         Me.lblDetailClient.Size = New System.Drawing.Size(24, 20)
@@ -407,70 +495,18 @@ Partial Class newUcDashboard
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label4.Location = New System.Drawing.Point(17, 26)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(99, 20)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Client Name:"
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(21, 169)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(48, 20)
-        Me.Label9.TabIndex = 10
-        Me.Label9.Text = "Start:"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(25, 189)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(42, 20)
-        Me.Label10.TabIndex = 11
-        Me.Label10.Text = "End:"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(25, 214)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(74, 20)
-        Me.Label11.TabIndex = 12
-        Me.Label11.Text = "Duration:"
-        '
-        'lblDetailStart
-        '
-        Me.lblDetailStart.AutoSize = True
-        Me.lblDetailStart.Location = New System.Drawing.Point(121, 169)
-        Me.lblDetailStart.Name = "lblDetailStart"
-        Me.lblDetailStart.Size = New System.Drawing.Size(21, 20)
-        Me.lblDetailStart.TabIndex = 13
-        Me.lblDetailStart.Text = "..."
-        '
-        'lblDetailEnd
-        '
-        Me.lblDetailEnd.AutoSize = True
-        Me.lblDetailEnd.Location = New System.Drawing.Point(121, 189)
-        Me.lblDetailEnd.Name = "lblDetailEnd"
-        Me.lblDetailEnd.Size = New System.Drawing.Size(21, 20)
-        Me.lblDetailEnd.TabIndex = 14
-        Me.lblDetailEnd.Text = "..."
-        '
-        'lblDetailDuration
-        '
-        Me.lblDetailDuration.AutoSize = True
-        Me.lblDetailDuration.Location = New System.Drawing.Point(121, 214)
-        Me.lblDetailDuration.Name = "lblDetailDuration"
-        Me.lblDetailDuration.Size = New System.Drawing.Size(21, 20)
-        Me.lblDetailDuration.TabIndex = 15
-        Me.lblDetailDuration.Text = "..."
-        '
         'newUcDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "newUcDashboard"
         Me.Size = New System.Drawing.Size(1074, 780)

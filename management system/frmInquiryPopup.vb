@@ -1,15 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
 
-' ==========================================
-' FORM SETUP INSTRUCTIONS:
-' 1. Create a new Form named "frmInquiryPopup"
-' 2. Add Label: lblSelectedClient (to show who we are scheduling for)
-' 3. Add ComboBoxes: cmbInspector, cmbService
-' 4. Add DatePicker: dtpInspectDate
-' 5. Add Button: btnDispatch
-' 6. NOTE: This form assumes the Client is PASSED to it, so no search grid is needed here.
-' ==========================================
-
 Public Class frmInquiryPopup
 
     ' Properties to accept data from the main manager
@@ -31,10 +21,15 @@ Public Class frmInquiryPopup
         lblSelectedClient.ForeColor = Color.DarkBlue
     End Sub
 
-    ' === LOAD INSPECTORS ===
+    ' === LOAD INSPECTORS (UPDATED FOR DB SCHEMA) ===
     Private Sub LoadInspectors()
         Using conn As New MySqlConnection(connString)
-            Dim cmd As New MySqlCommand("SELECT UserID, FullName, FirebaseUID FROM tbl_users WHERE Role='Technician' AND Status='Active'", conn)
+            ' FIXED: tbl_users does not have a "FullName" column. 
+            ' We must CONCAT FirstName and LastName to create it for the dropdown display.
+            Dim sql As String = "SELECT UserID, CONCAT(FirstName, ' ', LastName) AS FullName, FirebaseUID " &
+                                "FROM tbl_users WHERE Role='Technician' AND Status='Active'"
+
+            Dim cmd As New MySqlCommand(sql, conn)
             Dim da As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable()
             da.Fill(dt)
@@ -48,6 +43,7 @@ Public Class frmInquiryPopup
     ' === LOAD SERVICES ===
     Private Sub LoadServices()
         Using conn As New MySqlConnection(connString)
+            ' This matches your SQL schema perfectly
             Dim cmd As New MySqlCommand("SELECT ServiceID, ServiceName FROM tbl_services", conn)
             Dim da As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable()
@@ -59,7 +55,7 @@ Public Class frmInquiryPopup
         End Using
     End Sub
 
-    ' === DISPATCH LOGIC (Migrated from your Inquiry UC) ===
+    ' === DISPATCH LOGIC ===
     Private Async Sub btnDispatch_Click(sender As Object, e As EventArgs) Handles btnDispatch.Click
         If TargetClientID = 0 Then
             MessageBox.Show("No client selected.")
@@ -71,9 +67,13 @@ Public Class frmInquiryPopup
         End If
 
         Dim inspectorID As Integer = Convert.ToInt32(cmbInspector.SelectedValue)
-        Dim drv As DataRowView = CType(cmbInspector.SelectedItem, DataRowView)
+
+        ' Handle DataRowView safely for FirebaseUID
         Dim inspectorFirebaseUID As String = ""
-        If Not IsDBNull(drv("FirebaseUID")) Then inspectorFirebaseUID = drv("FirebaseUID").ToString()
+        Dim drv As DataRowView = TryCast(cmbInspector.SelectedItem, DataRowView)
+        If drv IsNot Nothing AndAlso Not IsDBNull(drv("FirebaseUID")) Then
+            inspectorFirebaseUID = drv("FirebaseUID").ToString()
+        End If
 
         Dim serviceID As Integer = Convert.ToInt32(cmbService.SelectedValue)
         Dim serviceName As String = cmbService.Text & " (Inspection)"
@@ -85,14 +85,15 @@ Public Class frmInquiryPopup
         btnDispatch.Text = "Sending..."
 
         Using conn As New MySqlConnection(connString)
-            conn.Open()
+            Await conn.OpenAsync() ' Changed to Async for smoother UI
             Dim trans As MySqlTransaction = conn.BeginTransaction()
 
             Try
                 ' Create Job Order
+                ' FIXED: Changed 'ClientID_TempLink' to 'ClientID' based on tbl_joborders schema
                 Dim sql As String = "INSERT INTO tbl_joborders " &
-                                    "(ContractID, ClientID_TempLink, TechnicianID, ServiceID, VisitNumber, ScheduledDate, StartTime, Status, JobType) " &
-                                    "VALUES (NULL, @clientID, @techID, @svcID, 1, @date, @time, 'Assigned', 'Inspection');" &
+                                    "(ContractID, ClientID, TechnicianID, ServiceID, VisitNumber, ScheduledDate, StartTime, Status, JobType) " &
+                                    "VALUES (NULL, @clientID, @techID, @svcID, 1, @date, @time, 'Pending', 'Inspection');" &
                                     "SELECT LAST_INSERT_ID();"
 
                 Dim cmd As New MySqlCommand(sql, conn, trans)
@@ -106,6 +107,7 @@ Public Class frmInquiryPopup
 
                 ' Firebase Dispatch
                 If inspectorFirebaseUID <> "" Then
+                    ' Ensure FirebaseManager.DispatchJobToMobile is an Async Task, not Sub
                     Await FirebaseManager.DispatchJobToMobile(newJobID, TargetClientName, TargetClientAddress, serviceName, visitDate, inspectorFirebaseUID, "Inspection", serviceID)
                 End If
 
@@ -121,5 +123,9 @@ Public Class frmInquiryPopup
                 btnDispatch.Text = "Confirm Dispatch"
             End Try
         End Using
+    End Sub
+
+    Private Sub cmbService_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbService.SelectedIndexChanged
+
     End Sub
 End Class
