@@ -283,6 +283,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Triangle_Halftone_Gradient_Pattern_1_1_1260x936() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Triangle-Halftone-Gradient-Pattern-1-1-1260x936", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property worker() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("worker", resourceCulture)

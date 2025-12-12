@@ -33,13 +33,13 @@ Partial Class frm_Main
         '
         'pnlContent
         '
-        Me.pnlContent.BackColor = System.Drawing.Color.White
+        Me.pnlContent.BackColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(249, Byte), Integer))
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlContent.Location = New System.Drawing.Point(350, 150)
+        Me.pnlContent.Location = New System.Drawing.Point(350, 100)
         Me.pnlContent.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlContent.Name = "pnlContent"
         Me.pnlContent.Padding = New System.Windows.Forms.Padding(20)
-        Me.pnlContent.Size = New System.Drawing.Size(596, 580)
+        Me.pnlContent.Size = New System.Drawing.Size(596, 630)
         Me.pnlContent.TabIndex = 1
         '
         'pnlHeader
@@ -49,17 +49,17 @@ Partial Class frm_Main
         Me.pnlHeader.Location = New System.Drawing.Point(350, 0)
         Me.pnlHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(596, 150)
+        Me.pnlHeader.Size = New System.Drawing.Size(596, 100)
         Me.pnlHeader.TabIndex = 1
         '
         'pnlSideMenu
         '
         Me.pnlSideMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.pnlSideMenu.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlSideMenu.Location = New System.Drawing.Point(0, 150)
+        Me.pnlSideMenu.Location = New System.Drawing.Point(0, 100)
         Me.pnlSideMenu.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlSideMenu.Name = "pnlSideMenu"
-        Me.pnlSideMenu.Size = New System.Drawing.Size(350, 580)
+        Me.pnlSideMenu.Size = New System.Drawing.Size(350, 630)
         Me.pnlSideMenu.TabIndex = 0
         '
         'TableLayoutPanel1
@@ -77,7 +77,7 @@ Partial Class frm_Main
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(946, 730)
         Me.TableLayoutPanel1.TabIndex = 2
@@ -91,7 +91,7 @@ Partial Class frm_Main
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0, 20, 0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Padding = New System.Windows.Forms.Padding(0, 100, 0, 0)
-        Me.PictureBox1.Size = New System.Drawing.Size(350, 130)
+        Me.PictureBox1.Size = New System.Drawing.Size(350, 80)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False

@@ -22,7 +22,7 @@ Partial Class newUcClientManager
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgvClientList = New System.Windows.Forms.DataGridView()
@@ -44,6 +44,7 @@ Partial Class newUcClientManager
         Me.btnGoContracts = New System.Windows.Forms.Button()
         Me.btnGoBilling = New System.Windows.Forms.Button()
         Me.btnGoOculars = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.dgvClientList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlAllInfo.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -76,17 +77,18 @@ Partial Class newUcClientManager
         Me.dgvClientList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvClientList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvClientList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvClientList.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvClientList.Location = New System.Drawing.Point(62, 144)
         Me.dgvClientList.Name = "dgvClientList"
         Me.dgvClientList.ReadOnly = True
+        Me.dgvClientList.RowHeadersVisible = False
         Me.dgvClientList.RowHeadersWidth = 62
         Me.dgvClientList.RowTemplate.Height = 28
         Me.dgvClientList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -96,32 +98,41 @@ Partial Class newUcClientManager
         'btnCreateInquiry
         '
         Me.btnCreateInquiry.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCreateInquiry.Location = New System.Drawing.Point(500, 624)
+        Me.btnCreateInquiry.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnCreateInquiry.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCreateInquiry.ForeColor = System.Drawing.Color.White
+        Me.btnCreateInquiry.Location = New System.Drawing.Point(500, 631)
         Me.btnCreateInquiry.Name = "btnCreateInquiry"
         Me.btnCreateInquiry.Size = New System.Drawing.Size(167, 43)
         Me.btnCreateInquiry.TabIndex = 10
         Me.btnCreateInquiry.Text = "NEW INQUIRY"
-        Me.btnCreateInquiry.UseVisualStyleBackColor = True
+        Me.btnCreateInquiry.UseVisualStyleBackColor = False
         '
         'btnEditClient
         '
         Me.btnEditClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEditClient.Location = New System.Drawing.Point(500, 680)
+        Me.btnEditClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnEditClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEditClient.ForeColor = System.Drawing.Color.White
+        Me.btnEditClient.Location = New System.Drawing.Point(500, 691)
         Me.btnEditClient.Name = "btnEditClient"
         Me.btnEditClient.Size = New System.Drawing.Size(167, 43)
         Me.btnEditClient.TabIndex = 9
         Me.btnEditClient.Text = "EDIT"
-        Me.btnEditClient.UseVisualStyleBackColor = True
+        Me.btnEditClient.UseVisualStyleBackColor = False
         '
         'btnAddClient
         '
         Me.btnAddClient.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddClient.Location = New System.Drawing.Point(960, 68)
+        Me.btnAddClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnAddClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddClient.ForeColor = System.Drawing.Color.White
+        Me.btnAddClient.Location = New System.Drawing.Point(898, 631)
         Me.btnAddClient.Name = "btnAddClient"
-        Me.btnAddClient.Size = New System.Drawing.Size(132, 72)
+        Me.btnAddClient.Size = New System.Drawing.Size(132, 43)
         Me.btnAddClient.TabIndex = 8
         Me.btnAddClient.Text = "CREATE"
-        Me.btnAddClient.UseVisualStyleBackColor = True
+        Me.btnAddClient.UseVisualStyleBackColor = False
         '
         'pnlAllInfo
         '
@@ -245,47 +256,71 @@ Partial Class newUcClientManager
         '
         'btnRefresh
         '
+        Me.btnRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnRefresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(285, 110)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(132, 30)
         Me.btnRefresh.TabIndex = 11
         Me.btnRefresh.Text = "REFRESH"
-        Me.btnRefresh.UseVisualStyleBackColor = True
+        Me.btnRefresh.UseVisualStyleBackColor = False
         '
         'btnGoContracts
         '
         Me.btnGoContracts.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGoContracts.Location = New System.Drawing.Point(899, 683)
+        Me.btnGoContracts.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnGoContracts.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGoContracts.ForeColor = System.Drawing.Color.White
+        Me.btnGoContracts.Location = New System.Drawing.Point(898, 691)
         Me.btnGoContracts.Name = "btnGoContracts"
-        Me.btnGoContracts.Size = New System.Drawing.Size(167, 42)
+        Me.btnGoContracts.Size = New System.Drawing.Size(167, 43)
         Me.btnGoContracts.TabIndex = 12
         Me.btnGoContracts.Text = "View Contract"
-        Me.btnGoContracts.UseVisualStyleBackColor = True
+        Me.btnGoContracts.UseVisualStyleBackColor = False
         '
         'btnGoBilling
         '
         Me.btnGoBilling.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGoBilling.Location = New System.Drawing.Point(703, 624)
+        Me.btnGoBilling.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnGoBilling.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGoBilling.ForeColor = System.Drawing.Color.White
+        Me.btnGoBilling.Location = New System.Drawing.Point(703, 631)
         Me.btnGoBilling.Name = "btnGoBilling"
         Me.btnGoBilling.Size = New System.Drawing.Size(167, 43)
         Me.btnGoBilling.TabIndex = 13
         Me.btnGoBilling.Text = "Go to Billing"
-        Me.btnGoBilling.UseVisualStyleBackColor = True
+        Me.btnGoBilling.UseVisualStyleBackColor = False
         '
         'btnGoOculars
         '
         Me.btnGoOculars.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGoOculars.Location = New System.Drawing.Point(703, 680)
+        Me.btnGoOculars.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnGoOculars.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGoOculars.ForeColor = System.Drawing.Color.White
+        Me.btnGoOculars.Location = New System.Drawing.Point(703, 691)
         Me.btnGoOculars.Name = "btnGoOculars"
         Me.btnGoOculars.Size = New System.Drawing.Size(167, 45)
         Me.btnGoOculars.TabIndex = 14
         Me.btnGoOculars.Text = "View Oculars/Quotes"
-        Me.btnGoOculars.UseVisualStyleBackColor = True
+        Me.btnGoOculars.UseVisualStyleBackColor = False
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(1026, 631)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(39, 40)
+        Me.Label4.TabIndex = 15
+        Me.Label4.Text = "+"
         '
         'newUcClientManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnGoOculars)
         Me.Controls.Add(Me.btnGoBilling)
         Me.Controls.Add(Me.btnGoContracts)
@@ -329,4 +364,5 @@ Partial Class newUcClientManager
     Friend WithEvents btnGoContracts As Button
     Friend WithEvents btnGoBilling As Button
     Friend WithEvents btnGoOculars As Button
+    Friend WithEvents Label4 As Label
 End Class

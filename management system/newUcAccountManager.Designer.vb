@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class newUcAccountManager
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class newUcAccountManager
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -46,15 +46,18 @@ Partial Class newUcAccountManager
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtLastName = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.dgvAccounts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDetails.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
         '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.Location = New System.Drawing.Point(36, 28)
+        Me.lblTitle.Location = New System.Drawing.Point(51, 34)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(280, 25)
         Me.lblTitle.TabIndex = 0
@@ -64,14 +67,14 @@ Partial Class newUcAccountManager
         '
         Me.cmbFilterRole.FormattingEnabled = True
         Me.cmbFilterRole.Items.AddRange(New Object() {"All", "Admin", "Technician"})
-        Me.cmbFilterRole.Location = New System.Drawing.Point(65, 73)
+        Me.cmbFilterRole.Location = New System.Drawing.Point(465, 449)
         Me.cmbFilterRole.Name = "cmbFilterRole"
-        Me.cmbFilterRole.Size = New System.Drawing.Size(317, 28)
+        Me.cmbFilterRole.Size = New System.Drawing.Size(260, 28)
         Me.cmbFilterRole.TabIndex = 1
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(65, 107)
+        Me.txtSearch.Location = New System.Drawing.Point(80, 449)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(317, 26)
         Me.txtSearch.TabIndex = 2
@@ -80,7 +83,8 @@ Partial Class newUcAccountManager
         'dgvAccounts
         '
         Me.dgvAccounts.AllowUserToAddRows = False
-        Me.dgvAccounts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.dgvAccounts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAccounts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -93,13 +97,14 @@ Partial Class newUcAccountManager
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvAccounts.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvAccounts.Location = New System.Drawing.Point(65, 555)
+        Me.dgvAccounts.Location = New System.Drawing.Point(80, 483)
         Me.dgvAccounts.Name = "dgvAccounts"
         Me.dgvAccounts.ReadOnly = True
+        Me.dgvAccounts.RowHeadersVisible = False
         Me.dgvAccounts.RowHeadersWidth = 62
         Me.dgvAccounts.RowTemplate.Height = 28
         Me.dgvAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvAccounts.Size = New System.Drawing.Size(969, 160)
+        Me.dgvAccounts.Size = New System.Drawing.Size(969, 242)
         Me.dgvAccounts.TabIndex = 3
         '
         'grpDetails
@@ -125,7 +130,7 @@ Partial Class newUcAccountManager
         Me.grpDetails.Controls.Add(Me.txtLastName)
         Me.grpDetails.Controls.Add(Me.Label1)
         Me.grpDetails.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpDetails.Location = New System.Drawing.Point(65, 155)
+        Me.grpDetails.Location = New System.Drawing.Point(80, 73)
         Me.grpDetails.Name = "grpDetails"
         Me.grpDetails.Size = New System.Drawing.Size(969, 365)
         Me.grpDetails.TabIndex = 4
@@ -178,30 +183,36 @@ Partial Class newUcAccountManager
         '
         'btnDelete
         '
+        Me.btnDelete.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnDelete.ForeColor = System.Drawing.Color.White
         Me.btnDelete.Location = New System.Drawing.Point(762, 312)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(167, 26)
         Me.btnDelete.TabIndex = 12
         Me.btnDelete.Text = "DELETE ACCOUNT"
-        Me.btnDelete.UseVisualStyleBackColor = True
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
         'btnUpdate
         '
+        Me.btnUpdate.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnUpdate.ForeColor = System.Drawing.Color.White
         Me.btnUpdate.Location = New System.Drawing.Point(576, 312)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(167, 26)
         Me.btnUpdate.TabIndex = 11
         Me.btnUpdate.Text = "UPDATE"
-        Me.btnUpdate.UseVisualStyleBackColor = True
+        Me.btnUpdate.UseVisualStyleBackColor = False
         '
         'btnSave
         '
+        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.Location = New System.Drawing.Point(42, 312)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(213, 26)
         Me.btnSave.TabIndex = 10
         Me.btnSave.Text = "CREATE ACCOUNT"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'txtPhone
         '
@@ -291,22 +302,45 @@ Partial Class newUcAccountManager
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Full Name"
         '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.Label9)
+        Me.Panel1.Controls.Add(Me.lblTitle)
+        Me.Panel1.Controls.Add(Me.grpDetails)
+        Me.Panel1.Controls.Add(Me.cmbFilterRole)
+        Me.Panel1.Controls.Add(Me.dgvAccounts)
+        Me.Panel1.Controls.Add(Me.txtSearch)
+        Me.Panel1.Location = New System.Drawing.Point(58, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1132, 774)
+        Me.Panel1.TabIndex = 5
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(420, 452)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(39, 20)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "Sort"
+        '
         'newUcAccountManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.grpDetails)
-        Me.Controls.Add(Me.dgvAccounts)
-        Me.Controls.Add(Me.txtSearch)
-        Me.Controls.Add(Me.cmbFilterRole)
-        Me.Controls.Add(Me.lblTitle)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Controls.Add(Me.Panel1)
+        Me.DoubleBuffered = True
         Me.Name = "newUcAccountManager"
-        Me.Size = New System.Drawing.Size(1099, 759)
+        Me.Size = New System.Drawing.Size(1248, 805)
         CType(Me.dgvAccounts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDetails.ResumeLayout(False)
         Me.grpDetails.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -333,4 +367,6 @@ Partial Class newUcAccountManager
     Friend WithEvents Label7 As Label
     Friend WithEvents txtFirstName As TextBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label9 As Label
 End Class

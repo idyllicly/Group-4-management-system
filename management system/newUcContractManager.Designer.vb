@@ -95,6 +95,7 @@ Partial Class newUcContractManager
         Me.dgvContracts.Location = New System.Drawing.Point(0, 131)
         Me.dgvContracts.Name = "dgvContracts"
         Me.dgvContracts.ReadOnly = True
+        Me.dgvContracts.RowHeadersVisible = False
         Me.dgvContracts.RowHeadersWidth = 62
         Me.dgvContracts.RowTemplate.Height = 28
         Me.dgvContracts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -205,12 +206,15 @@ Partial Class newUcContractManager
         'btnNewContract
         '
         Me.btnNewContract.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnNewContract.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnNewContract.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNewContract.ForeColor = System.Drawing.Color.White
         Me.btnNewContract.Location = New System.Drawing.Point(784, 8)
         Me.btnNewContract.Name = "btnNewContract"
         Me.btnNewContract.Size = New System.Drawing.Size(187, 47)
         Me.btnNewContract.TabIndex = 2
         Me.btnNewContract.Text = "Create New Contract"
-        Me.btnNewContract.UseVisualStyleBackColor = True
+        Me.btnNewContract.UseVisualStyleBackColor = False
         '
         'btnSearch
         '

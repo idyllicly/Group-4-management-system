@@ -43,6 +43,7 @@ Partial Class newUcTechMonitor
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.lblContact = New System.Windows.Forms.Label()
         Me.lblTechName = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -54,10 +55,12 @@ Partial Class newUcTechMonitor
         Me.Panel2.SuspendLayout()
         CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
         '
+        Me.SplitContainer1.BackColor = System.Drawing.Color.White
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer1.Name = "SplitContainer1"
@@ -66,20 +69,21 @@ Partial Class newUcTechMonitor
         '
         Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.lstTechnicians)
+        Me.SplitContainer1.Panel1.Padding = New System.Windows.Forms.Padding(10, 0, 10, 0)
         '
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(733, 636)
-        Me.SplitContainer1.SplitterDistance = 244
+        Me.SplitContainer1.Size = New System.Drawing.Size(1132, 637)
+        Me.SplitContainer1.SplitterDistance = 376
         Me.SplitContainer1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(26, 16)
+        Me.Label1.Location = New System.Drawing.Point(36, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(185, 25)
         Me.Label1.TabIndex = 0
@@ -92,9 +96,9 @@ Partial Class newUcTechMonitor
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstTechnicians.FormattingEnabled = True
         Me.lstTechnicians.ItemHeight = 20
-        Me.lstTechnicians.Location = New System.Drawing.Point(0, 52)
+        Me.lstTechnicians.Location = New System.Drawing.Point(13, 57)
         Me.lstTechnicians.Name = "lstTechnicians"
-        Me.lstTechnicians.Size = New System.Drawing.Size(244, 584)
+        Me.lstTechnicians.Size = New System.Drawing.Size(350, 564)
         Me.lstTechnicians.TabIndex = 1
         '
         'TabControl1
@@ -105,7 +109,7 @@ Partial Class newUcTechMonitor
         Me.TabControl1.Location = New System.Drawing.Point(0, 100)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(485, 536)
+        Me.TabControl1.Size = New System.Drawing.Size(752, 537)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -114,7 +118,7 @@ Partial Class newUcTechMonitor
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(477, 503)
+        Me.TabPage1.Size = New System.Drawing.Size(744, 504)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Current Assignments"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -122,14 +126,18 @@ Partial Class newUcTechMonitor
         'dgvAssignments
         '
         Me.dgvAssignments.AllowUserToAddRows = False
+        Me.dgvAssignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.dgvAssignments.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvAssignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAssignments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAssignments.Location = New System.Drawing.Point(3, 3)
         Me.dgvAssignments.Name = "dgvAssignments"
         Me.dgvAssignments.ReadOnly = True
+        Me.dgvAssignments.RowHeadersVisible = False
         Me.dgvAssignments.RowHeadersWidth = 62
         Me.dgvAssignments.RowTemplate.Height = 28
-        Me.dgvAssignments.Size = New System.Drawing.Size(471, 497)
+        Me.dgvAssignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvAssignments.Size = New System.Drawing.Size(738, 498)
         Me.dgvAssignments.TabIndex = 0
         '
         'TabPage2
@@ -139,7 +147,7 @@ Partial Class newUcTechMonitor
         Me.TabPage2.Location = New System.Drawing.Point(4, 29)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(477, 503)
+        Me.TabPage2.Size = New System.Drawing.Size(744, 504)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Job History"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -155,7 +163,7 @@ Partial Class newUcTechMonitor
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(471, 100)
+        Me.Panel2.Size = New System.Drawing.Size(738, 100)
         Me.Panel2.TabIndex = 1
         '
         'btnReset
@@ -179,7 +187,7 @@ Partial Class newUcTechMonitor
         'dtpEnd
         '
         Me.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpEnd.Location = New System.Drawing.Point(89, 43)
+        Me.dtpEnd.Location = New System.Drawing.Point(89, 50)
         Me.dtpEnd.Name = "dtpEnd"
         Me.dtpEnd.Size = New System.Drawing.Size(200, 26)
         Me.dtpEnd.TabIndex = 3
@@ -187,7 +195,7 @@ Partial Class newUcTechMonitor
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 43)
+        Me.Label3.Location = New System.Drawing.Point(24, 50)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(31, 20)
         Me.Label3.TabIndex = 2
@@ -216,13 +224,17 @@ Partial Class newUcTechMonitor
         Me.dgvHistory.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgvHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.dgvHistory.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvHistory.Location = New System.Drawing.Point(3, 101)
         Me.dgvHistory.Name = "dgvHistory"
         Me.dgvHistory.ReadOnly = True
+        Me.dgvHistory.RowHeadersVisible = False
         Me.dgvHistory.RowHeadersWidth = 62
         Me.dgvHistory.RowTemplate.Height = 28
-        Me.dgvHistory.Size = New System.Drawing.Size(471, 399)
+        Me.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvHistory.Size = New System.Drawing.Size(738, 400)
         Me.dgvHistory.TabIndex = 0
         '
         'Panel1
@@ -235,7 +247,7 @@ Partial Class newUcTechMonitor
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(485, 100)
+        Me.Panel1.Size = New System.Drawing.Size(752, 100)
         Me.Panel1.TabIndex = 0
         '
         'lblCompletedJobs
@@ -250,7 +262,7 @@ Partial Class newUcTechMonitor
         'lblTotalAssigned
         '
         Me.lblTotalAssigned.AutoSize = True
-        Me.lblTotalAssigned.Location = New System.Drawing.Point(180, 63)
+        Me.lblTotalAssigned.Location = New System.Drawing.Point(394, 63)
         Me.lblTotalAssigned.Name = "lblTotalAssigned"
         Me.lblTotalAssigned.Size = New System.Drawing.Size(57, 20)
         Me.lblTotalAssigned.TabIndex = 3
@@ -285,13 +297,22 @@ Partial Class newUcTechMonitor
         Me.lblTechName.TabIndex = 0
         Me.lblTechName.Text = "Label2"
         '
+        'Panel3
+        '
+        Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.Controls.Add(Me.SplitContainer1)
+        Me.Panel3.Location = New System.Drawing.Point(22, 12)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1132, 637)
+        Me.Panel3.TabIndex = 1
+        '
         'newUcTechMonitor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.SplitContainer1)
+        Me.Controls.Add(Me.Panel3)
         Me.Name = "newUcTechMonitor"
-        Me.Size = New System.Drawing.Size(733, 636)
+        Me.Size = New System.Drawing.Size(1178, 666)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
@@ -306,6 +327,7 @@ Partial Class newUcTechMonitor
         CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -331,4 +353,5 @@ Partial Class newUcTechMonitor
     Friend WithEvents Label2 As Label
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents dgvAssignments As DataGridView
+    Friend WithEvents Panel3 As Panel
 End Class

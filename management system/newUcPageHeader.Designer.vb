@@ -46,7 +46,7 @@ Partial Class newUcPageHeader
         Me.lblBadge.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblBadge.BackColor = System.Drawing.Color.Crimson
         Me.lblBadge.ForeColor = System.Drawing.Color.White
-        Me.lblBadge.Location = New System.Drawing.Point(941, 279)
+        Me.lblBadge.Location = New System.Drawing.Point(956, 304)
         Me.lblBadge.Name = "lblBadge"
         Me.lblBadge.Size = New System.Drawing.Size(27, 25)
         Me.lblBadge.TabIndex = 5
@@ -59,9 +59,9 @@ Partial Class newUcPageHeader
         '
         Me.btnBell.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnBell.Image = Global.management_system.My.Resources.Resources.bellBLue
-        Me.btnBell.Location = New System.Drawing.Point(826, 229)
+        Me.btnBell.Location = New System.Drawing.Point(869, 279)
         Me.btnBell.Name = "btnBell"
-        Me.btnBell.Size = New System.Drawing.Size(195, 147)
+        Me.btnBell.Size = New System.Drawing.Size(152, 97)
         Me.btnBell.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.btnBell.TabIndex = 4
         Me.btnBell.TabStop = False

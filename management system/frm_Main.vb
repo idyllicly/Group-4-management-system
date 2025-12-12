@@ -40,27 +40,4 @@
         Application.Exit()
     End Sub
 
-    Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs)
-
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-
-    End Sub
-
-    Private Sub pnlContent_Paint(sender As Object, e As PaintEventArgs) Handles pnlContent.Paint
-
-    End Sub
-
-    Private Sub pnlSideMenu_Load(sender As Object, e As EventArgs) Handles pnlSideMenu.Load
-
-    End Sub
-
-    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
-
-    End Sub
-
-    Private Sub pnlHeader_Load(sender As Object, e As EventArgs) Handles pnlHeader.Load
-
-    End Sub
 End Class

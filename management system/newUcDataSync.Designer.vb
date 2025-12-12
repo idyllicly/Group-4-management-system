@@ -26,6 +26,7 @@ Partial Class newUcDataSync
         Me.tabImport = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblStatus = New System.Windows.Forms.Label()
         Me.pbImport = New System.Windows.Forms.ProgressBar()
         Me.btnImport = New System.Windows.Forms.Button()
         Me.btnBrowse = New System.Windows.Forms.Button()
@@ -46,7 +47,6 @@ Partial Class newUcDataSync
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dtpTo = New System.Windows.Forms.DateTimePicker()
         Me.btnExport = New System.Windows.Forms.Button()
-        Me.lblStatus = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.tabImport.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -114,6 +114,15 @@ Partial Class newUcDataSync
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Step 1: Import Configuration"
         '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Location = New System.Drawing.Point(171, 111)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(121, 20)
+        Me.lblStatus.TabIndex = 7
+        Me.lblStatus.Text = "Waiting for file..."
+        '
         'pbImport
         '
         Me.pbImport.Location = New System.Drawing.Point(308, 109)
@@ -124,12 +133,15 @@ Partial Class newUcDataSync
         '
         'btnImport
         '
+        Me.btnImport.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnImport.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImport.ForeColor = System.Drawing.Color.White
         Me.btnImport.Location = New System.Drawing.Point(10, 105)
         Me.btnImport.Name = "btnImport"
         Me.btnImport.Size = New System.Drawing.Size(155, 33)
         Me.btnImport.TabIndex = 5
         Me.btnImport.Text = "START IMPORT"
-        Me.btnImport.UseVisualStyleBackColor = True
+        Me.btnImport.UseVisualStyleBackColor = False
         '
         'btnBrowse
         '
@@ -323,15 +335,6 @@ Partial Class newUcDataSync
         Me.btnExport.TabIndex = 7
         Me.btnExport.Text = "EXPORT DATA"
         Me.btnExport.UseVisualStyleBackColor = True
-        '
-        'lblStatus
-        '
-        Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(171, 111)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(121, 20)
-        Me.lblStatus.TabIndex = 7
-        Me.lblStatus.Text = "Waiting for file..."
         '
         'newUcDataSync
         '

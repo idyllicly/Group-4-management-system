@@ -36,16 +36,18 @@ Partial Class newUcBilling
         Me.lblBalance = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblContractInfo = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.dgvBilling, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpPayment.SuspendLayout()
         CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblHeader
         '
         Me.lblHeader.AutoSize = True
         Me.lblHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(41, 16)
+        Me.lblHeader.Location = New System.Drawing.Point(29, 18)
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(189, 25)
         Me.lblHeader.TabIndex = 0
@@ -54,7 +56,7 @@ Partial Class newUcBilling
         'txtSearchBilling
         '
         Me.txtSearchBilling.ForeColor = System.Drawing.SystemColors.WindowFrame
-        Me.txtSearchBilling.Location = New System.Drawing.Point(46, 56)
+        Me.txtSearchBilling.Location = New System.Drawing.Point(34, 58)
         Me.txtSearchBilling.Name = "txtSearchBilling"
         Me.txtSearchBilling.Size = New System.Drawing.Size(368, 26)
         Me.txtSearchBilling.TabIndex = 1
@@ -76,12 +78,14 @@ Partial Class newUcBilling
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvBilling.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvBilling.Location = New System.Drawing.Point(46, 100)
+        Me.dgvBilling.Location = New System.Drawing.Point(34, 102)
         Me.dgvBilling.Name = "dgvBilling"
         Me.dgvBilling.ReadOnly = True
+        Me.dgvBilling.RowHeadersVisible = False
         Me.dgvBilling.RowHeadersWidth = 62
         Me.dgvBilling.RowTemplate.Height = 28
-        Me.dgvBilling.Size = New System.Drawing.Size(827, 228)
+        Me.dgvBilling.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvBilling.Size = New System.Drawing.Size(1080, 228)
         Me.dgvBilling.TabIndex = 2
         '
         'grpPayment
@@ -97,9 +101,9 @@ Partial Class newUcBilling
         Me.grpPayment.Controls.Add(Me.lblBalance)
         Me.grpPayment.Controls.Add(Me.Label1)
         Me.grpPayment.Controls.Add(Me.lblContractInfo)
-        Me.grpPayment.Location = New System.Drawing.Point(36, 366)
+        Me.grpPayment.Location = New System.Drawing.Point(24, 368)
         Me.grpPayment.Name = "grpPayment"
-        Me.grpPayment.Size = New System.Drawing.Size(837, 327)
+        Me.grpPayment.Size = New System.Drawing.Size(1090, 307)
         Me.grpPayment.TabIndex = 3
         Me.grpPayment.TabStop = False
         Me.grpPayment.Text = "Receive Payment"
@@ -137,17 +141,20 @@ Partial Class newUcBilling
         Me.dgvSchedule.RowHeadersWidth = 62
         Me.dgvSchedule.RowTemplate.Height = 28
         Me.dgvSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSchedule.Size = New System.Drawing.Size(516, 216)
+        Me.dgvSchedule.Size = New System.Drawing.Size(769, 196)
         Me.dgvSchedule.TabIndex = 6
         '
         'btnSavePayment
         '
+        Me.btnSavePayment.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnSavePayment.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSavePayment.ForeColor = System.Drawing.Color.White
         Me.btnSavePayment.Location = New System.Drawing.Point(27, 238)
         Me.btnSavePayment.Name = "btnSavePayment"
         Me.btnSavePayment.Size = New System.Drawing.Size(219, 46)
         Me.btnSavePayment.TabIndex = 5
         Me.btnSavePayment.Text = "CONFIRM PAYMENT"
-        Me.btnSavePayment.UseVisualStyleBackColor = True
+        Me.btnSavePayment.UseVisualStyleBackColor = False
         '
         'txtPayAmount
         '
@@ -195,22 +202,33 @@ Partial Class newUcBilling
         Me.lblContractInfo.TabIndex = 0
         Me.lblContractInfo.Text = "Select a contract..."
         '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.lblHeader)
+        Me.Panel1.Controls.Add(Me.grpPayment)
+        Me.Panel1.Controls.Add(Me.txtSearchBilling)
+        Me.Panel1.Controls.Add(Me.dgvBilling)
+        Me.Panel1.Location = New System.Drawing.Point(23, 13)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1132, 701)
+        Me.Panel1.TabIndex = 4
+        '
         'newUcBilling
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.grpPayment)
-        Me.Controls.Add(Me.dgvBilling)
-        Me.Controls.Add(Me.txtSearchBilling)
-        Me.Controls.Add(Me.lblHeader)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "newUcBilling"
-        Me.Size = New System.Drawing.Size(901, 711)
+        Me.Size = New System.Drawing.Size(1178, 731)
         CType(Me.dgvBilling, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpPayment.ResumeLayout(False)
         Me.grpPayment.PerformLayout()
         CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -226,4 +244,5 @@ Partial Class newUcBilling
     Friend WithEvents txtPayAmount As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents dgvSchedule As DataGridView
+    Friend WithEvents Panel1 As Panel
 End Class

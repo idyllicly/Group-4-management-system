@@ -59,30 +59,38 @@ Partial Class newUcQuoteManager
         Me.dgvQuotes.Location = New System.Drawing.Point(34, 143)
         Me.dgvQuotes.Name = "dgvQuotes"
         Me.dgvQuotes.ReadOnly = True
+        Me.dgvQuotes.RowHeadersVisible = False
         Me.dgvQuotes.RowHeadersWidth = 62
         Me.dgvQuotes.RowTemplate.Height = 28
-        Me.dgvQuotes.Size = New System.Drawing.Size(968, 475)
+        Me.dgvQuotes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvQuotes.Size = New System.Drawing.Size(1026, 475)
         Me.dgvQuotes.TabIndex = 0
         '
         'btnRefresh
         '
         Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnRefresh.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(616, 646)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(219, 51)
         Me.btnRefresh.TabIndex = 1
         Me.btnRefresh.Text = "Refresh List"
-        Me.btnRefresh.UseVisualStyleBackColor = True
+        Me.btnRefresh.UseVisualStyleBackColor = False
         '
         'btnApprove
         '
         Me.btnApprove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnApprove.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnApprove.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnApprove.ForeColor = System.Drawing.Color.White
         Me.btnApprove.Location = New System.Drawing.Point(841, 646)
         Me.btnApprove.Name = "btnApprove"
         Me.btnApprove.Size = New System.Drawing.Size(219, 51)
         Me.btnApprove.TabIndex = 2
         Me.btnApprove.Text = "Approve / Create Contract"
-        Me.btnApprove.UseVisualStyleBackColor = True
+        Me.btnApprove.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -96,6 +104,7 @@ Partial Class newUcQuoteManager
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(750, 100)
         Me.Label4.Name = "Label4"
@@ -105,6 +114,7 @@ Partial Class newUcQuoteManager
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(750, 69)
         Me.Label3.Name = "Label3"
@@ -114,6 +124,7 @@ Partial Class newUcQuoteManager
         '
         'dtpTo
         '
+        Me.dtpTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpTo.Location = New System.Drawing.Point(802, 64)
         Me.dtpTo.Name = "dtpTo"
@@ -122,6 +133,7 @@ Partial Class newUcQuoteManager
         '
         'dtpFrom
         '
+        Me.dtpFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFrom.Location = New System.Drawing.Point(802, 97)
         Me.dtpFrom.Name = "dtpFrom"
@@ -130,6 +142,7 @@ Partial Class newUcQuoteManager
         '
         'chkDateFilter
         '
+        Me.chkDateFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkDateFilter.AutoSize = True
         Me.chkDateFilter.Location = New System.Drawing.Point(615, 102)
         Me.chkDateFilter.Name = "chkDateFilter"
@@ -168,6 +181,8 @@ Partial Class newUcQuoteManager
         '
         'cboServiceFilter
         '
+        Me.cboServiceFilter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboServiceFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboServiceFilter.FormattingEnabled = True
         Me.cboServiceFilter.Location = New System.Drawing.Point(407, 98)

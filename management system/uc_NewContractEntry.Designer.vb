@@ -22,7 +22,6 @@ Partial Class uc_NewContractEntry
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbClient = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -50,26 +49,22 @@ Partial Class uc_NewContractEntry
         Me.lblTerms = New System.Windows.Forms.Label()
         Me.cmbPaymentTerms = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.txtSearchClient = New System.Windows.Forms.TextBox()
+        Me.btnSearchClient = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.numDuration, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDetails.SuspendLayout()
         Me.grpTimeline.SuspendLayout()
         Me.grpFinancials.SuspendLayout()
         CType(Me.numInstallments, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Location = New System.Drawing.Point(21, 16)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(105, 20)
-        Me.lblTitle.TabIndex = 0
-        Me.lblTitle.Text = "New Contract"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 61)
+        Me.Label1.Location = New System.Drawing.Point(27, 96)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(102, 20)
         Me.Label1.TabIndex = 1
@@ -78,15 +73,15 @@ Partial Class uc_NewContractEntry
         'cmbClient
         '
         Me.cmbClient.FormattingEnabled = True
-        Me.cmbClient.Location = New System.Drawing.Point(216, 61)
+        Me.cmbClient.Location = New System.Drawing.Point(188, 96)
         Me.cmbClient.Name = "cmbClient"
-        Me.cmbClient.Size = New System.Drawing.Size(121, 28)
+        Me.cmbClient.Size = New System.Drawing.Size(268, 28)
         Me.cmbClient.TabIndex = 2
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 107)
+        Me.Label2.Location = New System.Drawing.Point(27, 142)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(114, 20)
         Me.Label2.TabIndex = 3
@@ -95,9 +90,9 @@ Partial Class uc_NewContractEntry
         'cmbService
         '
         Me.cmbService.FormattingEnabled = True
-        Me.cmbService.Location = New System.Drawing.Point(216, 104)
+        Me.cmbService.Location = New System.Drawing.Point(188, 139)
         Me.cmbService.Name = "cmbService"
-        Me.cmbService.Size = New System.Drawing.Size(121, 28)
+        Me.cmbService.Size = New System.Drawing.Size(268, 28)
         Me.cmbService.TabIndex = 4
         '
         'Label3
@@ -155,24 +150,34 @@ Partial Class uc_NewContractEntry
         '
         'btnSaveContract
         '
-        Me.btnSaveContract.Location = New System.Drawing.Point(25, 655)
+        Me.btnSaveContract.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveContract.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnSaveContract.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveContract.ForeColor = System.Drawing.Color.White
+        Me.btnSaveContract.Location = New System.Drawing.Point(45, 580)
         Me.btnSaveContract.Name = "btnSaveContract"
-        Me.btnSaveContract.Size = New System.Drawing.Size(861, 103)
+        Me.btnSaveContract.Size = New System.Drawing.Size(1050, 103)
         Me.btnSaveContract.TabIndex = 11
         Me.btnSaveContract.Text = "SAVE and GENERATE SCHEDULE"
-        Me.btnSaveContract.UseVisualStyleBackColor = True
+        Me.btnSaveContract.UseVisualStyleBackColor = False
         '
         'grpDetails
         '
+        Me.grpDetails.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpDetails.BackColor = System.Drawing.SystemColors.Control
+        Me.grpDetails.Controls.Add(Me.Label9)
+        Me.grpDetails.Controls.Add(Me.btnSearchClient)
+        Me.grpDetails.Controls.Add(Me.txtSearchClient)
         Me.grpDetails.Controls.Add(Me.cmbFrequency)
         Me.grpDetails.Controls.Add(Me.Label6)
         Me.grpDetails.Controls.Add(Me.Label1)
         Me.grpDetails.Controls.Add(Me.cmbClient)
         Me.grpDetails.Controls.Add(Me.Label2)
         Me.grpDetails.Controls.Add(Me.cmbService)
-        Me.grpDetails.Location = New System.Drawing.Point(27, 66)
+        Me.grpDetails.Location = New System.Drawing.Point(44, 19)
         Me.grpDetails.Name = "grpDetails"
-        Me.grpDetails.Size = New System.Drawing.Size(416, 246)
+        Me.grpDetails.Size = New System.Drawing.Size(490, 246)
         Me.grpDetails.TabIndex = 12
         Me.grpDetails.TabStop = False
         Me.grpDetails.Text = "Contract Details"
@@ -182,15 +187,15 @@ Partial Class uc_NewContractEntry
         Me.cmbFrequency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbFrequency.FormattingEnabled = True
         Me.cmbFrequency.Items.AddRange(New Object() {"Monthly", "Quarterly", "Bi-Monthly", "One-Time"})
-        Me.cmbFrequency.Location = New System.Drawing.Point(216, 144)
+        Me.cmbFrequency.Location = New System.Drawing.Point(188, 179)
         Me.cmbFrequency.Name = "cmbFrequency"
-        Me.cmbFrequency.Size = New System.Drawing.Size(121, 28)
+        Me.cmbFrequency.Size = New System.Drawing.Size(268, 28)
         Me.cmbFrequency.TabIndex = 6
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(26, 145)
+        Me.Label6.Location = New System.Drawing.Point(27, 179)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(144, 20)
         Me.Label6.TabIndex = 5
@@ -198,15 +203,17 @@ Partial Class uc_NewContractEntry
         '
         'grpTimeline
         '
+        Me.grpTimeline.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpTimeline.BackColor = System.Drawing.SystemColors.Control
         Me.grpTimeline.Controls.Add(Me.lblEndDate)
         Me.grpTimeline.Controls.Add(Me.Label7)
         Me.grpTimeline.Controls.Add(Me.Label3)
         Me.grpTimeline.Controls.Add(Me.dtpStart)
         Me.grpTimeline.Controls.Add(Me.Label4)
         Me.grpTimeline.Controls.Add(Me.numDuration)
-        Me.grpTimeline.Location = New System.Drawing.Point(493, 66)
+        Me.grpTimeline.Location = New System.Drawing.Point(560, 19)
         Me.grpTimeline.Name = "grpTimeline"
-        Me.grpTimeline.Size = New System.Drawing.Size(393, 246)
+        Me.grpTimeline.Size = New System.Drawing.Size(535, 246)
         Me.grpTimeline.TabIndex = 13
         Me.grpTimeline.TabStop = False
         Me.grpTimeline.Text = "Timeline & Schedule"
@@ -233,6 +240,8 @@ Partial Class uc_NewContractEntry
         '
         'grpFinancials
         '
+        Me.grpFinancials.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpFinancials.BackColor = System.Drawing.SystemColors.Control
         Me.grpFinancials.Controls.Add(Me.lblInstallmentAmt)
         Me.grpFinancials.Controls.Add(Me.dtpFirstPayment)
         Me.grpFinancials.Controls.Add(Me.lblFirstDue)
@@ -244,9 +253,9 @@ Partial Class uc_NewContractEntry
         Me.grpFinancials.Controls.Add(Me.Label8)
         Me.grpFinancials.Controls.Add(Me.Label5)
         Me.grpFinancials.Controls.Add(Me.txtAmount)
-        Me.grpFinancials.Location = New System.Drawing.Point(27, 335)
+        Me.grpFinancials.Location = New System.Drawing.Point(44, 289)
         Me.grpFinancials.Name = "grpFinancials"
-        Me.grpFinancials.Size = New System.Drawing.Size(859, 314)
+        Me.grpFinancials.Size = New System.Drawing.Size(1051, 267)
         Me.grpFinancials.TabIndex = 14
         Me.grpFinancials.TabStop = False
         Me.grpFinancials.Text = "Billing Information"
@@ -332,17 +341,51 @@ Partial Class uc_NewContractEntry
         Me.Label8.TabIndex = 11
         Me.Label8.Text = "Payment Terms:"
         '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.grpFinancials)
+        Me.Panel1.Controls.Add(Me.btnSaveContract)
+        Me.Panel1.Controls.Add(Me.grpTimeline)
+        Me.Panel1.Controls.Add(Me.grpDetails)
+        Me.Panel1.Location = New System.Drawing.Point(60, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1132, 723)
+        Me.Panel1.TabIndex = 15
+        '
+        'txtSearchClient
+        '
+        Me.txtSearchClient.Location = New System.Drawing.Point(188, 54)
+        Me.txtSearchClient.Name = "txtSearchClient"
+        Me.txtSearchClient.Size = New System.Drawing.Size(177, 26)
+        Me.txtSearchClient.TabIndex = 7
+        '
+        'btnSearchClient
+        '
+        Me.btnSearchClient.Location = New System.Drawing.Point(371, 56)
+        Me.btnSearchClient.Name = "btnSearchClient"
+        Me.btnSearchClient.Size = New System.Drawing.Size(85, 24)
+        Me.btnSearchClient.TabIndex = 8
+        Me.btnSearchClient.Text = "SEARCH"
+        Me.btnSearchClient.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(27, 57)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(104, 20)
+        Me.Label9.TabIndex = 9
+        Me.Label9.Text = "Search Client"
+        '
         'uc_NewContractEntry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.grpFinancials)
-        Me.Controls.Add(Me.grpTimeline)
-        Me.Controls.Add(Me.grpDetails)
-        Me.Controls.Add(Me.btnSaveContract)
-        Me.Controls.Add(Me.lblTitle)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "uc_NewContractEntry"
-        Me.Size = New System.Drawing.Size(955, 813)
+        Me.Size = New System.Drawing.Size(1262, 774)
         CType(Me.numDuration, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpDetails.ResumeLayout(False)
         Me.grpDetails.PerformLayout()
@@ -351,12 +394,10 @@ Partial Class uc_NewContractEntry
         Me.grpFinancials.ResumeLayout(False)
         Me.grpFinancials.PerformLayout()
         CType(Me.numInstallments, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents lblTitle As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents cmbClient As ComboBox
     Friend WithEvents Label2 As Label
@@ -384,4 +425,8 @@ Partial Class uc_NewContractEntry
     Friend WithEvents lblFirstDue As Label
     Friend WithEvents cmbPayInterval As ComboBox
     Friend WithEvents lblInstallmentAmt As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label9 As Label
+    Friend WithEvents btnSearchClient As Button
+    Friend WithEvents txtSearchClient As TextBox
 End Class
