@@ -264,4 +264,53 @@ Public Class uc_NewContractEntry
         lblInstallmentAmt.Text = "Amount Per Give: " & perGive.ToString("N2")
     End Sub
 
+
+    ' ==========================================
+    ' SEARCH CLIENT FUNCTION
+    ' ==========================================
+    Private Sub btnSearchClient_Click(sender As Object, e As EventArgs) Handles btnSearchClient.Click
+        Dim keyword As String = txtSearchClient.Text.Trim()
+
+        ' If search is empty, reload the original full list
+        If keyword = "" Then
+            LoadDropdowns() ' Re-uses your existing load logic
+            Return
+        End If
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+
+                ' SQL to find clients matching First OR Last name
+                ' We use @search with % wildcards for partial matching
+                Dim sqlSearch As String = "SELECT ClientID, CONCAT(ClientFirstName, ' ', ClientLastName) AS ClientName " &
+                                          "FROM tbl_clients " &
+                                          "WHERE ClientFirstName LIKE @search OR ClientLastName LIKE @search"
+
+                Dim da As New MySqlDataAdapter(sqlSearch, conn)
+                da.SelectCommand.Parameters.AddWithValue("@search", "%" & keyword & "%")
+
+                Dim dt As New DataTable()
+                da.Fill(dt)
+
+                ' Check if we found anyone
+                If dt.Rows.Count > 0 Then
+                    cmbClient.DataSource = dt
+                    cmbClient.DisplayMember = "ClientName"
+                    cmbClient.ValueMember = "ClientID"
+
+                    ' Open the dropdown automatically to show results
+                    cmbClient.DroppedDown = True
+                Else
+                    MessageBox.Show("No clients found matching '" & keyword & "'.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    ' Optional: Clear the dropdown if no match found
+                    cmbClient.DataSource = Nothing
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error searching client: " & ex.Message)
+            End Try
+        End Using
+    End Sub
 End Class
