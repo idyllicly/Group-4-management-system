@@ -87,8 +87,7 @@ Public Class newUcBilling
                     dgvBilling.Columns("TotalAmount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 End If
 
-                ' Apply Color Coding to Master List
-                ColorMasterList()
+
 
                 ' --- RESTORE SELECTION ---
                 If previouslySelectedID > 0 Then
@@ -380,6 +379,30 @@ Public Class newUcBilling
             txtSearchBilling.Text = "Search Client..."
             txtSearchBilling.ForeColor = Color.Gray
             LoadBillingData("") ' Reset list
+        End If
+    End Sub
+
+    Private Sub dgvBilling_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvBilling.RowPrePaint
+        If e.RowIndex >= 0 Then
+            Dim row As DataGridViewRow = dgvBilling.Rows(e.RowIndex)
+
+            ' Safety check: ensure the column exists and value is not null
+            If row.Cells("PaymentStatus").Value IsNot Nothing Then
+                Dim status As String = row.Cells("PaymentStatus").Value.ToString()
+
+                If status = "Paid" Then
+                    row.DefaultCellStyle.BackColor = Color.LightGreen
+                    row.DefaultCellStyle.SelectionBackColor = Color.SeaGreen
+
+                ElseIf status = "Partial" Then
+                    row.DefaultCellStyle.BackColor = Color.LightYellow
+                    row.DefaultCellStyle.SelectionBackColor = Color.Gold
+
+                Else
+                    ' Default for Pending or others
+                    row.DefaultCellStyle.BackColor = Color.White
+                End If
+            End If
         End If
     End Sub
 

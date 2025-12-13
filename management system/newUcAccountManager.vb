@@ -321,4 +321,60 @@ Public Class newUcAccountManager
         Return True
     End Function
 
+    ' ==========================================
+    ' 6. SEARCH FUNCTIONALITY
+    ' ==========================================
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        Dim keyword As String = txtSearch.Text.Trim()
+
+        Using conn As New MySqlConnection(connString)
+            Try
+                conn.Open()
+
+                ' Base SQL query
+                Dim sql As String = "SELECT UserID, LastName, FirstName, MiddleName, Role, Username, ContactNo, FirebaseUID FROM tbl_users"
+
+                ' Add WHERE clause for searching if keyword is not empty
+                If keyword <> "" Then
+                    sql &= " WHERE (LastName LIKE @keyword OR FirstName LIKE @keyword OR Username LIKE @keyword)"
+
+                    ' If a role filter is currently selected, respect that filter too
+                    If cmbFilterRole.Text <> "All" AndAlso cmbFilterRole.Text <> "" Then
+                        sql &= " AND Role = @role"
+                    End If
+                Else
+                    ' If search is empty but a role filter is active
+                    If cmbFilterRole.Text <> "All" AndAlso cmbFilterRole.Text <> "" Then
+                        sql &= " WHERE Role = @role"
+                    End If
+                End If
+
+                sql &= " ORDER BY LastName ASC, FirstName ASC"
+
+                Dim cmd As New MySqlCommand(sql, conn)
+
+                ' Add parameters
+                If keyword <> "" Then
+                    cmd.Parameters.AddWithValue("@keyword", "%" & keyword & "%")
+                End If
+
+                If cmbFilterRole.Text <> "All" AndAlso cmbFilterRole.Text <> "" Then
+                    cmd.Parameters.AddWithValue("@role", cmbFilterRole.Text)
+                End If
+
+                Dim da As New MySqlDataAdapter(cmd)
+                Dim dt As New DataTable()
+                da.Fill(dt)
+
+                dgvAccounts.DataSource = dt
+
+                ' Ensure columns are hidden again after refreshing data
+                If dgvAccounts.Columns("UserID") IsNot Nothing Then dgvAccounts.Columns("UserID").Visible = False
+                If dgvAccounts.Columns("FirebaseUID") IsNot Nothing Then dgvAccounts.Columns("FirebaseUID").Visible = False
+
+            Catch ex As Exception
+                MessageBox.Show("Error searching: " & ex.Message)
+            End Try
+        End Using
+    End Sub
 End Class

@@ -90,6 +90,7 @@ Partial Class newUcContractManager
         Me.dgvContracts.AllowUserToAddRows = False
         Me.dgvContracts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvContracts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvContracts.BackgroundColor = System.Drawing.Color.Teal
         Me.dgvContracts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvContracts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvContracts.Location = New System.Drawing.Point(0, 131)
@@ -218,7 +219,7 @@ Partial Class newUcContractManager
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(241, 9)
+        Me.btnSearch.Location = New System.Drawing.Point(240, 46)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 35)
         Me.btnSearch.TabIndex = 1
@@ -227,7 +228,7 @@ Partial Class newUcContractManager
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(4, 13)
+        Me.txtSearch.Location = New System.Drawing.Point(4, 50)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(221, 26)
         Me.txtSearch.TabIndex = 0

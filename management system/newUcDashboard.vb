@@ -36,48 +36,37 @@ Public Class newUcDashboard
 
     Private Sub StyleGrid()
         With dgvDailyJobs
-            ' 1. Basic Colors & Borders
-            .BackgroundColor = Color.White
-            .BorderStyle = BorderStyle.None
-            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-            .EnableHeadersVisualStyles = False
+            ' --- 1. General Frame & Background ---
 
-            ' 2. Header Style (This centers the text)
-            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249)
-            .ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(100, 116, 139)
-            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-            .ColumnHeadersHeight = 40
-            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+            .BorderStyle = BorderStyle.FixedSingle ' Adds a subtle frame around the table
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal ' Keep horizontal lines only for a clean look
+            .GridColor = Color.FromArgb(226, 232, 240) ' Soft gray lines (Tailwind slate-200)
+            .EnableHeadersVisualStyles = False ' Required to custom style headers
 
-            ' --- THIS MAKES THE TEXT CENTERED ---
-            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            ' ------------------------------------
+            ' --- 2. Header Style ---
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249) ' Light gray header
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(71, 85, 105)   ' Dark slate text
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold) ' Slightly larger font
+            .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft ' Standard tables usually align left
+            .ColumnHeadersDefaultCellStyle.Padding = New Padding(10, 0, 0, 0) ' Add padding to header text
+            .ColumnHeadersHeight = 45 ' Taller header for a modern feel
+            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
 
-            ' 3. Row Style
-            .RowTemplate.Height = 35
-            .GridColor = Color.FromArgb(226, 232, 240)
-            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(239, 246, 255)
+            ' --- 3. Row Style & Padding (The "Table" Look) ---
+            .RowTemplate.Height = 40 ' Give rows breathing room (Standard is usually too small)
+            .DefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Regular)
+            .DefaultCellStyle.ForeColor = Color.FromArgb(51, 65, 81)
+            .DefaultCellStyle.Padding = New Padding(10, 0, 10, 0) ' CRITICAL: Keeps text away from the edges
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254) ' Soft blue highlight (instead of harsh deep blue)
             .DefaultCellStyle.SelectionForeColor = Color.Black
 
-            ' 4. Column Sizing Strategy
-            ' Reset default first
+            ' --- 4. Zebra Striping (Alternating Rows) ---
+            ' This makes it much easier to read line-by-line
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252) ' Very light gray for alternate rows
+
+            ' --- 5. Column Sizing Strategy ---
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
-
-            ' Make "ClientName" take ALL extra space
-            If .Columns("ClientName") IsNot Nothing Then
-                .Columns("ClientName").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            End If
-
-            ' Make these two shrink to fit their text
-            If .Columns("JobType") IsNot Nothing Then
-                .Columns("JobType").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-                .Columns("JobType").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End If
-
-            If .Columns("Status") IsNot Nothing Then
-                .Columns("Status").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-                .Columns("Status").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End If
+            ' We set specific column logic in BindJobsGrid
         End With
     End Sub
 
@@ -122,14 +111,15 @@ Public Class newUcDashboard
                 .Columns("ClientName").HeaderText = "CLIENT NAME" ' Optional: Make it caps
             End If
 
-            ' B. Job Type: Shrinks to fit text
+            ' B. Job Type
             If .Columns("JobType") IsNot Nothing Then
                 .Columns("JobType").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-                .Columns("JobType").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                .Columns("JobType").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+                ' MiddleLeft often looks cleaner with the new padding, but Center is okay too
+                .Columns("JobType").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .Columns("JobType").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft
             End If
 
-            ' C. Status: Shrinks to fit text
+            ' C. Status
             If .Columns("Status") IsNot Nothing Then
                 .Columns("Status").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
                 .Columns("Status").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -373,6 +363,10 @@ Public Class newUcDashboard
     End Sub
 
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
+    End Sub
+
+    Private Sub dgvDailyJobs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailyJobs.CellContentClick
 
     End Sub
 End Class

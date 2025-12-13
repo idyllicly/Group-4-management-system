@@ -34,6 +34,9 @@ Partial Class uc_NewContractEntry
         Me.txtAmount = New System.Windows.Forms.TextBox()
         Me.btnSaveContract = New System.Windows.Forms.Button()
         Me.grpDetails = New System.Windows.Forms.GroupBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.btnSearchClient = New System.Windows.Forms.Button()
+        Me.txtSearchClient = New System.Windows.Forms.TextBox()
         Me.cmbFrequency = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.grpTimeline = New System.Windows.Forms.GroupBox()
@@ -50,9 +53,6 @@ Partial Class uc_NewContractEntry
         Me.cmbPaymentTerms = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.txtSearchClient = New System.Windows.Forms.TextBox()
-        Me.btnSearchClient = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
         CType(Me.numDuration, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpDetails.SuspendLayout()
         Me.grpTimeline.SuspendLayout()
@@ -164,7 +164,8 @@ Partial Class uc_NewContractEntry
         '
         'grpDetails
         '
-        Me.grpDetails.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpDetails.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpDetails.BackColor = System.Drawing.SystemColors.Control
         Me.grpDetails.Controls.Add(Me.Label9)
         Me.grpDetails.Controls.Add(Me.btnSearchClient)
@@ -175,12 +176,37 @@ Partial Class uc_NewContractEntry
         Me.grpDetails.Controls.Add(Me.cmbClient)
         Me.grpDetails.Controls.Add(Me.Label2)
         Me.grpDetails.Controls.Add(Me.cmbService)
-        Me.grpDetails.Location = New System.Drawing.Point(44, 19)
+        Me.grpDetails.Location = New System.Drawing.Point(45, 64)
         Me.grpDetails.Name = "grpDetails"
         Me.grpDetails.Size = New System.Drawing.Size(490, 246)
         Me.grpDetails.TabIndex = 12
         Me.grpDetails.TabStop = False
         Me.grpDetails.Text = "Contract Details"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(27, 57)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(104, 20)
+        Me.Label9.TabIndex = 9
+        Me.Label9.Text = "Search Client"
+        '
+        'btnSearchClient
+        '
+        Me.btnSearchClient.Location = New System.Drawing.Point(371, 56)
+        Me.btnSearchClient.Name = "btnSearchClient"
+        Me.btnSearchClient.Size = New System.Drawing.Size(85, 24)
+        Me.btnSearchClient.TabIndex = 8
+        Me.btnSearchClient.Text = "SEARCH"
+        Me.btnSearchClient.UseVisualStyleBackColor = True
+        '
+        'txtSearchClient
+        '
+        Me.txtSearchClient.Location = New System.Drawing.Point(188, 54)
+        Me.txtSearchClient.Name = "txtSearchClient"
+        Me.txtSearchClient.Size = New System.Drawing.Size(177, 26)
+        Me.txtSearchClient.TabIndex = 7
         '
         'cmbFrequency
         '
@@ -203,7 +229,8 @@ Partial Class uc_NewContractEntry
         '
         'grpTimeline
         '
-        Me.grpTimeline.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpTimeline.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpTimeline.BackColor = System.Drawing.SystemColors.Control
         Me.grpTimeline.Controls.Add(Me.lblEndDate)
         Me.grpTimeline.Controls.Add(Me.Label7)
@@ -211,7 +238,7 @@ Partial Class uc_NewContractEntry
         Me.grpTimeline.Controls.Add(Me.dtpStart)
         Me.grpTimeline.Controls.Add(Me.Label4)
         Me.grpTimeline.Controls.Add(Me.numDuration)
-        Me.grpTimeline.Location = New System.Drawing.Point(560, 19)
+        Me.grpTimeline.Location = New System.Drawing.Point(561, 64)
         Me.grpTimeline.Name = "grpTimeline"
         Me.grpTimeline.Size = New System.Drawing.Size(535, 246)
         Me.grpTimeline.TabIndex = 13
@@ -353,31 +380,6 @@ Partial Class uc_NewContractEntry
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1132, 723)
         Me.Panel1.TabIndex = 15
-        '
-        'txtSearchClient
-        '
-        Me.txtSearchClient.Location = New System.Drawing.Point(188, 54)
-        Me.txtSearchClient.Name = "txtSearchClient"
-        Me.txtSearchClient.Size = New System.Drawing.Size(177, 26)
-        Me.txtSearchClient.TabIndex = 7
-        '
-        'btnSearchClient
-        '
-        Me.btnSearchClient.Location = New System.Drawing.Point(371, 56)
-        Me.btnSearchClient.Name = "btnSearchClient"
-        Me.btnSearchClient.Size = New System.Drawing.Size(85, 24)
-        Me.btnSearchClient.TabIndex = 8
-        Me.btnSearchClient.Text = "SEARCH"
-        Me.btnSearchClient.UseVisualStyleBackColor = True
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(27, 57)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(104, 20)
-        Me.Label9.TabIndex = 9
-        Me.Label9.Text = "Search Client"
         '
         'uc_NewContractEntry
         '

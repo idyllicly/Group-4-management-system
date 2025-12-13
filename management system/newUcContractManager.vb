@@ -107,24 +107,31 @@ Public Class newUcContractManager
                     sql &= " WHERE Con.ContractID = @presetID "
 
                 ElseIf PresetClientID > 0 Then
-                    ' Mode B: Searching for ALL contracts for one Client (NEW)
+                    ' Mode B: Searching for ALL contracts for one Client
                     sql &= " WHERE Con.ClientID = @presetClientID "
 
                 Else
                     ' Mode C: Normal Text Search
                     sql &= " WHERE (Cl.ClientFirstName LIKE @search OR Cl.ClientLastName LIKE @search) "
-                End If
 
-                ' --- SERVICE FILTER (Only apply if NOT in preset mode) ---
-                If PresetSearchID = 0 AndAlso cboServiceFilter.SelectedValue IsNot Nothing AndAlso IsNumeric(cboServiceFilter.SelectedValue) Then
-                    If Convert.ToInt32(cboServiceFilter.SelectedValue) > 0 Then
-                        sql &= " AND Con.ServiceID = @serviceID "
+                    ' --- UPDATED DATE FILTER LOGIC ---
+                    ' Only apply these extra filters if we are NOT in a Preset Mode
+
+                    ' Service Filter
+                    If cboServiceFilter.SelectedValue IsNot Nothing AndAlso IsNumeric(cboServiceFilter.SelectedValue) Then
+                        If Convert.ToInt32(cboServiceFilter.SelectedValue) > 0 Then
+                            sql &= " AND Con.ServiceID = @serviceID "
+                        End If
                     End If
-                End If
 
-                ' --- DATE RANGE FILTER (Only apply if NOT in preset mode) ---
-                If PresetSearchID = 0 AndAlso chkDateFilter.Checked Then
-                    sql &= " AND Con.StartDate BETWEEN @dateFrom AND @dateTo "
+                    ' Date Filter Logic
+                    If chkDateFilter.Checked Then
+                        ' If Checked: Use the specific range from the DatePickers
+                        sql &= " AND Con.StartDate BETWEEN @dateFrom AND @dateTo "
+                    Else
+                        ' If Unchecked: Default to CURRENT MONTH and YEAR
+                        sql &= " AND MONTH(Con.StartDate) = @curMonth AND YEAR(Con.StartDate) = @curYear "
+                    End If
                 End If
 
                 ' --- SORTING ---
@@ -142,18 +149,31 @@ Public Class newUcContractManager
                 Dim cmd As New MySqlCommand(sql, conn)
 
                 ' 3. ADD PARAMETERS
-                ' 3. ADD PARAMETERS
                 If PresetSearchID > 0 Then
                     cmd.Parameters.AddWithValue("@presetID", PresetSearchID)
 
                 ElseIf PresetClientID > 0 Then
-                    ' (NEW) Add the Client ID parameter
                     cmd.Parameters.AddWithValue("@presetClientID", PresetClientID)
 
                 Else
                     ' Normal Search Params
                     cmd.Parameters.AddWithValue("@search", "%" & searchTerm & "%")
-                    ' ... keep your existing Date/Service filter logic here ...
+
+                    ' Service Param
+                    If cboServiceFilter.SelectedValue IsNot Nothing AndAlso IsNumeric(cboServiceFilter.SelectedValue) AndAlso Convert.ToInt32(cboServiceFilter.SelectedValue) > 0 Then
+                        cmd.Parameters.AddWithValue("@serviceID", cboServiceFilter.SelectedValue)
+                    End If
+
+                    ' Date Params
+                    If chkDateFilter.Checked Then
+                        ' User Specified Range
+                        cmd.Parameters.AddWithValue("@dateFrom", dtpFrom.Value.Date) ' Assuming your DatePicker is named dtpFrom
+                        cmd.Parameters.AddWithValue("@dateTo", dtpTo.Value.Date)     ' Assuming your DatePicker is named dtpTo
+                    Else
+                        ' Default (Current Month)
+                        cmd.Parameters.AddWithValue("@curMonth", DateTime.Now.Month)
+                        cmd.Parameters.AddWithValue("@curYear", DateTime.Now.Year)
+                    End If
                 End If
 
                 Dim da As New MySqlDataAdapter(cmd)
@@ -162,7 +182,7 @@ Public Class newUcContractManager
 
                 dgvContracts.DataSource = dt
 
-                ' ... (Rest of your formatting code stays the same) ...
+
 
             Catch ex As Exception
                 MessageBox.Show("Error Loading List: " & ex.Message)
@@ -296,7 +316,22 @@ Public Class newUcContractManager
         End If
     End Sub
 
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Private Sub dgvContracts_RowPrePaint(sender As Object, e As DataGridViewRowPrePaintEventArgs) Handles dgvContracts.RowPrePaint
+        If e.RowIndex >= 0 Then
+            Dim row As DataGridViewRow = dgvContracts.Rows(e.RowIndex)
 
+            ' Check if the "PaymentStatus" column exists and has a value
+            If row.Cells("PaymentStatus").Value IsNot Nothing Then
+                Dim status As String = row.Cells("PaymentStatus").Value.ToString()
+
+                ' Apply Green if Paid
+                If status = "Paid" Then
+                    row.DefaultCellStyle.BackColor = Color.LightGreen
+                Else
+                    ' Ensure other rows stay white (important when scrolling/sorting)
+                    row.DefaultCellStyle.BackColor = Color.White
+                End If
+            End If
+        End If
     End Sub
 End Class

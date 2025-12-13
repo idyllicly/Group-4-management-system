@@ -48,7 +48,7 @@ Public Class log_in
         ' --- FIX IS HERE ---
         ' We use CONCAT_WS to join FirstName and LastName with a space, and call it 'FullName'
         ' This allows the rest of your code (reader("FullName")) to work without changes.
-        Dim query As String = "SELECT UserID, Role, CONCAT_WS(' ', FirstName, LastName) AS FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
+        Dim query As String = "SELECT UserID, Role, CONCAT_WS(' ', FirstName) AS FullName FROM tbl_users WHERE Username = @user AND Password = @pass AND Status = 'Active'"
 
         Try
             Using con As New MySqlConnection(MyConnectionString)
@@ -77,7 +77,7 @@ Public Class log_in
                             ' Note: Based on your database data, Roles are "Super Admin", "Admin", and "Technician".
                             ' Your current code blocks Technicians. If this is intentional, keep it.
                             If CurrentUserRole = "Super Admin" Then
-                                MessageBox.Show("Welcome back, Super Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                MessageBox.Show("Welcome back, " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                             ElseIf CurrentUserRole = "Admin" Then
                                 MessageBox.Show("Welcome Admin " & fullName, "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
