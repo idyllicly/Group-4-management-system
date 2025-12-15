@@ -82,10 +82,10 @@ Partial Class newUcTechMonitor
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(36, 16)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(185, 25)
+        Me.Label1.Size = New System.Drawing.Size(192, 23)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Select Technician"
         '
@@ -106,6 +106,7 @@ Partial Class newUcTechMonitor
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(0, 100)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -128,7 +129,7 @@ Partial Class newUcTechMonitor
         Me.dgvAssignments.AllowUserToAddRows = False
         Me.dgvAssignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAssignments.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvAssignments.BackgroundColor = System.Drawing.Color.Teal
+        Me.dgvAssignments.BackgroundColor = System.Drawing.SystemColors.Highlight
         Me.dgvAssignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvAssignments.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvAssignments.Location = New System.Drawing.Point(3, 3)
@@ -190,7 +191,7 @@ Partial Class newUcTechMonitor
         Me.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpEnd.Location = New System.Drawing.Point(89, 50)
         Me.dtpEnd.Name = "dtpEnd"
-        Me.dtpEnd.Size = New System.Drawing.Size(200, 26)
+        Me.dtpEnd.Size = New System.Drawing.Size(200, 32)
         Me.dtpEnd.TabIndex = 3
         '
         'Label3
@@ -198,7 +199,7 @@ Partial Class newUcTechMonitor
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(24, 50)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 20)
+        Me.Label3.Size = New System.Drawing.Size(34, 20)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "To:"
         '
@@ -207,7 +208,7 @@ Partial Class newUcTechMonitor
         Me.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpStart.Location = New System.Drawing.Point(89, 10)
         Me.dtpStart.Name = "dtpStart"
-        Me.dtpStart.Size = New System.Drawing.Size(200, 26)
+        Me.dtpStart.Size = New System.Drawing.Size(200, 32)
         Me.dtpStart.TabIndex = 1
         '
         'Label2
@@ -215,7 +216,7 @@ Partial Class newUcTechMonitor
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(20, 10)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(50, 20)
+        Me.Label2.Size = New System.Drawing.Size(55, 20)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "From:"
         '
@@ -255,18 +256,20 @@ Partial Class newUcTechMonitor
         'lblCompletedJobs
         '
         Me.lblCompletedJobs.AutoSize = True
+        Me.lblCompletedJobs.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCompletedJobs.Location = New System.Drawing.Point(180, 16)
         Me.lblCompletedJobs.Name = "lblCompletedJobs"
-        Me.lblCompletedJobs.Size = New System.Drawing.Size(57, 20)
+        Me.lblCompletedJobs.Size = New System.Drawing.Size(62, 20)
         Me.lblCompletedJobs.TabIndex = 4
         Me.lblCompletedJobs.Text = "Label2"
         '
         'lblTotalAssigned
         '
         Me.lblTotalAssigned.AutoSize = True
+        Me.lblTotalAssigned.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalAssigned.Location = New System.Drawing.Point(394, 63)
         Me.lblTotalAssigned.Name = "lblTotalAssigned"
-        Me.lblTotalAssigned.Size = New System.Drawing.Size(57, 20)
+        Me.lblTotalAssigned.Size = New System.Drawing.Size(62, 20)
         Me.lblTotalAssigned.TabIndex = 3
         Me.lblTotalAssigned.Text = "Label2"
         '
@@ -275,27 +278,30 @@ Partial Class newUcTechMonitor
         Me.lblStatus.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblStatus.AutoSize = True
+        Me.lblStatus.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStatus.Location = New System.Drawing.Point(394, 16)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(57, 20)
+        Me.lblStatus.Size = New System.Drawing.Size(62, 20)
         Me.lblStatus.TabIndex = 2
         Me.lblStatus.Text = "Label2"
         '
         'lblContact
         '
         Me.lblContact.AutoSize = True
+        Me.lblContact.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContact.Location = New System.Drawing.Point(27, 63)
         Me.lblContact.Name = "lblContact"
-        Me.lblContact.Size = New System.Drawing.Size(57, 20)
+        Me.lblContact.Size = New System.Drawing.Size(62, 20)
         Me.lblContact.TabIndex = 1
         Me.lblContact.Text = "Label2"
         '
         'lblTechName
         '
         Me.lblTechName.AutoSize = True
+        Me.lblTechName.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTechName.Location = New System.Drawing.Point(27, 16)
         Me.lblTechName.Name = "lblTechName"
-        Me.lblTechName.Size = New System.Drawing.Size(57, 20)
+        Me.lblTechName.Size = New System.Drawing.Size(62, 20)
         Me.lblTechName.TabIndex = 0
         Me.lblTechName.Text = "Label2"
         '

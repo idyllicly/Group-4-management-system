@@ -369,4 +369,8 @@ Public Class newUcDashboard
     Private Sub dgvDailyJobs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDailyJobs.CellContentClick
 
     End Sub
+
+    Private Sub FlowLayoutPanel3_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel3.Paint
+
+    End Sub
 End Class

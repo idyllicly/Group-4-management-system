@@ -51,6 +51,9 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\RRCLogoicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -271,6 +274,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DatabaseConnection.vb" />
+    <Compile Include="DatabaseManager.vb" />
     <Compile Include="DateCard.Designer.vb">
       <DependentUpon>DateCard.vb</DependentUpon>
     </Compile>
@@ -775,6 +779,41 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="db_server\bin\myrocks_hotbackup" />
+    <None Include="db_server\bin\mysqldumpslow.pl" />
+    <None Include="db_server\bin\mysqld_multi.pl" />
+    <None Include="db_server\bin\mysqlhotcopy.pl" />
+    <None Include="db_server\bin\mysql_config.pl" />
+    <None Include="db_server\bin\mysql_convert_table_format.pl" />
+    <None Include="db_server\bin\print_ddl_recovery_log.pl" />
+    <None Include="db_server\bin\server.lib" />
+    <None Include="db_server\share\bulgarian\errmsg.sys" />
+    <None Include="db_server\share\charsets\README" />
+    <None Include="db_server\share\chinese\errmsg.sys" />
+    <None Include="db_server\share\czech\errmsg.sys" />
+    <None Include="db_server\share\danish\errmsg.sys" />
+    <None Include="db_server\share\dutch\errmsg.sys" />
+    <None Include="db_server\share\english\errmsg.sys" />
+    <None Include="db_server\share\estonian\errmsg.sys" />
+    <None Include="db_server\share\french\errmsg.sys" />
+    <None Include="db_server\share\german\errmsg.sys" />
+    <None Include="db_server\share\greek\errmsg.sys" />
+    <None Include="db_server\share\hindi\errmsg.sys" />
+    <None Include="db_server\share\hungarian\errmsg.sys" />
+    <None Include="db_server\share\italian\errmsg.sys" />
+    <None Include="db_server\share\japanese\errmsg.sys" />
+    <None Include="db_server\share\korean\errmsg.sys" />
+    <None Include="db_server\share\norwegian-ny\errmsg.sys" />
+    <None Include="db_server\share\norwegian\errmsg.sys" />
+    <None Include="db_server\share\polish\errmsg.sys" />
+    <None Include="db_server\share\portuguese\errmsg.sys" />
+    <None Include="db_server\share\romanian\errmsg.sys" />
+    <None Include="db_server\share\russian\errmsg.sys" />
+    <None Include="db_server\share\serbian\errmsg.sys" />
+    <None Include="db_server\share\slovak\errmsg.sys" />
+    <None Include="db_server\share\spanish\errmsg.sys" />
+    <None Include="db_server\share\swedish\errmsg.sys" />
+    <None Include="db_server\share\ukrainian\errmsg.sys" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -786,7 +825,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="obj\Release\management system.vbproj.AssemblyReference.cache" />
     <None Include="packages.config" />
     <None Include="key.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1073,6 +1111,98 @@
     <None Include="Resources\buton123456.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db_server\bin\aria_chk.exe" />
+    <Content Include="db_server\bin\aria_dump_log.exe" />
+    <Content Include="db_server\bin\aria_ftdump.exe" />
+    <Content Include="db_server\bin\aria_pack.exe" />
+    <Content Include="db_server\bin\aria_read_log.exe" />
+    <Content Include="db_server\bin\innochecksum.exe" />
+    <Content Include="db_server\bin\mariabackup.exe" />
+    <Content Include="db_server\bin\mariadb-admin.exe" />
+    <Content Include="db_server\bin\mariadb-backup.exe" />
+    <Content Include="db_server\bin\mariadb-binlog.exe" />
+    <Content Include="db_server\bin\mariadb-check.exe" />
+    <Content Include="db_server\bin\mariadb-conv.exe" />
+    <Content Include="db_server\bin\mariadb-dump.exe" />
+    <Content Include="db_server\bin\mariadb-import.exe" />
+    <Content Include="db_server\bin\mariadb-install-db.exe" />
+    <Content Include="db_server\bin\mariadb-ldb.exe" />
+    <Content Include="db_server\bin\mariadb-plugin.exe" />
+    <Content Include="db_server\bin\mariadb-show.exe" />
+    <Content Include="db_server\bin\mariadb-slap.exe" />
+    <Content Include="db_server\bin\mariadb-tzinfo-to-sql.exe" />
+    <Content Include="db_server\bin\mariadb-upgrade-service.exe" />
+    <Content Include="db_server\bin\mariadb-upgrade-wizard.exe" />
+    <Content Include="db_server\bin\mariadb-upgrade.exe" />
+    <Content Include="db_server\bin\mariadb.exe" />
+    <Content Include="db_server\bin\mariadbd.exe" />
+    <Content Include="db_server\bin\mariadbd.pdb" />
+    <Content Include="db_server\bin\mbstream.exe" />
+    <Content Include="db_server\bin\myisamchk.exe" />
+    <Content Include="db_server\bin\myisamlog.exe" />
+    <Content Include="db_server\bin\myisampack.exe" />
+    <Content Include="db_server\bin\myisam_ftdump.exe" />
+    <Content Include="db_server\bin\mysql.exe" />
+    <Content Include="db_server\bin\mysqladmin.exe" />
+    <Content Include="db_server\bin\mysqlbinlog.exe" />
+    <Content Include="db_server\bin\mysqlcheck.exe" />
+    <Content Include="db_server\bin\mysqld.exe" />
+    <Content Include="db_server\bin\mysqldump.exe" />
+    <Content Include="db_server\bin\mysqlimport.exe" />
+    <Content Include="db_server\bin\mysqlshow.exe" />
+    <Content Include="db_server\bin\mysqlslap.exe" />
+    <Content Include="db_server\bin\mysql_install_db.exe" />
+    <Content Include="db_server\bin\mysql_ldb.exe" />
+    <Content Include="db_server\bin\mysql_plugin.exe" />
+    <Content Include="db_server\bin\mysql_tzinfo_to_sql.exe" />
+    <Content Include="db_server\bin\mysql_upgrade.exe" />
+    <Content Include="db_server\bin\mysql_upgrade_service.exe" />
+    <Content Include="db_server\bin\mysql_upgrade_wizard.exe" />
+    <Content Include="db_server\bin\my_print_defaults.exe" />
+    <Content Include="db_server\bin\perror.exe" />
+    <Content Include="db_server\bin\replace.exe" />
+    <Content Include="db_server\bin\server.dll" />
+    <Content Include="db_server\bin\server.pdb" />
+    <Content Include="db_server\bin\sst_dump.exe" />
+    <Content Include="db_server\share\charsets\armscii8.xml" />
+    <Content Include="db_server\share\charsets\ascii.xml" />
+    <Content Include="db_server\share\charsets\cp1250.xml" />
+    <Content Include="db_server\share\charsets\cp1251.xml" />
+    <Content Include="db_server\share\charsets\cp1256.xml" />
+    <Content Include="db_server\share\charsets\cp1257.xml" />
+    <Content Include="db_server\share\charsets\cp850.xml" />
+    <Content Include="db_server\share\charsets\cp852.xml" />
+    <Content Include="db_server\share\charsets\cp866.xml" />
+    <Content Include="db_server\share\charsets\dec8.xml" />
+    <Content Include="db_server\share\charsets\geostd8.xml" />
+    <Content Include="db_server\share\charsets\greek.xml" />
+    <Content Include="db_server\share\charsets\hebrew.xml" />
+    <Content Include="db_server\share\charsets\hp8.xml" />
+    <Content Include="db_server\share\charsets\Index.xml" />
+    <Content Include="db_server\share\charsets\keybcs2.xml" />
+    <Content Include="db_server\share\charsets\koi8r.xml" />
+    <Content Include="db_server\share\charsets\koi8u.xml" />
+    <Content Include="db_server\share\charsets\latin1.xml" />
+    <Content Include="db_server\share\charsets\latin2.xml" />
+    <Content Include="db_server\share\charsets\latin5.xml" />
+    <Content Include="db_server\share\charsets\latin7.xml" />
+    <Content Include="db_server\share\charsets\macce.xml" />
+    <Content Include="db_server\share\charsets\macroman.xml" />
+    <Content Include="db_server\share\charsets\swe7.xml" />
+    <Content Include="db_server\share\errmsg-utf8.txt" />
+    <Content Include="db_server\share\fill_help_tables.sql" />
+    <Content Include="db_server\share\JavaWrappers.jar" />
+    <Content Include="db_server\share\JdbcInterface.jar" />
+    <Content Include="db_server\share\maria_add_gis_sp.sql" />
+    <Content Include="db_server\share\maria_add_gis_sp_bootstrap.sql" />
+    <Content Include="db_server\share\Mongo2.jar" />
+    <Content Include="db_server\share\Mongo3.jar" />
+    <Content Include="db_server\share\mysql_performance_tables.sql" />
+    <Content Include="db_server\share\mysql_system_tables.sql" />
+    <Content Include="db_server\share\mysql_system_tables_data.sql" />
+    <Content Include="db_server\share\mysql_sys_schema.sql" />
+    <Content Include="db_server\share\mysql_test_data_timezone.sql" />
+    <Content Include="db_server\share\mysql_test_db.sql" />
     <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll" />
     <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.xml" />
     <Content Include="packages\BouncyCastle.Cryptography.2.6.2\lib\net6.0\BouncyCastle.Cryptography.dll" />
@@ -1490,6 +1620,7 @@
     <None Include="Resources\Logo %281%29.png" />
     <None Include="Resources\Logo %281%291.png" />
     <None Include="Resources\Triangle-Halftone-Gradient-Pattern-1-1-1260x936.png" />
+    <Content Include="Resources\RRCLogoicon.ico" />
     <Content Include="rrc_worker.jpeg" />
     <Content Include="UpgradeLog2.htm" />
     <None Include="Resources\RRCLogo.png" />
@@ -1502,6 +1633,10 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="db_server\data\mysql\" />
+    <Folder Include="db_server\data\performance_schema\" />
+    <Folder Include="db_server\data\sys\" />
+    <Folder Include="obj\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets" Condition="Exists('packages\Google.Api.CommonProtos.2.17.0\build\Google.Api.CommonProtos.targets')" />

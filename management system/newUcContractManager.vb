@@ -334,4 +334,8 @@ Public Class newUcContractManager
             End If
         End If
     End Sub
+
+    Private Sub tpOverview_Click(sender As Object, e As EventArgs) Handles tpOverview.Click
+
+    End Sub
 End Class

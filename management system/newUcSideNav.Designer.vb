@@ -60,7 +60,7 @@ Partial Class newUcSideNav
         Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(100, 424)
         Me.Button3.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -78,7 +78,7 @@ Partial Class newUcSideNav
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(100, 265)
         Me.Button2.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -96,7 +96,7 @@ Partial Class newUcSideNav
         Me.btnNavBilling.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavBilling.FlatAppearance.BorderSize = 0
         Me.btnNavBilling.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavBilling.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavBilling.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavBilling.ForeColor = System.Drawing.Color.White
         Me.btnNavBilling.Location = New System.Drawing.Point(100, 212)
         Me.btnNavBilling.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -114,7 +114,7 @@ Partial Class newUcSideNav
         Me.btnNavDashboard.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavDashboard.FlatAppearance.BorderSize = 0
         Me.btnNavDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavDashboard.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavDashboard.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavDashboard.ForeColor = System.Drawing.Color.White
         Me.btnNavDashboard.Location = New System.Drawing.Point(100, 0)
         Me.btnNavDashboard.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -132,7 +132,7 @@ Partial Class newUcSideNav
         Me.btnManageAccounts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnManageAccounts.FlatAppearance.BorderSize = 0
         Me.btnManageAccounts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnManageAccounts.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnManageAccounts.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnManageAccounts.ForeColor = System.Drawing.Color.White
         Me.btnManageAccounts.Location = New System.Drawing.Point(100, 371)
         Me.btnManageAccounts.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -150,7 +150,7 @@ Partial Class newUcSideNav
         Me.btnNavContracts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavContracts.FlatAppearance.BorderSize = 0
         Me.btnNavContracts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavContracts.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavContracts.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavContracts.ForeColor = System.Drawing.Color.White
         Me.btnNavContracts.Location = New System.Drawing.Point(100, 53)
         Me.btnNavContracts.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -168,7 +168,7 @@ Partial Class newUcSideNav
         Me.btnNavTechs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavTechs.FlatAppearance.BorderSize = 0
         Me.btnNavTechs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavTechs.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavTechs.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavTechs.ForeColor = System.Drawing.Color.White
         Me.btnNavTechs.Location = New System.Drawing.Point(100, 318)
         Me.btnNavTechs.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -186,7 +186,7 @@ Partial Class newUcSideNav
         Me.btnNavCalendar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavCalendar.FlatAppearance.BorderSize = 0
         Me.btnNavCalendar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavCalendar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavCalendar.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavCalendar.ForeColor = System.Drawing.Color.White
         Me.btnNavCalendar.Location = New System.Drawing.Point(100, 106)
         Me.btnNavCalendar.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -204,7 +204,7 @@ Partial Class newUcSideNav
         Me.btnNavClients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnNavClients.FlatAppearance.BorderSize = 0
         Me.btnNavClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNavClients.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNavClients.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNavClients.ForeColor = System.Drawing.Color.White
         Me.btnNavClients.Location = New System.Drawing.Point(100, 159)
         Me.btnNavClients.Margin = New System.Windows.Forms.Padding(0, 0, 0, 10)
@@ -221,11 +221,11 @@ Partial Class newUcSideNav
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Lucida Sans Unicode", 20.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(114, 49)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(257, 46)
+        Me.Label1.Size = New System.Drawing.Size(260, 48)
         Me.Label1.TabIndex = 36
         Me.Label1.Text = "MAIN MENU"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopCenter

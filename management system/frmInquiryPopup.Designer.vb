@@ -35,69 +35,78 @@ Partial Class frmInquiryPopup
         'lblSelectedClient
         '
         Me.lblSelectedClient.AutoSize = True
-        Me.lblSelectedClient.Location = New System.Drawing.Point(23, 18)
+        Me.lblSelectedClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSelectedClient.Location = New System.Drawing.Point(23, 30)
         Me.lblSelectedClient.Name = "lblSelectedClient"
-        Me.lblSelectedClient.Size = New System.Drawing.Size(57, 20)
+        Me.lblSelectedClient.Size = New System.Drawing.Size(107, 32)
         Me.lblSelectedClient.TabIndex = 0
         Me.lblSelectedClient.Text = "Label1"
         '
         'cmbInspector
         '
+        Me.cmbInspector.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbInspector.FormattingEnabled = True
         Me.cmbInspector.Location = New System.Drawing.Point(251, 125)
         Me.cmbInspector.Name = "cmbInspector"
-        Me.cmbInspector.Size = New System.Drawing.Size(261, 28)
+        Me.cmbInspector.Size = New System.Drawing.Size(261, 34)
         Me.cmbInspector.TabIndex = 1
         '
         'cmbService
         '
+        Me.cmbService.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbService.FormattingEnabled = True
         Me.cmbService.Location = New System.Drawing.Point(27, 199)
         Me.cmbService.Name = "cmbService"
-        Me.cmbService.Size = New System.Drawing.Size(485, 28)
+        Me.cmbService.Size = New System.Drawing.Size(485, 34)
         Me.cmbService.TabIndex = 2
         '
         'dtpInspectDate
         '
+        Me.dtpInspectDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpInspectDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpInspectDate.Location = New System.Drawing.Point(27, 127)
         Me.dtpInspectDate.Name = "dtpInspectDate"
-        Me.dtpInspectDate.Size = New System.Drawing.Size(200, 26)
+        Me.dtpInspectDate.Size = New System.Drawing.Size(200, 32)
         Me.dtpInspectDate.TabIndex = 3
         '
         'btnDispatch
         '
-        Me.btnDispatch.Location = New System.Drawing.Point(27, 263)
+        Me.btnDispatch.BackColor = System.Drawing.Color.SpringGreen
+        Me.btnDispatch.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDispatch.Location = New System.Drawing.Point(27, 279)
         Me.btnDispatch.Name = "btnDispatch"
-        Me.btnDispatch.Size = New System.Drawing.Size(485, 102)
+        Me.btnDispatch.Size = New System.Drawing.Size(485, 74)
         Me.btnDispatch.TabIndex = 4
         Me.btnDispatch.Text = "dispatch"
-        Me.btnDispatch.UseVisualStyleBackColor = True
+        Me.btnDispatch.UseVisualStyleBackColor = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(247, 102)
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(246, 96)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(134, 20)
+        Me.Label1.Size = New System.Drawing.Size(200, 26)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Select Technician"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(23, 104)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(23, 96)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(151, 20)
+        Me.Label2.Size = New System.Drawing.Size(221, 26)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Set Inspection Date"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(23, 176)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(23, 170)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(110, 20)
+        Me.Label3.Size = New System.Drawing.Size(166, 26)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "Select Service"
         '
@@ -105,6 +114,7 @@ Partial Class frmInquiryPopup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.CornflowerBlue
         Me.ClientSize = New System.Drawing.Size(536, 386)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)

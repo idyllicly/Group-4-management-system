@@ -190,7 +190,7 @@ Partial Class newUcDataSync
         '
         'dgvPreview
         '
-        Me.dgvPreview.BackgroundColor = System.Drawing.Color.White
+        Me.dgvPreview.BackgroundColor = System.Drawing.SystemColors.Highlight
         Me.dgvPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPreview.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvPreview.Location = New System.Drawing.Point(3, 153)

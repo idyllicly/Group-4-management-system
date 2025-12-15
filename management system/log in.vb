@@ -152,6 +152,7 @@ Public Class log_in
     ' =========================================================
 
     Private Sub log_in_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DatabaseManager.StartServer()
         Me.DoubleBuffered = True
         Dim myBlue As Color = Color.FromArgb(255, 0, 0, 100)
         If OvalButton1 IsNot Nothing Then

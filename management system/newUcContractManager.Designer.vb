@@ -50,6 +50,7 @@ Partial Class newUcContractManager
         Me.dgvJobHistory = New System.Windows.Forms.DataGridView()
         Me.tpPayments = New System.Windows.Forms.TabPage()
         Me.dgvPayments = New System.Windows.Forms.DataGridView()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -64,6 +65,7 @@ Partial Class newUcContractManager
         CType(Me.dgvJobHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpPayments.SuspendLayout()
         CType(Me.dgvPayments, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -90,7 +92,7 @@ Partial Class newUcContractManager
         Me.dgvContracts.AllowUserToAddRows = False
         Me.dgvContracts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvContracts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvContracts.BackgroundColor = System.Drawing.Color.Teal
+        Me.dgvContracts.BackgroundColor = System.Drawing.SystemColors.Highlight
         Me.dgvContracts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvContracts.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvContracts.Location = New System.Drawing.Point(0, 131)
@@ -126,18 +128,20 @@ Partial Class newUcContractManager
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(719, 97)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(27, 20)
+        Me.Label4.Size = New System.Drawing.Size(29, 20)
         Me.Label4.TabIndex = 11
         Me.Label4.Text = "To"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(719, 66)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 20)
+        Me.Label3.Size = New System.Drawing.Size(50, 20)
         Me.Label3.TabIndex = 10
         Me.Label3.Text = "From"
         '
@@ -160,9 +164,10 @@ Partial Class newUcContractManager
         'chkDateFilter
         '
         Me.chkDateFilter.AutoSize = True
+        Me.chkDateFilter.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkDateFilter.Location = New System.Drawing.Point(584, 99)
         Me.chkDateFilter.Name = "chkDateFilter"
-        Me.chkDateFilter.Size = New System.Drawing.Size(129, 24)
+        Me.chkDateFilter.Size = New System.Drawing.Size(142, 24)
         Me.chkDateFilter.TabIndex = 7
         Me.chkDateFilter.Text = "Filter by Date"
         Me.chkDateFilter.UseVisualStyleBackColor = True
@@ -170,18 +175,20 @@ Partial Class newUcContractManager
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(250, 101)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(120, 20)
+        Me.Label2.Size = New System.Drawing.Size(136, 20)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Filter by Service"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(0, 103)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(83, 20)
+        Me.Label1.Size = New System.Drawing.Size(92, 20)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Sort Order"
         '
@@ -219,6 +226,7 @@ Partial Class newUcContractManager
         '
         'btnSearch
         '
+        Me.btnSearch.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.Location = New System.Drawing.Point(240, 46)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(75, 35)
@@ -240,6 +248,7 @@ Partial Class newUcContractManager
         Me.tabDetails.Controls.Add(Me.tpJobs)
         Me.tabDetails.Controls.Add(Me.tpPayments)
         Me.tabDetails.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tabDetails.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tabDetails.Location = New System.Drawing.Point(0, 0)
         Me.tabDetails.Name = "tabDetails"
         Me.tabDetails.SelectedIndex = 0
@@ -248,11 +257,7 @@ Partial Class newUcContractManager
         '
         'tpOverview
         '
-        Me.tpOverview.Controls.Add(Me.lblStatus)
-        Me.tpOverview.Controls.Add(Me.lblService)
-        Me.tpOverview.Controls.Add(Me.lblTotalAmount)
-        Me.tpOverview.Controls.Add(Me.lblBalance)
-        Me.tpOverview.Controls.Add(Me.lblClientName)
+        Me.tpOverview.Controls.Add(Me.FlowLayoutPanel1)
         Me.tpOverview.Location = New System.Drawing.Point(4, 29)
         Me.tpOverview.Name = "tpOverview"
         Me.tpOverview.Padding = New System.Windows.Forms.Padding(3)
@@ -265,46 +270,51 @@ Partial Class newUcContractManager
         '
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStatus.Location = New System.Drawing.Point(20, 152)
+        Me.lblStatus.Location = New System.Drawing.Point(3, 100)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(0, 25)
+        Me.lblStatus.Size = New System.Drawing.Size(74, 25)
         Me.lblStatus.TabIndex = 5
+        Me.lblStatus.Text = "LABEL"
         '
         'lblService
         '
         Me.lblService.AutoSize = True
         Me.lblService.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblService.Location = New System.Drawing.Point(20, 46)
+        Me.lblService.Location = New System.Drawing.Point(3, 75)
         Me.lblService.Name = "lblService"
-        Me.lblService.Size = New System.Drawing.Size(0, 25)
+        Me.lblService.Size = New System.Drawing.Size(74, 25)
         Me.lblService.TabIndex = 4
+        Me.lblService.Text = "LABEL"
         '
         'lblTotalAmount
         '
         Me.lblTotalAmount.AutoSize = True
         Me.lblTotalAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalAmount.Location = New System.Drawing.Point(20, 80)
+        Me.lblTotalAmount.Location = New System.Drawing.Point(3, 50)
         Me.lblTotalAmount.Name = "lblTotalAmount"
-        Me.lblTotalAmount.Size = New System.Drawing.Size(0, 25)
+        Me.lblTotalAmount.Size = New System.Drawing.Size(74, 25)
         Me.lblTotalAmount.TabIndex = 2
+        Me.lblTotalAmount.Text = "LABEL"
         '
         'lblBalance
         '
         Me.lblBalance.AutoSize = True
         Me.lblBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBalance.Location = New System.Drawing.Point(20, 116)
+        Me.lblBalance.Location = New System.Drawing.Point(3, 25)
         Me.lblBalance.Name = "lblBalance"
-        Me.lblBalance.Size = New System.Drawing.Size(0, 25)
+        Me.lblBalance.Size = New System.Drawing.Size(74, 25)
         Me.lblBalance.TabIndex = 1
+        Me.lblBalance.Text = "LABEL"
         '
         'lblClientName
         '
         Me.lblClientName.AutoSize = True
         Me.lblClientName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblClientName.Location = New System.Drawing.Point(20, 17)
+        Me.lblClientName.Location = New System.Drawing.Point(3, 0)
         Me.lblClientName.Name = "lblClientName"
-        Me.lblClientName.Size = New System.Drawing.Size(0, 25)
+        Me.lblClientName.Size = New System.Drawing.Size(74, 25)
         Me.lblClientName.TabIndex = 0
+        Me.lblClientName.Text = "LABEL"
         '
         'tpSchedule
         '
@@ -322,6 +332,7 @@ Partial Class newUcContractManager
         Me.dgvSchedule.AllowUserToAddRows = False
         Me.dgvSchedule.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvSchedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.dgvSchedule.BackgroundColor = System.Drawing.Color.CornflowerBlue
         Me.dgvSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSchedule.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSchedule.Location = New System.Drawing.Point(3, 3)
@@ -382,6 +393,19 @@ Partial Class newUcContractManager
         Me.dgvPayments.Size = New System.Drawing.Size(970, 246)
         Me.dgvPayments.TabIndex = 0
         '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblClientName)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblBalance)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblTotalAmount)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblService)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblStatus)
+        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(38, 24)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(482, 196)
+        Me.FlowLayoutPanel1.TabIndex = 6
+        '
         'newUcContractManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -398,13 +422,14 @@ Partial Class newUcContractManager
         Me.Panel1.PerformLayout()
         Me.tabDetails.ResumeLayout(False)
         Me.tpOverview.ResumeLayout(False)
-        Me.tpOverview.PerformLayout()
         Me.tpSchedule.ResumeLayout(False)
         CType(Me.dgvSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpJobs.ResumeLayout(False)
         CType(Me.dgvJobHistory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tpPayments.ResumeLayout(False)
         CType(Me.dgvPayments, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -437,4 +462,5 @@ Partial Class newUcContractManager
     Friend WithEvents chkDateFilter As CheckBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class

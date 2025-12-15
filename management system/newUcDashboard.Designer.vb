@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class newUcDashboard
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,9 @@ Partial Class newUcDashboard
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpViewDate = New System.Windows.Forms.DateTimePicker()
@@ -58,6 +58,10 @@ Partial Class newUcDashboard
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblDetailClient = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.FlowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
         CType(Me.dgvDailyJobs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +71,10 @@ Partial Class newUcDashboard
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.grpJobDetails.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout()
+        Me.FlowLayoutPanel2.SuspendLayout()
+        Me.FlowLayoutPanel3.SuspendLayout()
+        Me.FlowLayoutPanel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -87,10 +95,11 @@ Partial Class newUcDashboard
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(19, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(157, 20)
+        Me.Label2.Size = New System.Drawing.Size(170, 20)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Select Specific Date:"
         '
@@ -111,6 +120,7 @@ Partial Class newUcDashboard
         'btnRefresh
         '
         Me.btnRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRefresh.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.btnRefresh.Location = New System.Drawing.Point(333, 11)
         Me.btnRefresh.Name = "btnRefresh"
@@ -127,16 +137,16 @@ Partial Class newUcDashboard
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvDailyJobs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDailyJobs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.dgvDailyJobs.BackgroundColor = System.Drawing.Color.Teal
+        Me.dgvDailyJobs.BackgroundColor = System.Drawing.SystemColors.Highlight
         Me.dgvDailyJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvDailyJobs.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvDailyJobs.EnableHeadersVisualStyles = False
         Me.dgvDailyJobs.Location = New System.Drawing.Point(19, 72)
         Me.dgvDailyJobs.Name = "dgvDailyJobs"
@@ -155,6 +165,7 @@ Partial Class newUcDashboard
         Me.GroupBox1.Controls.Add(Me.btnAssignJob)
         Me.GroupBox1.Controls.Add(Me.cmbTechnician)
         Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.GroupBox1.Location = New System.Drawing.Point(19, 613)
         Me.GroupBox1.Name = "GroupBox1"
@@ -167,11 +178,11 @@ Partial Class newUcDashboard
         '
         Me.btnAssignJob.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAssignJob.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnAssignJob.BackColor = System.Drawing.Color.SpringGreen
         Me.btnAssignJob.FlatAppearance.BorderSize = 0
         Me.btnAssignJob.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAssignJob.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAssignJob.ForeColor = System.Drawing.Color.White
+        Me.btnAssignJob.Font = New System.Drawing.Font("Lucida Sans Unicode", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAssignJob.ForeColor = System.Drawing.Color.Black
         Me.btnAssignJob.Location = New System.Drawing.Point(17, 79)
         Me.btnAssignJob.Name = "btnAssignJob"
         Me.btnAssignJob.Size = New System.Drawing.Size(371, 39)
@@ -192,10 +203,11 @@ Partial Class newUcDashboard
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(13, 22)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(141, 20)
+        Me.Label3.Size = New System.Drawing.Size(156, 20)
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Assign Technician:"
         '
@@ -222,11 +234,11 @@ Partial Class newUcDashboard
         '
         Me.lblMonthYear1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.lblMonthYear1.AutoSize = True
-        Me.lblMonthYear1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear1.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMonthYear1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.lblMonthYear1.Location = New System.Drawing.Point(222, 27)
         Me.lblMonthYear1.Name = "lblMonthYear1"
-        Me.lblMonthYear1.Size = New System.Drawing.Size(172, 25)
+        Me.lblMonthYear1.Size = New System.Drawing.Size(175, 23)
         Me.lblMonthYear1.TabIndex = 8
         Me.lblMonthYear1.Text = "OCTOBER 2025"
         '
@@ -281,11 +293,11 @@ Partial Class newUcDashboard
         '
         Me.lblMonthYear2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.lblMonthYear2.AutoSize = True
-        Me.lblMonthYear2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMonthYear2.Font = New System.Drawing.Font("Lucida Sans Unicode", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMonthYear2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(116, Byte), Integer), CType(CType(139, Byte), Integer))
         Me.lblMonthYear2.Location = New System.Drawing.Point(222, 301)
         Me.lblMonthYear2.Name = "lblMonthYear2"
-        Me.lblMonthYear2.Size = New System.Drawing.Size(172, 25)
+        Me.lblMonthYear2.Size = New System.Drawing.Size(175, 23)
         Me.lblMonthYear2.TabIndex = 9
         Me.lblMonthYear2.Text = "OCTOBER 2025"
         '
@@ -314,22 +326,11 @@ Partial Class newUcDashboard
         '
         Me.grpJobDetails.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailDuration)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailEnd)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailStart)
-        Me.grpJobDetails.Controls.Add(Me.Label11)
-        Me.grpJobDetails.Controls.Add(Me.Label10)
-        Me.grpJobDetails.Controls.Add(Me.Label9)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailVisit)
-        Me.grpJobDetails.Controls.Add(Me.Label8)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailTech)
-        Me.grpJobDetails.Controls.Add(Me.Label7)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailService)
-        Me.grpJobDetails.Controls.Add(Me.Label6)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailAddress)
-        Me.grpJobDetails.Controls.Add(Me.Label5)
-        Me.grpJobDetails.Controls.Add(Me.lblDetailClient)
-        Me.grpJobDetails.Controls.Add(Me.Label4)
+        Me.grpJobDetails.Controls.Add(Me.FlowLayoutPanel4)
+        Me.grpJobDetails.Controls.Add(Me.FlowLayoutPanel2)
+        Me.grpJobDetails.Controls.Add(Me.FlowLayoutPanel1)
+        Me.grpJobDetails.Controls.Add(Me.FlowLayoutPanel3)
+        Me.grpJobDetails.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpJobDetails.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.grpJobDetails.Location = New System.Drawing.Point(19, 356)
         Me.grpJobDetails.Name = "grpJobDetails"
@@ -341,69 +342,75 @@ Partial Class newUcDashboard
         'lblDetailDuration
         '
         Me.lblDetailDuration.AutoSize = True
+        Me.lblDetailDuration.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailDuration.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailDuration.Location = New System.Drawing.Point(121, 214)
+        Me.lblDetailDuration.Location = New System.Drawing.Point(3, 40)
         Me.lblDetailDuration.Name = "lblDetailDuration"
-        Me.lblDetailDuration.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailDuration.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailDuration.TabIndex = 15
         Me.lblDetailDuration.Text = "..."
         '
         'lblDetailEnd
         '
         Me.lblDetailEnd.AutoSize = True
+        Me.lblDetailEnd.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailEnd.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailEnd.Location = New System.Drawing.Point(121, 189)
+        Me.lblDetailEnd.Location = New System.Drawing.Point(3, 20)
         Me.lblDetailEnd.Name = "lblDetailEnd"
-        Me.lblDetailEnd.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailEnd.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailEnd.TabIndex = 14
         Me.lblDetailEnd.Text = "..."
         '
         'lblDetailStart
         '
         Me.lblDetailStart.AutoSize = True
+        Me.lblDetailStart.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailStart.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailStart.Location = New System.Drawing.Point(121, 169)
+        Me.lblDetailStart.Location = New System.Drawing.Point(3, 0)
         Me.lblDetailStart.Name = "lblDetailStart"
-        Me.lblDetailStart.Size = New System.Drawing.Size(21, 20)
+        Me.lblDetailStart.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailStart.TabIndex = 13
         Me.lblDetailStart.Text = "..."
         '
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(25, 214)
+        Me.Label11.Location = New System.Drawing.Point(3, 40)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(74, 20)
+        Me.Label11.Size = New System.Drawing.Size(83, 20)
         Me.Label11.TabIndex = 12
         Me.Label11.Text = "Duration:"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(25, 189)
+        Me.Label10.Location = New System.Drawing.Point(3, 20)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(42, 20)
+        Me.Label10.Size = New System.Drawing.Size(43, 20)
         Me.Label10.TabIndex = 11
         Me.Label10.Text = "End:"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(21, 169)
+        Me.Label9.Location = New System.Drawing.Point(3, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(48, 20)
+        Me.Label9.Size = New System.Drawing.Size(51, 20)
         Me.Label9.TabIndex = 10
         Me.Label9.Text = "Start:"
         '
         'lblDetailVisit
         '
         Me.lblDetailVisit.AutoSize = True
-        Me.lblDetailVisit.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailVisit.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailVisit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailVisit.Location = New System.Drawing.Point(121, 137)
+        Me.lblDetailVisit.Location = New System.Drawing.Point(3, 80)
         Me.lblDetailVisit.Name = "lblDetailVisit"
         Me.lblDetailVisit.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailVisit.TabIndex = 9
@@ -412,19 +419,20 @@ Partial Class newUcDashboard
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(17, 137)
+        Me.Label8.Location = New System.Drawing.Point(3, 80)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(56, 20)
+        Me.Label8.Size = New System.Drawing.Size(63, 20)
         Me.Label8.TabIndex = 8
         Me.Label8.Text = "Visit #:"
         '
         'lblDetailTech
         '
         Me.lblDetailTech.AutoSize = True
-        Me.lblDetailTech.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailTech.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailTech.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailTech.Location = New System.Drawing.Point(121, 107)
+        Me.lblDetailTech.Location = New System.Drawing.Point(3, 60)
         Me.lblDetailTech.Name = "lblDetailTech"
         Me.lblDetailTech.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailTech.TabIndex = 7
@@ -433,19 +441,20 @@ Partial Class newUcDashboard
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(17, 107)
+        Me.Label7.Location = New System.Drawing.Point(3, 60)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(89, 20)
+        Me.Label7.Size = New System.Drawing.Size(99, 20)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = "Technician:"
         '
         'lblDetailService
         '
         Me.lblDetailService.AutoSize = True
-        Me.lblDetailService.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailService.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailService.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailService.Location = New System.Drawing.Point(121, 79)
+        Me.lblDetailService.Location = New System.Drawing.Point(3, 40)
         Me.lblDetailService.Name = "lblDetailService"
         Me.lblDetailService.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailService.TabIndex = 5
@@ -454,19 +463,20 @@ Partial Class newUcDashboard
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(17, 79)
+        Me.Label6.Location = New System.Drawing.Point(3, 40)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(65, 20)
+        Me.Label6.Size = New System.Drawing.Size(71, 20)
         Me.Label6.TabIndex = 4
         Me.Label6.Text = "Service:"
         '
         'lblDetailAddress
         '
         Me.lblDetailAddress.AutoSize = True
-        Me.lblDetailAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailAddress.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailAddress.Location = New System.Drawing.Point(121, 50)
+        Me.lblDetailAddress.Location = New System.Drawing.Point(3, 20)
         Me.lblDetailAddress.Name = "lblDetailAddress"
         Me.lblDetailAddress.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailAddress.TabIndex = 3
@@ -475,19 +485,20 @@ Partial Class newUcDashboard
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(17, 50)
+        Me.Label5.Location = New System.Drawing.Point(3, 20)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 20)
+        Me.Label5.Size = New System.Drawing.Size(78, 20)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "Address:"
         '
         'lblDetailClient
         '
         Me.lblDetailClient.AutoSize = True
-        Me.lblDetailClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDetailClient.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDetailClient.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.lblDetailClient.Location = New System.Drawing.Point(121, 26)
+        Me.lblDetailClient.Location = New System.Drawing.Point(3, 0)
         Me.lblDetailClient.Name = "lblDetailClient"
         Me.lblDetailClient.Size = New System.Drawing.Size(24, 20)
         Me.lblDetailClient.TabIndex = 1
@@ -496,12 +507,61 @@ Partial Class newUcDashboard
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Lucida Sans Unicode", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(65, Byte), Integer), CType(CType(85, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(17, 26)
+        Me.Label4.Location = New System.Drawing.Point(3, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(99, 20)
+        Me.Label4.Size = New System.Drawing.Size(112, 20)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Client Name:"
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label4)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label5)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label6)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label7)
+        Me.FlowLayoutPanel1.Controls.Add(Me.Label8)
+        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(21, 31)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(124, 107)
+        Me.FlowLayoutPanel1.TabIndex = 16
+        '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.Controls.Add(Me.lblDetailClient)
+        Me.FlowLayoutPanel2.Controls.Add(Me.lblDetailAddress)
+        Me.FlowLayoutPanel2.Controls.Add(Me.lblDetailService)
+        Me.FlowLayoutPanel2.Controls.Add(Me.lblDetailTech)
+        Me.FlowLayoutPanel2.Controls.Add(Me.lblDetailVisit)
+        Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(160, 31)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(228, 107)
+        Me.FlowLayoutPanel2.TabIndex = 17
+        '
+        'FlowLayoutPanel3
+        '
+        Me.FlowLayoutPanel3.Controls.Add(Me.Label9)
+        Me.FlowLayoutPanel3.Controls.Add(Me.Label10)
+        Me.FlowLayoutPanel3.Controls.Add(Me.Label11)
+        Me.FlowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(17, 144)
+        Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
+        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(128, 107)
+        Me.FlowLayoutPanel3.TabIndex = 18
+        '
+        'FlowLayoutPanel4
+        '
+        Me.FlowLayoutPanel4.Controls.Add(Me.lblDetailStart)
+        Me.FlowLayoutPanel4.Controls.Add(Me.lblDetailEnd)
+        Me.FlowLayoutPanel4.Controls.Add(Me.lblDetailDuration)
+        Me.FlowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(160, 144)
+        Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
+        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(228, 107)
+        Me.FlowLayoutPanel4.TabIndex = 19
         '
         'newUcDashboard
         '
@@ -524,7 +584,14 @@ Partial Class newUcDashboard
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.grpJobDetails.ResumeLayout(False)
-        Me.grpJobDetails.PerformLayout()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
+        Me.FlowLayoutPanel2.ResumeLayout(False)
+        Me.FlowLayoutPanel2.PerformLayout()
+        Me.FlowLayoutPanel3.ResumeLayout(False)
+        Me.FlowLayoutPanel3.PerformLayout()
+        Me.FlowLayoutPanel4.ResumeLayout(False)
+        Me.FlowLayoutPanel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -564,4 +631,8 @@ Partial Class newUcDashboard
     Friend WithEvents lblDetailStart As Label
     Friend WithEvents lblDetailDuration As Label
     Friend WithEvents lblDetailEnd As Label
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel
 End Class
